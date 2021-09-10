@@ -30,13 +30,12 @@ const IDIndex = styled.div`
 	color: #000000;
 `
 const PWIndex = styled.div`
-	padding-top:8vh;
 	width: 110px;
 	font-size: 19px;
 	line-height: 22px;
 	display: flex;
 	align-items: center;
-
+	margin-top:13px;
 	color: #000000;
 `
 
@@ -79,6 +78,7 @@ const S_InputField = styled.div`
 	background: #E5E5E5;
 	border:0 solid black;
 	border-radius: 10px;
+	float:left;
 `
 
 const S_InputFieldv2 = styled.div`
@@ -185,35 +185,40 @@ const SignupButton = styled.button`
 const Field=styled.div`
 	height:4vh;
 	width: 32vw;
+	float:left;
 `
 
 const DoubleCheck=styled.button`
-	height:6vh;
-	
+	height:8vh;
+	margin-top:3vh;
+	margin-right:1vw;
 	width:8vw;
 	float:right;
 	filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-	border-color:#86DE8A;
 	background-color:white;
 	font-size: 22px;
 	line-height: 22px;	
-	align:"right";
+	border-radius: 10px;
+	border: 3px solid #86DE8A;
+	box-sizing: border-box;
 `
 
 const IdField=styled.div`
 	width: 47vw;
+	height: 11vh;
 ;
 
 `
 
 const Corps=styled.div`
 	width: 10vw;
-
+	float :left;
 `
 
 const AssociationCorps=styled.div`
-	width: 20vw;
+	width: 22vw;
 	float:right;
+	
 `
 
 const MilitarySection=styled.div`
@@ -223,6 +228,18 @@ const MilitarySection=styled.div`
 
 const AllFiled=styled.div`
 
+`
+
+const ArmyUnit=styled.div`
+	height: 3vh;
+	width:47vw;
+	font-size:19px;
+	margin-top: 19px;
+`
+
+const ArmyBlank=styled.div`
+	height: 7vh;
+	width:47vw;
 `
 
 export default function SignupComponent(){
@@ -249,16 +266,18 @@ export default function SignupComponent(){
 					<Input type="password" isPassword={true}></Input>
 				</InputField>
 				<MilitarySection>
-					<Corps>부대명</Corps>
-					<AssociationCorps>소속부대</AssociationCorps>
-					<AllFiled>
+					<ArmyUnit>
+						<Corps>부대명</Corps>
+						<AssociationCorps>소속부대</AssociationCorps>
+					</ArmyUnit>
+					<ArmyBlank>	
 						<S_InputField>
 							<S_Input></S_Input>
 						</S_InputField>
 						<S_InputFieldv2>
 							<S_Input2></S_Input2>
 						</S_InputFieldv2>
-					</AllFiled>
+					</ArmyBlank>	
 				</MilitarySection>
 				<Link to="/signin">
 					<SignupButton>회원가입</SignupButton>
