@@ -2,15 +2,15 @@ import React from 'react';
 import styled from 'styled-components'
 
 const Container = styled.div`
-    margin-left: 4vw;
-    display: inline-flex;
+    margin-top: 40px;
+    display: flex;
     width:-webkit-fill-available;
     justify-content:space-evenly;
 `
 const Rectangle = styled.div`
     position: auto;
-    width: 274px;
-    height: 608px;
+    width: 22vw;
+    height: 70vh;
     left: 295px;
     top: 149px;
 
@@ -23,8 +23,12 @@ const Rectangle = styled.div`
 `
 
 const Title = styled.div`
+
+  padding-top: 4vh;
+  padding-bottom: 4vh;
+
     margin: auto;
-    width: 153px;
+    width: 10vw;
     height: 47px;
     left: 358px;
     top: 183px;
@@ -43,7 +47,7 @@ const Title = styled.div`
 `
 const SubRectangle = styled.div`
     margin: auto;
-    width: 220px;
+    width: 80%;
     height: 362px;
     left: 323px;
     top: 251px;
@@ -52,178 +56,160 @@ const SubRectangle = styled.div`
 
     border: 1px solid #75CB32;
     box-sizing: border-box;
+
+/* text style */
+
+    margin: auto;
+    font-family: Inter;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 25px;
+
+    display: grid;
+    align-items: center;
+    text-align: center;
+
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 `
 const SubRectangle2 = styled.div`
-margin: auto;
-width: 188px;
-height: 332px;
-left: 341px;
-top: 268px;
+  margin: auto;
+  width: 15vw;
+  height: 332px;
+  left: 341px;
+  top: 268px;
 `
 const Main = styled.div`
-margin: auto;
-font-family: Inter;
-font-style: normal;
-font-weight: bold;
-font-size: 20px;
-line-height: 25px;
-
-display: grid;
-align-items: center;
-text-align: center;
-
-color: #FF2C2C;
-
-text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  color: #FF2C2C;
+  padding-bottom: 2vh;
+  padding-top: 2vh;
+`
+const TextContainer = styled.div`
+  margin-top:1vh;
 `
 const Text = styled.div`
-margin: auto;
-font-family: Inter;
-font-style: normal;
-font-weight: bold;
-font-size: 20px;
-line-height: 25px;
-
-display: grid;
-align-items: center;
-text-align: center;
-
-color: black;
-
-text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  color: black;
 `
 const Self = styled.div`
-margin: auto;
-font-family: Inter;
-font-style: normal;
-font-weight: bold;
-font-size: 20px;
-line-height: 25px;
-
-display: grid;
-align-items: center;
-text-align: center;
-
-color: #FF7C53;
-
-text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  color: #FF7C53;
+  padding-bottom: 1vh;
 `
 const Dessert = styled.div`
-margin: auto;
-font-family: Inter;
-font-style: normal;
-font-weight: bold;
-font-size: 20px;
-line-height: 25px;
+  color: #0038FF;
+  padding-bottom: 1vh;
 
-display: grid;
-align-items: center;
-text-align: center;
-
-color: #0038FF;
-
-text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 `
 
 const Percentage = styled.div`
-margin: auto;
-width: 231px;
-height: 26px;
-left: 315px;
-top: 659px;
+  margin: auto;
+  width: 80%;
+  height: 26px;
+  left: 315px;
+  top: 659px;
 
-font-family: Inter;
-font-style: normal;
-font-weight: bold;
-font-size: 18px;
-line-height: 25px;
-/* or 139% */
+  font-family: Inter;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 25px;
+  /* or 139% */
 
-display: grid;
-align-items: center;
-text-align: center;
+  display: grid;
+  align-items: center;
+  text-align: center;
 
-color: #FF0000;
+  color: #FF0000;
+`
+const PercentageContainer = styled.div`
+  margin-top:4vh;
+  
 `
 const PercentageBar = styled.div`
-margin: auto;
-width: 230px;
-height: 18px;
-left: 317px;
-top: 694px;
+  margin: auto;
+  width: 80%;
+  height: 18px;
+  left: 317px;
+  top: 694px;
 
-background: #C4C4C4;
+  background: #C4C4C4;
 `
 const PercentageBar2 = styled.div`
+  width: 50px;
+  height: 18px;
+  left: 317px;
+  top: 694px;
 
-width: 202px;
-height: 18px;
-left: 317px;
-top: 694px;
-
-background: #FF0000;
+  background: #FF0000;
 `
-
 export default function SatisfyComponent(){
+  
   return (
     <Container>
       <Rectangle>
-      <Title>
-          조식
+        <Title>
+            조식
         </Title>
         <SubRectangle>
           <SubRectangle2>
             <Main>
               Main
-              <Text>
-                흰쌀밥
-              </Text>
-              <Text>
-                에그스크램블
-              </Text>
-              <Text>
-                쇠고기찌개
-              </Text>
-              <Text>
-                오징어채
-              </Text>
-              <Text>
-                김치
-              </Text>
+              <TextContainer>
+                <Text>
+                  흰쌀밥
+                </Text>
+                <Text>
+                  에그스크램블
+                </Text>
+                <Text>
+                  쇠고기찌개
+                </Text>
+                <Text>
+                  오징어채
+                </Text>
+                <Text>
+                  김치
+                </Text>
+              </TextContainer>
             </Main>
             
             <Self>
               Self
-              <Text>
-                -
-              </Text>
+              <TextContainer>
+                <Text>
+                  -
+                </Text>
+              </TextContainer>
             </Self>
             
             <Dessert>
               Dessert
-              <Text>
-                우유
-              </Text>
+              <TextContainer>
+                <Text>
+                  우유
+                </Text>
+              </TextContainer>
             </Dessert>
             
           </SubRectangle2>
           
         </SubRectangle>
-        <Percentage>
-          87%
-        </Percentage>
-        <PercentageBar>
-          <PercentageBar2>
-            
-          </PercentageBar2>
-        </PercentageBar>
-      </Rectangle>
 
-      <Rectangle>
-
-      </Rectangle>
-      <Rectangle>
+        <PercentageContainer>
+          <Percentage>
+            87%
+          </Percentage>
+          <PercentageBar>
+            <PercentageBar2>
+              
+            </PercentageBar2>
+          </PercentageBar>
+        </PercentageContainer>
         
+      </Rectangle>
+
+      <Rectangle>
+      </Rectangle>
+      <Rectangle>
       </Rectangle>
 
     </Container>
