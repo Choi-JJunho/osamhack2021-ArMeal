@@ -5,7 +5,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
 import com.api.service.UserService;
 import com.api.domain.User;
 
@@ -20,8 +19,15 @@ public class UserController {
         return userService.getTime();
     }
 
-    @RequestMapping(value = "/getmenu", method= RequestMethod.GET)
-    public List<User> getUsers() {
-        return userService.selectAllUser();
+    @RequestMapping(value = "/login", method= RequestMethod.POST)
+    public boolean login(String id, String password) {
+        return userService.login(id, password);
     }
+
+    @RequestMapping(value = "/signup", method= RequestMethod.POST)
+    public void signup(String name, String password, String email, long groupId, String userId) {
+        userService.signup(name, password, email, groupId, userId);
+    }
+
+
 }
