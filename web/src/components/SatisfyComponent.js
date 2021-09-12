@@ -124,7 +124,7 @@ const PercentageContainer = styled.div`
   margin-top:4vh;
   
 `
-const PercentageBar = styled.div`
+const Bar = styled.div`
   margin: auto;
   width: 80%;
   height: 18px;
@@ -133,16 +133,15 @@ const PercentageBar = styled.div`
 
   background: #C4C4C4;
 `
-const PercentageBar2 = styled.div`
+const ScoreBar = styled.div`
   width: 50px;
   height: 18px;
-  left: 317px;
-  top: 694px;
+  
 
   background: #FF0000;
 `
+
 export default function SatisfyComponent(){
-  
   return (
     <Container>
       <Rectangle>
@@ -198,11 +197,11 @@ export default function SatisfyComponent(){
           <Percentage>
             87%
           </Percentage>
-          <PercentageBar>
-            <PercentageBar2>
+          <Bar>
+            <ScoreBar>
               
-            </PercentageBar2>
-          </PercentageBar>
+            </ScoreBar>
+          </Bar>
         </PercentageContainer>
         
       </Rectangle>
