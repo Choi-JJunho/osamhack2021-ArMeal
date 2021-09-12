@@ -9,13 +9,16 @@
         SELECT NOW()
     </select>
 
-    <select id="selectAllUser" resultType="com.api.domain.User">
-        SELECT * FROM user
+    <insert id="signup">
+        INSERT INTO user (name, password, email, group_id, user_id)
+        VALUES (#{name}, #{password}, #{email}, #{group_id}, #{user_id})
+    </insert>
+
+    <select id="findUserByName" resultType="com.api.domain.User">
+        SELECT name, email, group_id, user_id FROM user WHERE name = #{_name}
     </select>
 
-
-    <insert id="insertUser">
-        INSERT INTO user (NAME, COUNTRY, POPULATION)
-        VALUES (#{user_id}, #{password}, #{name})
-    </insert>
+    <select id="findUserById" resultType="com.api.domain.User">
+        SELECT * FROM user WHERE user_id = #{_id}
+    </select>
 </mapper>
