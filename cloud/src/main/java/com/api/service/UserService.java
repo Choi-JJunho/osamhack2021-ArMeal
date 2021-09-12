@@ -20,6 +20,10 @@ public class UserService {
     public void addUser(User user) {
         mapper.insertUser(user);
     }
+
+    public String getTime() {
+        return mapper.getTime();
+    }
 /*
     public int deleteData(HashMap<Object, Object> vo) throws Exception {
         return mapper.deleteData(vo);

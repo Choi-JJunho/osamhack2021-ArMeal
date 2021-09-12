@@ -14,12 +14,5 @@ import java.util.List;
 
 @RestController
 public class MenuController {
-    
-    @Autowired
-    UserService userService;
 
-    @RequestMapping(value = "/getmenu", method= RequestMethod.GET)
-    public List<User> getUsers() {
-        return userService.selectAllUser();
-    }
 }

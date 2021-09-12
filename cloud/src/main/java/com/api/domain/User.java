@@ -9,7 +9,7 @@ public class User {
 	private String name;
     private String password;
 	private String email;
-    private long groupId;
+    private long group_id;
     private Timestamp created_at;
     private Timestamp deleted_at;
     private boolean is_deleted;
@@ -67,10 +67,10 @@ public class User {
 		this.email = email;
 	}
 	public long getGroupId() {
-		return groupId;
+		return group_id;
 	}
 	public void setGroupId(long groupId) {
-		this.groupId = groupId;
+		this.group_id = group_id;
 	}
 	
 }
