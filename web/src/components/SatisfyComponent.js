@@ -3,7 +3,9 @@ import styled from 'styled-components'
 
 const Container = styled.div`
     margin-left: 4vw;
-    
+    display: inline-flex;
+    width:-webkit-fill-available;
+    justify-content:space-evenly;
 `
 const Rectangle = styled.div`
     position: auto;
@@ -153,7 +155,7 @@ top: 694px;
 background: #C4C4C4;
 `
 const PercentageBar2 = styled.div`
-margin: auto;
+
 width: 202px;
 height: 18px;
 left: 317px;
@@ -161,34 +163,49 @@ top: 694px;
 
 background: #FF0000;
 `
+
 export default function SatisfyComponent(){
   return (
     <Container>
-      Satisfy
       <Rectangle>
-        <Title>
+      <Title>
           조식
         </Title>
         <SubRectangle>
           <SubRectangle2>
             <Main>
               Main
+              <Text>
+                흰쌀밥
+              </Text>
+              <Text>
+                에그스크램블
+              </Text>
+              <Text>
+                쇠고기찌개
+              </Text>
+              <Text>
+                오징어채
+              </Text>
+              <Text>
+                김치
+              </Text>
             </Main>
-            <Text>
-              흰쌀밥 에그스크램블 쇠고기찌개 오징어채 김치
-            </Text>
+            
             <Self>
               Self
+              <Text>
+                -
+              </Text>
             </Self>
-            <Text>
-              -
-            </Text>
+            
             <Dessert>
               Dessert
+              <Text>
+                우유
+              </Text>
             </Dessert>
-            <Text>
-              우유
-            </Text>
+            
           </SubRectangle2>
           
         </SubRectangle>
@@ -201,7 +218,13 @@ export default function SatisfyComponent(){
           </PercentageBar2>
         </PercentageBar>
       </Rectangle>
-      
+
+      <Rectangle>
+
+      </Rectangle>
+      <Rectangle>
+        
+      </Rectangle>
 
     </Container>
   )
