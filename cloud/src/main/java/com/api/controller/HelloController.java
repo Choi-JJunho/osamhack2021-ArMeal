@@ -11,5 +11,4 @@ public class HelloController {
     public @ResponseBody String hello() {
         return "Hello World";
     }
-    
 }

@@ -5,11 +5,15 @@
 
 <mapper namespace="com.api.mapper.UserMapper">
 
+    <select id="getTime" resultType="String">
+        SELECT NOW()
+    </select>
 
-    <select id="selectAllUser" resultType="user">
+    <select id="selectAllUser" resultType="com.api.domain.User">
         SELECT * FROM user
     </select>
-    
+
+
     <insert id="insertUser">
         INSERT INTO user (NAME, COUNTRY, POPULATION)
         VALUES (#{user_id}, #{password}, #{name})
