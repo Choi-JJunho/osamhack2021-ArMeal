@@ -11,8 +11,6 @@ const Rectangle = styled.div`
     position: auto;
     width: 22vw;
     height: 70vh;
-    left: 295px;
-    top: 149px;
 
     background: #FFFFFF;
 
@@ -30,8 +28,6 @@ const Title = styled.div`
     margin: auto;
     width: 10vw;
     height: 47px;
-    left: 358px;
-    top: 183px;
 
     font-family: Inter;
     font-style: normal;
@@ -49,8 +45,6 @@ const SubRectangle = styled.div`
     margin: auto;
     width: 80%;
     height: 362px;
-    left: 323px;
-    top: 251px;
 
     background: #FFFFFF;
 
@@ -76,8 +70,6 @@ const SubRectangle2 = styled.div`
   margin: auto;
   width: 15vw;
   height: 332px;
-  left: 341px;
-  top: 268px;
 `
 const Main = styled.div`
   color: #FF2C2C;
@@ -88,7 +80,7 @@ const TextContainer = styled.div`
   margin-top:1vh;
 `
 const Text = styled.div`
-  color: black;
+    color: black;
 `
 const Self = styled.div`
   color: #FF7C53;
@@ -104,15 +96,12 @@ const Percentage = styled.div`
   margin: auto;
   width: 80%;
   height: 26px;
-  left: 315px;
-  top: 659px;
 
   font-family: Inter;
   font-style: normal;
   font-weight: bold;
   font-size: 18px;
   line-height: 25px;
-  /* or 139% */
 
   display: grid;
   align-items: center;
@@ -128,16 +117,18 @@ const Bar = styled.div`
   margin: auto;
   width: 80%;
   height: 18px;
-  left: 317px;
-  top: 694px;
 
   background: #C4C4C4;
+
+  
+  
 `
+//width: ${props => props.score? score + "px": 0}
 const ScoreBar = styled.div`
-  width: 50px;
+  width: 80%;
+  
   height: 18px;
   
-
   background: #FF0000;
 `
 
