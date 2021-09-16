@@ -1,5 +1,6 @@
 CREATE TABLE `user`(
     `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `user_id` TEXT NOT NULL,
     `name` TEXT NOT NULL,
     `password` TEXT NOT NULL,
     `email` TEXT NOT NULL,

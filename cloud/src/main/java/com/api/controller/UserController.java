@@ -13,12 +13,6 @@ public class UserController {
     @Autowired
     UserService userService;
 
-
-    @RequestMapping(value = "/test", method= RequestMethod.GET) 
-    public String getTime() {
-        return userService.getTime();
-    }
-
     @RequestMapping(value = "/login", method= RequestMethod.POST)
     public boolean login(String id, String password) {
         return userService.login(id, password);

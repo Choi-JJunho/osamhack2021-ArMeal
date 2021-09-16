@@ -16,10 +16,6 @@ public class UserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    public String getTime() {
-        return mapper.getTime();
-    }
-
     public void signup(String name, String password, String email, long groupId, String userId) {
         String pw = passwordEncoder.encode(password);
         mapper.signup(name, pw, email, groupId, userId);
