@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components'
 
 const Container = styled.div`
-    margin-top: 40px;
+    margin-top: 8vh;
     display: flex;
     width:-webkit-fill-available;
     justify-content:space-evenly;
@@ -11,8 +11,6 @@ const Rectangle = styled.div`
     position: auto;
     width: 22vw;
     height: 70vh;
-    left: 295px;
-    top: 149px;
 
     background: #FFFFFF;
 
@@ -20,6 +18,13 @@ const Rectangle = styled.div`
     box-sizing: border-box;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 20px;
+
+    &:hover {
+      border: 5px solid #7FC8FD;
+      box-sizing: border-box;
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+      border-radius: 20px;
+    }
 `
 
 const Title = styled.div`
@@ -30,8 +35,6 @@ const Title = styled.div`
     margin: auto;
     width: 10vw;
     height: 47px;
-    left: 358px;
-    top: 183px;
 
     font-family: Inter;
     font-style: normal;
@@ -45,12 +48,10 @@ const Title = styled.div`
 
     color: #000000;
 `
-const SubRectangle = styled.div`
+const GreenBorder = styled.div`
     margin: auto;
     width: 80%;
     height: 362px;
-    left: 323px;
-    top: 251px;
 
     background: #FFFFFF;
 
@@ -72,12 +73,10 @@ const SubRectangle = styled.div`
 
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 `
-const SubRectangle2 = styled.div`
+const Menu = styled.div`
   margin: auto;
   width: 15vw;
   height: 332px;
-  left: 341px;
-  top: 268px;
 `
 const Main = styled.div`
   color: #FF2C2C;
@@ -88,7 +87,7 @@ const TextContainer = styled.div`
   margin-top:1vh;
 `
 const Text = styled.div`
-  color: black;
+    color: black;
 `
 const Self = styled.div`
   color: #FF7C53;
@@ -104,15 +103,12 @@ const Percentage = styled.div`
   margin: auto;
   width: 80%;
   height: 26px;
-  left: 315px;
-  top: 659px;
 
   font-family: Inter;
   font-style: normal;
   font-weight: bold;
   font-size: 18px;
   line-height: 25px;
-  /* or 139% */
 
   display: grid;
   align-items: center;
@@ -122,95 +118,113 @@ const Percentage = styled.div`
 `
 const PercentageContainer = styled.div`
   margin-top:4vh;
-  
 `
 const Bar = styled.div`
   margin: auto;
   width: 80%;
   height: 18px;
-  left: 317px;
-  top: 694px;
-
   background: #C4C4C4;
 `
-const ScoreBar = styled.div`
-  width: 50px;
-  height: 18px;
-  
+//width: ${props => props.score? score + "px": 0}
 
+const ScoreBar = styled.div`
+  width: 80%;
+  height: 18px;
   background: #FF0000;
 `
+function MainList(props){
+  return (
+    <Main>
+      {props.title}
+      <TextContainer>
+        <Text>
+          흰쌀밥
+        </Text>
+        <Text>
+          에그스크램블
+        </Text>
+        <Text>
+          쇠고기찌개
+        </Text>
+        <Text>
+          오징어채
+        </Text>
+        <Text>
+          김치
+        </Text>
+      </TextContainer>
+    </Main>
+  )
+}
+function SelfList(props){
+  return (
+    <Self>
+      {props.title}
+      <TextContainer>
+        <Text>
+          -
+        </Text>
+      </TextContainer>
+    </Self>
+  )
+}
+function DessertList(props){
+  return (
+    <Dessert>
+      {props.title}
+      <TextContainer>
+        <Text>
+          우유
+        </Text>
+      </TextContainer>
+    </Dessert>
+  )
+}
+function MenuList(){
+    return(
+      <Menu>
+        <MainList title="Main"/>
+        <SelfList title="Self"/>
+        <DessertList title="Dessert"/>
+      </Menu>
+    ) 
+}
+
+function ScoreContainer(props){
+  return(
+    <PercentageContainer>
+      <Percentage>
+        {props.percentage}
+      </Percentage>
+      <Bar>
+        <ScoreBar/>
+      </Bar>
+    </PercentageContainer>
+  )
+}
+
+function Box(props){
+    return(
+      <Rectangle>
+        <Title>
+            {props.title}
+        </Title>
+
+        <GreenBorder>
+          <MenuList/>
+        </GreenBorder>
+
+        <ScoreContainer percentage="87%"/>
+      </Rectangle>
+    )
+  }
 
 export default function SatisfyComponent(){
   return (
     <Container>
-      <Rectangle>
-        <Title>
-            조식
-        </Title>
-        <SubRectangle>
-          <SubRectangle2>
-            <Main>
-              Main
-              <TextContainer>
-                <Text>
-                  흰쌀밥
-                </Text>
-                <Text>
-                  에그스크램블
-                </Text>
-                <Text>
-                  쇠고기찌개
-                </Text>
-                <Text>
-                  오징어채
-                </Text>
-                <Text>
-                  김치
-                </Text>
-              </TextContainer>
-            </Main>
-            
-            <Self>
-              Self
-              <TextContainer>
-                <Text>
-                  -
-                </Text>
-              </TextContainer>
-            </Self>
-            
-            <Dessert>
-              Dessert
-              <TextContainer>
-                <Text>
-                  우유
-                </Text>
-              </TextContainer>
-            </Dessert>
-            
-          </SubRectangle2>
-          
-        </SubRectangle>
-
-        <PercentageContainer>
-          <Percentage>
-            87%
-          </Percentage>
-          <Bar>
-            <ScoreBar>
-              
-            </ScoreBar>
-          </Bar>
-        </PercentageContainer>
-        
-      </Rectangle>
-
-      <Rectangle>
-      </Rectangle>
-      <Rectangle>
-      </Rectangle>
-
+      <Box title="조식"/>
+      <Box title="중식"/>
+      <Box title="석식"/>
     </Container>
   )
 }
