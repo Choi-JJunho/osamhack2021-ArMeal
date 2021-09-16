@@ -1,11 +1,11 @@
-import * as authAPI from "api/mock/auth";
+import { login as loginAPI } from "api";
 import { createPromiseThunk, reducerUtils, handleAsyncActions } from 'utils/asyncUtils';
 
 const LOGIN = "LOGIN";
 const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 const LOGIN_ERROR = "LOGIN_ERROR";
 
-export const login = createPromiseThunk(LOGIN, authAPI.login);
+export const login = createPromiseThunk(LOGIN, loginAPI);
 
 const initialState = {
   auth: reducerUtils.initial()

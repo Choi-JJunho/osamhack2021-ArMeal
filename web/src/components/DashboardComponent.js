@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components'
+import DoughnutChart from './shared/DoughnutChart';
 
 const Container = styled.div`
   
@@ -30,7 +31,27 @@ const Head = styled.div`
   padding: 18px 0 0 18px;
 `
 
-export default function DashboardComponent(){
+const ChartWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+`
+
+const Score = styled.div`
+  position: absolute;
+  font-size: 30px;
+  top: 320px;
+  font-weight: 800;
+  text-align: center;
+`
+
+const Point = styled.div`
+  font-size: 40px;
+  color: #FF0000;
+`
+
+export default function DashboardComponent({chartData, average}){
+
   return (
     <Container>
       <Wrapper>
@@ -38,6 +59,17 @@ export default function DashboardComponent(){
           <Head>
             전체 만족도
           </Head>
+          <ChartWrapper>
+            <div>
+              <DoughnutChart chartData={chartData} width="350px"/>
+            </div>
+            <Score>
+              평균
+              <Point>
+                {average}
+              </Point>
+            </Score>
+          </ChartWrapper>
         </Box>
         <Box width="20vw" height="47vh">
           <Head>
