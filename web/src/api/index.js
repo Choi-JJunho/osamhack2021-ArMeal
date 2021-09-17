@@ -10,8 +10,8 @@ export const login = async ({id, pw}) => {
   })
 }
 
-export const getDashboardData = async ({}) => {
-  await axios.post(`${PATH}/getDashboardData`, {}).then((res) => {
+export const getDashboardData = async () => {
+  await axios.post(`${PATH}/getDashboardData`).then((res) => {
     return res;
   }).catch((e) => {
     throw new Error(e);

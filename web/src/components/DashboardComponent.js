@@ -40,9 +40,10 @@ const ChartWrapper = styled.div`
 const Score = styled.div`
   position: absolute;
   font-size: 30px;
-  top: 320px;
+  top: 35vh;
   font-weight: 800;
   text-align: center;
+  width: 350px;
 `
 
 const Point = styled.div`
@@ -50,8 +51,69 @@ const Point = styled.div`
   color: #FF0000;
 `
 
-export default function DashboardComponent({chartData, average}){
+const DataSpec = styled.div`
+  width: 12vw;
+  padding-top: 8vh;
+  padding-left: 2vw;
+`
 
+const SatisfyData = styled.div`
+  font-size: 22px;
+  margin-bottom: 20px;
+`
+
+const Badge = styled.div`
+  width: 45px;
+  height: 24px;
+  border: 3px solid #36A2EB;
+  box-sizing: border-box;
+  border-radius: 20px;
+  float: right;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 800;
+`
+
+const LeaderBoard = styled.div`
+  margin-top: 22px;
+  padding: 0 13px;
+`
+
+const MenuRank = styled.div`
+  margin-bottom: 14px;
+  font-size: 20px;
+  height: 6vh;
+`
+
+const Rank = styled.span`
+  font-weight: bold;
+  font-size: 22px;
+`
+
+const Satisfy = styled.span`
+  float: right;
+  color: ${props => props.color > 65 ? "#FF0000" : props.color > 32 ? "#FF6534" : "#F1C114"};
+  font-weight: bold;
+  font-size: 22px;
+`
+
+const PercentWrapper = styled.div`
+  margin-top: 2px;
+  width: 100%;
+  background-color: #C4C4C4;
+  border-radius: 8px;
+  height: 16px;
+`
+
+const Percent = styled.div`
+  float: left;
+  height: 16px;
+  border-radius: 8px;
+  background-color: ${props => props.satisfy > 65 ? "#FF0000" : props.satisfy > 32 ? "#FF6534" : "#F1C114"};
+  width: ${props => props.satisfy ? props.satisfy + "%" :"0"};
+`
+
+export default function DashboardComponent({chartData, average, dataName, menuRanking}){
   return (
     <Container>
       <Wrapper>
@@ -62,21 +124,54 @@ export default function DashboardComponent({chartData, average}){
           <ChartWrapper>
             <div>
               <DoughnutChart chartData={chartData} width="350px"/>
+              <Score>
+                평균
+                <Point>
+                  {average}
+                </Point>
+              </Score>
             </div>
-            <Score>
-              평균
-              <Point>
-                {average}
-              </Point>
-            </Score>
+            <DataSpec>
+              {chartData.map((data, index) => {
+                return (
+                  <SatisfyData key={index}>
+                    {dataName[index]}
+                    <Badge>
+                      {data}
+                    </Badge>
+                  </SatisfyData>
+                )
+              })}
+            </DataSpec>
           </ChartWrapper>
         </Box>
+
+
         <Box width="20vw" height="47vh">
           <Head>
             메뉴 랭킹
           </Head>
+          <LeaderBoard>
+            {menuRanking.map((menuData) => {
+              return (
+                <MenuRank key={menuData.rank}>
+                  <Rank>
+                    {menuData.rank}
+                  </Rank>
+                    ) {menuData.name}
+                  <Satisfy color={menuData.satisfy}>
+                    {menuData.satisfy}%  
+                  </Satisfy>
+                  <PercentWrapper>
+                    <Percent satisfy={menuData.satisfy}></Percent>
+                  </PercentWrapper>
+                </MenuRank>
+              )
+            })}
+          </LeaderBoard>
         </Box>
       </Wrapper>
+
       
       <Wrapper margin="28px">
         <Box width="70vw" height="28vh">

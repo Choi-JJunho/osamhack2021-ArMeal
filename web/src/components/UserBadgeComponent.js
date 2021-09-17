@@ -29,6 +29,9 @@ export default function UserBadgeComponent({data}){
       {!data && 
         <div>
           로그인안됨
+          <Link to="/signin">로그인</Link>
+          
+          <Link to="/signup">회원가입</Link>
         </div>
       }
     </Container>
