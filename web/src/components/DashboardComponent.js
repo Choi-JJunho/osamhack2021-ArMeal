@@ -92,7 +92,7 @@ const Rank = styled.span`
 
 const Satisfy = styled.span`
   float: right;
-  color: ${props => props.color > 65 ? "#FF0000" : props.color > 32 ? "#FF6534" : "#F1C114"};
+  color: ${props => props.color > 65 ? "#FF0000" : props.color > 32 ? "#FF6534" : "#E7B70A"};
   font-weight: bold;
   font-size: 22px;
 `
@@ -113,7 +113,50 @@ const Percent = styled.div`
   width: ${props => props.satisfy ? props.satisfy + "%" :"0"};
 `
 
-export default function DashboardComponent({chartData, average, dataName, menuRanking}){
+const TodayWrapper = styled.div`
+  margin-top: 27px;
+  padding: 0 23px;
+  display: flex;
+  justify-content: space-between;
+`
+
+const TypeBox = styled.div`
+  width: 20vw;
+  height: 14vh;
+  background-color: #EAEAEA;
+  padding: 0 13px;
+`
+
+const TypeName = styled.div`
+  text-align: center;
+  padding-top: 18px;
+  font-weight: bold;
+  font-size: 25px;
+`
+
+const TypeSatisfy = styled.div`
+  text-align: center;
+  padding-top: 15px;
+  font-size: 22px;
+  font-weight: bold;
+  color: ${props => props.satisfy > 65 ? "#FF0000" : props.satisfy > 32 ? "#FF6534" : props.satisfy ? "#E7B70A" : "#85859A"};
+`
+
+const TypeBarWrapper = styled.div`
+  margin-top: 10px;
+  width: 100%;
+  background-color: #C4C4C4;
+  height: 18px;
+`
+
+const TypeBar = styled.div`
+  float: left;
+  height: 18px;
+  background-color: ${props => props.satisfy > 65 ? "#FF0000" : props.satisfy > 32 ? "#FF6534" : "#F1C114"};
+  width: ${props => props.satisfy ? props.satisfy + "%" :"0"};
+`
+
+export default function DashboardComponent({chartData, average, dataName, menuRanking, todayData}){
   return (
     <Container>
       <Wrapper>
@@ -137,7 +180,7 @@ export default function DashboardComponent({chartData, average, dataName, menuRa
                   <SatisfyData key={index}>
                     {dataName[index]}
                     <Badge>
-                      {data}
+                      {data}%
                     </Badge>
                   </SatisfyData>
                 )
@@ -178,6 +221,24 @@ export default function DashboardComponent({chartData, average, dataName, menuRa
           <Head>
             금일 만족도
           </Head>
+          <TodayWrapper>
+            {todayData.map((data) => {
+              return (
+                <TypeBox>
+                  <TypeName>
+                    {data.type}
+                  </TypeName>
+                  <TypeSatisfy satisfy={data.satisfy}>
+                    {data.satisfy ? data.satisfy + "%" : "아직 평가되지 않았어요."}
+                  </TypeSatisfy>
+                  
+                  <TypeBarWrapper>
+                    <TypeBar satisfy={data.satisfy}></TypeBar>
+                  </TypeBarWrapper>
+                </TypeBox>
+              )
+            })}
+          </TodayWrapper>
         </Box>
       </Wrapper>
     </Container>
