@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components'
 
 const Container = styled.div`
-    margin-top: 8vh;
+    margin-top: 3vh;
     display: flex;
     width:-webkit-fill-available;
     justify-content:space-evenly;
@@ -10,7 +10,7 @@ const Container = styled.div`
 const Rectangle = styled.div`
     position: auto;
     width: 22vw;
-    height: 70vh;
+    height: 76vh;
 
     background: #FFFFFF;
 
