@@ -13,9 +13,11 @@ public class UserService {
     @Autowired
     private UserMapper usermapper;
     
+    // bycrypt 암호화를 위해 등록
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    // 회원가입
     public String signup(String name, String password, String email, long groupId, String loginId) {
 
         final User selectUser = usermapper.findUserByLoginId(loginId);
@@ -38,6 +40,7 @@ public class UserService {
         return "ok";
     }
 
+    // 로그인
     public boolean login(String id, String password) {
         String pw = usermapper.findUserById(id).getPassword();
 
