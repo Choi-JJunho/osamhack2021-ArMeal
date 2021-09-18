@@ -25,4 +25,5 @@
     <select id="findUserByEmail" resultType="com.api.domain.User">
         SELECT * FROM user WHERE email = #{_eamil}
     </select>
+
 </mapper>
