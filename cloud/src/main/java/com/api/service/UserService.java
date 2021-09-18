@@ -11,18 +11,39 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Transactional
 public class UserService {
     @Autowired
-    private UserMapper mapper;
+    private UserMapper usermapper;
     
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    public void signup(String name, String password, String email, long groupId, String userId) {
+    public String signup(String name, String password, String email, long groupId, String userId) {
+
+        final User selectUser = usermapper.findUserByUserId(userId);
+        
+        // 가입된 유저인지 확인
+        if (selectUser != null) {
+            return "이미 가입되어있는 아이디입니다.";
+        }
+
+        // 이메일 중복 확인
+        if (selectUser != null) {
+            User selectUser2 = usermapper.findUserByEmail(email);
+            if (selectUser2 != null) {
+                return "이미 가입되어있는 이메일입니다.";
+            }
+        }
+
         String pw = passwordEncoder.encode(password);
-        mapper.signup(name, pw, email, groupId, userId);
+        usermapper.signup(name, pw, email, groupId, userId);
+        return "ok";
     }
 
     public boolean login(String id, String password) {
-        String pw = mapper.findUserById(id).getPassword();
+        String pw = usermapper.findUserById(id).getPassword();
+
+        if(pw == null) {
+            return false;
+        }
 
         if(!passwordEncoder.matches(password, pw)) {
             System.out.println("비밀번호가 일치하지 않습니다.");
@@ -32,15 +53,15 @@ public class UserService {
     }
 /*
     public int deleteData(HashMap<Object, Object> vo) throws Exception {
-        return mapper.deleteData(vo);
+        return usermapper.deleteData(vo);
     }
 
     public int insertData(HashMap<Object, Object> vo) throws Exception {
-        return mapper.insertData(vo);
+        return usermapper.insertData(vo);
     }
 
     public int updateData(HashMap<Object, Object> vo) throws Exception {
-        return mapper.updateData(vo);
+        return usermapper.updateData(vo);
     }
     */
 
