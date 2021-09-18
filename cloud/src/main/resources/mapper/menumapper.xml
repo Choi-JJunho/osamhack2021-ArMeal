@@ -5,18 +5,40 @@
 
 <mapper namespace="com.api.mapper.MenuMapper">
 
+    <!-- Find Menu -->
+    <select id="findAllMenu">
+        SELECT * FROM menu
+    </select>
     <select id="findMenuById" resultType="com.api.domain.Menu">
+        SELECT * FROM menu WHERE id = #{_id}
+    </select>
+
+    <select id="findMenuByName" resultType="com.api.domain.Menu">
         SELECT * FROM menu WHERE name = #{_name}
     </select>
 
-    <insert id="signup">
-        INSERT INTO user (name, password, email, group_id, user_id)
-        VALUES (#{name}, #{password}, #{email}, #{group_id}, #{user_id})
+    <select id="findMenuByMenuType" resultType="com.api.domain.Menu">
+        SELECT * FROM menu WHERE menu_type = #{menuType}
+    </select>
+
+    <!-- Update Menu -->
+    <update id="updateMenuScore">
+        UPDATE Menu SET score=#{_score} WHERE name = #{_name}
+    </update>
+
+    <update id="updateDailymenu">
+        UPDATE Daily_meal SET date_value=#{dateValue}, time=#{_time}, group_id=#{groupId}, menu=#{_menu} WHERE date_value=#{beforeDate}, time=#{beforeTime}
+    </update>
+
+
+    <insert id="AddDailyMenu">
+        INSERT INTO Daily_meal (date_value, time, group_id, menu)
+        VALUES (#{dateValue}, #{_time}, #{groupId}, #{_menu})
+    </insert>
+    
+    <insert id="AddMenu">
+        INSERT INTO Menu (name)
+        VALUES (#{_name})
     </insert>
 
-    
-
-    <select id="findUserById" resultType="com.api.domain.User">
-        SELECT * FROM user WHERE user_id = #{_id}
-    </select>
 </mapper>

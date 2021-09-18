@@ -1,14 +1,13 @@
 package com.api.domain;
 
 import java.sql.Date;
-import java.util.ArrayList;
 
 public class DailyMeal {
     private Date date;
     // 1. 조식 2. 중식 3. 석식
-	private Integer time;
+	private int time;
 	private Long group_id;
-	private Integer menu;
+	private int menu;
     
 	public Date getDate() {
 		return this.date;
@@ -16,10 +15,10 @@ public class DailyMeal {
 	public void setDate(Date date) {
 		this.date = date;
 	}
-	public Integer getTime() {
+	public int getTime() {
 		return time;
 	}
-	public void setTime(Integer time) {
+	public void setTime(int time) {
 		this.time = time;
 	}
     public Long getGroupId() {
@@ -28,10 +27,10 @@ public class DailyMeal {
 	public void setGroupId(Long id) {
 		this.group_id = group_id;
 	}
-    public Integer getMenu() {
+    public int getMenu() {
 		return this.menu;
 	}
-	public void setMenu(Integer menu) {
+	public void setMenu(int menu) {
 		this.menu = menu;
 	}
 }
