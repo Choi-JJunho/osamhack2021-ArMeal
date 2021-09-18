@@ -2,37 +2,57 @@ package com.api.domain;
 
 import java.sql.Timestamp;
 
-public class Group {
+public class Rating {
     private long id;
-	private String name;
-	private Timestamp created_at;
+	private long User_id;
+	private long Menu_id;
+    private Integer rating_data;
+    private Timestamp created_at;
     private Timestamp deleted_at;
     private boolean is_deleted;
-	
+
 	public long getId() {
 		return id;
 	}
 	public void setId(long id) {
 		this.id = id;
 	}
-	public String getName() {
-		return name;
+
+    public long getUserId() {
+		return User_id;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setUserId(long id) {
+		this.User_id = User_id;
 	}
-	public boolean getIsDeleted() {
+
+    public long getMenu_id() {
+		return Menu_id;
+	}
+	public void setMenu_id(long Menu_id) {
+		this.Menu_id = Menu_id;
+	}
+
+    public Integer getRatingData() {
+		return rating_data;
+	}
+	public void setRatingData(Integer rating_data) {
+		this.rating_data = rating_data;
+	}
+
+    public boolean getIsDeleted() {
 		return is_deleted;
 	}
 	public void setIsDeleted(Boolean is_deleted) {
 		this.is_deleted = is_deleted;
 	}
+
 	public Timestamp getdeletedAt() {
 		return deleted_at;
 	}
 	public void setDeletedAt(Timestamp deleted_at) {
 		this.deleted_at = deleted_at;
 	}
+
 	public Timestamp getCreatedAt() {
 		return created_at;
 	}

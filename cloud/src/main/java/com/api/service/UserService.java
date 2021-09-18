@@ -16,9 +16,9 @@ public class UserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    public String signup(String name, String password, String email, long groupId, String userId) {
+    public String signup(String name, String password, String email, long groupId, String loginId) {
 
-        final User selectUser = usermapper.findUserByUserId(userId);
+        final User selectUser = usermapper.findUserByLoginId(loginId);
         
         // 가입된 유저인지 확인
         if (selectUser != null) {
@@ -34,7 +34,7 @@ public class UserService {
         }
 
         String pw = passwordEncoder.encode(password);
-        usermapper.signup(name, pw, email, groupId, userId);
+        usermapper.signup(name, pw, email, groupId, loginId);
         return "ok";
     }
 
@@ -51,18 +51,4 @@ public class UserService {
         }
         return true;
     }
-/*
-    public int deleteData(HashMap<Object, Object> vo) throws Exception {
-        return usermapper.deleteData(vo);
-    }
-
-    public int insertData(HashMap<Object, Object> vo) throws Exception {
-        return usermapper.insertData(vo);
-    }
-
-    public int updateData(HashMap<Object, Object> vo) throws Exception {
-        return usermapper.updateData(vo);
-    }
-    */
-
 }

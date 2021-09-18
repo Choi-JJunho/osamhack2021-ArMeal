@@ -5,7 +5,7 @@ import java.sql.Timestamp;
 public class User {
 	
 	private long id;
-	private String user_id;
+	private String login_id;
 	private String name;
     private String password;
 	private String email;
@@ -35,11 +35,11 @@ public class User {
 		this.created_at = created_at;
 	}
 
-	public String getUserId() {
-		return user_id;
+	public String getLoginId() {
+		return login_id;
 	}
-	public void setUserId(String user_id){
-		this.user_id = user_id;
+	public void setLoginId(String login_id){
+		this.login_id = login_id;
 	}
 
 	public String getPassword() {

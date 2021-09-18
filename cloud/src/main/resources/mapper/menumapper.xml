@@ -5,8 +5,8 @@
 
 <mapper namespace="com.api.mapper.MenuMapper">
 
-    <select id="findMenuByName" resultType="com.api.domain.User">
-        SELECT name, email, group_id, user_id FROM user WHERE name = #{_name}
+    <select id="findMenuById" resultType="com.api.domain.Menu">
+        SELECT * FROM menu WHERE name = #{_name}
     </select>
 
     <insert id="signup">
