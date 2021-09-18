@@ -1,9 +1,13 @@
 package com.api.controller;
 
+import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.api.service.UserService;
 import com.api.domain.User;
@@ -14,14 +18,16 @@ public class UserController {
     UserService userService;
 
     @RequestMapping(value = "/login", method= RequestMethod.POST)
-    public boolean login(String id, String password) {
+    public boolean login(@ApiParam(value = "아이디", required = true, example = "abcde") @RequestParam String id, @ApiParam(value = "비밀번호", required = true, example = "12345")String password) {
         return userService.login(id, password);
     }
 
     @RequestMapping(value = "/signup", method= RequestMethod.POST)
-    public void signup(String name, String password, String email, long groupId, String userId) {
-        userService.signup(name, password, email, groupId, userId);
+    public ResponseEntity signup(@ApiParam(value = "닉네임(String)", required = true, example = "Nickname") String name,
+    @ApiParam(value = "아이디(String)", required = true) String userId,
+    @ApiParam(value = "비밀번호(String)", required = true) String password,
+    @ApiParam(value = "이메일(String)", required = true) String email,
+    @ApiParam(value = "부대코드(Integer)", required = true) long groupId) {
+        return new ResponseEntity<String>(userService.signup(name, password, email, groupId, userId), HttpStatus.OK);
     }
-
-
 }
