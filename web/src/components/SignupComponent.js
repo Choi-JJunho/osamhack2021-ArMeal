@@ -35,7 +35,7 @@ const PWIndex = styled.div`
 	line-height: 22px;
 	display: flex;
 	align-items: center;
-	margin-top:13px;
+	margin-top:2vh;
 	color: #000000;
 `
 
@@ -70,7 +70,7 @@ const IdInputField = styled.div`
 	border:0 solid black;
 `
 
-const S_InputField = styled.div`
+const UnitInputField = styled.div`
 	
 	width: 22vw;
 	font-size: 10px;
@@ -81,7 +81,7 @@ const S_InputField = styled.div`
 	float:left;
 `
 
-const S_InputFieldv2 = styled.div`
+const AffiliatedUnitInputField = styled.div`
 	width: 22vw;
 	font-size: 10px;
 	line-height: 1vh;
@@ -102,9 +102,12 @@ const Input = styled.input`
 	padding: 23px 0 23px 15px; 
 	width:47vw;
 	font-family: ${props => props.isPassword ? "serif" : "NanumSquare"};
+	&::placeholder {
+    font-family: "NanumSquare";
+  }
 `
 
-const S_Input = styled.input`
+const UnitInput = styled.input`
 	border:none;
 	background:none;
 	line-height: 22px;
@@ -115,7 +118,7 @@ const S_Input = styled.input`
 	font-family: ${props => props.isPassword ? "serif" : "NanumSquare"};
 `
 
-const S_Input2 = styled.input`
+const AffiliatedUnitInput = styled.input`
 	border:none;
 	background:none;
 	line-height: 22px;
@@ -138,27 +141,8 @@ const IdInput = styled.input`
 	font-family: ${props => props.isPassword ? "serif" : "NanumSquare"};
 `
 
-const Sub = styled.div`
-	margin-top: 4vh;
-`
 
-const Label = styled.label`
-	margin-left:1vw;
-	width: 10vw;
-	height: 34px;
-	
-	font-size: 20px;
-	line-height: 22px;
 
-	color: #85859A;
-	cursor: pointer;
-`
-const SignUpText = styled.div`
-	font-size: 25px;
-	float: right;
-
-	color: #4286F5;
-`
 
 const SignupButton = styled.button`
 	margin-top:2vh;
@@ -226,10 +210,6 @@ const MilitarySection=styled.div`
 	height: 10vh;
 `
 
-const AllFiled=styled.div`
-
-`
-
 const ArmyUnit=styled.div`
 	height: 3vh;
 	width:47vw;
@@ -251,7 +231,7 @@ export default function SignupComponent(){
 					<Field>
 						<IDIndex>아이디</IDIndex>
 						<IdInputField>
-							<IdInput type="id"></IdInput>
+							<IdInput type="id" placeholder="아이디를 입력하세요."></IdInput>
 						</IdInputField>
 					</Field>
 					<DoubleCheck>중복확인</DoubleCheck>
@@ -259,11 +239,11 @@ export default function SignupComponent(){
 				</IdField>
 				<PWIndex>비밀번호</PWIndex>
 				<InputField>
-					<Input type="password" isPassword={true}></Input>
+					<Input type="password" isPassword={true} placeholder="비밀번호를 입력하세요."></Input>
 				</InputField>
 				<PWIndexC>비밀번호 확인</PWIndexC>
 				<InputField>
-					<Input type="password" isPassword={true}></Input>
+					<Input type="password" isPassword={true} placeholder="비밀번호를 입력하세요."></Input>
 				</InputField>
 				<MilitarySection>
 					<ArmyUnit>
@@ -271,12 +251,12 @@ export default function SignupComponent(){
 						<AssociationCorps>소속부대</AssociationCorps>
 					</ArmyUnit>
 					<ArmyBlank>	
-						<S_InputField>
-							<S_Input></S_Input>
-						</S_InputField>
-						<S_InputFieldv2>
-							<S_Input2></S_Input2>
-						</S_InputFieldv2>
+						<UnitInputField>
+							<UnitInput placeholder="부대명을 입력하세요."></UnitInput>
+						</UnitInputField>
+						<AffiliatedUnitInputField>
+							<AffiliatedUnitInput placeholder="소속부대를 입력하세요."></AffiliatedUnitInput>
+						</AffiliatedUnitInputField>
 					</ArmyBlank>	
 				</MilitarySection>
 				<Link to="/signin">
