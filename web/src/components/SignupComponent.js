@@ -138,27 +138,8 @@ const IdInput = styled.input`
 	font-family: ${props => props.isPassword ? "serif" : "NanumSquare"};
 `
 
-const Sub = styled.div`
-	margin-top: 4vh;
-`
 
-const Label = styled.label`
-	margin-left:1vw;
-	width: 10vw;
-	height: 34px;
-	
-	font-size: 20px;
-	line-height: 22px;
 
-	color: #85859A;
-	cursor: pointer;
-`
-const SignUpText = styled.div`
-	font-size: 25px;
-	float: right;
-
-	color: #4286F5;
-`
 
 const SignupButton = styled.button`
 	margin-top:2vh;
