@@ -1,10 +1,13 @@
+// import { getOwnPropertyDescriptors } from 'immer/dist/internal';
 import React from 'react';
 import styled from 'styled-components'
+import TempComponent from './TempComponent';
 
 const Container = styled.div`
     margin-top: 3vh;
+    // display: flow-root;
     display: flex;
-    width:-webkit-fill-available;
+    // width:-webkit-fill-available;
     justify-content:space-evenly;
 `
 const Rectangle = styled.div`
@@ -50,8 +53,8 @@ const Title = styled.div`
 `
 const GreenBorder = styled.div`
     margin: auto;
-    width: 80%;
-    height: 362px;
+    width: 18vw;
+    height: 45vh;
 
     background: #FFFFFF;
 
@@ -100,7 +103,7 @@ const Dessert = styled.div`
 `
 
 const Percentage = styled.div`
-  margin: auto;
+  margin: 0px 10px 10px 10%;
   width: 80%;
   height: 26px;
 
@@ -114,23 +117,23 @@ const Percentage = styled.div`
   align-items: center;
   text-align: center;
 
-  color: #FF0000;
+  color: ${props => props.score > 65 ? "#FF0000" : props.score > 32 ? "#FF6534" : "#F1C114"};
 `
 const PercentageContainer = styled.div`
-  margin-top:4vh;
+  margin-top:6vh;
 `
 const Bar = styled.div`
   margin: auto;
-  width: 80%;
-  height: 18px;
+  width: 19vw;
+  
   background: #C4C4C4;
 `
 //width: ${props => props.score? score + "px": 0}
 
 const ScoreBar = styled.div`
-  width: 80%;
+  background-color: ${props => props.score > 65 ? "#FF0000" : props.score > 32 ? "#FF6534" : "#F1C114"};
+  width: ${props => props.score ? props.score + "%" : 0};
   height: 18px;
-  background: #FF0000;
 `
 function MainList(props){
   return (
@@ -180,51 +183,81 @@ function DessertList(props){
     </Dessert>
   )
 }
-function MenuList(){
+function MenuList(props){
     return(
       <Menu>
-        <MainList title="Main"/>
+        <MainList title= "Main" menu={props.menu}/>
         <SelfList title="Self"/>
         <DessertList title="Dessert"/>
       </Menu>
     ) 
 }
 
-function ScoreContainer(props){
-  return(
-    <PercentageContainer>
-      <Percentage>
-        {props.percentage}
-      </Percentage>
-      <Bar>
-        <ScoreBar/>
-      </Bar>
-    </PercentageContainer>
-  )
-}
+// function ScoreContainer(props){
+//   return(
+//     <PercentageContainer>
+//       <Percentage>
+//         {props.percentage}
+//       </Percentage>
+//       <Bar>
+//         <ScoreBar score="30"/>
+//       </Bar>
+//     </PercentageContainer>
+//   )
+// }
 
-function Box(props){
-    return(
-      <Rectangle>
-        <Title>
-            {props.title}
-        </Title>
+// function Box(props){
+//     return(
+//       <Rectangle>
+//         <Title>
+//             {props.data.type}
+//         </Title>
 
-        <GreenBorder>
-          <MenuList/>
-        </GreenBorder>
+//         <GreenBorder>
+//           <MenuList/>
+//         </GreenBorder>
 
-        <ScoreContainer percentage="87%"/>
-      </Rectangle>
-    )
-  }
+//         <PercentageContainer>
+//           <Percentage>
+//             {props.data.satisfy}%
+//           </Percentage>
+//           <Bar>
+//             <ScoreBar/>
+//           </Bar>
+//         </PercentageContainer>
+//       </Rectangle>
+//     )
+//   }
 
-export default function SatisfyComponent(){
+export default function SatisfyComponent({todayData}){
   return (
     <Container>
-      <Box title="조식"/>
-      <Box title="중식"/>
-      <Box title="석식"/>
+      {/* <TempComponent/> */}
+      {/* <Box title="조식" score="87" result="87"/>
+      <Box title="중식" score="62" result="62"/>
+      <Box title="석식" score="30" result="30"/> */}
+      {todayData.map((data) => {
+        return (
+          <Rectangle>
+            <Title>
+                {data.type}
+            </Title>
+
+            <GreenBorder>
+              <MenuList menu={data}/>
+            </GreenBorder>
+
+            <PercentageContainer>
+              <Percentage score={data.satisfy}>
+                {data.satisfy}%
+              </Percentage>
+              <Bar>
+                <ScoreBar score={data.satisfy}/>
+              </Bar>
+            </PercentageContainer>
+          </Rectangle>
+        )
+      })}
     </Container>
   )
 }
