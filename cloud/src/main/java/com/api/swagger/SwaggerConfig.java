@@ -45,7 +45,7 @@ public class SwaggerConfig extends WebMvcConfigurationSupport {
 
     private ApiInfo getApiInfo() {
         return new ApiInfoBuilder()
-                .title("Army Restaurant API")
+                .title("ArMeal API")
                 .description("REST API")
                 .version("1.0")
                 .build();

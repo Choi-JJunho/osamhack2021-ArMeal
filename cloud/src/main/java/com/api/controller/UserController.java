@@ -23,11 +23,11 @@ public class UserController {
     }
 
     @RequestMapping(value = "/signup", method= RequestMethod.POST)
-    public ResponseEntity signup(@ApiParam(value = "닉네임(String)", required = true, example = "Nickname") String name,
-    @ApiParam(value = "아이디(String)", required = true) String userId,
-    @ApiParam(value = "비밀번호(String)", required = true) String password,
-    @ApiParam(value = "이메일(String)", required = true) String email,
-    @ApiParam(value = "부대코드(Integer)", required = true) long groupId) {
-        return new ResponseEntity<String>(userService.signup(name, password, email, groupId, userId), HttpStatus.OK);
+    public ResponseEntity signup(@ApiParam(value = "닉네임", required = true, example = "Nickname") String name,
+    @ApiParam(value = "아이디", required = true) String loginId,
+    @ApiParam(value = "비밀번호", required = true) String password,
+    @ApiParam(value = "이메일", required = true) String email,
+    @ApiParam(value = "부대코드", required = true) long groupId) {
+        return new ResponseEntity<String>(userService.signup(name, password, email, groupId, loginId), HttpStatus.OK);
     }
 }

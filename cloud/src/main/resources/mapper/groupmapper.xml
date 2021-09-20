@@ -5,6 +5,10 @@
 
 <mapper namespace="com.api.mapper.GroupMapper">
 
+    <select id="findAllGroup">
+        SELECT * FROM group
+    </select>
+
     <select id="findGroupById" resultType="com.api.domain.Group">
         SELECT * FROM group WHERE id = #{_id}
     </select>

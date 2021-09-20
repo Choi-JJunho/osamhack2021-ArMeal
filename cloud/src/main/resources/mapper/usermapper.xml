@@ -18,11 +18,12 @@
         SELECT * FROM user WHERE user_id = #{_id}
     </select>
     
-    <select id="findUserByUserId" resultType="com.api.domain.User">
-        SELECT * FROM user WHERE user_id = #{user_id}
+    <select id="findUserByLoginId" resultType="com.api.domain.User">
+        SELECT * FROM user WHERE login_id = #{login_id}
     </select>
 
     <select id="findUserByEmail" resultType="com.api.domain.User">
         SELECT * FROM user WHERE email = #{_eamil}
     </select>
+
 </mapper>
