@@ -7,5 +7,6 @@ import org.apache.ibatis.annotations.Param;
 
 @Mapper
 public class MenuMapper {
+    void setdailymenu(String date_value, int time, long group_id, long menu);
     
 }
