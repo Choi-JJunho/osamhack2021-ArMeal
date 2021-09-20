@@ -6,19 +6,19 @@
 <mapper namespace="com.api.mapper.MenuMapper">
 
     <!-- Find Menu -->
-    <select id="findAllMenu">
-        SELECT * FROM menu
+    <select id="findAllMenu" resultType="java.util.HashMap">
+        SELECT * FROM Menu
     </select>
     <select id="findMenuById" resultType="com.api.domain.Menu">
-        SELECT * FROM menu WHERE id = #{_id}
+        SELECT * FROM Menu WHERE id = #{_id}
     </select>
 
     <select id="findMenuByName" resultType="com.api.domain.Menu">
-        SELECT * FROM menu WHERE name = #{_name}
+        SELECT * FROM Menu WHERE name = #{_name}
     </select>
 
-    <select id="findMenuByMenuType" resultType="com.api.domain.Menu">
-        SELECT * FROM menu WHERE menu_type = #{menuType}
+    <select id="findMenuByMenuType" resultType="java.util.HashMap">
+        SELECT * FROM Menu WHERE menu_type = #{menuType}
     </select>
 
     <!-- Update Menu -->
@@ -37,8 +37,8 @@
     </insert>
     
     <insert id="AddMenu">
-        INSERT INTO Menu (name)
-        VALUES (#{_name})
+        INSERT INTO Menu (name, menu_type)
+        VALUES (#{_name}, #{_menutype})
     </insert>
 
 </mapper>

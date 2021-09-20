@@ -6,24 +6,28 @@
 <mapper namespace="com.api.mapper.UserMapper">
 
     <insert id="signup">
-        INSERT INTO user (name, password, email, group_id, user_id)
-        VALUES (#{name}, #{password}, #{email}, #{group_id}, #{user_id})
+        INSERT INTO User (login_id, password, email, name, group_id)
+        VALUES (#{loginId}, #{_pw}, #{_email}, #{_name}, #{groupId})
     </insert>
 
     <select id="findUserByName" resultType="com.api.domain.User">
-        SELECT name, email, group_id, user_id FROM user WHERE name = #{_name}
+        SELECT name, email, group_id, login_id FROM User WHERE name = #{_name}
     </select>
 
     <select id="findUserById" resultType="com.api.domain.User">
-        SELECT * FROM user WHERE user_id = #{_id}
+        SELECT * FROM User WHERE id = #{_id}
     </select>
     
     <select id="findUserByLoginId" resultType="com.api.domain.User">
-        SELECT * FROM user WHERE login_id = #{login_id}
+        SELECT * FROM User WHERE login_id = #{login_id}
     </select>
 
     <select id="findUserByEmail" resultType="com.api.domain.User">
-        SELECT * FROM user WHERE email = #{_eamil}
+        SELECT * FROM User WHERE email = #{_eamil}
+    </select>
+    
+    <select id="findUserByGroupId" resultType="com.api.domain.User">
+        SELECT * FROM User WHERE group_id = #{_groupId}
     </select>
 
 </mapper>

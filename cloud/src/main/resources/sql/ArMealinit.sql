@@ -19,7 +19,7 @@ CREATE TABLE `Group`(
 CREATE TABLE `Menu`(
     `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
     `name` VARCHAR(255) NOT NULL,
-    `menu_type` TINYINT NOT NULL,
+    `menu_type` INT NOT NULL,
     `score` INT NULL,
     `created_at` TIMESTAMP NOT NULL DEFAULT NOW(),
     `deleted_at` TIMESTAMP NULL,

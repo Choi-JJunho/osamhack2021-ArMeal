@@ -1,7 +1,11 @@
 package com.api.service;
 
+import java.util.HashMap;
+
 import com.api.domain.User;
 import com.api.mapper.UserMapper;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,40 +22,44 @@ public class UserService {
     private PasswordEncoder passwordEncoder;
 
     // 회원가입
-    public String signup(String name, String password, String email, long groupId, String loginId) {
+    public HashMap<Object, Object> signup(String name, String password, String email, long groupId, String loginId) {
 
         final User selectUser = usermapper.findUserByLoginId(loginId);
+        HashMap<Object, Object> result = new HashMap<>();
         
         // 가입된 유저인지 확인
         if (selectUser != null) {
-            return "이미 가입되어있는 아이디입니다.";
+            result.put("message", "이미 가입된 유저입니다.");
+            return result;
         }
 
         // 이메일 중복 확인
         if (selectUser != null) {
             User selectUser2 = usermapper.findUserByEmail(email);
             if (selectUser2 != null) {
-                return "이미 가입되어있는 이메일입니다.";
+                result.put("message", "이미 가입된 이메일입니다.");
+                return result;
             }
         }
 
         String pw = passwordEncoder.encode(password);
-        usermapper.signup(name, pw, email, groupId, loginId);
-        return "ok";
+        usermapper.signup(loginId, pw, email, name, groupId);
+        result.put("message", "회원가입 완료");
+        return result;
     }
 
     // 로그인
-    public boolean login(String id, String password) {
-        String pw = usermapper.findUserById(id).getPassword();
+    public HashMap<Object,Object> login(String id, String password) {
+        String pw = usermapper.findUserByLoginId(id).getPassword();
+        ObjectMapper objectMapper = new ObjectMapper();
+        HashMap<Object,Object> result = new HashMap<>();
 
-        if(pw == null) {
-            return false;
+        if(pw == null || !passwordEncoder.matches(password, pw)) {
+            result.put("message", "비밀번호 불일치");
+            return result;
         }
-
-        if(!passwordEncoder.matches(password, pw)) {
-            System.out.println("비밀번호가 일치하지 않습니다.");
-            return false;
-        }
-        return true;
+        User user = usermapper.findUserByLoginId(id);
+        result = objectMapper.convertValue(user, HashMap.class);
+        return result;
     }
 }
