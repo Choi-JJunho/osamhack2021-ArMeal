@@ -24,7 +24,6 @@ public class Menu {
 	
 	@ApiModelProperty(hidden = true)
     private boolean is_deleted;
-	
 
 	public long getId() {
 		return this.id;
