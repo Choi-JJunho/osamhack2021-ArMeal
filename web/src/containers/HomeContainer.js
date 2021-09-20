@@ -12,6 +12,10 @@ export default function HomeContainer(){
   }, [dispatch])
   
   return (
-    <HomeComponent loading={loading} />
+    <HomeComponent 
+      data={data}
+      loading={loading}
+      error={error} 
+      />
   )
 }
