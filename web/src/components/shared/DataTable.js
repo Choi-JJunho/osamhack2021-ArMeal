@@ -6,7 +6,7 @@ export default function DataTable({rows, columns}){
     <DataGrid 
       rows={rows}
       columns={columns}
-      pageSize={10}
+      pageSize={11}
       rowsPerPageOptions={[10]}
     />
   )
