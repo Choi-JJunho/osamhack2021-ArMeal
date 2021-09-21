@@ -22,6 +22,8 @@ const MainPictureTextTitle=styled.div`
   font-weight: bold;
   font-size: 35px;
   line-height: 25px;
+  width: 322px;
+  height: 76px;
   /* or 71% */
 
   display: flex;
@@ -31,8 +33,24 @@ const MainPictureTextTitle=styled.div`
   color: #135019;
 
   position: absolute;
-    top: 26px;
-    left: 30px;
+    top: 40px;
+    left: 40px;
+`
+// top: 96px;
+// left: 30px;
+const MainPictureText = styled(MainPictureTextTitle)`
+  font-size: 22px;
+  line-height: 30px;
+  width: 100%;
+  height: 100px;
+  /* or 136% */
+
+  color: #000000;
+  text-align: left;
+  position: absolute;
+  top: 116px;
+  left: 30px;
+
 `
 const SurveyImages = styled.img`
   width: 10vw;
@@ -411,12 +429,17 @@ export default function SatisfyComponent({todayData, type, selectType, selectTyp
         {type !== 0 &&
           <div>
             <Message>
-              <MainPicture>
-                
-              </MainPicture>
-              <MainPictureTextTitle>
+              <MainPicture/>
+              
+                <MainPictureTextTitle>
                   충성! 고생하십니다!
                 </MainPictureTextTitle>
+                <MainPictureText>
+                  오늘의 식사는 만족스러우셨는지 아래 버튼을 통해 설문에 참여해 주십시오. 
+                  <br/>
+                  장병 여러분들의 소중한 평가로 더욱 만족도 높은 식단을 제공하겠습니다!
+                </MainPictureText>
+              
             </Message>
 
             <WrapperContent survey={survey} selectTaste={selectTaste} selectSurveyIdx={selectSurveyIdx}/>
