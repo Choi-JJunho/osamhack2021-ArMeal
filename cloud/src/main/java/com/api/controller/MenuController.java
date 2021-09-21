@@ -23,7 +23,7 @@ public class MenuController {
 
     @RequestMapping(value = "/addmenu", method = RequestMethod.POST)
     public ResponseEntity addMenu(@RequestBody Menu menu) {
-        return new ResponseEntity<HashMap<Object,Object>>(menuService.AddMenu(menu.getName(), menu.getMenutype()),HttpStatus.OK);
+        return new ResponseEntity<HashMap<Object,Object>>(menuService.addMenu(menu.getName(), menu.getMenutype()),HttpStatus.OK);
     }
 
     @RequestMapping(value = "/getallmenu", method = RequestMethod.GET)
