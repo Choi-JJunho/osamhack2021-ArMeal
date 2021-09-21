@@ -50,7 +50,7 @@ export default function DashboardContainer(){
   
   useEffect(() => {
     dispatch(getDashboardData());
-  })
+  }, [dispatch])
 
   return (
     <DashboardComponent 
