@@ -14,6 +14,7 @@ import SidedishPage from 'pages/SidedishPage';
 import MenuPage from 'pages/MenuPage';
 import SelfPage from 'pages/SelfPage';
 import ManagementPage from 'pages/ManagementPage';
+import SidedishSpecPage from 'pages/SidedishSpecPage';
 
 function App() {
   
@@ -29,10 +30,11 @@ function App() {
           <Route path="/dashboard" component={DashboardPage} />
           <Route path="/satisfy" component={SatisfyPage} />
           <Route path="/date" component={DatePage} />
-          <Route path="/sidedish" component={SidedishPage} />
+          <Route exact path="/sidedish" component={SidedishPage} />
           <Route path="/menu" component={MenuPage} />
           <Route path="/self" component={SelfPage} />
           <Route path="/management" component={ManagementPage} />
+          <Route path="/sidedish/:id" component={SidedishSpecPage} />
         </div>
       </Router>
     </div>
