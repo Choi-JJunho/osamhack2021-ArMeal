@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import SpecComponent from 'components/shared/SpecComponent';
+import SidedishSpecComponent from 'components/SidedishSpecComponent';
 import { useLocation } from 'react-router';
 
 export default function SidedishSpecContainer(){
@@ -38,10 +38,11 @@ export default function SidedishSpecContainer(){
         satisfy: 66
       },
     ], 
-    satisfy: 76
+    satisfy: [100, 50, 30, 20, 10],
+    average: 76
   }
 
   return (
-    <SpecComponent data={dummy}/>
+    <SidedishSpecComponent data={dummy}/>
   )
 }

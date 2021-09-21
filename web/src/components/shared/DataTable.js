@@ -8,7 +8,7 @@ export default function DataTable({rows, columns}){
     <DataGrid 
       rows={rows}
       columns={columns}
-      pageSize={11}
+      pageSize={10}
       rowsPerPageOptions={[10]}
       onCellClick={(e) => history.push(`/sidedish/${e.row.id}`)}
     />
