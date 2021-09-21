@@ -1,7 +1,12 @@
-import React from 'react';
+import React, {useState} from 'react';
 import SatisfyComponent from 'components/SatisfyComponent';
 
 export default function SatisfyContainer(){
+  const [type, setType] = useState(0) // const [변수, set변수] = useState(기본값)
+  const selectType = (idx) => {
+    setType(idx)
+  }
+
   const todayData = [
     {
       type: "조식",
@@ -23,7 +28,11 @@ export default function SatisfyContainer(){
 
   return (
     <SatisfyComponent 
-    todayData={todayData}
+      todayData={todayData} 
+      type={type} 
+      selectType={selectType}
+      selectTypeIdx={[1,2,3]} 
+      dataName={["싫어요","별로예요","보통이에요","맛있어요","최고예요"]}
     />
   )
 }
