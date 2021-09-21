@@ -11,7 +11,7 @@ const Container = styled.div`
 `
 
 export default function HeaderContainer(){
-  const { data, loading, error } = useSelector( state => state.authReducer.auth );
+  const { data } = useSelector( state => state.authReducer.auth );
   let location = useLocation();
   const [name, setName] = useState('')
   

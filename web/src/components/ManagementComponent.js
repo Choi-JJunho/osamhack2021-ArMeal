@@ -46,4 +46,5 @@ function addHoverEvent(info) {
     trigger: 'hover',
     container: 'body',
   });
+  tooltip.hide();
 }

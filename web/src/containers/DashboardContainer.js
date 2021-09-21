@@ -50,7 +50,7 @@ export default function DashboardContainer(){
   
   useEffect(() => {
     dispatch(getDashboardData());
-  }, [])
+  })
 
   return (
     <DashboardComponent 
@@ -59,6 +59,9 @@ export default function DashboardContainer(){
       dataName={["최고예요", "맛있어요", "보통이에요", "별로예요", "싫어요"]}
       menuRanking={menuRanking}
       todayData={todayData}
+      data={data}
+      loading={loading}
+      error={error}
       />
   )
 }
