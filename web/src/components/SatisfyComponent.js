@@ -159,6 +159,17 @@ const Quit = styled.div`
     border-radius: 10px;
     }
 `
+const TasteSelectionBox = styled.div`
+  width: 126px;
+  height: 39px;
+
+  background: #FFFFFF;
+  border: 3px solid rgba(127, 200, 253, 0.87);
+  box-sizing: border-box;
+  border-radius: 15px;
+
+`
+
 ////////////////설문조사 페이지 CSS 끝///////////////////////////////////////////////
 
 
@@ -298,106 +309,73 @@ const ScoreBar = styled.div`
 
 /////////////////메뉴 Display 페이지 CSS 끝///////////////////////////////////////////
 
-
-function MainList(props){
-  return (
-    <Main>
-      {props.title}
-      <TextContainer>
-        <Text>
-          흰쌀밥
-        </Text>
-        <Text>
-          에그스크램블
-        </Text>
-        <Text>
-          쇠고기찌개
-        </Text>
-        <Text>
-          오징어채
-        </Text>
-        <Text>
-          김치
-        </Text>
-      </TextContainer>
-    </Main>
-  )
-}
-function SelfList(props){
-  return (
-    <Self>
-      {props.title}
-      <TextContainer>
-        <Text>
-          -
-        </Text>
-      </TextContainer>
-    </Self>
-  )
-}
-function DessertList(props){
-  return (
-    <Dessert>
-      {props.title}
-      <TextContainer>
-        <Text>
-          우유
-        </Text>
-      </TextContainer>
-    </Dessert>
-  )
-}
 function MenuList(props){
     return(
       <Menu>
-        <MainList title= "Main" menu={props.menu}/>
-        <SelfList title="Self"/>
-        <DessertList title="Dessert"/>
+          <Main>
+            Main
+            <TextContainer>
+              <Text>
+                {props.menu.menuList[0]}
+              </Text>
+              <Text>
+                {props.menu.menuList[1]}
+              </Text>
+              <Text>
+                {props.menu.menuList[2]}
+              </Text>
+              <Text>
+                {props.menu.menuList[3]}
+              </Text>
+              <Text>
+                {props.menu.menuList[4]}
+              </Text>
+            </TextContainer>
+          </Main>
+
+          <Self>
+            Self
+            <TextContainer>
+              <Text>
+                {props.menu.self}
+              </Text>
+            </TextContainer>
+          </Self>
+
+          <Dessert>
+            Dessert
+            <TextContainer>
+              <Text>
+                {props.menu.dessert}
+              </Text>
+            </TextContainer>
+          </Dessert>
+
       </Menu>
     ) 
 }
 
 function WrapperContent(props){
   return(
-    <Wrapper>
-      {props.survey.map((data) => (
-      <Survey>
-        <Text2>
-          {data.name}
-        </Text2>
-        <SurveyImages src={data.link}/>
-      </Survey>
-      ))}
-{/* 
-      <Survey>
-        <Text2>
-          {props.survey[1]}
-        </Text2>
-        <SurveyImages_2/>
-      </Survey>
-      <Survey>
-        <Text2>
-          {props.survey[2]}
-        </Text2>
-        <SurveyImages_3/>
-      </Survey>
-      <Survey>
-        <Text2>
-          {props.survey[3]}
-        </Text2>
-        <SurveyImages_4/>
-      </Survey>
-      <Survey>
-        <Text2>
-          {props.survey[4]}
-        </Text2>
-        <SurveyImages_5/>
-      </Survey> */}
+    // props.satisfaction === 0 &&
+    // <Wrapper onClick={()=>props.selectSatisfaction(props.selectSatisfactionIdx)}>
+    <Wrapper>  
+    {props.survey.map((data) => (
+        <Survey>
+          <Text2>
+            {data.name}
+          </Text2>
+          <SurveyImages src={data.link}/>
+        </Survey>
+        ))
+      }
     </Wrapper>
+        
+  
   )
 }
 
-export default function SatisfyComponent({todayData, type, selectType, selectTypeIdx, todayTaste, taste, selectTaste, selectSurveyIdx, survey}){
+export default function SatisfyComponent({todayData, type, selectType, selectTypeIdx, todayTaste, satisfaction, selectSatisfaction, selectSatisfactionIdx, survey}){
   return (
     <Container>
       
@@ -441,8 +419,8 @@ export default function SatisfyComponent({todayData, type, selectType, selectTyp
                 </MainPictureText>
               
             </Message>
-
-            <WrapperContent survey={survey} selectTaste={selectTaste} selectSurveyIdx={selectSurveyIdx}/>
+            
+            <WrapperContent survey={survey} satisfaction={satisfaction} selectSatisfaction={selectSatisfaction} selectSatisfactionIdx={selectSatisfactionIdx}/>
             
             <QuitWrapper>
               <Quit>
