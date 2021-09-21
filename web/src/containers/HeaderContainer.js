@@ -46,7 +46,7 @@ export default function HeaderContainer(){
         setName('');
         break;
     }
-  }, [location.pathname])
+  }, [path])
 
   return (
     <Container>

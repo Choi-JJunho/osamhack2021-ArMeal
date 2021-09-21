@@ -8,7 +8,7 @@ export default function NavContainer(){
   const path = location.pathname.split('/')[1];
 
   useEffect(()=> {
-    switch(location.pathname){
+    switch(path){
       case 'dashboard':
         setCurr(1);
         break;
@@ -34,7 +34,7 @@ export default function NavContainer(){
         setCurr(0);
         break;
     }
-  }, [location.pathname])
+  }, [path])
 
   return (
     <NavComponent curr={curr}/>
