@@ -21,6 +21,10 @@
         SELECT * FROM Menu WHERE menu_type = #{menuType}
     </select>
 
+    <select id="findSumOfRating_data" resultType="com.api.domain.Menu">
+        SELECT Menu_id, sum(rating_data) FROM Rating GROUP BY Menu_id
+    </select>
+
     <!-- Update Menu -->
     <update id="updateMenuScore">
         UPDATE Menu SET score=#{_score} WHERE name = #{_name}
