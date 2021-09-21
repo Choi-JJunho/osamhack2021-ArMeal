@@ -13,27 +13,27 @@ export default function SidedishSpecContainer(){
     sidedish_name: "돼지고기", 
     menu_list: [
       {
-        rank: 1,
+        lastest: "2021-09-20",
         name: "돼지고기김치찜",
         satisfy: 92
       },
       {
-        rank: 2,
+        lastest: "2021-09-15",
         name: "김치찌개",
         satisfy: 85
       },
       {
-        rank: 3,
+        lastest: "2021-09-14",
         name: "돼지고기청경채볶음",
         satisfy: 75
       },
       {
-        rank: 4,
+        lastest: "2021-09-10",
         name: "돼지고기수육",
         satisfy: 70
       },
       {
-        rank: 5,
+        lastest: "2021-09-05",
         name: "콩나물불고기",
         satisfy: 66
       },
