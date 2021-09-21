@@ -1,7 +1,13 @@
 import React from 'react';
 import SidedishComponent from 'components/SidedishComponent';
+import { useHistory } from 'react-router';
 
 export default function SidedishContainer(){
+  const history = useHistory();
+  const goSpecPage = (e) => {
+    history.push(`/sidedish/${e.row.id}`)
+  }
+
   const columns = [
     { field: "id", 
       headerName: "ID", 
@@ -41,6 +47,6 @@ export default function SidedishContainer(){
   ];
 
   return (
-    <SidedishComponent rows={rows} columns={columns} />
+    <SidedishComponent rows={rows} columns={columns} goSpecPage={goSpecPage}/>
   )
 }
