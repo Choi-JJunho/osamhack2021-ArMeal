@@ -2,12 +2,8 @@ import React from 'react';
 import styled from 'styled-components'
 
 //////////////////설문조사 페이지 CSS 시작//////////////////////////////////
-import Score_1 from '../static/image/score_1.png';
-import Score_2 from '../static/image/score_2.png';
-import Score_3 from '../static/image/score_3.png';
-import Score_4 from '../static/image/score_4.png';
-import Score_5 from '../static/image/score_5.png';
-import MainPic from '../static/image/welcome.png';
+import MainPic from '../static/image/restaurant.png';
+// import survey from '../containers/SatisfyContainer';
 
 const MainPicture = styled.img.attrs({
   src: MainPic
@@ -16,41 +12,81 @@ const MainPicture = styled.img.attrs({
   height: 27vh;
   margin: 0px auto;
   display: block;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  border-radius:15px;
+  opacity: 0.25;
 `
-const Selection_1 = styled.img.attrs({
-  src: Score_1
-})`
+const MainPictureTextTitle=styled.div`
+  font-family: Inter;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 35px;
+  line-height: 25px;
+  width: 322px;
+  height: 76px;
+  /* or 71% */
+
+  display: flex;
+  align-items: center;
+  text-align: center;
+
+  color: #135019;
+
+  position: absolute;
+    top: 40px;
+    left: 40px;
+`
+// top: 96px;
+// left: 30px;
+const MainPictureText = styled(MainPictureTextTitle)`
+  font-size: 22px;
+  line-height: 30px;
+  width: 100%;
+  height: 100px;
+  /* or 136% */
+
+  color: #000000;
+  text-align: left;
+  position: absolute;
+  top: 116px;
+  left: 30px;
+
+`
+const SurveyImages = styled.img`
   width: 10vw;
 `
-const Selection_2 = styled.img.attrs({
-  src: Score_2
-})`
-  width: 10vw;
-`
-const Selection_3 = styled.img.attrs({
-  src: Score_3
-})`
-  width: 10vw;
-`
-const Selection_4 = styled.img.attrs({
-  src: Score_4
-})`
-  width: 10vw;
-`
-const Selection_5 = styled.img.attrs({
-  src: Score_5
-})`
-  width: 10vw;
-`
+
+// const SurveyImages_2 = styled.img.attrs({
+//   src: Score_2
+// })`
+//   width: 10vw;
+// `
+// const SurveyImages_3 = styled.img.attrs({
+//   src: Score_3
+// })`
+//   width: 10vw;
+// `
+// const SurveyImages_4 = styled.img.attrs({
+//   src: Score_4
+// })`
+//   width: 10vw;
+// `
+// const SurveyImages_5 = styled.img.attrs({
+//   src: Score_5
+// })`
+//   width: 10vw;
+// `
 const Message = styled.div`
   width: 70vw;
   height: 25vh;
   margin: 0px auto;
+
+  position:relative;
   // border: 0px solid #E9E9EF;
   // box-sizing: border-box;
   // box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   // border-radius: 15px;
-
+  
 ` 
 
 const Wrapper = styled.div`
@@ -253,7 +289,6 @@ const Bar = styled.div`
   
   background: #C4C4C4;
 `
-//width: ${props => props.score? score + "px": 0}
 
 const ScoreBar = styled.div`
   background-color: ${props => props.score > 65 ? "#FF0000" : props.score > 32 ? "#FF6534" : "#F1C114"};
@@ -325,45 +360,48 @@ function MenuList(props){
 function WrapperContent(props){
   return(
     <Wrapper>
+      {props.survey.map((data) => (
       <Survey>
         <Text2>
-          싫어요
+          {data.name}
         </Text2>
-        <Selection_1/>
+        <SurveyImages src={data.link}/>
+      </Survey>
+      ))}
+{/* 
+      <Survey>
+        <Text2>
+          {props.survey[1]}
+        </Text2>
+        <SurveyImages_2/>
       </Survey>
       <Survey>
         <Text2>
-          별로에요
+          {props.survey[2]}
         </Text2>
-        <Selection_2/>
+        <SurveyImages_3/>
       </Survey>
       <Survey>
         <Text2>
-          보통이에요
+          {props.survey[3]}
         </Text2>
-        <Selection_3/>
+        <SurveyImages_4/>
       </Survey>
       <Survey>
         <Text2>
-          맛있어요
+          {props.survey[4]}
         </Text2>
-        <Selection_4/>
-      </Survey>
-      <Survey>
-        <Text2>
-          최고에요
-        </Text2>
-        <Selection_5/>
-      </Survey>
+        <SurveyImages_5/>
+      </Survey> */}
     </Wrapper>
   )
 }
 
-export default function SatisfyComponent({todayData, type, selectType, selectTypeIdx, dataName}){
+export default function SatisfyComponent({todayData, type, selectType, selectTypeIdx, todayTaste, taste, selectTaste, selectSurveyIdx, survey}){
   return (
     <Container>
       
-      {type == 0 &&
+      {type === 0 &&
         todayData.map((data,index) => {
           return (
             <Box onClick={()=>selectType(selectTypeIdx[index])}>
@@ -388,13 +426,23 @@ export default function SatisfyComponent({todayData, type, selectType, selectTyp
         })
       }
       
-        {type != 0 &&
+        {type !== 0 &&
           <div>
             <Message>
               <MainPicture/>
+              
+                <MainPictureTextTitle>
+                  충성! 고생하십니다!
+                </MainPictureTextTitle>
+                <MainPictureText>
+                  오늘의 식사는 만족스러우셨는지 아래 버튼을 통해 설문에 참여해 주십시오. 
+                  <br/>
+                  장병 여러분들의 소중한 평가로 더욱 만족도 높은 식단을 제공하겠습니다!
+                </MainPictureText>
+              
             </Message>
 
-            <WrapperContent selection={dataName}/>
+            <WrapperContent survey={survey} selectTaste={selectTaste} selectSurveyIdx={selectSurveyIdx}/>
             
             <QuitWrapper>
               <Quit>
