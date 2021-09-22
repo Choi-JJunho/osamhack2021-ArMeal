@@ -10,7 +10,7 @@ const Container = styled.div`
 
 const Box = styled.div`
   width: ${props => props.width ? props.width: "auto"};;
-  height: 62vh;
+  height: 69vh;
   background-color: #FFFFFF;
   border: 1px solid #E9E9EF;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -28,13 +28,13 @@ const ChartWrapper = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
-  margin-top: 4vh;
+  margin-top: 6vh;
 `
 
 const Score = styled.div`
   position: absolute;
   font-size: 30px;
-  top: 44vh;
+  top: 46vh;
   font-weight: 800;
   text-align: center;
   width: 350px;
@@ -46,7 +46,7 @@ const Point = styled.div`
 `
 
 const Desc = styled.div`
-  margin-top: 4vh;
+  margin-top: 6vh;
   text-align: center;
   font-weight: bold;
   font-size: 22px;
@@ -86,6 +86,7 @@ const MenuDetail = styled.div`
   border-radius: 5px;
   padding: 17px;
   font-size: 20px;
+  font-weight: 800;
 `
 
 const MenuSatisfy = styled.span`
@@ -93,7 +94,7 @@ const MenuSatisfy = styled.span`
   color: ${props => props.satisfy > 65 ? "#FF0000" : props.satisfy > 32 ? "#FF6534" : "#E7B70A"};
 `
 
-export default function SidedishSpecComponent({data, order, setOrder}){
+export default function SidedishSpecComponent({data, order, setOrder, history}){
   return (
     <Container>
       <Box width={"40vw"}>
@@ -135,11 +136,10 @@ export default function SidedishSpecComponent({data, order, setOrder}){
         <MenuList>
           {data.menu_list.map((menu) => {
             return (
-              <Menu>
+              <Menu onClick={() => history.push(`/menu/${menu.id}`)}>
                 <Time>{menu.lastest}</Time>
                 <MenuDetail satisfy={menu.satisfy}>
                   {menu.name}
-
                   <MenuSatisfy satisfy={menu.satisfy}>{menu.satisfy}%</MenuSatisfy>
                 </MenuDetail>
               </Menu>

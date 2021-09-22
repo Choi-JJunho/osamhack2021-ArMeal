@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import SidedishSpecComponent from 'components/SidedishSpecComponent';
-import { useLocation } from 'react-router';
+import { useLocation, useHistory } from 'react-router';
 
 export default function SidedishSpecContainer(){
+  const history = useHistory();
   const location = useLocation();
   const [order, setOrder] = useState(0);
   useEffect(() => {
@@ -45,10 +46,10 @@ export default function SidedishSpecContainer(){
       },
     ], 
     satisfy: [100, 50, 30, 20, 10],
-    average: 76
+    average: 82
   }
 
   return (
-    <SidedishSpecComponent data={dummy} order={order} setOrder={setOrder}/>
+    <SidedishSpecComponent data={dummy} order={order} setOrder={setOrder} history={history}/>
   )
 }

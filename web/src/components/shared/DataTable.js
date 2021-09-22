@@ -1,16 +1,23 @@
 import React from "react";
 import { DataGrid } from '@mui/x-data-grid';
-import { useHistory } from "react-router";
+import { MuiThemeProvider } from "@material-ui/core/styles";
+import { createTheme } from '@material-ui/core';
 
-export default function DataTable({rows, columns}){
-  const history = useHistory();
+export default function DataTable({rows, columns, onCellClick}){
+  const muiTheme = createTheme({
+    typography: {
+      fontSize: 20
+    },
+  });
   return (
-    <DataGrid 
-      rows={rows}
-      columns={columns}
-      pageSize={10}
-      rowsPerPageOptions={[10]}
-      onCellClick={(e) => history.push(`/sidedish/${e.row.id}`)}
-    />
+    <MuiThemeProvider theme={muiTheme}>
+      <DataGrid 
+        rows={rows}
+        columns={columns}
+        pageSize={10}
+        rowsPerPageOptions={[10]}
+        onCellClick={(e) => onCellClick(e)}
+      />
+    </MuiThemeProvider>
   )
 }

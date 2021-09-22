@@ -11,13 +11,14 @@ const TableWrapper = styled.div`
   background-color: white;
 `
 
-export default function SidedishComponent({rows, columns}){
+export default function SidedishComponent({rows, columns, goSpecPage}){
   return (
     <Container>
       <TableWrapper>
         <DataTable 
           rows={rows}
           columns={columns}
+          onCellClick={goSpecPage}
           />
       </TableWrapper>
     </Container>

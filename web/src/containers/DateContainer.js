@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import DateComponent from 'components/DateComponent';
 
 export default function DateContainer(){
+  const [order, setOrder] = useState(0);
   const data = {
     labels: ['2021-07-13', '2021-07-14', '3월', '4월', '5월', '6월'],
     datasets: [
@@ -44,6 +45,8 @@ export default function DateContainer(){
     <DateComponent 
       data={data}
       options={options}
+      order={order}
+      setOrder={setOrder}
     />
   )
 }

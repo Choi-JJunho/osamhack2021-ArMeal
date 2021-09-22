@@ -8,13 +8,14 @@ const Container = styled.div`
 `
 
 const DateField = styled.div`
-  width:56vw;
   margin-top:2vh;
   height:8vh;
 `
 const DateSelecter = styled.div`
   float:left;
-  box-shadow: 0px 3px 3px 0px grey;
+  background-color: #FFFFFF;
+  border: 1px solid #E9E9EF;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   width:18vw;
   height:9vh;
   margin-right: 3vw;
@@ -24,7 +25,7 @@ const DateSelecter = styled.div`
 
 const Wrapper = styled.div`
   margin-top:5vh;
-  padding: 2vh 4vw;
+  padding: 2vh 6vw;
   background-color:white;
 `
 
@@ -42,7 +43,17 @@ const DateInput = styled.input`
   float: right;
 `
 
-export default function DateComponent({data, options}){
+const Label = styled.label`
+  font-size: 18px;
+  padding: 0 5px 0 20px;
+`
+
+const Switch = styled.div`
+  float: right;
+  padding-right: 15px; 
+`
+
+export default function DateComponent({data, options, order, setOrder}){
   return (
     <Container>
       <DateField>
@@ -57,6 +68,20 @@ export default function DateComponent({data, options}){
           <SelectWrapper>
             <DateInput type="date" value="2021-01-01" />
           </SelectWrapper>
+        </DateSelecter>
+
+        <DateSelecter>
+          <StartDate>단위</StartDate>
+          <Switch>
+            <Label htmlFor="date">1일</Label>
+            <input type="radio" name="orderby" id="date" checked={order === 0} onChange={() => setOrder(0)}></input>
+
+            <Label htmlFor="month">1달</Label>
+            <input type="radio" name="orderby" id="month" checked={order === 1} onChange={() => setOrder(1)}></input>
+
+            <Label htmlFor="year">1년</Label>
+            <input type="radio" name="orderby" id="year" checked={order === 2} onChange={() => setOrder(2)}></input>
+          </Switch>
         </DateSelecter>
       </DateField>
       <Wrapper>
