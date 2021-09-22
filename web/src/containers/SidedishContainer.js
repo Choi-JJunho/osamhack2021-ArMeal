@@ -20,7 +20,7 @@ export default function SidedishContainer(){
     },
     {
       field: "sidedish_menu",
-      headerName: "들어가는 메뉴",
+      headerName: "포함되는 메뉴",
       width: 600
     },
     {

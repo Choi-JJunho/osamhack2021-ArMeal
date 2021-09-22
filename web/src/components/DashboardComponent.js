@@ -83,6 +83,7 @@ const MenuRank = styled.div`
   margin-bottom: 14px;
   font-size: 20px;
   height: 6vh;
+  cursor: pointer;
 `
 
 const Rank = styled.span`
@@ -156,7 +157,7 @@ const TypeBar = styled.div`
   width: ${props => props.satisfy ? props.satisfy + "%" :"0"};
 `
 
-export default function DashboardComponent({chartData, average, dataName, menuRanking, todayData}){
+export default function DashboardComponent({chartData, average, dataName, menuRanking, todayData, history}){
   return (
     <Container>
       <Wrapper>
@@ -197,7 +198,7 @@ export default function DashboardComponent({chartData, average, dataName, menuRa
           <LeaderBoard>
             {menuRanking.map((menuData) => {
               return (
-                <MenuRank key={menuData.rank}>
+                <MenuRank key={menuData.rank} onClick={() => history.push(`/menu/${menuData.id}`)}>
                   <Rank>
                     {menuData.rank}
                   </Rank>

@@ -41,11 +41,13 @@ const SelectWrapper = styled.div`
 
 const DateInput = styled.input`
   float: right;
+  cursor: pointer;
 `
 
 const Label = styled.label`
   font-size: 18px;
   padding: 0 5px 0 20px;
+  cursor: pointer;
 `
 
 const Switch = styled.div`

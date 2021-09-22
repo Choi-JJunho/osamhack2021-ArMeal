@@ -65,6 +65,7 @@ const Switch = styled.span`
 const Label = styled.label`
   font-size: 18px;
   padding: 0 5px 0 20px;
+  cursor: pointer;
 `
 
 const MenuList = styled.div`
@@ -73,6 +74,7 @@ const MenuList = styled.div`
 
 const Menu = styled.div`
   margin-top: 15px;
+  cursor: pointer;
 `
 
 const Time = styled.div`

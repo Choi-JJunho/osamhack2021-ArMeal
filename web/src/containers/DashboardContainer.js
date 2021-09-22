@@ -1,34 +1,42 @@
 import React, { useEffect } from 'react';
 import DashboardComponent from 'components/DashboardComponent';
 import { useSelector, useDispatch } from 'react-redux';
-import { getDashboardData } from 'modules/dashboard' 
+import { getDashboardData } from 'modules/dashboard'
+import { useHistory } from 'react-router'; 
+
 export default function DashboardContainer(){
   const dispatch = useDispatch();
+  const history = useHistory();
   const {data, loading, error} = useSelector(state => state.dashboardReducer.dashboard)
   const menuRanking = [
     {
       rank: 1,
-      name: "돼지고기콩나물볶음",
+      name: "돼지고기김치찜",
+      id: 1,
       satisfy: 93,
     },
     {
       rank: 2,
       name: "감자탕",
+      id: 2,
       satisfy: 91,
     },
     {
       rank: 3,
       name: "김치찌개",
+      id: 3,
       satisfy: 80,
     },
     {
       rank: 4,
       name: "짬뽕찌개",
+      id: 4,
       satisfy: 50,
     },
     {
       rank: 5,
       name: "곰탕",
+      id: 5,
       satisfy: 20,
     },
   ]
@@ -62,6 +70,7 @@ export default function DashboardContainer(){
       data={data}
       loading={loading}
       error={error}
+      history={history}
       />
   )
 }
