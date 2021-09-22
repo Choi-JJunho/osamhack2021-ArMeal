@@ -77,6 +77,7 @@ const SidedishName = styled.span`
   font-size: 22px;
   font-weight: 800;
   margin-right: 15px;
+  cursor: pointer;
 `
 
 const Date = styled.div`

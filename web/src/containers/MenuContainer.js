@@ -19,7 +19,7 @@ export default function MenuContainer(){
     },
     {
       field: "sidedish_list",
-      headerName: "들어가는 부식",
+      headerName: "포함하는 부식",
       width: 600
     },
     {
