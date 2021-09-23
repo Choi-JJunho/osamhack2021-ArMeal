@@ -35,12 +35,12 @@
     </update>
 
 
-    <insert id="AddDailyMenu">
+    <insert id="addDailyMenu">
         INSERT INTO Daily_meal (date_value, time, group_id, menu)
         VALUES (#{dateValue}, #{_time}, #{groupId}, #{_menu})
     </insert>
     
-    <insert id="AddMenu">
+    <insert id="addMenu">
         INSERT INTO Menu (name, menu_type)
         VALUES (#{_name}, #{_menutype})
     </insert>
