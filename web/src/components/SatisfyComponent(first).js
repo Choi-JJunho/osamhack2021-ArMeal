@@ -211,69 +211,45 @@ const SurveyWrapper = styled.div`
 /////////////////메뉴 Display 페이지 CSS 시작///////////////////////////////////////////
 const Container = styled.div`
     margin-top: 3vh;
+    // display: flow-root;
     display: flex;
+    // width:-webkit-fill-available;
     justify-content:space-evenly;
 `
-const GreenBorderBoxWrapper = styled.div`
-  top: 39.5vh;
-  position:absolute;
-`
-const GreenBorderBox = styled.div`
-${props => props.type !== 0 
-  ? "display:none" 
-  : "display:grid; width: 50vw; height: 239px; left: 35.9vw; top: 35.9vh; background: #FFFFFF; border: 10px solid #86DE8A; box-sizing: border-box; border-radius: 20px;"
-}
-`
-
-const GreenBorderBoxTitle = styled.div`
-  font-family: Inter;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 25px;
-  line-height: 9vh;
-  /* or 88% */
-
-  display: grid;
-  align-items: center;
-  text-align: center;
-`
-const BoxWrapper = styled.div`
-  display:flex;
-  justify-content: space-around;
-  height: auto;
-`
 const Box = styled.div`
-    display:grid;
     position: auto;
-    width: auto;
-    height: 8.5vh;
+    width: 22vw;
+    height: 76vh;
 
     background: #FFFFFF;
 
-    border: 4px solid;
+    border: 1px solid #E9E9EF;
     box-sizing: border-box;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 10px;
+    border-radius: 20px;
 
     &:hover {
-      border: 4px solid #7FC8FD;
+      border: 5px solid #7FC8FD;
       box-sizing: border-box;
       box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-      border-radius: 10px;
+      border-radius: 20px;
     }
-
-    border-color: ${props => props.score > 65 ? "#FF0000" : props.score > 32 ? "#FF6534" : props.score > 0 ? "#F1C114" : "#85859A"};
 `
 
 const Title = styled.div`
+
+  padding-top: 4vh;
+  padding-bottom: 4vh;
+
+    margin: auto;
     width: 10vw;
-    height: auto;
+    height: 47px;
 
     font-family: Inter;
     font-style: normal;
-    font-weight: 700;
-    font-size: 22px;
-    line-height: 25px;
+    font-weight: bold;
+    font-size: 30px;
+    line-height: 22px;
 
     display: grid;
     align-items: center;
@@ -281,22 +257,67 @@ const Title = styled.div`
 
     color: #000000;
 `
+const GreenBorder = styled.div`
+    margin: auto;
+    width: 18vw;
+    height: 45vh;
 
-const Percentage = styled.div`
-  width: 10vw;
-    height: auto;
+    background: #FFFFFF;
 
+    border: 1px solid #75CB32;
+    box-sizing: border-box;
+
+/* text style */
+
+    margin: auto;
     font-family: Inter;
     font-style: normal;
-    font-weight: 700;
-    font-size: 22px;
+    font-weight: bold;
+    font-size: 20px;
     line-height: 25px;
 
     display: grid;
     align-items: center;
     text-align: center;
 
-    color: #000000;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+`
+const Menu = styled.div`
+  margin: auto;
+  width: 15vw;
+  height: 332px;
+`
+const Main = styled.div`
+  color: #FF2C2C;
+  padding-bottom: 2vh;
+  padding-top: 2vh;
+`
+const TextContainer = styled.div`
+  margin-top:1vh;
+`
+const Text = styled.div`
+    color: black;
+`
+const Self = styled.div`
+  color: #FF7C53;
+  padding-bottom: 1vh;
+`
+const Dessert = styled.div`
+  color: #0038FF;
+  padding-bottom: 1vh;
+
+`
+
+const Percentage = styled.div`
+  margin: 0px 10px 10px 10%;
+  width: 80%;
+  height: 26px;
+
+  font-family: Inter;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 25px;
 
   display: grid;
   align-items: center;
@@ -305,7 +326,7 @@ const Percentage = styled.div`
   color: ${props => props.score > 65 ? "#FF0000" : props.score > 32 ? "#FF6534" : props.score > 0 ? "#F1C114" : "#85859A"};
 `
 const PercentageContainer = styled.div`
-  // margin-top:6vh;
+  margin-top:6vh;
 `
 const Bar = styled.div`
   margin: auto;
@@ -320,40 +341,82 @@ const ScoreBar = styled.div`
 
 /////////////////메뉴 Display 페이지 CSS 끝///////////////////////////////////////////
 
+function MenuList(props){
+    return(
+      <Menu>
+          <Main>
+            Main
+            <TextContainer>
+              <Text>
+                {props.menu.menuList[0]}
+              </Text>
+              <Text>
+                {props.menu.menuList[1]}
+              </Text>
+              <Text>
+                {props.menu.menuList[2]}
+              </Text>
+              <Text>
+                {props.menu.menuList[3]}
+              </Text>
+              <Text>
+                {props.menu.menuList[4]}
+              </Text>
+            </TextContainer>
+          </Main>
+
+          <Self>
+            Self
+            <TextContainer>
+              <Text>
+                {props.menu.self}
+              </Text>
+            </TextContainer>
+          </Self>
+
+          <Dessert>
+            Dessert
+            <TextContainer>
+              <Text>
+                {props.menu.dessert}
+              </Text>
+            </TextContainer>
+          </Dessert>
+      </Menu>
+    )
+}
+
 
 export default function SatisfyComponent({todayData, type, selectType, selectTypeIdx, todayTaste, satisfaction, selectSatisfaction, selectSatisfactionIdx, survey, visible,selectVisible}){
   return (
     <Container>
-      <GreenBorderBoxWrapper>
-        <GreenBorderBox type={type}>
-          <GreenBorderBoxTitle>
-            만족도 조사를 시행할 타임을 골라주세요
-          </GreenBorderBoxTitle>
-
-          <BoxWrapper>
-            {type === 0 &&
-              todayData.map((data,index) => {
-                return (
-                  
-                    <Box onClick={()=>selectType(selectTypeIdx[index])} score={data.satisfy}>
-                      <Title>
-                          {data.type}
-                      </Title>
-          
-                      <PercentageContainer>
-                        <Percentage score={data.satisfy}>
-                          {data.satisfy ? data.satisfy + "%" : "미실시"}
-                        </Percentage>
-                        
-                      </PercentageContainer>
-                    </Box>
-                  
-                )
-              })
-            }
-          </BoxWrapper>
-        </GreenBorderBox>
-      </GreenBorderBoxWrapper>
+      
+      {type === 0 &&
+        todayData.map((data,index) => {
+          return (
+            <Box onClick={()=>selectType(selectTypeIdx[index])}>
+              <Title>
+                  {data.type}
+              </Title>
+  
+              <GreenBorder>
+                <MenuList menu={data}/>
+              </GreenBorder>
+  
+              <PercentageContainer>
+                <Percentage score={data.satisfy}>
+                  {/* {data.satisfy}% */}
+                  {data.satisfy ? data.satisfy + "%" : "아직 평가되지 않았어요."}
+                </Percentage>
+                <Bar>
+                  <ScoreBar score={data.satisfy}/>
+                </Bar>
+              </PercentageContainer>
+            </Box>
+          )
+        })
+      }
+      
         {type !== 0 &&
           <SurveyWrapper>
             <Message>
