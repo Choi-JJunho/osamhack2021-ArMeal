@@ -34,10 +34,7 @@ export default function SatisfyContainer(){
     }
   ]
 
-  const [satisfaction, setSatisfaction] = useState(0) // const [변수, set변수] = useState(기본값)
-  const selectSatisfaction = (idx) => {
-    setSatisfaction(idx)
-  }
+  
 
   const todayTaste = [
     {taste: "짜다"},
@@ -72,6 +69,32 @@ export default function SatisfyContainer(){
       name: "최고에요"
     }
   ]
+const [satisfaction, setSatisfaction] = useState(0) // const [변수, set변수] = useState(기본값)
+  const selectSatisfaction = (idx) => {
+    setSatisfaction(idx)
+    if (idx===0){
+      setVisible("worst")
+    }
+    else if (idx===1){
+      setVisible("bad")
+    }
+    else if (idx===2){
+      setVisible("average")
+    }
+    else if (idx===3){
+      setVisible("good")
+    }
+    else if (idx===4){
+      setVisible("best")
+    }
+    // else setVisible("none")
+  
+  }
+
+  const [visible, setVisible] = useState(0) // const [변수, set변수] = useState(기본값)
+    const selectVisible = (idx) =>{
+      setVisible(idx)
+    }
 
   return (
     <SatisfyComponent 
@@ -84,9 +107,13 @@ export default function SatisfyContainer(){
 
       satisfaction={satisfaction}
       selectSatisfaction = {selectSatisfaction}
-      selectSatisfactionIdx={[1,2,3,4,5]}
+      selectSatisfactionIdx={[1,1,1,0,0]}
 
       survey={picLink}
+
+      visible={visible}
+      selectVisible={selectVisible}
+      // selectVisible={selectVisible}
     />
   )
 }

@@ -3,6 +3,11 @@ import styled from 'styled-components'
 
 //////////////////설문조사 페이지 CSS 시작//////////////////////////////////
 import MainPic from '../static/image/restaurant.png';
+import SurveyImage1 from '../static/image/score_1.png';
+import SurveyImage2 from '../static/image/score_2.png';
+import SurveyImage3 from '../static/image/score_3.png';
+import SurveyImage4 from '../static/image/score_4.png';
+import SurveyImage5 from '../static/image/score_5.png';
 // import survey from '../containers/SatisfyContainer';
 
 const MainPicture = styled.img.attrs({
@@ -56,26 +61,31 @@ const SurveyImages = styled.img`
   width: 10vw;
 `
 
-// const SurveyImages_2 = styled.img.attrs({
-//   src: Score_2
-// })`
-//   width: 10vw;
-// `
-// const SurveyImages_3 = styled.img.attrs({
-//   src: Score_3
-// })`
-//   width: 10vw;
-// `
-// const SurveyImages_4 = styled.img.attrs({
-//   src: Score_4
-// })`
-//   width: 10vw;
-// `
-// const SurveyImages_5 = styled.img.attrs({
-//   src: Score_5
-// })`
-//   width: 10vw;
-// `
+const SurveyImages1 = styled.img.attrs({
+  src: SurveyImage1
+})`
+  width: 10vw;
+`
+const SurveyImages2 = styled.img.attrs({
+  src: SurveyImage2
+})`
+  width: 10vw;
+`
+const SurveyImages3 = styled.img.attrs({
+  src: SurveyImage3
+})`
+  width: 10vw;
+`
+const SurveyImages4 = styled.img.attrs({
+  src: SurveyImage4
+})`
+  width: 10vw;
+`
+const SurveyImages5 = styled.img.attrs({
+  src: SurveyImage5
+})`
+  width: 10vw;
+`
 const Message = styled.div`
   width: 70vw;
   height: 25vh;
@@ -112,7 +122,7 @@ const Text2 = styled.div`
   padding: 4vh 0vw;
 `
 const Survey = styled(Message)`
-    width: 13vw;
+    width: 14vw;
     height: 33vh;
     margin: auto;
 
@@ -159,17 +169,41 @@ const Quit = styled.div`
     border-radius: 10px;
     }
 `
+const TasteSelectionWrapper = styled.div`
+  position: absolute;
+  height: 40vh;
+  top: 30.1vh;
+  
+  ${props => props.visible === 'worst' && `
+      left: 2.7vw;
+    `}
+  ${props => props.visible === 'bad' && `
+      left: 17.5vw;
+  `}
+`
 const TasteSelectionBox = styled.div`
-  width: 126px;
-  height: 39px;
-
+  width: 9.3vw;
+  height: 4.3vh;
+  margin-top: 0.5vh;
+  
   background: #FFFFFF;
   border: 3px solid rgba(127, 200, 253, 0.87);
   box-sizing: border-box;
   border-radius: 15px;
+  
+  text-align: center;
+  padding-top: 7px;
 
+  &:hover {
+    border: 3px solid #86DE8A;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    }
 `
 
+const SurveyWrapper = styled.div`
+  width: 95%;
+  position:relative; 
+`
 ////////////////설문조사 페이지 CSS 끝///////////////////////////////////////////////
 
 
@@ -289,7 +323,7 @@ const Percentage = styled.div`
   align-items: center;
   text-align: center;
 
-  color: ${props => props.score > 65 ? "#FF0000" : props.score > 32 ? "#FF6534" : "#F1C114"};
+  color: ${props => props.score > 65 ? "#FF0000" : props.score > 32 ? "#FF6534" : props.score > 0 ? "#F1C114" : "#85859A"};
 `
 const PercentageContainer = styled.div`
   margin-top:6vh;
@@ -297,10 +331,8 @@ const PercentageContainer = styled.div`
 const Bar = styled.div`
   margin: auto;
   width: 19vw;
-  
   background: #C4C4C4;
 `
-
 const ScoreBar = styled.div`
   background-color: ${props => props.score > 65 ? "#FF0000" : props.score > 32 ? "#FF6534" : "#F1C114"};
   width: ${props => props.score ? props.score + "%" : 0};
@@ -350,32 +382,12 @@ function MenuList(props){
               </Text>
             </TextContainer>
           </Dessert>
-
       </Menu>
-    ) 
+    )
 }
 
-function WrapperContent(props){
-  return(
-    // props.satisfaction === 0 &&
-    // <Wrapper onClick={()=>props.selectSatisfaction(props.selectSatisfactionIdx)}>
-    <Wrapper>  
-    {props.survey.map((data) => (
-        <Survey>
-          <Text2>
-            {data.name}
-          </Text2>
-          <SurveyImages src={data.link}/>
-        </Survey>
-        ))
-      }
-    </Wrapper>
-        
-  
-  )
-}
 
-export default function SatisfyComponent({todayData, type, selectType, selectTypeIdx, todayTaste, satisfaction, selectSatisfaction, selectSatisfactionIdx, survey}){
+export default function SatisfyComponent({todayData, type, selectType, selectTypeIdx, todayTaste, satisfaction, selectSatisfaction, selectSatisfactionIdx, survey, visible,selectVisible}){
   return (
     <Container>
       
@@ -393,7 +405,8 @@ export default function SatisfyComponent({todayData, type, selectType, selectTyp
   
               <PercentageContainer>
                 <Percentage score={data.satisfy}>
-                  {data.satisfy}%
+                  {/* {data.satisfy}% */}
+                  {data.satisfy ? data.satisfy + "%" : "아직 평가되지 않았어요."}
                 </Percentage>
                 <Bar>
                   <ScoreBar score={data.satisfy}/>
@@ -405,10 +418,9 @@ export default function SatisfyComponent({todayData, type, selectType, selectTyp
       }
       
         {type !== 0 &&
-          <div>
+          <SurveyWrapper>
             <Message>
               <MainPicture/>
-              
                 <MainPictureTextTitle>
                   충성! 고생하십니다!
                 </MainPictureTextTitle>
@@ -417,17 +429,44 @@ export default function SatisfyComponent({todayData, type, selectType, selectTyp
                   <br/>
                   장병 여러분들의 소중한 평가로 더욱 만족도 높은 식단을 제공하겠습니다!
                 </MainPictureText>
-              
-            </Message>
-            
-            <WrapperContent survey={survey} satisfaction={satisfaction} selectSatisfaction={selectSatisfaction} selectSatisfactionIdx={selectSatisfactionIdx}/>
-            
+            </Message>            
+
+            <Wrapper>
+              {survey.map((data, index) => (
+                  <Survey onClick={()=>selectSatisfaction(index)}>
+                    <Text2>
+                      {data.name}
+                    </Text2>
+                    <SurveyImages src={data.link}/>
+                    {console.log(visible)}
+                  </Survey>
+              ))}
+            </Wrapper>
+            { visible==="worst" &&
+              <TasteSelectionWrapper visible={visible}>
+                {todayTaste.map((data) => (
+                  <TasteSelectionBox>
+                    {data.taste}
+                  </TasteSelectionBox>
+                ))}
+              </TasteSelectionWrapper>
+            }
+            { visible==="bad" &&
+              <TasteSelectionWrapper visible={visible}>
+                {todayTaste.map((data) => (
+                  <TasteSelectionBox>
+                    {data.taste}
+                  </TasteSelectionBox>
+                ))}
+              </TasteSelectionWrapper>
+            }
+
             <QuitWrapper>
               <Quit>
                 종료
               </Quit>
             </QuitWrapper>
-          </div>
+          </SurveyWrapper>
         }
     </Container>
   )
