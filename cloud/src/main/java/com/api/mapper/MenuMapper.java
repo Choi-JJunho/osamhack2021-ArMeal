@@ -16,10 +16,13 @@ public interface MenuMapper {
     Menu findMenuByName(@Param("_name")String name);
     List<HashMap<String, Object>> findMenuByMenuType(@Param("menuType")int menuType);
     Menu findSumOfRating_data();
+    List<HashMap<String, Object>> findDailyMenuByDate(@Param("_date")Date date);
+    List<HashMap<String, Object>> findRecentDateByMenuId(@Param("_id")long menuId);
 
     void addMenu(@Param("_name")String name,@Param("_menutype") int menutype);
     void addDailyMenu(@Param("dateValue")Date date, @Param("_time")int time, @Param("groupId") long groupId, @Param("_menu") long menuId);
 
     void updateMenuScore(@Param("_name")String name, @Param("_score") long score);
-    void updateDailyMenu(@Param("dateValue")Date date, @Param("_time")int time, @Param("groupId") long groupId, @Param("_menu") long menuId);// 빌드 오류로 임시로 삭제, @Param("beforeDate")Date beforeDate, @Param("beforeTime")int beforeTime);
+    void updateDailyMenu(@Param("dateValue")Date date, @Param("_time")int time, @Param("groupId") long groupId, @Param("_menu") long menuId);
+
 }

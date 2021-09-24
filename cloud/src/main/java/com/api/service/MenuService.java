@@ -5,10 +5,12 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+
 import com.api.domain.Menu;
 import com.api.mapper.MenuMapper;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,6 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class MenuService extends Exception {
     
+    @Autowired
     MenuMapper menuMapper;
 
     public HashMap<Object,Object> addMenu(String name, int menutype) {
@@ -102,5 +105,11 @@ public class MenuService extends Exception {
     public // getAllDailyMenu(){
         
     }*/
+
+    public List<HashMap<String, Object>> getRecentDates(String menuName) {
+        long idx = menuMapper.findMenuByName(menuName).getId();
+        System.out.println(menuMapper.findRecentDateByMenuId(idx));
+        return menuMapper.findRecentDateByMenuId(idx);
+    }
 
 }
