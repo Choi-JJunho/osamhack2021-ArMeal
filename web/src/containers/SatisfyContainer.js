@@ -27,7 +27,7 @@ export default function SatisfyContainer(){
     },
     {
       type: "석식",
-      satisfy: 10,
+      satisfy: 0,
       menuList: ["흰쌀밥2","에그스크램블2", "쇠고기찌개2", "오징어채2","김치2"],
       self:["-"],
       dessert:["주스"]
