@@ -239,7 +239,7 @@ const GreenBorderBoxTitle = styled.div`
 `
 const BoxWrapper = styled.div`
   display:flex;
-  justify-content: space-evenly;
+  justify-content: space-around;
   height: auto;
 `
 const Box = styled.div`
@@ -280,56 +280,6 @@ const Title = styled.div`
     text-align: center;
 
     color: #000000;
-`
-const GreenBorder = styled.div`
-    margin: auto;
-    width: 18vw;
-    height: 45vh;
-
-    background: #FFFFFF;
-
-    border: 1px solid #75CB32;
-    box-sizing: border-box;
-
-/* text style */
-
-    margin: auto;
-    font-family: Inter;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 20px;
-    line-height: 25px;
-
-    display: grid;
-    align-items: center;
-    text-align: center;
-
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-`
-const Menu = styled.div`
-  margin: auto;
-  width: 15vw;
-  height: 332px;
-`
-const Main = styled.div`
-  color: #FF2C2C;
-  padding-bottom: 2vh;
-  padding-top: 2vh;
-`
-const TextContainer = styled.div`
-  margin-top:1vh;
-`
-const Text = styled.div`
-    color: black;
-`
-const Self = styled.div`
-  color: #FF7C53;
-  padding-bottom: 1vh;
-`
-const Dessert = styled.div`
-  color: #0038FF;
-  padding-bottom: 1vh;
-
 `
 
 const Percentage = styled.div`
@@ -390,18 +340,11 @@ export default function SatisfyComponent({todayData, type, selectType, selectTyp
                           {data.type}
                       </Title>
           
-                      {/* <GreenBorder>
-                        <MenuList menu={data}/>
-                      </GreenBorder> */}
-
                       <PercentageContainer>
                         <Percentage score={data.satisfy}>
-                          {/* {data.satisfy}% */}
                           {data.satisfy ? data.satisfy + "%" : "미실시"}
                         </Percentage>
-                        {/* <Bar>
-                          <ScoreBar score={data.satisfy}/>
-                        </Bar> */}
+                        
                       </PercentageContainer>
                     </Box>
                   
