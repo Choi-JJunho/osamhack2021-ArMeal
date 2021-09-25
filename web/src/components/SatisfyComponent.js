@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components'
+import PropTypes from 'prop-types'
 
 //////////////////설문조사 페이지 CSS 시작//////////////////////////////////
 import MainPic from '../static/image/restaurant.png';
@@ -57,9 +58,16 @@ const MainPictureText = styled(MainPictureTextTitle)`
   left: 30px;
 
 `
-const SurveyImages = styled.img`
-  width: 10vw;
-`
+
+// const SurveyImages = styled.img`
+//   src: ${props => props.index === 0 && SurveyImage1};
+//   width: 10vw;
+ 
+//   ${props=>props.index === 1 && `src:../static/image/score_2.png;`}
+//   ${props=>props.index === 2 && `src:../static/image/score_3.png;`}
+//   ${props=>props.index === 3 && `src:../static/image/score_4.png;`}
+//   ${props=>props.index === 4 && `src:../static/image/score_5.png;`}
+// `
 
 const SurveyImages1 = styled.img.attrs({
   src: SurveyImage1
@@ -122,6 +130,7 @@ const Text2 = styled.div`
   padding: 4vh 0vw;
 `
 const Survey = styled(Message)`
+    
     width: 14vw;
     height: 33vh;
     margin: auto;
@@ -307,21 +316,70 @@ const Percentage = styled.div`
 const PercentageContainer = styled.div`
   // margin-top:6vh;
 `
-const Bar = styled.div`
-  margin: auto;
-  width: 19vw;
-  background: #C4C4C4;
-`
-const ScoreBar = styled.div`
-  background-color: ${props => props.score > 65 ? "#FF0000" : props.score > 32 ? "#FF6534" : "#F1C114"};
-  width: ${props => props.score ? props.score + "%" : 0};
-  height: 18px;
-`
 
 /////////////////메뉴 Display 페이지 CSS 끝///////////////////////////////////////////
+function Modal({ className, visible, children }) {
+  return (
+    <>
+      <ModalOverlay visible={visible} />
+      <ModalWrapper className={className} tabIndex="-1" visible={visible}>
+        <ModalInner tabIndex="0" className="modal-inner">
+          {children}
+        </ModalInner>
+      </ModalWrapper>
+    </>
+  )
+}
 
+Modal.propTypes = {
+  visible: PropTypes.bool,
+}
 
-export default function SatisfyComponent({todayData, type, selectType, selectTypeIdx, todayTaste, satisfaction, selectSatisfaction, selectSatisfactionIdx, survey, visible,selectVisible}){
+const ModalWrapper = styled.div`
+  box-sizing: border-box;
+  display: ${(props) => (props.visible ? 'block' : 'none')};
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+  overflow: auto;
+  outline: 0;
+`
+
+const ModalOverlay = styled.div`
+  box-sizing: border-box;
+  display: ${(props) => (props.visible ? 'block' : 'none')};
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 999;
+`
+
+const ModalInner = styled.div`
+  box-sizing: border-box;
+  position: relative;
+  box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.5);
+  background-color: #fff;
+  border-radius: 10px;
+  width: 360px;
+  max-width: 480px;
+  top: 50%;
+  transform: translateY(-50%);
+  margin: 0 auto;
+  padding: 40px 20px;
+`
+function ModalPage() {
+  return (
+    <Modal visible={true}>Hello</Modal>
+  )
+}
+
+export default function SatisfyComponent({todayData, type, selectType, selectTypeIdx, todayTaste, selectSatisfaction, survey, visible}){
   return (
     <Container>
       <GreenBorderBoxWrapper>
@@ -374,8 +432,11 @@ export default function SatisfyComponent({todayData, type, selectType, selectTyp
                     <Text2>
                       {data.name}
                     </Text2>
-                    <SurveyImages src={data.link}/>
-                    {console.log(visible)}
+                    {index===0 && <SurveyImages1/>}
+                    {index===1 && <SurveyImages2/>}
+                    {index===2 && <SurveyImages3/>}
+                    {index===3 && <SurveyImages4/>}
+                    {index===4 && <SurveyImages5/>}
                   </Survey>
               ))}
             </Wrapper>
@@ -388,6 +449,7 @@ export default function SatisfyComponent({todayData, type, selectType, selectTyp
                 ))}
               </TasteSelectionWrapper>
             }
+
             { visible==="bad" &&
               <TasteSelectionWrapper visible={visible}>
                 {todayTaste.map((data) => (
@@ -397,7 +459,7 @@ export default function SatisfyComponent({todayData, type, selectType, selectTyp
                 ))}
               </TasteSelectionWrapper>
             }
-
+            
             <QuitWrapper>
               <Quit>
                 종료
