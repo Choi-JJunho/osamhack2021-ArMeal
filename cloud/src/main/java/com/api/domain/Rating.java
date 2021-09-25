@@ -15,7 +15,7 @@ public class Rating {
 	@ApiModelProperty(notes = "메뉴 아이디", example = "1")
 	private long Menu_id;
 
-	@ApiModelProperty(notes = "데이터", example = "1")
+	@ApiModelProperty(notes = "평가 값\n5 : 좋음\n4 : 좋음\n3 : 보통\n2 : 나쁨\n1 : 아주 나쁨", example = "1")
     private int rating_data;
 
 	@ApiModelProperty(hidden = true)

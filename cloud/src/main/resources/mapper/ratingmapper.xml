@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.api.mapper.RatingMapper">
+
+    <!-- Find Menu -->
+    <select id="getRatingByDates" resultType="java.util.HashMap">
+        SELECT a.rating_data AS rating FROM Rating AS a INNER JOIN Daily_meal AS b ON b.date_value = #{_date}
+    </select>
+    
+    
+    <insert id="addRating">
+        INSERT INTO Rating (User_id, Menu_id, rating_data)
+        VALUES (#{_userId}, #{_menuId}, #{ratingData})
+    </insert>
+
+</mapper>
