@@ -15,25 +15,39 @@ const Container = styled.div`
 `
 
 const LoggedInWrapper = styled.div`
-  padding: 31px 19px;
+  padding: 10px 19px;
+`
+
+const ImageBlank=styled.div`
+  float:right;
 `
 
 export default function UserBadgeComponent({data}){
   return (
     <Container>
-      {data && 
+      {!data && 
         <LoggedInWrapper>
-          로그인됨
+          1군수지원 사령부
+          <ImageBlank>          
+            <img width="60" height="60" alt="최예나" src="img/최예나.jpg"/>
+          </ImageBlank>
+          <br></br>
+          수도군지단
         </LoggedInWrapper>
       }
-      {!data && 
-        <div>
-          로그인안됨
-          <Link to="/signin">로그인</Link>
-          
-          <Link to="/signup">회원가입</Link>
-        </div>
+      {data && 
+        <LoggedInWrapper>
+          부대계정으로 로그인 해주세요.
+          <ImageBlank>
+            <img width="50" height="50" alt="1" src="img/1.jpg"/>
+          </ImageBlank>
+        </LoggedInWrapper>
       }
     </Container>
   )
 }
+
+/*
+          <Link to="/signin">로그인</Link>
+          <Link to="/signup">회원가입</Link>
+          */
