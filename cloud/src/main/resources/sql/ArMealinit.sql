@@ -29,7 +29,7 @@ CREATE TABLE `Menu`(
 CREATE TABLE `Daily_meal`(
     `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
     `date_value` DATE NOT NULL,
-    `time` TINYINT NOT NULL,
+    `time` INT NOT NULL,
     `group_id` BIGINT NOT NULL,
     `menu` BIGINT NOT NULL
 );
@@ -41,7 +41,7 @@ CREATE TABLE `Rating`(
     `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
     `User_id` BIGINT NOT NULL,
     `Menu_id` BIGINT NOT NULL,
-    `rating_data` TINYINT NOT NULL,
+    `rating_data` INT NOT NULL,
     `created_at` TIMESTAMP NOT NULL DEFAULT NOW(),
     `deleted_at` TIMESTAMP NULL,
     `is_deleted` TINYINT(1) NULL
