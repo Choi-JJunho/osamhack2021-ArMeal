@@ -34,6 +34,9 @@
     </select>
 
     <!-- Update Menu -->
+    <update id="updateMenuType">
+        UPDATE Menu SET menu_type=#{_menutype} WHERE name=#{_name}
+    </update>
     <update id="updateMenuScore">
         UPDATE Menu SET score=#{_score} WHERE name = #{_name}
     </update>
