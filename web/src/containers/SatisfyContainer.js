@@ -96,6 +96,7 @@ const [satisfaction, setSatisfaction] = useState(0) // const [변수, set변수]
       setVisible(idx)
     }
 
+
   return (
     <SatisfyComponent 
       todayData={todayData} 
@@ -105,10 +106,9 @@ const [satisfaction, setSatisfaction] = useState(0) // const [변수, set변수]
 
       todayTaste={todayTaste}
 
-      satisfaction={satisfaction}
+      // satisfaction={satisfaction}
       selectSatisfaction = {selectSatisfaction}
-      selectSatisfactionIdx={[1,1,1,0,0]}
-
+      
       survey={picLink}
 
       visible={visible}
