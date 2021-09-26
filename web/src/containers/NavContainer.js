@@ -5,35 +5,36 @@ import NavComponent from 'components/NavComponent';
 export default function NavContainer(){
   let location = useLocation();
   const [curr, setCurr] = useState(0)
-  
+  const path = location.pathname.split('/')[1];
+
   useEffect(()=> {
-    switch(location.pathname){
-      case '/dashboard':
+    switch(path){
+      case 'dashboard':
         setCurr(1);
         break;
-      case '/satisfy':
+      case 'satisfy':
         setCurr(2);
         break;
-      case '/date':
+      case 'date':
         setCurr(3);
         break;
-      case '/sidedish':
+      case 'sidedish':
         setCurr(4);
         break;
-      case '/menu':
+      case 'menu':
         setCurr(5);
         break;
-      case '/self':
+      case 'self':
         setCurr(6);
         break;
-      case '/management':
+      case 'management':
         setCurr(7);
         break;
       default:
         setCurr(0);
         break;
     }
-  }, [location.pathname])
+  }, [path])
 
   return (
     <NavComponent curr={curr}/>

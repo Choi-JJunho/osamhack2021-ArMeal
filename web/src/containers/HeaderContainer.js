@@ -14,38 +14,39 @@ export default function HeaderContainer(){
   const { data } = useSelector( state => state.authReducer.auth );
   let location = useLocation();
   const [name, setName] = useState('')
-  
+  const path = location.pathname.split('/')[1];
+
   useEffect(()=> {
-    switch(location.pathname){
-      case '/':
+    switch(path){
+      case '':
         setName('홈페이지');
         break;
-      case '/dashboard':
+      case 'dashboard':
         setName('대시보드');
         break;
-      case '/satisfy':
+      case 'satisfy':
         setName('만족도 조사');
         break;
-      case '/date':
+      case 'date':
         setName('날짜별 통계');
         break;
-      case '/sidedish':
+      case 'sidedish':
         setName('부식별 통계');
         break;
-      case '/menu':
+      case 'menu':
         setName('메뉴별 통계');
         break;
-      case '/self':
+      case 'self':
         setName('자율메뉴');
         break;
-      case '/management':
+      case 'management':
         setName('식단관리 / 메모');
         break;
       default:
         setName('');
         break;
     }
-  }, [location.pathname])
+  }, [path])
 
   return (
     <Container>
