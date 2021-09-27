@@ -27,7 +27,7 @@ function addHoverEvent(info) {
   tooltip.hide();
 }
 
-export default function SelfComponent({events}){
+export default function SelfComponent({events, selectEvent}){
   return (
     <Container>
       <CalendarWrapper>
@@ -43,8 +43,10 @@ export default function SelfComponent({events}){
           locale="af"
           initialEvents={events}
           eventDidMount={el => addHoverEvent(el)}
+          eventClick={(e) => selectEvent(e)}
         />
       </CalendarWrapper>
     </Container>
   )
 }
+

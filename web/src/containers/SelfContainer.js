@@ -1,31 +1,33 @@
-import React from 'react';
+import React, {useState}  from 'react';
+
 import SelfComponent from 'components/SelfComponent';
 
 export default function SelfContainer(){
-
+  const selectEvent = (e) => {
+      alert(e.event.title)
+      
+      // console.log(e.event.extendedProps.description)
+      // console.log(e.event.extendedProps.time)
+      console.log(e.event.title)
+  }
+  
   const events = [
     {
-      title: '조식 92%',
-      description: '콩나물국, 계란찜, 깍두기, 돼지고기청경채볶음',
+      title: '베이컨 청경채 볶음',
+      date: '2021-09-19T07:00:00',
+      time:'조식',
+      description: '',
       start: '2021-09-19T07:00:00'
-    },
-    {
-      title: '조식 54%',
-      description: '콩나물국, 계란찜, 깍두기, 돼지고기청경채볶음',
-      start: '2021-09-15T07:00:00'
-    },
-    {
-      title: '중식 88%',
-      description: '콩나물국, 계란찜, 깍두기, 돼지고기청경채볶음',
-      start: '2021-09-15T11:00:00'
-    },
-    {
-      title: '석식 67%',
-      description: '콩나물국, 계란찜, 깍두기, 돼지고기청경채볶음',
-      start: '2021-09-15T17:00:00'
-    },
+    }
   ]
+
+  // const [event, setEvent] = useState(0) 
+  // const selectEvent = (idx) => {
+  //   setEvent(idx)
+  // }
+
   return (
-    <SelfComponent events={events}/>
-  )
+    // <SelfComponent events={events} clickEvent={event} selectEvent={selectEvent}/>
+    <SelfComponent events={events} selectEvent={selectEvent}/>
+    )
 }
