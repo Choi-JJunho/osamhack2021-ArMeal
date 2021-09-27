@@ -132,6 +132,8 @@ $ yarn start or npm run start
 - 권성현 (rushhour.k@gmail.com), Github: SeonghyeonGwon
 
 ## 저작권 및 사용권 정보 (Copyleft / End User License)
- * [MIT](https://github.com/osam2020-WEB/Sample-ProjectName-TeamName/blob/master/license.md)
-
-This project is licensed under the terms of the MIT license.
+ * https://github.com/osamhack2021/WEB_CLOUD_ArMeal_CSK/blob/main/LICENSE.md
+   - MIT
+   - Apache 2.0
+   - The Universal FOSS Exception 1.0
+   - SIL OPEN FONT LICENSE Version 1.1
