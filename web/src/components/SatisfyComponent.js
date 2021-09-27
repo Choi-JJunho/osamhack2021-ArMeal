@@ -23,7 +23,7 @@ const MainPicture = styled.img.attrs({
   opacity: 0.25;
 `
 const MainPictureTextTitle=styled.div`
-  font-family: Inter;
+  
   font-style: normal;
   font-weight: bold;
   font-size: 35px;
@@ -114,7 +114,7 @@ const Wrapper = styled.div`
   padding: 0px 0px;
 `
 const Text2 = styled.div`
-  font-family: Inter;
+  
   font-style: normal;
   font-weight: bold;
   font-size: 30px;
@@ -235,7 +235,7 @@ ${props => props.type !== 0
 `
 
 const GreenBorderBoxTitle = styled.div`
-  font-family: Inter;
+  
   font-style: normal;
   font-weight: bold;
   font-size: 25px;
@@ -278,7 +278,7 @@ const Title = styled.div`
     width: 10vw;
     height: auto;
 
-    font-family: Inter;
+    
     font-style: normal;
     font-weight: 700;
     font-size: 22px;
@@ -295,7 +295,7 @@ const Percentage = styled.div`
   width: 10vw;
     height: auto;
 
-    font-family: Inter;
+    
     font-style: normal;
     font-weight: 700;
     font-size: 22px;
