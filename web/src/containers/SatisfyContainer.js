@@ -13,24 +13,28 @@ export default function SatisfyContainer(){
     {
       type: "조식",
       satisfy: 87,
-      menu: ["흰쌀밥","에그스크램블", "쇠고기찌개", "오징어채","김치"]
+      menuList: ["흰쌀밥","에그스크램블", "쇠고기찌개", "오징어채","김치"],
+      self:["-"],
+      dessert:["요플레"]
+    
     },
     {
       type: "중식",
       satisfy: 62,
-      menu: ["잡곡밥","감자탕", "계란찜", "감자튀김","김치"]
+      menuList: ["잡곡밥","감자탕", "계란찜", "감자튀김","김치"],
+      self:["-"],
+      dessert:["우유"]
     },
     {
       type: "석식",
       satisfy: 0,
-      menu: ["흰쌀밥","에그스크램블", "쇠고기찌개", "오징어채","김치"]
+      menuList: ["흰쌀밥2","에그스크램블2", "쇠고기찌개2", "오징어채2","김치2"],
+      self:["-"],
+      dessert:["주스"]
     }
   ]
 
-  const [taste, setSurvey] = useState(0) // const [변수, set변수] = useState(기본값)
-  const selectTaste = (idx) => {
-    setSurvey(idx)
-  }
+  
 
   const todayTaste = [
     {taste: "짜다"},
@@ -65,6 +69,33 @@ export default function SatisfyContainer(){
       name: "최고에요"
     }
   ]
+const [satisfaction, setSatisfaction] = useState(0) // const [변수, set변수] = useState(기본값)
+  const selectSatisfaction = (idx) => {
+    setSatisfaction(idx)
+    if (idx===0){
+      setVisible("worst")
+    }
+    else if (idx===1){
+      setVisible("bad")
+    }
+    else if (idx===2){
+      setVisible("average")
+    }
+    else if (idx===3){
+      setVisible("good")
+    }
+    else if (idx===4){
+      setVisible("best")
+    }
+    // else setVisible("none")
+  
+  }
+
+  const [visible, setVisible] = useState(0) // const [변수, set변수] = useState(기본값)
+    const selectVisible = (idx) =>{
+      setVisible(idx)
+    }
+
 
   return (
     <SatisfyComponent 
@@ -72,11 +103,17 @@ export default function SatisfyContainer(){
       type={type} 
       selectType={selectType}
       selectTypeIdx={[1,2,3]} 
+
       todayTaste={todayTaste}
-      taste={taste}
-      selectTaste = {selectTaste}
-      selectSurveyIdx={[1,2,3,4,5,6,7,8]}
+
+      // satisfaction={satisfaction}
+      selectSatisfaction = {selectSatisfaction}
+      
       survey={picLink}
+
+      visible={visible}
+      selectVisible={selectVisible}
+      // selectVisible={selectVisible}
     />
   )
 }

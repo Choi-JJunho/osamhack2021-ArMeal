@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components'
-import PropTypes from 'prop-types'
 
 //////////////////설문조사 페이지 CSS 시작//////////////////////////////////
 import MainPic from '../static/image/restaurant.png';
@@ -23,7 +22,7 @@ const MainPicture = styled.img.attrs({
   opacity: 0.25;
 `
 const MainPictureTextTitle=styled.div`
-  
+  font-family: Inter;
   font-style: normal;
   font-weight: bold;
   font-size: 35px;
@@ -58,16 +57,9 @@ const MainPictureText = styled(MainPictureTextTitle)`
   left: 30px;
 
 `
-
-// const SurveyImages = styled.img`
-//   src: ${props => props.index === 0 && SurveyImage1};
-//   width: 10vw;
- 
-//   ${props=>props.index === 1 && `src:../static/image/score_2.png;`}
-//   ${props=>props.index === 2 && `src:../static/image/score_3.png;`}
-//   ${props=>props.index === 3 && `src:../static/image/score_4.png;`}
-//   ${props=>props.index === 4 && `src:../static/image/score_5.png;`}
-// `
+const SurveyImages = styled.img`
+  width: 10vw;
+`
 
 const SurveyImages1 = styled.img.attrs({
   src: SurveyImage1
@@ -114,7 +106,7 @@ const Wrapper = styled.div`
   padding: 0px 0px;
 `
 const Text2 = styled.div`
-  
+  font-family: Inter;
   font-style: normal;
   font-weight: bold;
   font-size: 30px;
@@ -130,7 +122,6 @@ const Text2 = styled.div`
   padding: 4vh 0vw;
 `
 const Survey = styled(Message)`
-    
     width: 14vw;
     height: 33vh;
     margin: auto;
@@ -220,69 +211,45 @@ const SurveyWrapper = styled.div`
 /////////////////메뉴 Display 페이지 CSS 시작///////////////////////////////////////////
 const Container = styled.div`
     margin-top: 3vh;
+    // display: flow-root;
     display: flex;
+    // width:-webkit-fill-available;
     justify-content:space-evenly;
 `
-const GreenBorderBoxWrapper = styled.div`
-  top: 39.5vh;
-  position:absolute;
-`
-const GreenBorderBox = styled.div`
-${props => props.type !== 0 
-  ? "display:none" 
-  : "display:grid; width: 50vw; height: 239px; left: 35.9vw; top: 35.9vh; background: #FFFFFF; border: 10px solid #86DE8A; box-sizing: border-box; border-radius: 20px;"
-}
-`
-
-const GreenBorderBoxTitle = styled.div`
-  
-  font-style: normal;
-  font-weight: bold;
-  font-size: 25px;
-  line-height: 9vh;
-  /* or 88% */
-
-  display: grid;
-  align-items: center;
-  text-align: center;
-`
-const BoxWrapper = styled.div`
-  display:flex;
-  justify-content: space-around;
-  height: auto;
-`
 const Box = styled.div`
-    display:grid;
     position: auto;
-    width: auto;
-    height: 8.5vh;
+    width: 22vw;
+    height: 76vh;
 
     background: #FFFFFF;
 
-    border: 4px solid;
+    border: 1px solid #E9E9EF;
     box-sizing: border-box;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 10px;
+    border-radius: 20px;
 
     &:hover {
-      border: 4px solid #7FC8FD;
+      border: 5px solid #7FC8FD;
       box-sizing: border-box;
       box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-      border-radius: 10px;
+      border-radius: 20px;
     }
-
-    border-color: ${props => props.score > 65 ? "#FF0000" : props.score > 32 ? "#FF6534" : props.score > 0 ? "#F1C114" : "#85859A"};
 `
 
 const Title = styled.div`
-    width: 10vw;
-    height: auto;
 
-    
+  padding-top: 4vh;
+  padding-bottom: 4vh;
+
+    margin: auto;
+    width: 10vw;
+    height: 47px;
+
+    font-family: Inter;
     font-style: normal;
-    font-weight: 700;
-    font-size: 22px;
-    line-height: 25px;
+    font-weight: bold;
+    font-size: 30px;
+    line-height: 22px;
 
     display: grid;
     align-items: center;
@@ -290,22 +257,67 @@ const Title = styled.div`
 
     color: #000000;
 `
+const GreenBorder = styled.div`
+    margin: auto;
+    width: 18vw;
+    height: 45vh;
 
-const Percentage = styled.div`
-  width: 10vw;
-    height: auto;
+    background: #FFFFFF;
 
-    
+    border: 1px solid #75CB32;
+    box-sizing: border-box;
+
+/* text style */
+
+    margin: auto;
+    font-family: Inter;
     font-style: normal;
-    font-weight: 700;
-    font-size: 22px;
+    font-weight: bold;
+    font-size: 20px;
     line-height: 25px;
 
     display: grid;
     align-items: center;
     text-align: center;
 
-    color: #000000;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+`
+const Menu = styled.div`
+  margin: auto;
+  width: 15vw;
+  height: 332px;
+`
+const Main = styled.div`
+  color: #FF2C2C;
+  padding-bottom: 2vh;
+  padding-top: 2vh;
+`
+const TextContainer = styled.div`
+  margin-top:1vh;
+`
+const Text = styled.div`
+    color: black;
+`
+const Self = styled.div`
+  color: #FF7C53;
+  padding-bottom: 1vh;
+`
+const Dessert = styled.div`
+  color: #0038FF;
+  padding-bottom: 1vh;
+
+`
+
+const Percentage = styled.div`
+  margin: 0px 10px 10px 10%;
+  width: 80%;
+  height: 26px;
+
+  font-family: Inter;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 25px;
 
   display: grid;
   align-items: center;
@@ -314,104 +326,97 @@ const Percentage = styled.div`
   color: ${props => props.score > 65 ? "#FF0000" : props.score > 32 ? "#FF6534" : props.score > 0 ? "#F1C114" : "#85859A"};
 `
 const PercentageContainer = styled.div`
-  // margin-top:6vh;
+  margin-top:6vh;
+`
+const Bar = styled.div`
+  margin: auto;
+  width: 19vw;
+  background: #C4C4C4;
+`
+const ScoreBar = styled.div`
+  background-color: ${props => props.score > 65 ? "#FF0000" : props.score > 32 ? "#FF6534" : "#F1C114"};
+  width: ${props => props.score ? props.score + "%" : 0};
+  height: 18px;
 `
 
 /////////////////메뉴 Display 페이지 CSS 끝///////////////////////////////////////////
-function Modal({ className, visible, children }) {
-  return (
-    <>
-      <ModalOverlay visible={visible} />
-      <ModalWrapper className={className} tabIndex="-1" visible={visible}>
-        <ModalInner tabIndex="0" className="modal-inner">
-          {children}
-        </ModalInner>
-      </ModalWrapper>
-    </>
-  )
+
+function MenuList(props){
+    return(
+      <Menu>
+          <Main>
+            Main
+            <TextContainer>
+              <Text>
+                {props.menu.menuList[0]}
+              </Text>
+              <Text>
+                {props.menu.menuList[1]}
+              </Text>
+              <Text>
+                {props.menu.menuList[2]}
+              </Text>
+              <Text>
+                {props.menu.menuList[3]}
+              </Text>
+              <Text>
+                {props.menu.menuList[4]}
+              </Text>
+            </TextContainer>
+          </Main>
+
+          <Self>
+            Self
+            <TextContainer>
+              <Text>
+                {props.menu.self}
+              </Text>
+            </TextContainer>
+          </Self>
+
+          <Dessert>
+            Dessert
+            <TextContainer>
+              <Text>
+                {props.menu.dessert}
+              </Text>
+            </TextContainer>
+          </Dessert>
+      </Menu>
+    )
 }
 
-Modal.propTypes = {
-  visible: PropTypes.bool,
-}
 
-const ModalWrapper = styled.div`
-  box-sizing: border-box;
-  display: ${(props) => (props.visible ? 'block' : 'none')};
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 1000;
-  overflow: auto;
-  outline: 0;
-`
-
-const ModalOverlay = styled.div`
-  box-sizing: border-box;
-  display: ${(props) => (props.visible ? 'block' : 'none')};
-  position: fixed;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  background-color: rgba(0, 0, 0, 0.6);
-  z-index: 999;
-`
-
-const ModalInner = styled.div`
-  box-sizing: border-box;
-  position: relative;
-  box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.5);
-  background-color: #fff;
-  border-radius: 10px;
-  width: 360px;
-  max-width: 480px;
-  top: 50%;
-  transform: translateY(-50%);
-  margin: 0 auto;
-  padding: 40px 20px;
-`
-function ModalPage() {
-  return (
-    <Modal visible={true}>Hello</Modal>
-  )
-}
-
-export default function SatisfyComponent({todayData, type, selectType, selectTypeIdx, todayTaste, selectSatisfaction, survey, visible}){
+export default function SatisfyComponent({todayData, type, selectType, selectTypeIdx, todayTaste, satisfaction, selectSatisfaction, selectSatisfactionIdx, survey, visible,selectVisible}){
   return (
     <Container>
-      <GreenBorderBoxWrapper>
-        <GreenBorderBox type={type}>
-          <GreenBorderBoxTitle>
-            만족도 조사를 시행할 타임을 골라주세요
-          </GreenBorderBoxTitle>
-
-          <BoxWrapper>
-            {type === 0 &&
-              todayData.map((data,index) => {
-                return (
-                  
-                    <Box onClick={()=>selectType(selectTypeIdx[index])} score={data.satisfy}>
-                      <Title>
-                          {data.type}
-                      </Title>
-          
-                      <PercentageContainer>
-                        <Percentage score={data.satisfy}>
-                          {data.satisfy ? data.satisfy + "%" : "미실시"}
-                        </Percentage>
-                        
-                      </PercentageContainer>
-                    </Box>
-                  
-                )
-              })
-            }
-          </BoxWrapper>
-        </GreenBorderBox>
-      </GreenBorderBoxWrapper>
+      
+      {type === 0 &&
+        todayData.map((data,index) => {
+          return (
+            <Box onClick={()=>selectType(selectTypeIdx[index])}>
+              <Title>
+                  {data.type}
+              </Title>
+  
+              <GreenBorder>
+                <MenuList menu={data}/>
+              </GreenBorder>
+  
+              <PercentageContainer>
+                <Percentage score={data.satisfy}>
+                  {/* {data.satisfy}% */}
+                  {data.satisfy ? data.satisfy + "%" : "아직 평가되지 않았어요."}
+                </Percentage>
+                <Bar>
+                  <ScoreBar score={data.satisfy}/>
+                </Bar>
+              </PercentageContainer>
+            </Box>
+          )
+        })
+      }
+      
         {type !== 0 &&
           <SurveyWrapper>
             <Message>
@@ -432,11 +437,8 @@ export default function SatisfyComponent({todayData, type, selectType, selectTyp
                     <Text2>
                       {data.name}
                     </Text2>
-                    {index===0 && <SurveyImages1/>}
-                    {index===1 && <SurveyImages2/>}
-                    {index===2 && <SurveyImages3/>}
-                    {index===3 && <SurveyImages4/>}
-                    {index===4 && <SurveyImages5/>}
+                    <SurveyImages src={data.link}/>
+                    {console.log(visible)}
                   </Survey>
               ))}
             </Wrapper>
@@ -449,7 +451,6 @@ export default function SatisfyComponent({todayData, type, selectType, selectTyp
                 ))}
               </TasteSelectionWrapper>
             }
-
             { visible==="bad" &&
               <TasteSelectionWrapper visible={visible}>
                 {todayTaste.map((data) => (
@@ -459,7 +460,7 @@ export default function SatisfyComponent({todayData, type, selectType, selectTyp
                 ))}
               </TasteSelectionWrapper>
             }
-            
+
             <QuitWrapper>
               <Quit>
                 종료
