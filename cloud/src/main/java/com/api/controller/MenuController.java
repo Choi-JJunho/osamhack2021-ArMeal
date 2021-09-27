@@ -26,6 +26,16 @@ public class MenuController {
         return new ResponseEntity<HashMap<Object,Object>>(menuService.addMenu(menu.getName(), menu.getMenutype()),HttpStatus.OK);
     }
 
+    @RequestMapping(value = "/updmenutype", method = RequestMethod.POST)
+    public ResponseEntity updateMenuType(@RequestBody Menu menu) {
+        return new ResponseEntity<HashMap<Object,Object>>(menuService.updateMenuType(menu.getName(), menu.getMenutype()),HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/updmenuscore", method = RequestMethod.POST)
+    public ResponseEntity updateMenuScore(@RequestBody Menu menu) {
+        return new ResponseEntity<HashMap<Object,Object>>(menuService.updateMenuScore(menu.getName(), menu.getScore()),HttpStatus.OK);
+    }
+
     @RequestMapping(value = "/getallmenu", method = RequestMethod.GET)
     public ResponseEntity getAllMenu() {
         return new ResponseEntity<List<HashMap<String, Object>>>(menuService.getAllMenu(), HttpStatus.OK);

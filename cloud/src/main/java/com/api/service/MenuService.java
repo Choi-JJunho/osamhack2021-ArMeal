@@ -22,34 +22,71 @@ public class MenuService extends Exception {
     MenuMapper menuMapper;
 
     public HashMap<Object,Object> addMenu(String name, int menutype) {
-        /*
         HashMap<Object,Object> result = new HashMap<>();
         Menu menu = menuMapper.findMenuByName(name);
+
         if(menu != null) {
             result.put("message", "동일한 메뉴가 존재합니다.");
         } else {
+            menuMapper.addMenu(name, menutype);
             result.put("message", "메뉴 \"" + name + "\"가 추가되었습니다.");
         }
-        */
-        HashMap<Object,Object> result = new HashMap<>();
-        result.put("message", "메뉴 \"" + name + "\"가 추가되었습니다.");
-        menuMapper.addMenu(name, menutype);
+        
         return result;
     }
 
- //   public void updateMenu() {}
+    public HashMap<Object,Object> updateMenuType(String name, int menutype) {
+        HashMap<Object,Object> result = new HashMap<>();
+        Menu menu = menuMapper.findMenuByName(name);
+
+        if(menu == null) {
+            result.put("message", "존재하지 않는 메뉴입니다.");
+        } else {
+            menuMapper.updateMenuType(name, menutype);
+            switch(menutype) {
+                case 1:
+                    result.put("message", "메뉴 \"" + name + "\"가 조식으로 설정되었습니다.");
+                    break;
+                case 2:
+                    result.put("message", "메뉴 \"" + name + "\"가 중식으로 설정되었습니다.");
+                    break;
+                case 3:
+                    result.put("message", "메뉴 \"" + name + "\"가 석식으로 설정되었습니다.");
+                    break;
+                case 4:
+                    result.put("message", "메뉴 \"" + name + "\"가 브런치로 설정되었습니다.");
+                    break;
+            }
+        }
+
+        return result;
+    }
+
+    public HashMap<Object,Object> updateMenuScore(String name, long score) {
+        HashMap<Object,Object> result = new HashMap<>();
+        Menu menu = menuMapper.findMenuByName(name);
+
+        if(menu == null) {
+            result.put("message", "존재하지 않는 메뉴입니다.");
+        } else {
+            menuMapper.updateMenuScore(name, score);
+            result.put("message", "메뉴 \"" + name + "\"의 점수가 \"" + score + "\"로 설정되었습니다.");
+        }
+
+        return result;
+    }
 
     public List<HashMap<String, Object>> getAllMenu() {
         List<HashMap<String, Object>> result = new ArrayList<HashMap<String,Object>>();
-        System.out.println(menuMapper.findAllMenu());
+
         if(menuMapper.findAllMenu() == null) {
-            System.out.println(menuMapper.findAllMenu());
             HashMap<String,Object> res = new HashMap<>();
             res.put("message", "메뉴가 존재하지 않습니다.");
             result.add(res);
         } else {
             result = menuMapper.findAllMenu();
         }
+
         return result;
     }
 
@@ -59,10 +96,7 @@ public class MenuService extends Exception {
         return 0;
     }
 
-    // 구현 방안
-    // 1. Rating 테이블에서 Menu_id를 기준으로 group by하여 sum(rating_data) 값을 조회한다. (Menu_id와 sum(rating_data) 칼럼만 뽑아냄) [완료]
-    // TODO : 2. 이 값(Menu_id와 sum(rating_data) 칼럼)을 Menu 테이블의 해당 id에 score로 설정한다. (SetScore 메소드 사용)
-    // selectMenu에서 칼럼 둘을 변수 2개로 따로 뽑아서 for문 돌리는 걸로 구상 중, Menu Object 형을 어떻게 이용해야 변수 2개로 뽑아낼지.
+    // TODO
     public void setAllScore() {
         final Menu selectMenu = menuMapper.findSumOfRating_data();
         /*
