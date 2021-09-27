@@ -7,9 +7,8 @@
 
     <!-- Find Menu -->
     <select id="getRatingByDates" resultType="java.util.HashMap">
-        SELECT a.rating_data AS rating FROM Rating AS a INNER JOIN Daily_meal AS b ON b.date_value = #{_date}
+        SELECT Rating.rating_data AS rating, Menu.name AS name FROM Rating RIGHT JOIN Menu ON Rating.Menu_id = Menu.id JOIN Daily_meal ON (Daily_meal.menu = Menu.id AND Daily_meal.date_value = '2021-09-17')
     </select>
-    
     
     <insert id="addRating">
         INSERT INTO Rating (User_id, Menu_id, rating_data)

@@ -6,6 +6,14 @@ import io.swagger.annotations.ApiModelProperty;
 
 public class Rating {
 
+	public Rating() {}
+	
+	public Rating(long userId, long menuId, int rating) {
+		this.Menu_id = menuId;
+		this.User_id = userId;
+		this.rating_data = rating;
+	}
+
 	@ApiModelProperty(hidden = true)
     private long id;
 

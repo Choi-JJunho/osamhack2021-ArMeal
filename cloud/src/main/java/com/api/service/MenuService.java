@@ -73,9 +73,9 @@ public class MenuService extends Exception {
     }
 
     // 해당 name에 해당하는 메뉴의 score 설정
-    public void setScore(String name, int score) {
+    public void setScore(long id, int score) {
         try {
-            menuMapper.updateMenuScore(name, score);
+            menuMapper.updateMenuScore(id, score);
         } catch (Exception e) {
             e.printStackTrace();
         }
