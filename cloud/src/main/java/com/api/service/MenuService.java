@@ -69,7 +69,7 @@ public class MenuService extends Exception {
         if(menu == null) {
             result.put("message", "존재하지 않는 메뉴입니다.");
         } else {
-            menuMapper.updateMenuScore(name, score);
+            menuMapper.updateMenuScore(menu.getId(), score);
             result.put("message", "메뉴 \"" + name + "\"의 점수가 \"" + score + "\"로 설정되었습니다.");
         }
 
