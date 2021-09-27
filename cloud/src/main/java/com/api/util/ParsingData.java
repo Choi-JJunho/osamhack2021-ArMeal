@@ -64,7 +64,7 @@ public class ParsingData {
             List<Map<String, Object>> apiData = gson.fromJson(serializeString, new TypeToken<ArrayList<Map<String, Object>>>(){}.getType());
             //System.out.println(apiData);
 
-            /*
+            /* For Debug
             for(Map<String, Object> map : apiData){
                 for(Map.Entry<String, Object> entry : map.entrySet()){
                     String key = entry.getKey();
@@ -91,7 +91,7 @@ public class ParsingData {
 
         try{
             List<Map<String, Object>> datas = getMenu(startIdx, endIdx, groupNum);
-            /*
+            /* For Debug
             for(Map<String, Object> map : datas){
                 for(Map.Entry<String, Object> entry : map.entrySet()){
                      String key = entry.getKey();
@@ -115,13 +115,13 @@ public class ParsingData {
                 lunc = menuMapper.findMenuByName(map.get("lunc").toString());
                 dinr = menuMapper.findMenuByName(map.get("dinr").toString());
 
-                if(brst == null) {
+                if(brst == null && !map.get("brst").toString().trim().isEmpty()) {
                     menuMapper.addMenu(map.get("brst").toString(), 1);
-                }
-                if(lunc == null) {
+                } 
+                if(lunc == null && !map.get("lunc").toString().trim().isEmpty()) {
                     menuMapper.addMenu(map.get("lunc").toString(), 1);
                 }
-                if(dinr == null) {
+                if(dinr == null && !map.get("dinr").toString().trim().isEmpty()) {
                     menuMapper.addMenu(map.get("dinr").toString(), 1);
                 }
             }
@@ -157,9 +157,9 @@ public class ParsingData {
             // 해당 date에 해당하는 메뉴들이 이미 존재하는가?    
             List<HashMap<String, Object>> dailylist = menuMapper.findDailyMenuByDate(date);
 
-            long brst_id = menuMapper.findMenuByName(map.get("brst").toString()).getId();
-            long lunc_id = menuMapper.findMenuByName(map.get("lunc").toString()).getId();
-            long dinr_id = menuMapper.findMenuByName(map.get("dinr").toString()).getId();
+            long brst_id = (map.get("brst").toString().trim().isEmpty()) ? -1 : menuMapper.findMenuByName(map.get("brst").toString()).getId();
+            long lunc_id = (map.get("lunc").toString().trim().isEmpty()) ? -1 : menuMapper.findMenuByName(map.get("lunc").toString()).getId();
+            long dinr_id = (map.get("dinr").toString().trim().isEmpty()) ? -1 : menuMapper.findMenuByName(map.get("dinr").toString()).getId();
 
             String brstId_str = Long.toString(brst_id);
             String luncId_str = Long.toString(lunc_id);
