@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import UserBadgeComponent from 'components/UserBadgeComponent';
 import TitleComponent from 'components/TitleComponent';
 import styled from 'styled-components'
-import { useLocation } from "react-router-dom";
+import { useLocation, useHistory } from "react-router-dom";
 import { useSelector } from "react-redux"
 
 const Container = styled.div`
@@ -13,6 +13,7 @@ const Container = styled.div`
 export default function HeaderContainer(){
   const { data } = useSelector( state => state.authReducer.auth );
   let location = useLocation();
+  const history = useHistory();
   const [name, setName] = useState('')
   const path = location.pathname.split('/')[1];
 
@@ -48,10 +49,14 @@ export default function HeaderContainer(){
     }
   }, [path])
 
+  const goLogin = () => {
+    history.push('/signin')
+  }
+
   return (
     <Container>
       <TitleComponent name={name}/>
-      <UserBadgeComponent data={data}/>
+      <UserBadgeComponent data={data} goLogin={goLogin}/>
     </Container>
   )
 }

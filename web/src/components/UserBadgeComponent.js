@@ -58,7 +58,7 @@ const ImageBlank=styled.div`
 `
 
 
-export default function UserBadgeComponent({data}){
+export default function UserBadgeComponent({data, goLogin}){
   return (
     <Container>
       {data && 
@@ -78,7 +78,7 @@ export default function UserBadgeComponent({data}){
         <ImageBlank>
           <IconChoi></IconChoi>
         </ImageBlank>
-        <UnLoggedInWrapper>
+        <UnLoggedInWrapper onClick={goLogin}>
           부대 계정으로 로그인을 해주세요.
         </UnLoggedInWrapper>
       </>

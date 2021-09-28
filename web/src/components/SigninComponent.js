@@ -136,20 +136,29 @@ const Checkbox = styled.input`
 `
 
 
-export default function SigninComponent(){
+export default function SigninComponent({id, setId, password, setPassword, submit}){
   return (
     <Container>
 			<MainBox>
 				<LoginTitle>부대 계정으로 로그인</LoginTitle>
 				
-        <form>
+				<form onSubmit={submit}>
           <IDIndex>ID</IDIndex>
           <InputField>
-            <Input isPassword={false} placeholder="아이디를 입력하세요."></Input>
+            <Input
+							isPassword={false}
+							placeholder="아이디를 입력하세요."
+							value={id}
+							onChange={e => setId(e.target.value)}></Input>
           </InputField>
           <PWIndex>PASSWORD</PWIndex>
           <InputField>
-            <Input type="password" isPassword={true} placeholder="비밀번호를 입력하세요."></Input>
+            <Input 
+							type="password" 
+							isPassword={true} 
+							value={password}
+							placeholder="비밀번호를 입력하세요."
+							onChange={e => setPassword(e.target.value)}></Input>
           </InputField>
           <Sub>
             <Checkbox type="checkbox" id="auto"/>
@@ -159,10 +168,10 @@ export default function SigninComponent(){
             </Link>
           </Sub>
 
-          <LoginButton>
+          <LoginButton type="submit">
             로그인
           </LoginButton>
-        </form>
+				</form>
 			</MainBox>
     </Container>
   )
