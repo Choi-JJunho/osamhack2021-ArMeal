@@ -15,5 +15,5 @@ public interface RatingMapper {
     void updateBadReason(@Param("_badreason") int badReason);
     List<HashMap<String, Object>> getAllRating();
     List<HashMap<String, Object>> getRatingByDates(@Param("_date") Date date);
-    List<HashMap<String, Object>> findRatioOfAllMenu();
+    void calcSumOfRating_data();
 }
