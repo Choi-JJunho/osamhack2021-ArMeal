@@ -15,42 +15,29 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestVariable;
 
 @RestController
 public class MenuController {
     @Autowired
     MenuService menuService;
 
-    @RequestMapping(value = "/addmenu", method = RequestMethod.POST)
-    public ResponseEntity addMenu(@RequestBody Menu menu) {
-        return new ResponseEntity<HashMap<Object,Object>>(menuService.addMenu(menu.getName(), menu.getMenutype()),HttpStatus.OK);
-    }
-
+    
+/*
     @RequestMapping(value = "/updmenutype", method = RequestMethod.POST)
     public ResponseEntity updateMenuType(@RequestBody Menu menu) {
         return new ResponseEntity<HashMap<Object,Object>>(menuService.updateMenuType(menu.getName(), menu.getMenutype()),HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/updmenuscore", method = RequestMethod.POST)
+    @RequestMapping(value = "/updatemenuscore", method = RequestMethod.POST)
     public ResponseEntity updateMenuScore(@RequestBody Menu menu) {
         return new ResponseEntity<HashMap<Object,Object>>(menuService.updateMenuScore(menu.getName(), menu.getScore()),HttpStatus.OK);
     }
-
-    @RequestMapping(value = "/getallmenu", method = RequestMethod.GET)
-    public ResponseEntity getAllMenu() {
-        return new ResponseEntity<List<HashMap<String, Object>>>(menuService.getAllMenu(), HttpStatus.OK);
-    }
-/*
-    // TODO : setDailyMenu
-    @RequestMapping(value = "/setdailymenu", method = RequestMethod.GET)
-    public void setdailymenu(Timestamp time) {
-        menuService.SetDailyMenu();
-    }
-    
-    // TODO : setDailyMenu
-    @RequestMapping(value = "/getdailymenu", method = RequestMethod.GET)
-    public List<Menu> getdailymenu() {
-        return menuService.getDailyMenu();
-    }
 */
+    // 자율메뉴 추가를 위한 addmenu
+    @RequestMapping(value = "/add/menu", method = RequestMethod.POST)
+    public ResponseEntity addMenu(@RequestBody Menu menu) {
+        return new ResponseEntity<HashMap<Object,Object>>(menuService.addMenu(menu.getName(), menu.getMenutype()),HttpStatus.OK);
+    }
+
 }
