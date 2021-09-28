@@ -8,10 +8,11 @@ public class Rating {
 
 	public Rating() {}
 	
-	public Rating(long userId, long menuId, int rating) {
+	public Rating(long userId, long menuId, int rating, int badReason) {
 		this.Menu_id = menuId;
 		this.User_id = userId;
 		this.rating_data = rating;
+		this.bad_reason = badReason;
 	}
 
 	@ApiModelProperty(hidden = true)
@@ -25,6 +26,9 @@ public class Rating {
 
 	@ApiModelProperty(notes = "평가 값\n5 : 좋음\n4 : 좋음\n3 : 보통\n2 : 나쁨\n1 : 아주 나쁨", example = "1")
     private int rating_data;
+
+	@ApiModelProperty(notes = "매우나쁨 이유 \n1: 짜다, 2: 쓰다, 3: 맵다, 4: 달다, 5: 시다, 6: 싱겁다, 7: 식었다, 8: 양이적다", example = "1")
+	private int bad_reason;
 
 	@ApiModelProperty(hidden = true)
     private Timestamp created_at;
@@ -42,6 +46,14 @@ public class Rating {
 
 	public void setId(long id) {
 		this.id = id;
+	}
+
+	public int getBad_reason() {
+		return this.bad_reason;
+	}
+
+	public void setBad_reason(int bad_reason) {
+		this.bad_reason = bad_reason;
 	}
 
 	public long getUser_id() {
@@ -103,10 +115,12 @@ public class Rating {
 			", User_id='" + getUser_id() + "'" +
 			", Menu_id='" + getMenu_id() + "'" +
 			", rating_data='" + getRating_data() + "'" +
+			", bad_reason='" + getBad_reason() + "'" +
 			", created_at='" + getCreated_at() + "'" +
 			", deleted_at='" + getDeleted_at() + "'" +
 			", is_deleted='" + isIs_deleted() + "'" +
 			"}";
 	}
+	
 	
 }

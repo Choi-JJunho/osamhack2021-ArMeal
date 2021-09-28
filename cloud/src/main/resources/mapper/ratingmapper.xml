@@ -10,9 +10,20 @@
         SELECT Rating.rating_data AS rating, Menu.name AS name FROM Rating RIGHT JOIN Menu ON Rating.Menu_id = Menu.id JOIN Daily_meal ON (Daily_meal.menu = Menu.id AND Daily_meal.date_value = #{_date})
     </select>
     
+    <select id="getAllRating" resultType="java.util.HashMap">
+        SELECT * FROM Rating
+    </select>
+    
+    <select id="findRatioOfAllMenu" resultType="java.util.HashMap">
+        SELECT a.Menu_id AS id, b.name AS name, (SUM(a.rating_data)*20) / COUNT(a.rating_data) AS ratio FROM Rating AS a JOIN Menu AS b ON a.Menu_id = b.id GROUP BY Menu_id
+    </select>
+
     <insert id="addRating">
         INSERT INTO Rating (User_id, Menu_id, rating_data)
         VALUES (#{_userId}, #{_menuId}, #{ratingData})
     </insert>
 
+    <update id="updateBadReason">
+        UPDATE Rating SET bad_reason = #{_badreason} WHERE id = (SELECT id FROM (SELECT MAX(id) AS id FROM Rating) AS temp);
+    </update>
 </mapper>
