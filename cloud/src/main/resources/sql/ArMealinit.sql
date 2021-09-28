@@ -42,6 +42,7 @@ CREATE TABLE `Rating`(
     `User_id` BIGINT NOT NULL,
     `Menu_id` BIGINT NOT NULL,
     `rating_data` INT NOT NULL,
+    `bad_reason` INT NULL,
     `created_at` TIMESTAMP NOT NULL DEFAULT NOW(),
     `deleted_at` TIMESTAMP NULL,
     `is_deleted` TINYINT(1) NULL

@@ -52,7 +52,7 @@ public class RatingService extends Exception {
     public List<HashMap<String, Object>> getRatioAllMenu() {
         return ratingMapper.findRatioOfAllMenu();
     }
-    
+    /* 해당 로직 SQL로 구성하기
     public HashMap<String, Object> getRatingByDates(String str) {
         Date date = Date.valueOf(str);
         List<HashMap<String, Object>> datas = ratingMapper.getRatingByDates(date);
@@ -75,5 +75,5 @@ public class RatingService extends Exception {
         
         return result;
     }
-    
+    */
 }
