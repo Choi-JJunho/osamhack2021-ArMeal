@@ -15,7 +15,6 @@ public interface MenuMapper {
     Menu findMenuById(@Param("_id")long id);
     Menu findMenuByName(@Param("_name")String name);
     List<HashMap<String, Object>> findMenuByMenuType(@Param("menuType")int menuType);
-    Menu findSumOfRating_data();
     List<HashMap<String, Object>> findDailyMenuByDate(@Param("_date")Date date);
     List<HashMap<String, Object>> findRecentDateByMenuId(@Param("_id")long menuId);
 
@@ -23,7 +22,7 @@ public interface MenuMapper {
     void addDailyMenu(@Param("dateValue")Date date, @Param("_time")int time, @Param("groupId") long groupId, @Param("_menu") long menuId);
 
     void updateMenuType(@Param("_name")String name,@Param("_menutype") int menutype);
-    void updateMenuScore(@Param("_id")long id, @Param("_score") long score);
+    void updateAllMenuScore();
     void updateDailyMenu(@Param("dateValue")Date date, @Param("_time")int time, @Param("groupId") long groupId, @Param("_menu") long menuId);
 
 }

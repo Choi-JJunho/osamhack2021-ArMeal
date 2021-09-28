@@ -15,4 +15,17 @@
         VALUES (#{_userId}, #{_menuId}, #{ratingData})
     </insert>
 
+
+    <!-- for debugging
+        SELECT Menu_id, sum(rating_data)/count(Menu_id) FROM Rating GROUP BY Menu_id;
+        SELECT id, name, score from Menu;
+    -->
+    <select id="calcSumOfRating_data">
+        UPDATE Menu AS t1, ( SELECT Menu_id, sum(rating_data)/count(Menu_id) AS c1
+        FROM Rating
+        GROUP BY Menu_id ) AS t2
+        SET t1.score=t2.c1
+        WHERE t1.id = t2.Menu_id;
+    </select>
+
 </mapper>

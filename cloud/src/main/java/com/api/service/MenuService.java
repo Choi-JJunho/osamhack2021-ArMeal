@@ -8,7 +8,7 @@ import java.util.Map;
 
 import com.api.domain.Menu;
 import com.api.mapper.MenuMapper;
-
+import com.api.mapper.RatingMapper;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,9 +17,11 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @Transactional
 public class MenuService extends Exception {
-    
     @Autowired
     MenuMapper menuMapper;
+
+    @Autowired
+    RatingMapper ratingMapper;
 
     public HashMap<Object,Object> addMenu(String name, int menutype) {
         HashMap<Object,Object> result = new HashMap<>();
@@ -62,16 +64,11 @@ public class MenuService extends Exception {
         return result;
     }
 
-    public HashMap<Object,Object> updateMenuScore(String name, long score) {
+    public HashMap<Object,Object> updateAllMenuScore() {
         HashMap<Object,Object> result = new HashMap<>();
-        Menu menu = menuMapper.findMenuByName(name);
+        ratingMapper.calcSumOfRating_data();
 
-        if(menu == null) {
-            result.put("message", "존재하지 않는 메뉴입니다.");
-        } else {
-            menuMapper.updateMenuScore(menu.getId(), score);
-            result.put("message", "메뉴 \"" + name + "\"의 점수가 \"" + score + "\"로 설정되었습니다.");
-        }
+        result.put("message", "점수가 집계되었습니다.");
 
         return result;
     }
@@ -88,38 +85,6 @@ public class MenuService extends Exception {
         }
 
         return result;
-    }
-
-    // TODO: getMenuIdByName
-    // Menu 테이블에서 name으로 id 값을 찾아서 반환한다.
-    public int getMenuIdByName(String name) {
-        return 0;
-    }
-
-    // TODO
-    public void setAllScore() {
-        final Menu selectMenu = menuMapper.findSumOfRating_data();
-        /*
-        for () {
-            AddScore()
-        }
-        */
-    }
-
-    // 해당 name에 해당하는 메뉴의 score 설정
-    public void setScore(long id, int score) {
-        try {
-            menuMapper.updateMenuScore(id, score);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    // TODO: getMenuScore
-    // 해당 메뉴의 평균 점수를 구한다.
-    public int getMenuScore() {
-        int score = 0;
-        return score;
     }
 
     // 일일 메뉴를 설정한다.

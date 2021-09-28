@@ -11,4 +11,5 @@ import org.apache.ibatis.annotations.Param;
 public interface RatingMapper {
     void addRating(@Param("_userId")long userId, @Param("_menuId")long menuId, @Param("ratingData")int ratingData);
     List<HashMap<String, Object>> getRatingByDates(@Param("_date") Date date);
+    void calcSumOfRating_data();
 }
