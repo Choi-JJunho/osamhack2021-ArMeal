@@ -19,10 +19,14 @@ const CalendarWrapper = styled.div`
 const Modal = styled.div`
   z-index: 1;
   position: absolute;
-  width: 511px;
-  height: 603px;
-  left: 345px;
-  top: 98px;
+  // width: 511px;
+  // height: 603px;
+  width: 42.5vw;
+  height: 75vh;
+  // left: 345px;
+  // top: 98px;
+  left: 28.7vw;
+  top: 12vh;
 
   background: #FFFFFF;
   /* Background */
@@ -34,12 +38,14 @@ const ModalForm = styled.form`
 margin: 20px;
 `
 const ModalTextTitle = styled.div`
+margin-bottom: 4vh;
+margin-top: 7vh;
 
 font-style: normal;
 font-weight: bold;
 font-size: 26px;
 line-height: 31px;
-display: flex;
+display: grid;
 align-items: center;
 text-align: center;
 
@@ -47,6 +53,9 @@ color: #000000;
 `
 
 const ModalTextForm = styled(ModalTextTitle)`
+text-align: left;
+margin-bottom: 0;
+margin-top: 0;
 font-weight: normal;
 font-size: 22px;
 line-height: 27px;
@@ -61,7 +70,10 @@ const ModalFieldDescriptionWrapper = styled.div`
 
 `
 const ModalDescriptionField = styled.div`
-width: 445px;
+font-size: 22px;
+line-height: 27px;
+ color:#868686;
+width: auto;
 height: 144px;
 background: #FFFFFF;
 border: 1px solid #000000;
@@ -88,12 +100,19 @@ box-sizing: border-box;
 border-radius: 5px;
 `
 const ModalSelfField = styled.input`
-
+border: 1px solid #000000;
+box-sizing: border-box;
+border-radius: 5px;
 width: 333px;
 height: 40px;
 `
 
 const AddSelfMenuButton = styled.button`
+border: 3px solid #75CB32;
+box-sizing: border-box;
+border-radius: 5px;
+background-color:white;
+
 width: 100px;
 height: 43px;
 
@@ -194,17 +213,37 @@ export default function SelfComponent({events, selectEvent, event, dateClick, })
             </ModalTextTitle>
             <ModalForm>
               <ModalFieldWrapper>
-                <ModalTextForm>날짜:</ModalTextForm><ModalDateAndTimeField>{event.event._def.extendedProps.time}</ModalDateAndTimeField>
-                <ModalTextForm>타임:</ModalTextForm><ModalDateAndTimeField>{event.event._def.extendedProps.time}</ModalDateAndTimeField>
+                <ModalTextForm>
+                  날짜:
+                </ModalTextForm>
+                <ModalDateAndTimeField>
+                  {event.event._def.extendedProps.time}
+                  </ModalDateAndTimeField>
+                <ModalTextForm>
+                  타임:
+                </ModalTextForm>
+                <ModalDateAndTimeField>
+                  {event.event._def.extendedProps.time}
+                </ModalDateAndTimeField>
               </ModalFieldWrapper>
               <ModalFieldWrapper>
-                <ModalTextForm>메뉴명:</ModalTextForm><ModalMenuField title={event.event.title}/>
+                <ModalTextForm>
+                  메뉴명:
+                </ModalTextForm>
+                <ModalMenuField title={event.event.title}/>
               </ModalFieldWrapper>
               <ModalFieldWrapper>
-                <ModalTextForm>부식 추가:</ModalTextForm><ModalSelfField/><AddSelfMenuButton>추가하기</AddSelfMenuButton>
+                <ModalTextForm>
+                  부식 추가:
+                </ModalTextForm>
+                <ModalSelfField/>
+                <AddSelfMenuButton>추가하기</AddSelfMenuButton>
               </ModalFieldWrapper>
               <ModalFieldDescriptionWrapper>
-                <ModalTextForm>메뉴에 해당하는 부식</ModalTextForm><ModalDescriptionField>{event.event._def.extendedProps.description}</ModalDescriptionField>
+                <ModalTextForm>메뉴에 해당하는 부식</ModalTextForm>
+                <ModalDescriptionField>
+                  {event.event._def.extendedProps.description}
+                </ModalDescriptionField>
               </ModalFieldDescriptionWrapper>
               <ModalFieldWrapper>
                 <CancelButton>
