@@ -8,6 +8,7 @@ import java.util.Map;
 
 import com.api.domain.DailyMeal;
 import com.api.domain.Menu;
+import com.api.domain.SelfDish;
 import com.api.mapper.MenuMapper;
 import com.api.mapper.RatingMapper;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -123,4 +124,9 @@ public class MenuService extends Exception {
         return menuMapper.findRecentDateByMenuId(menuId);
     }
 
+
+    public HashMap<String, Object> addSelfDish(SelfDish selfDish) {
+        menuMapper.addSelfDish(selfDish.getName(), selfDish.getDate_value());
+        // TODO : Add UsedIngredient
+    }
 }
