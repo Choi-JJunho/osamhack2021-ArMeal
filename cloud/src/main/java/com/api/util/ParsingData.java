@@ -6,7 +6,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
-import java.util.Map;
+import java.util.HashMap;
 import java.util.Set;
 import java.util.List;
 import java.util.ArrayList;
@@ -32,8 +32,8 @@ public class ParsingData {
     @Autowired
     MenuMapper menuMapper;
 
-    public List<Map<String, Object>> getMenu(String startIdx, String endIdx, String groupNum) {
-        List<Map<String, Object>> result = new ArrayList<Map<String, Object>>();
+    public List<HashMap<String, Object>> getMenu(String startIdx, String endIdx, String groupNum) {
+        List<HashMap<String, Object>> result = new ArrayList<HashMap<String, Object>>();
 
         try {
             StringBuffer input = new StringBuffer();
@@ -52,16 +52,16 @@ public class ParsingData {
             urlConn.disconnect();
 
             Gson gson = new Gson();
-            Map<String, Object> jsonObject = gson.fromJson(input.toString(), new TypeToken<Map<String, Object>>(){}.getType());
+            HashMap<String, Object> jsonObject = gson.fromJson(input.toString(), new TypeToken<HashMap<String, Object>>(){}.getType());
             //System.out.println(jsonObject);
             String serializeString = gson.toJson(jsonObject.get("DS_TB_MNDT_DATEBYMLSVC_"+groupNum));
             //System.out.println(serializeString);
 
-            Map<String, Object> jsonObject2 = gson.fromJson(serializeString, new TypeToken<Map<String, Object>>(){}.getType());
+            HashMap<String, Object> jsonObject2 = gson.fromJson(serializeString, new TypeToken<HashMap<String, Object>>(){}.getType());
             serializeString = gson.toJson(jsonObject2.get("row"));
             //System.out.println(serializeString);
 
-            List<Map<String, Object>> apiData = gson.fromJson(serializeString, new TypeToken<ArrayList<Map<String, Object>>>(){}.getType());
+            List<HashMap<String, Object>> apiData = gson.fromJson(serializeString, new TypeToken<ArrayList<HashMap<String, Object>>>(){}.getType());
             //System.out.println(apiData);
 
             /* For Debug
@@ -86,11 +86,10 @@ public class ParsingData {
 
     // 메뉴를 DB에 저장한다.
     // 한달에 한번 갱신한다.
-    public void saveData(String startIdx, String endIdx,String groupNum) {
-        HashMap<String, Object> result = new HashMap<String, Object>();
+    public List<HashMap<String, Object>> saveData(String startIdx, String endIdx,String groupNum) {
 
         try{
-            List<Map<String, Object>> datas = getMenu(startIdx, endIdx, groupNum);
+            List<HashMap<String, Object>> datas = getMenu(startIdx, endIdx, groupNum);
             /* For Debug
             for(Map<String, Object> map : datas){
                 for(Map.Entry<String, Object> entry : map.entrySet()){
@@ -108,7 +107,7 @@ public class ParsingData {
             Menu lunc = new Menu();
             Menu dinr = new Menu();
             
-            for(Map<String, Object> map : datas) {
+            for(HashMap<String, Object> map : datas) {
                 // 해당 메뉴가 존재하지 않을 경우 DB에 삽입
                 // TODO : MenuType 구분 --> 받아오는 API의 데이터의 개선 혹은 사용자의 static한 작성
                 brst = menuMapper.findMenuByName(map.get("brst").toString());
@@ -125,18 +124,24 @@ public class ParsingData {
                     menuMapper.addMenu(map.get("dinr").toString(), 1);
                 }
             }
+            return datas;
         } catch (Exception e) {
             e.printStackTrace();
         }
+        List<HashMap<String, Object>> result = new ArrayList<HashMap<String, Object>>();
+        HashMap<String, Object> message = new HashMap<String, Object>();
+        message.put("message", "nodata");
+        result.add(message);
+        return result;
     }
 
 
     //DailyMenu를 갱신한다.
-    public void setDailyMenu(long groupId, String startIdx, String endIdx, String groupNum) {
+    public List<HashMap<String, Object>> setDailyMenu(long groupId, String startIdx, String endIdx, String groupNum) {
         // 존재하지 않는 데이터가 있을 경우를 대비하여 메뉴에 대해 save를 수행하고 실행
         saveData(startIdx, endIdx, groupNum);
 
-        List<Map<String, Object>> datas = getMenu(startIdx, endIdx, groupNum);
+        List<HashMap<String, Object>> datas = getMenu(startIdx, endIdx, groupNum);
         
         String date_str = "";
         Date date = new Date(20210101);
@@ -145,7 +150,7 @@ public class ParsingData {
         Menu lunc = new Menu();
         Menu dinr = new Menu();
         
-        for(Map<String, Object> map : datas){
+        for(HashMap<String, Object> map : datas){
             if(date_str == null) {
                 date_str = map.get("dates").toString();
                 date = Date.valueOf(date_str);
@@ -166,7 +171,7 @@ public class ParsingData {
             String dinrId_str = Long.toString(dinr_id);
 
             // 해당 date에 해당하는 메뉴와 현재 넣고자 하는 메뉴를 비교 
-            for(Map<String, Object> dailymenu : dailylist) {
+            for(HashMap<String, Object> dailymenu : dailylist) {
                 // 이미 존재하는지 비교
                 if(brst_id == -1 || brstId_str.equals(dailymenu.get("menu").toString())) {
                     brst_id = -1;
@@ -191,5 +196,6 @@ public class ParsingData {
                 menuMapper.addDailyMenu(date, 3, groupId, dinr_id);
             }
         }
+        return datas;
     }
 }
