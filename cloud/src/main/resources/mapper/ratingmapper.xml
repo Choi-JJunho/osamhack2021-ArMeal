@@ -6,8 +6,8 @@
 <mapper namespace="com.api.mapper.RatingMapper">
 
     <!-- Find Menu -->
-    <select id="getRatingByDates" resultType="java.util.HashMap">
-        SELECT Rating.rating_data AS rating, Menu.name AS name FROM Rating RIGHT JOIN Menu ON Rating.Menu_id = Menu.id JOIN Daily_meal ON (Daily_meal.menu = Menu.id AND Daily_meal.date_value = #{_date})
+    <select id="getRatioByDates" resultType="java.util.HashMap">
+        SELECT a.Menu_id AS id, b.name AS name, (SUM(a.rating_data)*20) / COUNT(a.rating_data) AS ratio FROM Rating AS a JOIN Menu AS b ON (a.Menu_id = b.id) WHERE a.created_at BETWEEN DATE('#{_start}') AND DATE('#{_end}')+1 GROUP BY Menu_id    
     </select>
     
     <select id="getAllRating" resultType="java.util.HashMap">

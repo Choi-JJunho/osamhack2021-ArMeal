@@ -49,12 +49,11 @@ public class RatingController {
     */
     
     // 해당하는 날짜의 만족도조사 결과를 얻기 위한 서비스
-    /* SQL로 로직 수정
-    @RequestMapping(value = "/get/rating/{date}", method = RequestMethod.POST)
-    public ResponseEntity getratingbydate(@PathVariable("date") String date) {
-        return new ResponseEntity<HashMap<String, Object>>(ratingService.getRatingByDates(date), HttpStatus.OK);
+    @RequestMapping(value = "/get/rating/{start}/{end}", method = RequestMethod.POST)
+    public ResponseEntity getratingbydate(@PathVariable("start") String start, @PathVariable("end") String end) {
+        return new ResponseEntity<List<HashMap<String, Object>>>(ratingService.getRatioByDates(start, end), HttpStatus.OK);
     }
-    */
+    
 
     // 일일 만족도 조사에 대한 서비스
     @RequestMapping(value = "/add/rating/daily", method = RequestMethod.POST)
