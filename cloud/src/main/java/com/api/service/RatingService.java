@@ -1,6 +1,7 @@
 package com.api.service;
 
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -41,7 +42,7 @@ public class RatingService extends Exception {
     
     // 사용자가 해당 끼니에 만족도 조사를 실시했을 때 실행되는 로직
     // date : 날짜 / time : 아침,점심,저녁 / rating_value : 점수
-    public void addDailyRating(long userId, Date date, int time, int rating_value, int badReason) {
+    public List<HashMap<String, Object>> addDailyRating(long userId, Date date, int time, int rating_value, int badReason) {
         List<HashMap<String, Object>> datas = menuMapper.findDailyMenuByDate(date);
         long menuId;
         // 각 메뉴별로 점수가 들어간다.
@@ -49,6 +50,8 @@ public class RatingService extends Exception {
             menuId = Long.valueOf(data.get("menu").toString());
             addRating(new Rating(userId, menuId, rating_value, badReason));
         }
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        return getRatioByDates(sdf.format(date), sdf.format(date));
     }
 
     // 메뉴별 통계값을 모두 가져온다.

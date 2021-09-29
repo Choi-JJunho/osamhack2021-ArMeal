@@ -63,8 +63,7 @@ public class RatingController {
         int time = Integer.valueOf(value.get("time").toString());
         int rating_value = Integer.valueOf(value.get("rating_value").toString());
         int badReason = Integer.valueOf(value.get("badReason").toString());
-        ratingService.addDailyRating(userId, date, time, rating_value, badReason);
-        return new ResponseEntity<String>("Testing For Add Daily Rating", HttpStatus.OK);
+        return new ResponseEntity<List<HashMap<String, Object>>>(ratingService.addDailyRating(userId, date, time, rating_value, badReason), HttpStatus.OK);
     }
     /* 예제 : 2021년 9월 20일의 조식에 대해 평가
     {
