@@ -14,6 +14,7 @@ import com.api.service.MenuService;
 import com.api.service.RatingService;
 import com.api.util.ParsingData;
 import com.google.gson.JsonObject;
+import io.swagger.annotations.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,7 +24,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestVariable;
+import org.springframework.web.bind.annotation.PathVariable;
 
 
 @RestController
@@ -39,13 +40,13 @@ public class AdminController {
     RatingService ratingService;
 
     @RequestMapping(value = "/save/menu/{group}/{start}/{end}", method = RequestMethod.GET)
-    public ResponseEntity saveAllMenu(@RequestVariable("start") String startIdx, @RequestVariable("end")String endIdx, @RequestVariable("group")String groupNum){
+    public ResponseEntity saveAllMenu(@PathVariable("start") String startIdx, @PathVariable("end")String endIdx, @PathVariable("group")String groupNum){
         parsingData.saveData(startIdx, endIdx, groupNum);
         return new ResponseEntity<>("testing", HttpStatus.OK);
     }
 
     @RequestMapping(value = "/save/dailymenu/{group}/{start}/{end}", method = RequestMethod.GET)
-    public ResponseEntity saveAllDailyMenu(@RequestVariable("start") String startIdx, @RequestVariable("end")String endIdx, @RequestVariable("group")String groupNum){
+    public ResponseEntity saveAllDailyMenu(@PathVariable("start") String startIdx, @PathVariable("end")String endIdx, @PathVariable("group")String groupNum){
         parsingData.setDailyMenu(1, startIdx, endIdx, groupNum);
         return new ResponseEntity<>("testing", HttpStatus.OK);
     }

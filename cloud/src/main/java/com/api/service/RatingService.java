@@ -29,11 +29,11 @@ public class RatingService extends Exception {
     MenuMapper menuMapper;
 
     public void addRating(Rating rating) {
-        menuMapper.updateMenuScore(rating.getMenu_id(), rating.getRating_data());
         ratingMapper.addRating(rating.getUser_id(), rating.getMenu_id(), rating.getRating_data());
         if(rating.getRating_data() == 1) {
             ratingMapper.updateBadReason(rating.getBad_reason());
         }
+        menuMapper.updateAllMenuScore();
     }
     
     // 사용자가 해당 끼니에 만족도 조사를 실시했을 때 실행되는 로직

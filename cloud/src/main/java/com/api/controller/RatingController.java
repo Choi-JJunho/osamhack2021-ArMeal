@@ -15,6 +15,8 @@ import com.api.service.RatingService;
 import com.api.util.ParsingData;
 import com.google.gson.JsonObject;
 
+import io.swagger.annotations.*;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -47,10 +49,12 @@ public class RatingController {
     */
     
     // 해당하는 날짜의 만족도조사 결과를 얻기 위한 서비스
+    /* SQL로 로직 수정
     @RequestMapping(value = "/get/rating/{date}", method = RequestMethod.POST)
     public ResponseEntity getratingbydate(@PathVariable("date") String date) {
         return new ResponseEntity<HashMap<String, Object>>(ratingService.getRatingByDates(date), HttpStatus.OK);
     }
+    */
 
     // 일일 만족도 조사에 대한 서비스
     @RequestMapping(value = "/add/rating/daily", method = RequestMethod.POST)
