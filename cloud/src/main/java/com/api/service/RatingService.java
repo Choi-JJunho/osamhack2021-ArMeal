@@ -28,12 +28,15 @@ public class RatingService extends Exception {
     @Autowired
     MenuMapper menuMapper;
 
-    public void addRating(Rating rating) {
+    @Autowired
+    MenuService menuService;
+
+    public HashMap<String, Object> addRating(Rating rating) {
         ratingMapper.addRating(rating.getUser_id(), rating.getMenu_id(), rating.getRating_data());
         if(rating.getRating_data() == 1) {
             ratingMapper.updateBadReason(rating.getBad_reason());
         }
-        menuMapper.updateAllMenuScore();
+        return menuService.updateAllMenuScore();
     }
     
     // 사용자가 해당 끼니에 만족도 조사를 실시했을 때 실행되는 로직
@@ -52,28 +55,8 @@ public class RatingService extends Exception {
     public List<HashMap<String, Object>> getRatioAllMenu() {
         return ratingMapper.findRatioOfAllMenu();
     }
-    /* 해당 로직 SQL로 구성하기
-    public HashMap<String, Object> getRatingByDates(String str) {
-        Date date = Date.valueOf(str);
-        List<HashMap<String, Object>> datas = ratingMapper.getRatingByDates(date);
-        HashMap<String, Object> result = new HashMap<String, Object>();
-        long total = 0;
-        long cnt = 0;
-        for(HashMap<String, Object> data : datas) {
-            // 매우 좋음 기준으로 5씩 증가
-            cnt += 5;
-            if(data.get("rating") != null) {
-                total += Long.valueOf(data.get("rating").toString());
-            }
-        }
-        
-        if(cnt == 0) {
-            result.put("message", "nodata");
-        } else {
-            result.put("ratio", (total * 100) / cnt);
-        }
-        
-        return result;
+    
+    public List<HashMap<String, Object>> getRatioByDates(String start, String end) {
+        return ratingMapper.getRatioByDates(Date.valueOf(start), Date.valueOf(end));
     }
-    */
 }

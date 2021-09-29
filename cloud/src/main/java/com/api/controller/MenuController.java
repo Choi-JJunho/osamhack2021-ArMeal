@@ -41,7 +41,7 @@ public class MenuController {
     // 일반 메뉴데이터를 추가하기 위한 로직
     @RequestMapping(value = "/add/menu", method = RequestMethod.POST)
     public ResponseEntity addMenu(@RequestBody Menu menu) {
-        return new ResponseEntity<HashMap<Object,Object>>(menuService.addMenu(menu.getName(), menu.getMenutype()),HttpStatus.OK);
+        return new ResponseEntity<HashMap<String,Object>>(menuService.addMenu(menu.getName(), menu.getMenutype()),HttpStatus.OK);
     }
 
     // 자율메뉴 추가를 위한 addmenu

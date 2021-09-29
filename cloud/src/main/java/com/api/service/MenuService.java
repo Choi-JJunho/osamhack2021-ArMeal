@@ -25,8 +25,8 @@ public class MenuService extends Exception {
     @Autowired
     RatingMapper ratingMapper;
 
-    public HashMap<Object,Object> addMenu(String name, int menutype) {
-        HashMap<Object,Object> result = new HashMap<>();
+    public HashMap<String,Object> addMenu(String name, int menutype) {
+        HashMap<String,Object> result = new HashMap<>();
         Menu menu = menuMapper.findMenuByName(name);
 
         if(menu != null) {
@@ -43,8 +43,8 @@ public class MenuService extends Exception {
         return menuMapper.findMenuById(id);
     }
 
-    public HashMap<Object,Object> updateMenuType(String name, int menutype) {
-        HashMap<Object,Object> result = new HashMap<>();
+    public HashMap<String,Object> updateMenuType(String name, int menutype) {
+        HashMap<String,Object> result = new HashMap<>();
         Menu menu = menuMapper.findMenuByName(name);
 
         if(menu == null) {
@@ -70,8 +70,8 @@ public class MenuService extends Exception {
         return result;
     }
 
-    public HashMap<Object,Object> updateAllMenuScore() {
-        HashMap<Object,Object> result = new HashMap<>();
+    public HashMap<String, Object> updateAllMenuScore() {
+        HashMap<String, Object> result = new HashMap<>();
         ratingMapper.calcSumOfRating_data();
 
         result.put("message", "점수가 집계되었습니다.");
@@ -124,9 +124,10 @@ public class MenuService extends Exception {
         return menuMapper.findRecentDateByMenuId(menuId);
     }
 
-
+    /*
     public HashMap<String, Object> addSelfDish(SelfDish selfDish) {
         menuMapper.addSelfDish(selfDish.getName(), selfDish.getDate_value());
         // TODO : Add UsedIngredient
     }
+    */
 }
