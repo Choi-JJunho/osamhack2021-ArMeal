@@ -17,6 +17,10 @@
         SELECT * FROM Menu WHERE name = #{_name}
     </select>
 
+    <select id="searchMenu" resultType="java.util.HashMap">
+        SELECT * FROM Menu WHERE name LIKE CONCAT('%',#{_name},'%')
+    </select>
+
     <select id="findMenuByMenuType" resultType="java.util.HashMap">
         SELECT * FROM Menu WHERE menu_type = #{menuType}
     </select>
@@ -29,16 +33,7 @@
         SELECT DATE_FORMAT(date_value,'%Y-%m-%d') AS recentDate FROM Daily_meal WHERE menu = #{_id} ORDER BY date_value DESC LIMIT 10;
     </select>
 
-    <!-- Update Menu -->
-    <update id="updateMenuType">
-        UPDATE Menu SET menu_type=#{_menutype} WHERE name=#{_name}
-    </update>
-
-    <update id="updateDailymenu">
-        UPDATE Daily_meal SET date_value=#{dateValue}, time=#{_time}, group_id=#{groupId}, menu=#{_menu} WHERE date_value=#{beforeDate}, time=#{beforeTime}
-    </update>
-
-
+    <!-- Add Menu -->
     <insert id="addDailyMenu">
         INSERT INTO Daily_meal (date_value, time, group_id, menu)
         VALUES (#{dateValue}, #{_time}, #{groupId}, #{_menu})
@@ -48,5 +43,14 @@
         INSERT INTO Menu (name, menu_type)
         VALUES (#{_name}, #{_menutype})
     </insert>
+
+    <!-- Update Menu -->
+    <update id="updateMenuType">
+        UPDATE Menu SET menu_type=#{_menutype} WHERE name=#{_name}
+    </update>
+
+    <update id="updateDailymenu">
+        UPDATE Daily_meal SET date_value=#{dateValue}, time=#{_time}, group_id=#{groupId}, menu=#{_menu} WHERE date_value=#{beforeDate}, time=#{beforeTime}
+    </update>
 
 </mapper>

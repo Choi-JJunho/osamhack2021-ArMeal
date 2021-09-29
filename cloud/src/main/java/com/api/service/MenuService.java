@@ -23,40 +23,53 @@ public class MenuService extends Exception {
     @Autowired
     RatingMapper ratingMapper;
 
-    public HashMap<Object,Object> addMenu(String name, int menutype) {
+    public HashMap<Object,Object> addMenu(String name, int type) {
         HashMap<Object,Object> result = new HashMap<>();
         Menu menu = menuMapper.findMenuByName(name);
 
         if(menu != null) {
             result.put("message", "동일한 메뉴가 존재합니다.");
         } else {
-            menuMapper.addMenu(name, menutype);
-            result.put("message", "메뉴 \"" + name + "\"가 추가되었습니다.");
+            menuMapper.addMenu(name, type);
+            switch(type) {
+                case 1:
+                    result.put("message", "메뉴 \"" + name + "\"가 조식으로 추가되었습니다.");
+                    break;
+                case 2:
+                    result.put("message", "메뉴 \"" + name + "\"가 중식으로 추가되었습니다.");
+                    break;
+                case 3:
+                    result.put("message", "메뉴 \"" + name + "\"가 석식으로 추가되었습니다.");
+                    break;
+                case 4:
+                    result.put("message", "메뉴 \"" + name + "\"가 브런치로 추가되었습니다.");
+                    break;
+            }
         }
         
         return result;
     }
 
-    public HashMap<Object,Object> updateMenuType(String name, int menutype) {
+    public HashMap<Object,Object> editMenu(String name, int type) {
         HashMap<Object,Object> result = new HashMap<>();
         Menu menu = menuMapper.findMenuByName(name);
 
         if(menu == null) {
             result.put("message", "존재하지 않는 메뉴입니다.");
         } else {
-            menuMapper.updateMenuType(name, menutype);
-            switch(menutype) {
+            menuMapper.updateMenuType(name, type);
+            switch(type) {
                 case 1:
-                    result.put("message", "메뉴 \"" + name + "\"가 조식으로 설정되었습니다.");
+                    result.put("message", "메뉴 \"" + name + "\"가 조식으로 수정되었습니다.");
                     break;
                 case 2:
-                    result.put("message", "메뉴 \"" + name + "\"가 중식으로 설정되었습니다.");
+                    result.put("message", "메뉴 \"" + name + "\"가 중식으로 수정되었습니다.");
                     break;
                 case 3:
-                    result.put("message", "메뉴 \"" + name + "\"가 석식으로 설정되었습니다.");
+                    result.put("message", "메뉴 \"" + name + "\"가 석식으로 수정되었습니다.");
                     break;
                 case 4:
-                    result.put("message", "메뉴 \"" + name + "\"가 브런치로 설정되었습니다.");
+                    result.put("message", "메뉴 \"" + name + "\"가 브런치로 수정되었습니다.");
                     break;
             }
         }
@@ -64,27 +77,26 @@ public class MenuService extends Exception {
         return result;
     }
 
-    public HashMap<Object,Object> updateAllMenuScore() {
+    // 사용 안 함 - 제거 예정
+    /*public HashMap<Object,Object> updateAllMenuScore() {
         HashMap<Object,Object> result = new HashMap<>();
         ratingMapper.calcSumOfRating_data();
 
         result.put("message", "점수가 집계되었습니다.");
 
         return result;
-    }
+    }*/
 
     public List<HashMap<String, Object>> getAllMenu() {
-        List<HashMap<String, Object>> result = new ArrayList<HashMap<String,Object>>();
+        return menuMapper.findAllMenu();
+    }
 
-        if(menuMapper.findAllMenu() == null) {
-            HashMap<String,Object> res = new HashMap<>();
-            res.put("message", "메뉴가 존재하지 않습니다.");
-            result.add(res);
-        } else {
-            result = menuMapper.findAllMenu();
-        }
+    public Menu getMenu(String name) {
+        return menuMapper.findMenuByName(name);
+    }
 
-        return result;
+    public List<HashMap<String, Object>> searchMenu(String name) {
+        return menuMapper.searchMenu(name);
     }
 
     // 일일 메뉴를 설정한다.

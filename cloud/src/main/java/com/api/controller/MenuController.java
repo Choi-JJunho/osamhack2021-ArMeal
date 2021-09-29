@@ -37,9 +37,28 @@ public class MenuController {
     }
 */
     // 자율메뉴 추가를 위한 addmenu
-    @RequestMapping(value = "/add/menu", method = RequestMethod.POST)
-    public ResponseEntity addMenu(@RequestBody Menu menu) {
-        return new ResponseEntity<HashMap<Object,Object>>(menuService.addMenu(menu.getName(), menu.getMenutype()),HttpStatus.OK);
+    @RequestMapping(value = "/add/menu/{name}/{type}", method = RequestMethod.POST)
+    public ResponseEntity addMenu(String name, int type) {
+        return new ResponseEntity<HashMap<Object,Object>>(menuService.addMenu(name, type),HttpStatus.OK);
     }
 
+    @RequestMapping(value = "/edit/menu/{name}/{type}", method = RequestMethod.POST)
+    public ResponseEntity editMenu(String name, int type) {
+        return new ResponseEntity<HashMap<Object,Object>>(menuService.editMenu(name, type),HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/get/menu", method = RequestMethod.GET)
+    public ResponseEntity getAllMenu() {
+        return new ResponseEntity<List<HashMap<String,Object>>>(menuService.getAllMenu(), HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/get/menu/{name}", method = RequestMethod.POST)
+    public ResponseEntity getMenu(String name) {
+        return new ResponseEntity<Menu>(menuService.getMenu(name), HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/search/menu/{name}", method = RequestMethod.POST)
+    public ResponseEntity searchMenu(String name) {
+        return new ResponseEntity<List<HashMap<String,Object>>>(menuService.searchMenu(name), HttpStatus.OK);
+    }
 }
