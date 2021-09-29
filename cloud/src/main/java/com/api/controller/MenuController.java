@@ -1,6 +1,8 @@
 package com.api.controller;
 
+import com.api.domain.DailyMeal;
 import com.api.domain.Menu;
+import com.api.mapper.MenuMapper;
 import com.api.service.MenuService;
 import java.sql.Timestamp;
 
@@ -61,4 +63,16 @@ public class MenuController {
     public ResponseEntity searchMenu(String name) {
         return new ResponseEntity<List<HashMap<String,Object>>>(menuService.searchMenu(name), HttpStatus.OK);
     }
+
+    // 자율메뉴 추가를 위한 addmenu
+    @RequestMapping(value = "/add/dailymenu", method = RequestMethod.POST)
+    public ResponseEntity adddailyMenu(@RequestBody DailyMeal menu) {
+    return new ResponseEntity<HashMap<String, Object>>(menuService.addDailyMenu(menu),HttpStatus.OK);
+    }
+    // 해당 메뉴가 나온 날을 구한다.
+    @RequestMapping(value = "/get/date/menu/{id}", method = RequestMethod.GET)
+    public ResponseEntity getRecentDate (@PathVariable("id") long id) {
+        return new ResponseEntity<List<HashMap<String, Object>>>(menuService.getRecentDates(id), HttpStatus.OK);
+    }
+    
 }

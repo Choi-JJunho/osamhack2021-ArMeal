@@ -24,6 +24,8 @@ public interface MenuMapper {
 
     void updateMenuType(@Param("_name")String name, @Param("_menutype") int type);
     void updateAllMenuScore(); // 사용 안 함 - 제거 예정
+    void addSelfDish(@Param("_name")String name, @Param("_date")Date date);
+    
     void updateDailyMenu(@Param("dateValue")Date date, @Param("_time")int time, @Param("groupId") long groupId, @Param("_menu") long menuId);
 
 }

@@ -41,18 +41,11 @@ public class AdminController {
 
     @RequestMapping(value = "/save/menu/{group}/{start}/{end}", method = RequestMethod.GET)
     public ResponseEntity saveAllMenu(@PathVariable("start") String startIdx, @PathVariable("end")String endIdx, @PathVariable("group")String groupNum){
-        parsingData.saveData(startIdx, endIdx, groupNum);
-        return new ResponseEntity<>("testing", HttpStatus.OK);
+        return new ResponseEntity<List<HashMap<String, Object>>>(parsingData.saveData(startIdx, endIdx, groupNum), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/save/dailymenu/{group}/{start}/{end}", method = RequestMethod.GET)
     public ResponseEntity saveAllDailyMenu(@PathVariable("start") String startIdx, @PathVariable("end")String endIdx, @PathVariable("group")String groupNum){
-        parsingData.setDailyMenu(1, startIdx, endIdx, groupNum);
-        return new ResponseEntity<>("testing", HttpStatus.OK);
-    }
-
-    @RequestMapping(value = "/get/date/menu/{id}", method = RequestMethod.GET)
-    public ResponseEntity saveAllDailyMenu(String menuName) {
-        return new ResponseEntity<List<HashMap<String, Object>>>(menuService.getRecentDates(menuName), HttpStatus.OK);
+        return new ResponseEntity<List<HashMap<String,Object>>>(parsingData.setDailyMenu(Long.valueOf(groupNum), startIdx, endIdx, groupNum), HttpStatus.OK);
     }
 }

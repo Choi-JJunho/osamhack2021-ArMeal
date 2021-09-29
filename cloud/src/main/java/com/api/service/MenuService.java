@@ -6,7 +6,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.api.domain.DailyMeal;
 import com.api.domain.Menu;
+import com.api.domain.SelfDish;
 import com.api.mapper.MenuMapper;
 import com.api.mapper.RatingMapper;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -78,8 +80,9 @@ public class MenuService extends Exception {
     }
 
     // 사용 안 함 - 제거 예정
-    /*public HashMap<Object,Object> updateAllMenuScore() {
-        HashMap<Object,Object> result = new HashMap<>();
+    /*
+    public HashMap<String, Object> updateAllMenuScore() {
+        HashMap<String, Object> result = new HashMap<>();
         ratingMapper.calcSumOfRating_data();
 
         result.put("message", "점수가 집계되었습니다.");
@@ -101,13 +104,22 @@ public class MenuService extends Exception {
 
     // 일일 메뉴를 설정한다.
     // time 1 : 조식 / 2 : 중식 / 3 : 석식
-    public void addDailyMenu(Date date, int time, int groupId, int menuId){
-        menuMapper.addDailyMenu(date, time, groupId, menuId);
+    public HashMap<String, Object> addDailyMenu(DailyMeal menu){
+        HashMap<String, Object> result = new HashMap<>();
+        Menu flag = menuMapper.findMenuById(menu.getMenu());
+
+        if(flag != null) {
+            result.put("message", "동일한 메뉴가 존재합니다.");
+        } else {
+            menuMapper.addDailyMenu(menu.getDate(), menu.getTime(), menu.getGroup_id(), menu.getMenu());
+            result.put("complete", "추가되었습니다.");
+        }
+        return result;
     }
 
     // 일일 메뉴를 수정한다.
-    public void updateDailyMenu(Date date, int time, int groupId, int menuId){
-        menuMapper.updateDailyMenu(date, time, groupId, menuId);
+    public void updateDailyMenu(DailyMeal menu){
+        menuMapper.updateDailyMenu(menu.getDate(), menu.getTime(), menu.getGroup_id(), menu.getMenu());
     }
 
     // TODO: getAllDailyMenu
@@ -117,10 +129,14 @@ public class MenuService extends Exception {
         
     }*/
 
-    public List<HashMap<String, Object>> getRecentDates(String menuName) {
-        long idx = menuMapper.findMenuByName(menuName).getId();
-        System.out.println(menuMapper.findRecentDateByMenuId(idx));
-        return menuMapper.findRecentDateByMenuId(idx);
+    public List<HashMap<String, Object>> getRecentDates(long menuId) {
+        return menuMapper.findRecentDateByMenuId(menuId);
     }
 
+    /*
+    public HashMap<String, Object> addSelfDish(SelfDish selfDish) {
+        menuMapper.addSelfDish(selfDish.getName(), selfDish.getDate_value());
+        // TODO : Add UsedIngredient
+    }
+    */
 }

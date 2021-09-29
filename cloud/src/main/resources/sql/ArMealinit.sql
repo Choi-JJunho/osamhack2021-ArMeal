@@ -34,8 +34,10 @@ CREATE TABLE `Daily_meal`(
     `menu` BIGINT NOT NULL
 );
 CREATE TABLE `Used_ingredient`(
-    `Menu_id` BIGINT UNSIGNED NOT NULL PRIMARY KEY,
-    `Ingredient_data_id` BIGINT NOT NULL
+    `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `Menu_id` BIGINT NOT NULL,
+    `Ingredient_data_id` BIGINT NOT NULL,
+    `Self_id` BIGINT NOT NULL
 );
 CREATE TABLE `Rating`(
     `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -48,10 +50,17 @@ CREATE TABLE `Rating`(
     `is_deleted` TINYINT(1) NULL
 );
 CREATE TABLE `Ingredient_data`(
-    `id` BIGINT UNSIGNED NOT NULL PRIMARY KEY,
+    `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
     `name` VARCHAR(255) NOT NULL
 );
-
+CREATE TABLE `SelfDish`(
+    `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `name` VARCHAR(255) NOT NULL,
+    `date_value` DATE NOT NULL,
+    `created_at` TIMESTAMP NOT NULL DEFAULT NOW(),
+    `deleted_at` TIMESTAMP NULL,
+    `is_deleted` TINYINT(1) NULL
+);
 ALTER TABLE
     `Rating` ADD CONSTRAINT `rating_user_id_foreign` FOREIGN KEY(`User_id`) REFERENCES `User`(`id`);
 ALTER TABLE

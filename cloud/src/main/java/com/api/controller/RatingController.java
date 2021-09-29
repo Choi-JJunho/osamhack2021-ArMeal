@@ -49,12 +49,11 @@ public class RatingController {
     */
     
     // 해당하는 날짜의 만족도조사 결과를 얻기 위한 서비스
-    /* SQL로 로직 수정
-    @RequestMapping(value = "/get/rating/{date}", method = RequestMethod.POST)
-    public ResponseEntity getratingbydate(@PathVariable("date") String date) {
-        return new ResponseEntity<HashMap<String, Object>>(ratingService.getRatingByDates(date), HttpStatus.OK);
+    @RequestMapping(value = "/get/rating/{start}/{end}", method = RequestMethod.POST)
+    public ResponseEntity getratingbydate(@PathVariable("start") String start, @PathVariable("end") String end) {
+        return new ResponseEntity<List<HashMap<String, Object>>>(ratingService.getRatioByDates(start, end), HttpStatus.OK);
     }
-    */
+    
 
     // 일일 만족도 조사에 대한 서비스
     @RequestMapping(value = "/add/rating/daily", method = RequestMethod.POST)
@@ -64,8 +63,7 @@ public class RatingController {
         int time = Integer.valueOf(value.get("time").toString());
         int rating_value = Integer.valueOf(value.get("rating_value").toString());
         int badReason = Integer.valueOf(value.get("badReason").toString());
-        ratingService.addDailyRating(userId, date, time, rating_value, badReason);
-        return new ResponseEntity<String>("Testing For Add Daily Rating", HttpStatus.OK);
+        return new ResponseEntity<List<HashMap<String, Object>>>(ratingService.addDailyRating(userId, date, time, rating_value, badReason), HttpStatus.OK);
     }
     /* 예제 : 2021년 9월 20일의 조식에 대해 평가
     {
