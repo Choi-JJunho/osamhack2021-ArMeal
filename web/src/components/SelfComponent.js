@@ -19,13 +19,13 @@ const CalendarWrapper = styled.div`
 const Modal = styled.div`
   z-index: 1;
   position: absolute;
-  // width: 511px;
-  // height: 603px;
-  width: 42.5vw;
-  height: 75vh;
+  width: 511px;
+  height: 68vh;
+  // width: 42.5vw;
+  // height: 75vh;
   // left: 345px;
   // top: 98px;
-  left: 28.7vw;
+  left: 35vw;
   top: 12vh;
 
   background: #FFFFFF;
@@ -59,60 +59,99 @@ margin-top: 0;
 font-weight: normal;
 font-size: 22px;
 line-height: 27px;
+
+// padding:10px;
+
+// font-style: normal;
+// font-weight: normal;
+// font-size: 18px;
+// line-height: 22px;
+// // display: flex;
+// align-items: center;
+
+// color: #000000;
 `
 
 const ModalFieldWrapper = styled.div`
+justify-content: space-between;
 display:flex;
-justify-content:spaced-evenly;
+
 margin: 30px 0px 30px 0px;
 `
 const ModalFieldDescriptionWrapper = styled.div`
 
 `
-const ModalDescriptionField = styled.div`
+const ModalDescriptionField = styled.textarea`
+margin-top: 5px;
+padding: 10px;
 font-size: 22px;
 line-height: 27px;
- color:#868686;
-width: auto;
+color:#868686;
+width: 460px;
 height: 144px;
 background: #FFFFFF;
 border: 1px solid #000000;
 box-sizing: border-box;
 border-radius: 5px;
+
+// word-wrap: break-word;
+// overflow-x: scroll;
+
 // value:${props => props.description};
 `
 const ModalDateAndTimeField = styled(ModalTextForm)`
-width: 140px;
+width: 165px;
 height: 40px;
-
 background: #E5E5E5;
 border-radius: 5px;
-
 color: #B8B8B8;
+text-align: center;
 `
 const ModalMenuField = styled.input`
-width: 333px;
+width: 344px;
 height: 40px;
-value: ${props => props.title};
+defaultValue: ${props => props.title};
 background: #FFFFFF;
 border: 1px solid #000000;
 box-sizing: border-box;
 border-radius: 5px;
+
+padding:10px;
+
+font-style: normal;
+font-weight: normal;
+font-size: 18px;
+line-height: 22px;
+// display: flex;
+align-items: center;
+
+color: #000000;
 `
 const ModalSelfField = styled.input`
 border: 1px solid #000000;
 box-sizing: border-box;
 border-radius: 5px;
-width: 333px;
+width: 220px;
 height: 40px;
+
+padding:10px;
+
+font-style: normal;
+font-weight: normal;
+font-size: 18px;
+line-height: 22px;
+// display: flex;
+align-items: center;
+
+color: #000000;
 `
 
-const AddSelfMenuButton = styled.button`
+const AddSelfMenuButton = styled.div`
 border: 3px solid #75CB32;
 box-sizing: border-box;
 border-radius: 5px;
 background-color:white;
-
+padding:7px;
 width: 100px;
 height: 43px;
 
@@ -121,61 +160,54 @@ font-weight: bold;
 font-size: 18px;
 line-height: 22px;
 
-display: flex;
+display: block;
 align-items: center;
 text-align: center;
 
 color: #75CB32;
 `
-const CancelButton = styled.button`
+const CancelButton = styled.div`
 width: 211px;
 height: 43px;
 
 background: #FFFFFF;
 border: 3px solid #B6B6B6;
 box-sizing: border-box;
-`
-const CancelText = styled.div`
-width: 176.92px;
-height: 32.25px;
 
 font-style: normal;
 font-weight: bold;
 font-size: 22px;
 line-height: 22px;
-
-display: flex;
+padding: 7px;
 align-items: center;
 text-align: center;
 
 color: #6F6F6F;
 `
 
-const AddButton = styled.button`
+const AddButton = styled.div`
 width: 211px;
 height: 43px;
 
 background: #75CB32;
 border: 3px solid #75CB32;
 box-sizing: border-box;
-`
-
-const AddText = styled.div`
-width: 176.92px;
-height: 32.25px;
-
+padding: 7px;
 font-style: normal;
 font-weight: bold;
 font-size: 22px;
 line-height: 22px;
 
-display: flex;
 align-items: center;
 text-align: center;
 
 color: #FFFFFF;
 `
 
+const InputWrapper = styled.div`
+display: contents;
+width: auto;
+`
 function addHoverEvent(info) {
   var tooltip = new Tooltip(info.el, {
     title: info.event.extendedProps.description,
@@ -186,7 +218,7 @@ function addHoverEvent(info) {
   tooltip.hide();
 }
 
-export default function SelfComponent({events, selectEvent, event, dateClick, }){
+export default function SelfComponent({events, selectEvent, event}){
   return (
     <Container>
       <CalendarWrapper>
@@ -203,8 +235,7 @@ export default function SelfComponent({events, selectEvent, event, dateClick, })
           initialEvents={events}
           eventDidMount={el => addHoverEvent(el)}
           eventClick={(e) => selectEvent(e)}
-          // onClick={selectEdit()}
-          dateClick={(e) => dateClick(e)} 
+          // dateClick={(e) => dateClick(e)} 
         />
         {event ? 
           <Modal selectEvent={selectEvent}>
@@ -217,7 +248,7 @@ export default function SelfComponent({events, selectEvent, event, dateClick, })
                   날짜:
                 </ModalTextForm>
                 <ModalDateAndTimeField>
-                  {event.event._def.extendedProps.time}
+                  {event.event.startStr.split("T")[0]}
                   </ModalDateAndTimeField>
                 <ModalTextForm>
                   타임:
@@ -230,33 +261,32 @@ export default function SelfComponent({events, selectEvent, event, dateClick, })
                 <ModalTextForm>
                   메뉴명:
                 </ModalTextForm>
-                <ModalMenuField title={event.event.title}/>
+                <InputWrapper>
+                  <ModalMenuField defaultValue={event.event.title}/>
+                </InputWrapper>
+                
               </ModalFieldWrapper>
               <ModalFieldWrapper>
                 <ModalTextForm>
                   부식 추가:
                 </ModalTextForm>
-                <ModalSelfField/>
-                <AddSelfMenuButton>추가하기</AddSelfMenuButton>
+                <InputWrapper>
+                  <ModalSelfField/>
+                  <AddSelfMenuButton>추가하기</AddSelfMenuButton>
+                </InputWrapper>
               </ModalFieldWrapper>
               <ModalFieldDescriptionWrapper>
                 <ModalTextForm>메뉴에 해당하는 부식</ModalTextForm>
-                <ModalDescriptionField>
-                  {event.event._def.extendedProps.description}
-                </ModalDescriptionField>
+                <ModalDescriptionField defaultValue={event.event._def.extendedProps.description}/>
               </ModalFieldDescriptionWrapper>
               <ModalFieldWrapper>
                 <CancelButton>
-                  <CancelText>취소하기</CancelText>
+                  취소
                 </CancelButton>
                 <AddButton>
-                  <AddText>추가하기</AddText>
+                  추가하기
                 </AddButton>
               </ModalFieldWrapper>
-              
-              
-              
-            
             </ModalForm>
           </Modal>
         :

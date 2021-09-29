@@ -3,21 +3,19 @@ import React, {useState}  from 'react';
 import SelfComponent from 'components/SelfComponent';
 
 export default function SelfContainer(){
-  // const selectEvent = (e) => {
-  //     alert(e.event.title)
-      
-  //     // console.log(e.event.extendedProps.description)
-  //     // console.log(e.event.extendedProps.time)
-  //     console.log(e.event)
+  // const [date, setDate] = useState(0)
+  // const selectDate = (e) => {
+  //   setDate(e)
   // }
-  const dateClick = (e) => {
-    alert('clicked ' + e.dateStr);
-  }
+  // const dateClick = (e) => {
+  //   console.log('clicked ' + e.dateStr);
+  // }
+
   const [event, setEvent] = useState(0) // const [변수, set변수] = useState(기본값)
-  const selectEvent = (e) =>{
-    setEvent(e)
-    console.log(e.event)
+  const selectEvent = (e) => {
+      setEvent(e)
   }
+
   const events = [
     {
       title: '베이컨 청경채 볶음',
@@ -42,13 +40,8 @@ export default function SelfContainer(){
     }
   ]
 
-  // const [event, setEvent] = useState(0) 
-  // const selectEvent = (idx) => {
-  //   setEvent(idx)
-  // }
 
   return (
-    // <SelfComponent events={events} clickEvent={event} selectEvent={selectEvent}/>
-    <SelfComponent events={events} selectEvent={selectEvent} event={event} dateClick={dateClick} />
+    <SelfComponent events={events} selectEvent={selectEvent} event={event}/>
     )
 }
