@@ -11,7 +11,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.api.domain.DailyMeal;
-import com.api.domain.Menu;
 import com.api.domain.Rating;
 import com.api.mapper.MenuMapper;
 import com.api.mapper.RatingMapper;
@@ -29,15 +28,18 @@ public class RatingService extends Exception {
     @Autowired
     MenuMapper menuMapper;
 
-    @Autowired
-    MenuService menuService;
-
     public HashMap<String, Object> addRating(Rating rating) {
+        HashMap<String, Object> result = new HashMap<>();
+
         ratingMapper.addRating(rating.getUser_id(), rating.getMenu_id(), rating.getRating_data());
         if(rating.getRating_data() == 1) {
             ratingMapper.updateBadReason(rating.getBad_reason());
         }
-        return menuService.updateAllMenuScore();
+        menuMapper.updateMenuScore(rating.getMenu_id());
+
+        result.put("message", "메뉴 ID \"" + rating.getMenu_id() + "\"의 점수가 갱신되었습니다.");
+
+        return result;
     }
     
     // 사용자가 해당 끼니에 만족도 조사를 실시했을 때 실행되는 로직

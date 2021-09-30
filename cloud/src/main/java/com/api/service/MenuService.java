@@ -11,7 +11,6 @@ import com.api.domain.Ingredient;
 import com.api.domain.Menu;
 import com.api.domain.SelfDish;
 import com.api.mapper.MenuMapper;
-import com.api.mapper.RatingMapper;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,9 +22,6 @@ public class MenuService extends Exception {
     @Autowired
     MenuMapper menuMapper;
 
-    @Autowired
-    RatingMapper ratingMapper;
-
     public HashMap<Object,Object> addMenu(String name, int type) {
         HashMap<Object,Object> result = new HashMap<>();
         Menu menu = menuMapper.findMenuByName(name);
@@ -36,16 +32,13 @@ public class MenuService extends Exception {
             menuMapper.addMenu(name, type);
             switch(type) {
                 case 1:
-                    result.put("message", "메뉴 \"" + name + "\"가 조식으로 추가되었습니다.");
+                    result.put("message", "메뉴 \"" + name + "\"가 메인 메뉴로 추가되었습니다.");
                     break;
                 case 2:
-                    result.put("message", "메뉴 \"" + name + "\"가 중식으로 추가되었습니다.");
+                    result.put("message", "메뉴 \"" + name + "\"가 자율 메뉴로 추가되었습니다.");
                     break;
                 case 3:
-                    result.put("message", "메뉴 \"" + name + "\"가 석식으로 추가되었습니다.");
-                    break;
-                case 4:
-                    result.put("message", "메뉴 \"" + name + "\"가 브런치로 추가되었습니다.");
+                    result.put("message", "메뉴 \"" + name + "\"가 후식으로 추가되었습니다.");
                     break;
             }
         }
@@ -63,16 +56,13 @@ public class MenuService extends Exception {
             menuMapper.updateMenuType(name, type);
             switch(type) {
                 case 1:
-                    result.put("message", "메뉴 \"" + name + "\"가 조식으로 수정되었습니다.");
+                    result.put("message", "메뉴 \"" + name + "\"가 메인 메뉴로 수정되었습니다.");
                     break;
                 case 2:
-                    result.put("message", "메뉴 \"" + name + "\"가 중식으로 수정되었습니다.");
+                    result.put("message", "메뉴 \"" + name + "\"가 자율 메뉴로 수정되었습니다.");
                     break;
                 case 3:
-                    result.put("message", "메뉴 \"" + name + "\"가 석식으로 수정되었습니다.");
-                    break;
-                case 4:
-                    result.put("message", "메뉴 \"" + name + "\"가 브런치로 수정되었습니다.");
+                    result.put("message", "메뉴 \"" + name + "\"가 후식으로 수정되었습니다.");
                     break;
             }
         }
@@ -80,16 +70,9 @@ public class MenuService extends Exception {
         return result;
     }
 
-    // 사용 안 함 - 제거 예정
-    /*
-    public HashMap<String, Object> updateAllMenuScore() {
-        HashMap<String, Object> result = new HashMap<>();
-        ratingMapper.calcSumOfRating_data();
-
-        result.put("message", "점수가 집계되었습니다.");
-
-        return result;
-    }*/
+    public void updateMenuScore(int id) {
+        menuMapper.updateMenuScore(id);
+    }
 
     public List<HashMap<String, Object>> getAllMenu() {
         return menuMapper.findAllMenu();

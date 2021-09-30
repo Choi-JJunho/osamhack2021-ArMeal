@@ -31,8 +31,7 @@ public interface MenuMapper {
     void addUsedIngredient(@Param("_menuid")long menuId, @Param("_ingredientId")long ingredientId);
 
     void updateMenuType(@Param("_name")String name, @Param("_menutype") int type);
-    void updateAllMenuScore(); // 사용 안 함 - 제거 예정
-    
+    void updateMenuScore(@Param("_id")long id);
     
     void updateDailyMenu(@Param("dateValue")Date date, @Param("_time")int time, @Param("groupId") long groupId, @Param("_menu") long menuId);
 
