@@ -10,7 +10,6 @@ import com.api.domain.DailyMeal;
 import com.api.domain.Menu;
 import com.api.domain.SelfDish;
 import com.api.mapper.MenuMapper;
-import com.api.mapper.RatingMapper;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,9 +20,6 @@ import org.springframework.transaction.annotation.Transactional;
 public class MenuService extends Exception {
     @Autowired
     MenuMapper menuMapper;
-
-    @Autowired
-    RatingMapper ratingMapper;
 
     public HashMap<Object,Object> addMenu(String name, int type) {
         HashMap<Object,Object> result = new HashMap<>();
@@ -79,16 +75,9 @@ public class MenuService extends Exception {
         return result;
     }
 
-    // 사용 안 함 - 제거 예정
-    /*
-    public HashMap<String, Object> updateAllMenuScore() {
-        HashMap<String, Object> result = new HashMap<>();
-        ratingMapper.calcSumOfRating_data();
-
-        result.put("message", "점수가 집계되었습니다.");
-
-        return result;
-    }*/
+    public void updateMenuScore(int id) {
+        menuMapper.updateMenuScore(id);
+    }
 
     public List<HashMap<String, Object>> getAllMenu() {
         return menuMapper.findAllMenu();

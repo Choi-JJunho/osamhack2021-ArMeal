@@ -49,6 +49,19 @@
         UPDATE Menu SET menu_type=#{_menutype} WHERE name=#{_name}
     </update>
 
+    <!-- for debugging
+        SELECT Menu_id, sum(rating_data)/count(Menu_id) FROM Rating GROUP BY Menu_id;
+        SELECT id, name, score from Menu;
+    -->
+    <select id="updateMenuScore">
+        UPDATE Menu AS t1, ( SELECT Menu_id, sum(rating_data)/count(Menu_id) AS c1
+        FROM Rating
+        WHERE Menu_id = #{_id}
+        GROUP BY Menu_id ) AS t2
+        SET t1.score=t2.c1
+        WHERE t1.id = #{_id}
+    </select>
+
     <update id="updateDailymenu">
         UPDATE Daily_meal SET date_value=#{dateValue}, time=#{_time}, group_id=#{groupId}, menu=#{_menu} WHERE date_value=#{beforeDate}, time=#{beforeTime}
     </update>
