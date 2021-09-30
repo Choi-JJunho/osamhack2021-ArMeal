@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.api.domain.DailyMeal;
+import com.api.domain.Ingredient;
 import com.api.domain.Menu;
 import com.api.domain.SelfDish;
 import com.api.mapper.MenuMapper;
@@ -139,4 +140,33 @@ public class MenuService extends Exception {
         // TODO : Add UsedIngredient
     }
     */
+
+    // 재료 추가 - 아래addUsedIngredient 함수에서 사용.
+    public HashMap<String, Object> findIngredientByMenuId(long menuId) {
+        return menuMapper.findIngredientByMenuId(id);
+    }
+
+    // 메뉴에 해당하는 재료 추가 (관계 맺기)
+    public void addUsedIngredient(long menuId, long ingredientId) {
+        if(menuMapper.findIngredientByname(data.getName()) == null) {
+            menuMapper.addIngredient(data.getName());
+        }
+        menuMapper.addUsedIngredient(menuId, ingredientId);
+    }
+
+    // 모든 재료들을 가져온다.
+    public List<HashMap<String, Object>> getAllIngredients() {
+        return menuMapper.findAllIngredient();
+    }
+
+    // 해당 메뉴에 들어가는 재료 구하기
+    public List<HashMap<String, Object>> getIngredientsByMenuId(long menuId) {
+        return menuMapper.findIngredientsByMenuId(menuId);
+    }
+    
+    // 해당 재료를 사용하는 메뉴 구하기
+    public List<HashMap<String, Object>> getMenuByIngredientId(long ingredientId) {
+        return menuMapper.findMenuByIngredientId(ingredientId);
+    }
+
 }

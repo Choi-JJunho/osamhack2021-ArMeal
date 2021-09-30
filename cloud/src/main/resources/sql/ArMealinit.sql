@@ -35,9 +35,9 @@ CREATE TABLE `Daily_meal`(
 );
 CREATE TABLE `Used_ingredient`(
     `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    `Menu_id` BIGINT NOT NULL,
-    `Ingredient_data_id` BIGINT NOT NULL,
-    `Self_id` BIGINT NOT NULL
+    `Menu_id` BIGINT NULL,
+    `Ingredient_id` BIGINT NOT NULL,
+    `Self_id` BIGINT NULL
 );
 CREATE TABLE `Rating`(
     `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -49,7 +49,7 @@ CREATE TABLE `Rating`(
     `deleted_at` TIMESTAMP NULL,
     `is_deleted` TINYINT(1) NULL
 );
-CREATE TABLE `Ingredient_data`(
+CREATE TABLE `Ingredient`(
     `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
     `name` VARCHAR(255) NOT NULL
 );

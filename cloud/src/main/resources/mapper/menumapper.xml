@@ -33,6 +33,23 @@
         SELECT DATE_FORMAT(date_value,'%Y-%m-%d') AS recentDate FROM Daily_meal WHERE menu = #{_id} ORDER BY date_value DESC LIMIT 10;
     </select>
 
+    <select id="findIngredientByname">
+        SELECT * FROM Ingredient WHERE name = #{_name}
+    </select>
+
+    <select id="findIngredientByMenuId">
+        SELECT * FROM Ingredient WHERE id = {_menuId}
+    </select>
+
+    <select id="findMenuByIngredientId">
+        SELECT * FROM Menu AS a JOIN Used_ingredient AS b ON a.id = b.Menu_id WHERE b.Ingredient_id = #{_ingredientId}
+    </select>
+
+    <select id="findAllIngredient">
+        SELECT * FROM Ingredient    
+    </select>
+    
+
     <!-- Add Menu -->
     <insert id="addDailyMenu">
         INSERT INTO Daily_meal (date_value, time, group_id, menu)
@@ -43,6 +60,10 @@
         INSERT INTO Menu (name, menu_type)
         VALUES (#{_name}, #{_menutype})
     </insert>
+    <insert id="addIngredient">
+        INSERT INTO Ingredient(name) VALUES(#{_name})
+    </insert>
+    <insert id="addUsedIngredient"></insert>
 
     <!-- Update Menu -->
     <update id="updateMenuType">
