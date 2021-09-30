@@ -31,16 +31,13 @@ public class MenuService extends Exception {
             menuMapper.addMenu(name, type);
             switch(type) {
                 case 1:
-                    result.put("message", "메뉴 \"" + name + "\"가 조식으로 추가되었습니다.");
+                    result.put("message", "메뉴 \"" + name + "\"가 메인 메뉴로 추가되었습니다.");
                     break;
                 case 2:
-                    result.put("message", "메뉴 \"" + name + "\"가 중식으로 추가되었습니다.");
+                    result.put("message", "메뉴 \"" + name + "\"가 자율 메뉴로 추가되었습니다.");
                     break;
                 case 3:
-                    result.put("message", "메뉴 \"" + name + "\"가 석식으로 추가되었습니다.");
-                    break;
-                case 4:
-                    result.put("message", "메뉴 \"" + name + "\"가 브런치로 추가되었습니다.");
+                    result.put("message", "메뉴 \"" + name + "\"가 후식으로 추가되었습니다.");
                     break;
             }
         }
@@ -58,16 +55,13 @@ public class MenuService extends Exception {
             menuMapper.updateMenuType(name, type);
             switch(type) {
                 case 1:
-                    result.put("message", "메뉴 \"" + name + "\"가 조식으로 수정되었습니다.");
+                    result.put("message", "메뉴 \"" + name + "\"가 메인 메뉴로 수정되었습니다.");
                     break;
                 case 2:
-                    result.put("message", "메뉴 \"" + name + "\"가 중식으로 수정되었습니다.");
+                    result.put("message", "메뉴 \"" + name + "\"가 자율 메뉴로 수정되었습니다.");
                     break;
                 case 3:
-                    result.put("message", "메뉴 \"" + name + "\"가 석식으로 수정되었습니다.");
-                    break;
-                case 4:
-                    result.put("message", "메뉴 \"" + name + "\"가 브런치로 수정되었습니다.");
+                    result.put("message", "메뉴 \"" + name + "\"가 후식으로 수정되었습니다.");
                     break;
             }
         }
