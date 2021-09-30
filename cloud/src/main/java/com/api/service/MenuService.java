@@ -125,7 +125,7 @@ public class MenuService extends Exception {
     */
 
     // 재료 추가 - 아래addUsedIngredient 함수에서 사용.
-    public HashMap<String, Object> findIngredientByMenuId(long menuId) {
+    public HashMap<String, Object> getIngredientByMenuId(long menuId) {
         return menuMapper.findIngredientByMenuId(id);
     }
 
