@@ -23,7 +23,7 @@ public interface MenuMapper {
     void addDailyMenu(@Param("dateValue")Date date, @Param("_time")int time, @Param("groupId") long groupId, @Param("_menu") long menuId);
 
     void updateMenuType(@Param("_name")String name, @Param("_menutype") int type);
-    void updateMenuScore(@Param("_id")int id);
+    void updateMenuScore(@Param("_id")long id);
     void addSelfDish(@Param("_name")String name, @Param("_date")Date date);
     
     void updateDailyMenu(@Param("dateValue")Date date, @Param("_time")int time, @Param("groupId") long groupId, @Param("_menu") long menuId);
