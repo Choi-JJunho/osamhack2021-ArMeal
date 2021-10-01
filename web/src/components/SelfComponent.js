@@ -107,6 +107,25 @@ border-radius: 5px;
 color: #B8B8B8;
 text-align: center;
 `
+
+const ModalDateAndTimeField2 = styled.input`
+border: 1px solid #000000;
+box-sizing: border-box;
+border-radius: 5px;
+width: 165px;
+height: 40px;
+
+padding:10px;
+
+font-style: normal;
+font-weight: normal;
+font-size: 18px;
+line-height: 22px;
+// display: flex;
+align-items: center;
+
+color: #000000;
+`
 const ModalMenuField = styled.input`
 width: 344px;
 height: 40px;
@@ -147,6 +166,7 @@ color: #000000;
 `
 
 const AddSelfMenuButton = styled.div`
+cursor:pointer;
 border: 3px solid #75CB32;
 box-sizing: border-box;
 border-radius: 5px;
@@ -165,8 +185,17 @@ align-items: center;
 text-align: center;
 
 color: #75CB32;
+
+&:hover {
+  border: 3px solid #86DE8A;
+  box-sizing: border-box;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  // border-radius: 10px;
+  color:#86DE8A;
+  }
 `
 const CancelButton = styled.div`
+cursor:pointer;
 width: 211px;
 height: 43px;
 
@@ -183,11 +212,20 @@ align-items: center;
 text-align: center;
 
 color: #6F6F6F;
+
+&:hover {
+  border: 3px solid #86DE8A;
+  box-sizing: border-box;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  // border-radius: 10px;
+  color:#86DE8A;
+  }
 `
 
 const AddButton = styled.div`
 width: 211px;
 height: 43px;
+cursor:pointer;
 
 background: #75CB32;
 border: 3px solid #75CB32;
@@ -202,6 +240,15 @@ align-items: center;
 text-align: center;
 
 color: #FFFFFF;
+
+&:hover {
+  border: 3px solid #86DE8A;
+  box-sizing: border-box;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  // border-radius: 10px;
+  color:#86DE8A;
+  background: white;
+  }
 `
 
 const InputWrapper = styled.div`
@@ -210,7 +257,7 @@ width: auto;
 `
 function addHoverEvent(info) {
   var tooltip = new Tooltip(info.el, {
-    title: info.event.extendedProps.description,
+    title: info.event._def.extendedProps.description,
     placement: 'top',
     trigger: 'hover',
     container: 'body',
@@ -218,7 +265,7 @@ function addHoverEvent(info) {
   tooltip.hide();
 }
 
-export default function SelfComponent({events, selectEvent, event}){
+export default function SelfComponent({events, event, selectEvent, date, dateClick, selectAddSelf}){
   return (
     <Container>
       <CalendarWrapper>
@@ -235,10 +282,11 @@ export default function SelfComponent({events, selectEvent, event}){
           initialEvents={events}
           eventDidMount={el => addHoverEvent(el)}
           eventClick={(e) => selectEvent(e)}
-          // dateClick={(e) => dateClick(e)} 
+          dateClick={(e) => dateClick(e)} 
         />
-        {event ? 
-          <Modal selectEvent={selectEvent}>
+        {event ?
+          // <Modal selectEvent={selectEvent}>
+          <Modal>
             <ModalTextTitle>
               자율메뉴 추가/수정
             </ModalTextTitle>
@@ -262,7 +310,8 @@ export default function SelfComponent({events, selectEvent, event}){
                   메뉴명:
                 </ModalTextForm>
                 <InputWrapper>
-                  <ModalMenuField defaultValue={event.event.title}/>
+                  <ModalMenuField/>
+                  {/* <ModalMenuField defaultValue={event.event.title}/> */}
                 </InputWrapper>
                 
               </ModalFieldWrapper>
@@ -271,7 +320,7 @@ export default function SelfComponent({events, selectEvent, event}){
                   부식 추가:
                 </ModalTextForm>
                 <InputWrapper>
-                  <ModalSelfField/>
+                  <ModalSelfField onChange={selectAddSelf(1)}/>
                   <AddSelfMenuButton>추가하기</AddSelfMenuButton>
                 </InputWrapper>
               </ModalFieldWrapper>
@@ -280,7 +329,7 @@ export default function SelfComponent({events, selectEvent, event}){
                 <ModalDescriptionField defaultValue={event.event._def.extendedProps.description}/>
               </ModalFieldDescriptionWrapper>
               <ModalFieldWrapper>
-                <CancelButton>
+                <CancelButton onClick={(e)=>selectEvent(0)}>
                   취소
                 </CancelButton>
                 <AddButton>
@@ -289,14 +338,65 @@ export default function SelfComponent({events, selectEvent, event}){
               </ModalFieldWrapper>
             </ModalForm>
           </Modal>
+        : date ?
+        // <Modal selectEvent={selectEvent}>
+        <Modal>
+          <ModalTextTitle>
+            자율메뉴 추가/수정
+          </ModalTextTitle>
+          <ModalForm>
+            <ModalFieldWrapper>
+              <ModalTextForm>
+                날짜:
+              </ModalTextForm>
+              <ModalDateAndTimeField>
+                {date.dateStr}
+                </ModalDateAndTimeField>
+              <ModalTextForm>
+                타임:
+              </ModalTextForm>
+              <ModalDateAndTimeField2>
+              </ModalDateAndTimeField2>
+            </ModalFieldWrapper>
+            <ModalFieldWrapper>
+              <ModalTextForm>
+                메뉴명:
+              </ModalTextForm>
+              <InputWrapper>
+                <ModalMenuField/>
+                {/* <ModalMenuField defaultValue={event.event.title}/> */}
+              </InputWrapper>
+              
+            </ModalFieldWrapper>
+            <ModalFieldWrapper>
+              <ModalTextForm>
+                부식 추가:
+              </ModalTextForm>
+              <InputWrapper>
+                <ModalSelfField onChange={selectAddSelf(1)}/>
+                <AddSelfMenuButton>추가하기</AddSelfMenuButton>
+              </InputWrapper>
+            </ModalFieldWrapper>
+            <ModalFieldDescriptionWrapper>
+              <ModalTextForm>메뉴에 해당하는 부식</ModalTextForm>
+              <ModalDescriptionField/>
+            </ModalFieldDescriptionWrapper>
+            <ModalFieldWrapper>
+              <CancelButton onClick={(e)=>dateClick(0)}>
+                취소
+              </CancelButton>
+              <AddButton>
+                추가하기
+              </AddButton>
+            </ModalFieldWrapper>
+          </ModalForm>
+        </Modal>
         :
-          <div></div>
+        <div>
+        </div>
         }
-        
-
-        
+                
       </CalendarWrapper>
     </Container>
   )
 }
-
