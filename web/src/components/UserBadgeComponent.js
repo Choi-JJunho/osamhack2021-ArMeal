@@ -56,9 +56,9 @@ export default function UserBadgeComponent({data, goLogin}){
           <Icon1lsc></Icon1lsc>
         </ImageBlank>
         <InLoggedInWrapper>
-          1군지사 수도군수지원단
+          {data.name}
           <br></br>
-          <strong>1896부대</strong>
+          <strong>{data.group_id}</strong>
         </InLoggedInWrapper>
       </>
       }
