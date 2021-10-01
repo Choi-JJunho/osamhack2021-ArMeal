@@ -13,7 +13,7 @@ export const createPromiseThunk = (type, promiseCreator) => {
     try {
       // 결과물의 이름을 payload 라는 이름으로 통일시킵니다.
       const payload = await promiseCreator(param);
-      if(payload.data.message) dispatch({ type: ERROR, payload: payload.data.message, error: true });
+      if(payload.data.error) dispatch({ type: ERROR, payload: payload.data.error, error: true });
       else dispatch({ type: SUCCESS, payload: payload.data }); // 성공
     } catch (e) {
       dispatch({ type: ERROR, payload: e, error: true }); // 실패

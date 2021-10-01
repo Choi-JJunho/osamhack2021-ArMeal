@@ -4,7 +4,7 @@ import SigninContainer from 'containers/SigninContainer';
 import DashboardContainer from 'containers/DashboardContainer';
 
 export default function HomePage(){
-  const { data } = useSelector(state => state.authReducer.auth);
+  const { data } = useSelector(state => state.authReducer);
   return (
     <>
       {data && 
