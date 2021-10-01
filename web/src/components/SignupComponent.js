@@ -125,7 +125,7 @@ const AffiliatedUnitInput = styled.input`
 	outline: none;
 	font-size: 24px;
 	padding: 23px 0 23px 15px; 
-	width:15vw;
+	width:20vw;
 	font-family: ${props => props.isPassword ? "serif" : "NanumSquare"};
 
 `
@@ -222,7 +222,7 @@ const ArmyBlank=styled.div`
 	width:47vw;
 `
 
-export default function SignupComponent(){
+export default function SignupComponent({info, updateInfo, submit}){
   return (
     <Container>
 			<MainBox>
@@ -231,7 +231,12 @@ export default function SignupComponent(){
 					<Field>
 						<IDIndex>아이디</IDIndex>
 						<IdInputField>
-							<IdInput type="id" placeholder="아이디를 입력하세요."></IdInput>
+							<IdInput 
+								type="id" 
+								placeholder="아이디를 입력하세요."
+								name="login_id"
+								onChange={updateInfo}
+								value={info.login_id}></IdInput>
 						</IdInputField>
 					</Field>
 					<DoubleCheck>중복확인</DoubleCheck>
@@ -239,7 +244,13 @@ export default function SignupComponent(){
 				</IdField>
 				<PWIndex>비밀번호</PWIndex>
 				<InputField>
-					<Input type="password" isPassword={true} placeholder="비밀번호를 입력하세요."></Input>
+					<Input 
+						type="password"
+						isPassword={true} 
+						placeholder="비밀번호를 입력하세요."
+						name="password"
+						onChange={updateInfo}
+						value={info.password}></Input>
 				</InputField>
 				<PWIndexC>비밀번호 확인</PWIndexC>
 				<InputField>
@@ -252,15 +263,23 @@ export default function SignupComponent(){
 					</ArmyUnit>
 					<ArmyBlank>	
 						<UnitInputField>
-							<UnitInput placeholder="부대명을 입력하세요."></UnitInput>
+							<UnitInput 
+								placeholder="부대명을 입력하세요."
+								name="name"
+								onChange={updateInfo}
+								value={info.name}></UnitInput>
 						</UnitInputField>
 						<AffiliatedUnitInputField>
-							<AffiliatedUnitInput placeholder="소속부대를 입력하세요."></AffiliatedUnitInput>
+							<AffiliatedUnitInput 
+								placeholder="소속부대를 입력하세요.(숫자)"
+								name="group_id"
+								onChange={updateInfo}
+								value={info.group_id} />
 						</AffiliatedUnitInputField>
 					</ArmyBlank>	
 				</MilitarySection>
 				<Link to="/signin">
-					<SignupButton>회원가입</SignupButton>
+					<SignupButton onClick={submit}>회원가입</SignupButton>
 				</Link>
 				
 			</MainBox>

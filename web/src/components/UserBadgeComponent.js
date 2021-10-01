@@ -1,26 +1,13 @@
 import React from 'react';
 import styled from 'styled-components'
-import {Link} from 'react-router-dom'
 import icon1lsc from '../static/image/1lsc.png';
-import iconchoi from '../static/image/최예나.jpg';
-
+import { ReactComponent as PlzLoginIcon } from "../static/svg/question-circle-regular.svg";
 
 const Icon1lsc = styled.img.attrs({
   src: icon1lsc
 })`
   width:50px;
   height:50px;
-  padding-top:15px;
-  padding-right:30px;
-`
-
-const IconChoi = styled.img.attrs({
-  src: iconchoi
-})`
-  width:50px;
-  height:50px;
-  padding-top:15px;
-  padding-right:30px;
 `
 
 const Container = styled.div`
@@ -38,10 +25,10 @@ const Container = styled.div`
 const UnLoggedInWrapper = styled.div`
   padding: 30px 19px;
   float:right;
-  padding-right: 40px;
+  padding-right: 30px;
   font-size:20px;
   text-align:right;
-  text-align:justfiy;
+  cursor: pointer;
 `
 
 const InLoggedInWrapper = styled.div`
@@ -54,11 +41,13 @@ const InLoggedInWrapper = styled.div`
 `
 
 const ImageBlank=styled.div`
+  padding-top:13px;
+  padding-right:30px;
   float:right;
 `
 
 
-export default function UserBadgeComponent({data}){
+export default function UserBadgeComponent({data, goLogin}){
   return (
     <Container>
       {data && 
@@ -67,18 +56,18 @@ export default function UserBadgeComponent({data}){
           <Icon1lsc></Icon1lsc>
         </ImageBlank>
         <InLoggedInWrapper>
-          1군수지원사령부 수도군수지원단
+          {data.name}
           <br></br>
-          <strong>1896부대</strong>
+          <strong>{data.group_id}</strong>
         </InLoggedInWrapper>
       </>
       }
       {!data && 
       <> 
         <ImageBlank>
-          <IconChoi></IconChoi>
+          <PlzLoginIcon width="50px"></PlzLoginIcon>
         </ImageBlank>
-        <UnLoggedInWrapper>
+        <UnLoggedInWrapper onClick={goLogin}>
           부대 계정으로 로그인을 해주세요.
         </UnLoggedInWrapper>
       </>

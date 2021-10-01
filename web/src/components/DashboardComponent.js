@@ -225,7 +225,7 @@ export default function DashboardComponent({chartData, average, dataName, menuRa
           <TodayWrapper>
             {todayData.map((data) => {
               return (
-                <TypeBox>
+                <TypeBox key={data.type}>
                   <TypeName>
                     {data.type}
                   </TypeName>
