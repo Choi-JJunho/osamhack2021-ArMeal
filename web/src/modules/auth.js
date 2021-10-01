@@ -1,5 +1,5 @@
 import { login as loginAPI, signup as signupAPI } from "api";
-import { createPromiseThunk, reducerUtils, handleAsyncActions } from 'utils/asyncUtils';
+import { createPromiseThunk } from 'utils/asyncUtils';
 
 const LOGIN = "LOGIN";
 const LOGIN_SUCCESS = "LOGIN_SUCCESS";
