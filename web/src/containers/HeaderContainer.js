@@ -11,7 +11,7 @@ const Container = styled.div`
 `
 
 export default function HeaderContainer(){
-  const { data } = useSelector( state => state.authReducer.auth );
+  const { data } = useSelector( state => state.authReducer );
   let location = useLocation();
   const history = useHistory();
   const [name, setName] = useState('')
@@ -50,7 +50,7 @@ export default function HeaderContainer(){
   }, [path])
 
   const goLogin = () => {
-    history.push('/signin')
+    history.push('/')
   }
 
   return (

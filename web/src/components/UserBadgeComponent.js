@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components'
 import icon1lsc from '../static/image/1lsc.png';
-import iconchoi from '../static/image/최예나.jpg';
 import { ReactComponent as PlzLoginIcon } from "../static/svg/question-circle-regular.svg";
 
 const Icon1lsc = styled.img.attrs({
@@ -29,6 +28,7 @@ const UnLoggedInWrapper = styled.div`
   padding-right: 30px;
   font-size:20px;
   text-align:right;
+  cursor: pointer;
 `
 
 const InLoggedInWrapper = styled.div`
