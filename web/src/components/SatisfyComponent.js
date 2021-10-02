@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components'
-import PropTypes from 'prop-types'
 
 //////////////////설문조사 페이지 CSS 시작//////////////////////////////////
 import MainPic from '../static/image/restaurant.png';
@@ -333,7 +332,6 @@ ${props =>
   props.type !== 0 
   ? "display:none" : 
   "@media only screen and (max-width: 768px) {width: 70vw; border: 6px solid #86DE8A;}; display:grid; width: 50vw; height: 239px; left: 35.9vw; top: 35.9vh; background: #FFFFFF; border: 10px solid #86DE8A; box-sizing: border-box; border-radius: 20px;"
-
 }
 `
 
@@ -446,72 +444,19 @@ const PercentageContainer = styled.div`
 `
 
 /////////////////메뉴 Display 페이지 CSS 끝///////////////////////////////////////////
-function Modal({ className, visible, children }) {
-  return (
-    <>
-      <ModalOverlay visible={visible} />
-      <ModalWrapper className={className} tabIndex="-1" visible={visible}>
-        <ModalInner tabIndex="0" className="modal-inner">
-          {children}
-        </ModalInner>
-      </ModalWrapper>
-    </>
-  )
-}
 
-Modal.propTypes = {
-  visible: PropTypes.bool,
-}
 
-const ModalWrapper = styled.div`
-  box-sizing: border-box;
-  display: ${(props) => (props.visible ? 'block' : 'none')};
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 1000;
-  overflow: auto;
-  outline: 0;
+const Modal = styled.div`
+${props => 
+  props.taste !== 8 
+  ? "@media only screen and (max-width: 768px) {width: 70vw; border: 6px solid #86DE8A;}; display:grid; width: 50vw; height: 239px; left: 5vw; top: 15.3vh; background: #FFFFFF; border: 10px solid #86DE8A; box-sizing: border-box; border-radius: 20px; position: absolute;" 
+  : "display:none;"
+}
+`
+const ModalTextTitle = styled.div`
 `
 
-const ModalOverlay = styled.div`
-  box-sizing: border-box;
-  display: ${(props) => (props.visible ? 'block' : 'none')};
-  position: fixed;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  background-color: rgba(0, 0, 0, 0.6);
-  z-index: 999;
-`
-
-const ModalInner = styled.div`
-
-  box-sizing: border-box;
-  position: relative;
-  box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.5);
-  background-color: #fff;
-  border-radius: 10px;
-  width: 360px;
-  max-width: 480px;
-  top: 50%;
-  transform: translateY(-50%);
-  margin: 0 auto;
-  padding: 40px 20px;
-`
-
-
-
-function ModalPage() {
-  return (
-    <Modal visible={true}>Hello</Modal>
-  )
-}
-
-export default function SatisfyComponent({todayData, type, selectType, selectTypeIdx, todayTaste, selectSatisfaction, survey, visible}){
+export default function SatisfyComponent({todayData, type, selectType, selectTypeIdx, todayTaste, selectSatisfaction, survey, visible, modal, openModal}){
   return (
     <Container>
       <GreenBorderBoxWrapper>
@@ -574,26 +519,35 @@ export default function SatisfyComponent({todayData, type, selectType, selectTyp
                   </Survey>
               ))}
             </Wrapper>
-            { visible==="worst" &&
+            { visible === "worst" &&
               <TasteSelectionWrapper visible={visible}>
-                {todayTaste.map((data) => (
-                  <TasteSelectionBox>
+                {todayTaste.map((data,index) => (
+                  <TasteSelectionBox onClick={openModal(index)}>
                     {data.taste}
                   </TasteSelectionBox>
                 ))}
               </TasteSelectionWrapper>
             }
 
-            { visible==="bad" &&
+            { visible === "bad" &&
               <TasteSelectionWrapper visible={visible}>
-                {todayTaste.map((data) => (
-                  <TasteSelectionBox>
+                {todayTaste.map((data, index) => (
+                  <TasteSelectionBox onClick={openModal(index)}>
                     {data.taste}
                   </TasteSelectionBox>
                 ))}
               </TasteSelectionWrapper>
             }
-            
+            {modal !== 8 ?
+              <Modal>
+                <ModalTextTitle>
+                  자율메뉴 추가/수정
+                </ModalTextTitle>
+              
+              </Modal>
+              :
+              <div></div>
+            }
             <QuitWrapper>
               <Quit>
                 종료
