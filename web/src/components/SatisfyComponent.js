@@ -167,6 +167,8 @@ const Wrapper = styled.div`
   justify-content: space-around;
   padding: 0px 0px;
 
+  pointer-events: ${props => props.taste === true ? "none" : "initial"};
+
   
 `
 const Text2 = styled.div`
@@ -273,13 +275,13 @@ position: absolute;
   @media only screen and (max-width: 768px) {
     top: 136px;
   }
-  left: 32px;
+  left: 2.7vw;
     `}
   ${props => props.visible === 'bad' && `
   @media only screen and (max-width: 768px) {
     top: 219px;
   }
-    left: 203px;
+  left: 17.5vw;
   `}
 `
 const TasteSelectionBox = styled.div`
@@ -454,9 +456,20 @@ ${props =>
 }
 `
 const ModalTextTitle = styled.div`
+line-height: 22vh;
+
+font-style: normal;
+font-weight: bold;
+font-size: 30px;
+
+display: inherit;
+align-items: center;
+text-align: center;
+
+color: #000000;
 `
 
-export default function SatisfyComponent({todayData, type, selectType, selectTypeIdx, todayTaste, selectSatisfaction, survey, visible, modal, openModal}){
+export default function SatisfyComponent({todayData, type, selectType, selectTypeIdx, todayTaste, selectSatisfaction, survey, visible, modal, setModal, openModal}){
   return (
     <Container>
       <GreenBorderBoxWrapper>
@@ -521,8 +534,8 @@ export default function SatisfyComponent({todayData, type, selectType, selectTyp
             </Wrapper>
             { visible === "worst" &&
               <TasteSelectionWrapper visible={visible}>
-                {todayTaste.map((data,index) => (
-                  <TasteSelectionBox onClick={openModal(index)}>
+                {todayTaste.map((data) => (
+                  <TasteSelectionBox onClick={()=> openModal(true)}>
                     {data.taste}
                   </TasteSelectionBox>
                 ))}
@@ -531,17 +544,17 @@ export default function SatisfyComponent({todayData, type, selectType, selectTyp
 
             { visible === "bad" &&
               <TasteSelectionWrapper visible={visible}>
-                {todayTaste.map((data, index) => (
-                  <TasteSelectionBox onClick={openModal(index)}>
+                {todayTaste.map((data) => (
+                  <TasteSelectionBox onClick={()=> openModal(true)}>
                     {data.taste}
                   </TasteSelectionBox>
                 ))}
               </TasteSelectionWrapper>
             }
-            {modal !== 8 ?
+            {modal === true ?
               <Modal>
                 <ModalTextTitle>
-                  자율메뉴 추가/수정
+                  소중한 의견 감사합니다!
                 </ModalTextTitle>
               
               </Modal>
