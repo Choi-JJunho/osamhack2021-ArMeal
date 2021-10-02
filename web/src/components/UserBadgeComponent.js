@@ -23,9 +23,9 @@ const Container = styled.div`
 `
 
 const UnLoggedInWrapper = styled.div`
-  padding: 30px 19px;
+  padding-top: 30px;
+  padding-right: 22px;
   float:right;
-  padding-right: 30px;
   font-size:20px;
   text-align:right;
   cursor: pointer;
@@ -42,7 +42,7 @@ const InLoggedInWrapper = styled.div`
 
 const ImageBlank=styled.div`
   padding-top:13px;
-  padding-right:30px;
+  padding-right:22px;
   float:right;
 `
 
