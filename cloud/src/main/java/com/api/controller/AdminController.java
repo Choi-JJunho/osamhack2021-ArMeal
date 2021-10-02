@@ -39,11 +39,13 @@ public class AdminController {
     @Autowired
     RatingService ratingService;
 
+    // OK
     @RequestMapping(value = "/save/menu/{group}/{start}/{end}", method = RequestMethod.GET)
     public ResponseEntity saveAllMenu(@PathVariable("start") String startIdx, @PathVariable("end")String endIdx, @PathVariable("group")String groupNum){
         return new ResponseEntity<List<HashMap<String, Object>>>(parsingData.saveData(startIdx, endIdx, groupNum), HttpStatus.OK);
     }
 
+    // OK
     @RequestMapping(value = "/save/dailymenu/{group}/{start}/{end}", method = RequestMethod.GET)
     public ResponseEntity saveAllDailyMenu(@PathVariable("start") String startIdx, @PathVariable("end")String endIdx, @PathVariable("group")String groupNum){
         return new ResponseEntity<List<HashMap<String,Object>>>(parsingData.setDailyMenu(Long.valueOf(groupNum), startIdx, endIdx, groupNum), HttpStatus.OK);

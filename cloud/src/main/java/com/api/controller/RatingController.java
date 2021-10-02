@@ -40,7 +40,7 @@ public class RatingController {
     RatingService ratingService;
     
     // 평가를 진행하기 위한 서비스
-    /* 현재 일일 메뉴에 대한 평가만 존재하므로 해당 서비스 보류
+    /* 현재 일일 메뉴에 대한 평가만 존재하므로 해당 서비스 불필요
     @RequestMapping(value = "/add/rating", method = RequestMethod.POST)
     public ResponseEntity addRating(@RequestBody Rating rate) {
         ratingService.addRating(rate);
@@ -50,20 +50,22 @@ public class RatingController {
     
     // 해당하는 날짜의 만족도조사 결과를 얻기 위한 서비스
     @RequestMapping(value = "/get/rating/{start}/{end}", method = RequestMethod.POST)
-    public ResponseEntity getratingbydate(@PathVariable("start") String start, @PathVariable("end") String end) {
-        return new ResponseEntity<List<HashMap<String, Object>>>(ratingService.getRatioByDates(start, end), HttpStatus.OK);
+    public ResponseEntity getratingbydate(@PathVariable("start") String start, @PathVariable("end") String end, long group_id) {
+        return new ResponseEntity<List<HashMap<String, Object>>>(ratingService.getRatioByDates(start, end, group_id), HttpStatus.OK);
     }
     
 
     // 일일 만족도 조사에 대한 서비스
+    // OK
     @RequestMapping(value = "/add/rating/daily", method = RequestMethod.POST)
-    public ResponseEntity addDailyRating(@ApiParam(value = "(required: userId, date, time, rating_value, badReason)", required = true) @RequestBody HashMap<String, Object> value) {
+    public ResponseEntity addDailyRating(@ApiParam(value = "(required: userId, date, time, rating_value, badReason, group_id)", required = true) @RequestBody HashMap<String, Object> value) {
         long userId = Long.valueOf(value.get("userId").toString());
         Date date = Date.valueOf(value.get("date").toString());
         int time = Integer.valueOf(value.get("time").toString());
         int rating_value = Integer.valueOf(value.get("rating_value").toString());
         int badReason = Integer.valueOf(value.get("badReason").toString());
-        return new ResponseEntity<List<HashMap<String, Object>>>(ratingService.addDailyRating(userId, date, time, rating_value, badReason), HttpStatus.OK);
+        long group_id = Long.valueOf(value.get("group_id").toString());
+        return new ResponseEntity<List<HashMap<String, Object>>>(ratingService.addDailyRating(userId, group_id, date, time, rating_value, badReason), HttpStatus.OK);
     }
     /* 예제 : 2021년 9월 20일의 조식에 대해 평가
     {
@@ -71,13 +73,14 @@ public class RatingController {
         "date":"2021-09-20",
         "time":1,
         "rating_value":1,
-        "badReason":5
+        "badReason":5,
+        "group_id":5322
     }
     */
     
     // 메뉴별 통계를 위한 서비스
     @RequestMapping(value = "/get/ratio/all", method = RequestMethod.GET)
-    public ResponseEntity getAllRatio() {
-        return new ResponseEntity<List<HashMap<String,Object>>>(ratingService.getRatioAllMenu(), HttpStatus.OK);
+    public ResponseEntity getAllRatio(long group_id) {
+        return new ResponseEntity<List<HashMap<String,Object>>>(ratingService.getRatioAllMenu(group_id), HttpStatus.OK);
     }
 }
