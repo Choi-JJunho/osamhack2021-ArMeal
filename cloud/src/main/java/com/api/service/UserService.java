@@ -29,7 +29,7 @@ public class UserService {
         
         // 가입된 유저인지 확인
         if (selectUser != null) {
-            result.put("message", "이미 가입된 유저입니다.");
+            result.put("error", "이미 가입된 유저입니다.");
             return result;
         }
 
@@ -37,7 +37,7 @@ public class UserService {
         if (selectUser != null) {
             User selectUser2 = usermapper.findUserByEmail(email);
             if (selectUser2 != null) {
-                result.put("message", "이미 가입된 이메일입니다.");
+                result.put("error", "이미 가입된 이메일입니다.");
                 return result;
             }
         }
@@ -55,7 +55,7 @@ public class UserService {
         HashMap<String,Object> result = new HashMap<>();
 
         if(pw == null || !passwordEncoder.matches(password, pw)) {
-            result.put("message", "비밀번호 불일치");
+            result.put("error", "비밀번호 불일치");
             return result;
         }
         User user = usermapper.findUserByLoginId(id);
