@@ -78,24 +78,15 @@ const [satisfaction, setSatisfaction] = useState(0) // const [변수, set변수]
     }
     else if (idx===2){
       setVisible("average")
-      setModal(true)
-      setTimeout(() => {
-        setModal(false);
-      }, 2000);
+      openModal()
     }
     else if (idx===3){
       setVisible("good")
-      setModal(true)
-      setTimeout(() => {
-        setModal(false);
-      }, 2000);
+      openModal()
     }
     else if (idx===4){
       setVisible("best")
-      setModal(true)
-      setTimeout(() => {
-        setModal(false);
-      }, 2000);
+      openModal()
     }
     // else setVisible("none")
   
