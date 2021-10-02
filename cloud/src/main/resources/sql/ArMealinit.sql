@@ -42,7 +42,8 @@ CREATE TABLE `Used_ingredient`(
 CREATE TABLE `Rating`(
     `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
     `User_id` BIGINT NOT NULL,
-    `Menu_id` BIGINT NOT NULL,
+    `Target_id` BIGINT NOT NULL,
+    `Target_type` INT NOT NULL,
     `rating_data` INT NOT NULL,
     `bad_reason` INT NULL,
     `created_at` TIMESTAMP NOT NULL DEFAULT NOW(),
@@ -74,4 +75,4 @@ ALTER TABLE
 ALTER TABLE
     `Used_ingredient` ADD CONSTRAINT `used_ingredient_ingredient_data_id_foreign` FOREIGN KEY(`Ingredient_data_id`) REFERENCES `Ingredient_data`(`id`);
 ALTER TABLE
-    `Rating` ADD CONSTRAINT `rating_menu_id_foreign` FOREIGN KEY(`Menu_id`) REFERENCES `Menu`(`id`);
+    `Rating` ADD CONSTRAINT `rating_menu_id_foreign` FOREIGN KEY(`Target_id`) REFERENCES `Menu`(`id`);

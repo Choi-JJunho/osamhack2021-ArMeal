@@ -31,13 +31,28 @@ public class RatingService extends Exception {
     public HashMap<String, Object> addRating(Rating rating) {
         HashMap<String, Object> result = new HashMap<>();
 
-        ratingMapper.addRating(rating.getUser_id(), rating.getMenu_id(), rating.getRating_data());
+        ratingMapper.addRating(rating.getUser_id(), rating.getTarget_id(), rating.getTarget_type(), rating.getRating_data());
         if(rating.getRating_data() == 1) {
             ratingMapper.updateBadReason(rating.getBad_reason());
         }
+        // TODO : Target 반영해서 수정하기(구현)
         menuMapper.updateMenuScore(rating.getMenu_id());
 
         result.put("message", "메뉴 ID \"" + rating.getMenu_id() + "\"의 점수가 갱신되었습니다.");
+
+        return result;
+    }
+    
+    public HashMap<Object,Object> editRating(long id, int ratingData) {
+        HashMap<Object,Object> result = new HashMap<>();
+        Rating rating = ratingMapper.getRatingById(id);
+
+        if(rating == null) {
+            result.put("message", "존재하지 않는 평가입니다.");
+        } else {
+            ratingMapper.updateRating(id, ratingData);
+            result.put("message", "평가 \"" + id + "\"가 \"" + ratingData + "\"로 수정되었습니다.");
+        }
 
         return result;
     }
