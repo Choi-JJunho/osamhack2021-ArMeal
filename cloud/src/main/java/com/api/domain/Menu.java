@@ -7,6 +7,9 @@ public class Menu {
 	@ApiModelProperty(hidden = true)
     private long id;
 
+	@ApiModelProperty(hidden = true)
+    private long group_id;
+
 	@ApiModelProperty(notes = "메뉴명", example = "1")
 	private String name;
 
@@ -31,6 +34,22 @@ public class Menu {
 
 	public void setId(long id) {
 		this.id = id;
+	}
+
+	public long getGroup_id() {
+		return this.group_id;
+	}
+
+	public void setGroup_id(long group_id) {
+		this.group_id = group_id;
+	}
+
+	public int getMenu_type() {
+		return this.menu_type;
+	}
+
+	public void setMenu_type(int menu_type) {
+		this.menu_type = menu_type;
 	}
 
 	public String getName() {
@@ -89,12 +108,14 @@ public class Menu {
 	public String toString() {
 		return "{" +
 			" id='" + getId() + "'" +
+			", group_id='" + getGroup_id() + "'" +
 			", name='" + getName() + "'" +
-			", menutype='" + getMenutype() + "'" +
+			", menu_type='" + getMenu_type() + "'" +
 			", score='" + getScore() + "'" +
 			", created_at='" + getCreated_at() + "'" +
 			", deleted_at='" + getDeleted_at() + "'" +
 			", is_deleted='" + isIs_deleted() + "'" +
 			"}";
 	}
+	
 }

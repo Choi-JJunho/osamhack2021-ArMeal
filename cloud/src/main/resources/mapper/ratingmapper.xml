@@ -6,25 +6,27 @@
 <mapper namespace="com.api.mapper.RatingMapper">
 
     <!-- Find Menu -->
-    <select id="getRatioByDates" resultType="java.util.HashMap">
-        SELECT a.Menu_id AS id, b.name AS name, (SUM(a.rating_data)*20) / COUNT(a.rating_data) AS ratio FROM Rating AS a JOIN Menu AS b ON (a.Menu_id = b.id) WHERE a.created_at BETWEEN DATE(#{_start}) AND DATE(#{_end})+1 GROUP BY Menu_id    
+    <select id="findRatioByDates" resultType="java.util.HashMap">
+        SELECT a.Menu_id AS id, b.name AS name, (SUM(a.rating_data)*20) / COUNT(a.rating_data) AS ratio FROM Rating AS a JOIN Menu AS b ON (a.Menu_id = b.id) WHERE a.created_at BETWEEN DATE(#{_start}) AND DATE(#{_end})+1 AND a.group_id = #{_groupId} GROUP BY Menu_id    
     </select>
     
-    <select id="getAllRating" resultType="java.util.HashMap">
-        SELECT * FROM Rating
+    <select id="findAllRating" resultType="java.util.HashMap">
+        SELECT * FROM Rating WHERE group_id = #{_groupId}
     </select>
+
+    <select id="find"></select>
     
     <select id="findRatioOfAllMenu" resultType="java.util.HashMap">
-        SELECT a.Menu_id AS id, b.name AS name, (SUM(a.rating_data)*20) / COUNT(a.rating_data) AS ratio FROM Rating AS a JOIN Menu AS b ON a.Menu_id = b.id GROUP BY Menu_id
+        SELECT a.Menu_id AS id, b.name AS name, (SUM(a.rating_data)*20) / COUNT(a.rating_data) AS ratio FROM Rating AS a JOIN Menu AS b ON a.Menu_id = b.id WHERE a.group_id = #{_groupId} GROUP BY Menu_id
     </select>
 
     <insert id="addRating">
-        INSERT INTO Rating (User_id, Menu_id, rating_data)
-        VALUES (#{_userId}, #{_menuId}, #{ratingData})
+        INSERT INTO Rating (User_id, Menu_id, rating_data, group_id)
+        VALUES (#{_userId}, #{_menuId}, #{ratingData}, #{_groupId})
     </insert>
 
     <update id="updateBadReason">
-        UPDATE Rating SET bad_reason = #{_badreason} WHERE id = (SELECT id FROM (SELECT MAX(id) AS id FROM Rating) AS temp);
+        UPDATE Rating SET bad_reason = #{_badreason} WHERE id = (SELECT id FROM (SELECT MAX(id) AS id FROM Rating) AS temp) AND group_id = #{_groupId};
     </update>
 
 </mapper>

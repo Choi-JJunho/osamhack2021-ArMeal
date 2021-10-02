@@ -31,11 +31,11 @@ public class RatingService extends Exception {
     public HashMap<String, Object> addRating(Rating rating) {
         HashMap<String, Object> result = new HashMap<>();
 
-        ratingMapper.addRating(rating.getUser_id(), rating.getMenu_id(), rating.getRating_data());
+        ratingMapper.addRating(rating.getUser_id(), rating.getMenu_id(), rating.getRating_data(), rating.getGroup_id());
         if(rating.getRating_data() == 1) {
-            ratingMapper.updateBadReason(rating.getBad_reason());
+            ratingMapper.updateBadReason(rating.getBad_reason(), rating.getGroup_id());
         }
-        menuMapper.updateMenuScore(rating.getMenu_id());
+        menuMapper.updateMenuScore(rating.getMenu_id(), rating.getGroup_id());
 
         result.put("message", "메뉴 ID \"" + rating.getMenu_id() + "\"의 점수가 갱신되었습니다.");
 
@@ -44,24 +44,23 @@ public class RatingService extends Exception {
     
     // 사용자가 해당 끼니에 만족도 조사를 실시했을 때 실행되는 로직
     // date : 날짜 / time : 아침,점심,저녁 / rating_value : 점수
-    public List<HashMap<String, Object>> addDailyRating(long userId, Date date, int time, int rating_value, int badReason) {
-        List<HashMap<String, Object>> datas = menuMapper.findDailyMenuByDate(date);
+    public List<HashMap<String, Object>> addDailyRating(long userId, long group_id, Date date, int time, int rating_value, int badReason) {
+        List<HashMap<String, Object>> datas = menuMapper.findDailyMenuByDate(date, group_id);
         long menuId;
         // 각 메뉴별로 점수가 들어간다.
         for(HashMap<String, Object> data : datas) {
             menuId = Long.valueOf(data.get("menu").toString());
-            addRating(new Rating(userId, menuId, rating_value, badReason));
+            addRating(new Rating(userId, group_id, menuId, rating_value, badReason));
         }
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        return getRatioByDates(sdf.format(date), sdf.format(date));
+        return ratingMapper.findRatioByDates(date, date, group_id);
     }
 
     // 메뉴별 통계값을 모두 가져온다.
-    public List<HashMap<String, Object>> getRatioAllMenu() {
-        return ratingMapper.findRatioOfAllMenu();
+    public List<HashMap<String, Object>> getRatioAllMenu(long group_id) {
+        return ratingMapper.findRatioOfAllMenu(group_id);
     }
     
-    public List<HashMap<String, Object>> getRatioByDates(String start, String end) {
-        return ratingMapper.getRatioByDates(Date.valueOf(start), Date.valueOf(end));
+    public List<HashMap<String, Object>> getRatioByDates(String start, String end, long group_id) {
+        return ratingMapper.findRatioByDates(Date.valueOf(start), Date.valueOf(end), group_id);
     }
 }

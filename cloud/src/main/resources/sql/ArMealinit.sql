@@ -18,6 +18,7 @@ CREATE TABLE `Group`(
 );
 CREATE TABLE `Menu`(
     `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `group_id` BIGINT NOT NULL,
     `name` VARCHAR(255) NOT NULL,
     `menu_type` INT NOT NULL,
     `score` DOUBLE NULL,
@@ -41,6 +42,7 @@ CREATE TABLE `Used_ingredient`(
 );
 CREATE TABLE `Rating`(
     `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `group_id` BIGINT NOT NULL,
     `User_id` BIGINT NOT NULL,
     `Menu_id` BIGINT NOT NULL,
     `rating_data` INT NOT NULL,
@@ -55,6 +57,7 @@ CREATE TABLE `Ingredient`(
 );
 CREATE TABLE `SelfDish`(
     `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `group_id` BIGINT NOT NULL,
     `name` VARCHAR(255) NOT NULL,
     `date_value` DATE NOT NULL,
     `created_at` TIMESTAMP NOT NULL DEFAULT NOW(),

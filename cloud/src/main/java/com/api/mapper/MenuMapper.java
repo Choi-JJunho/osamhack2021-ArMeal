@@ -11,28 +11,34 @@ import java.util.HashMap;
 
 @Mapper
 public interface MenuMapper {
-    List<HashMap<String, Object>> findAllMenu();
+    List<HashMap<String, Object>> findAllMenu(@Param("_groupId") long group_id);
     Menu findMenuById(@Param("_id")long id); // 사용 안 함
-    Menu findMenuByName(@Param("_name")String name);
-    List<HashMap<String, Object>> searchMenu(@Param("_name")String name);
+    Menu findMenuByName(@Param("_name")String name, @Param("_groupId") long group_id);
+    List<HashMap<String, Object>> searchMenu(@Param("_name")String name, @Param("_groupId")long group_id);
     List<HashMap<String, Object>> findMenuByMenuType(@Param("menuType")int menuType); // 사용 안 함
-    List<HashMap<String, Object>> findDailyMenuByDate(@Param("_date")Date date);
-    List<HashMap<String, Object>> findRecentDateByMenuId(@Param("_id")long menuId);
+
+    List<HashMap<String, Object>> findDailyMenuByDate(@Param("_date")Date date, @Param("_groupId")long group_id);
+    List<HashMap<String, Object>> findRecentDateByMenuId(@Param("_id")long menuId, @Param("_groupId")long group_id);
+    List<HashMap<String, Object>> findMonthMenu(@Param("_groupId") long groupId, @Param("_date") Date date, @Param("_time") int time);
+
     HashMap<String,Object> findIngredientByname(@Param("_name") String name);
     List<HashMap<String, Object>> findIngredientsByMenuId(@Param("_menuId") long id);
     List<HashMap<String, Object>> findMenuByIngredientId(@Param("_ingredientId") long id);
     List<HashMap<String, Object>> findAllIngredient();
 
+    HashMap<String, Object> findSelfDish(@Param("_name") String name, @Param("_date") Date date, @Param("_groupId") long group_id);
 
-    void addMenu(@Param("_name")String name, @Param("_menutype") int type);
-    void addDailyMenu(@Param("dateValue")Date date, @Param("_time")int time, @Param("groupId") long groupId, @Param("_menu") long menuId);
-    void addSelfDish(@Param("_name")String name, @Param("_date")Date date);
+    void addMenu(@Param("_name")String name, @Param("_menutype") int type, @Param("_groupId") long group_id);
+    void addDailyMenu(@Param("dateValue")Date date, @Param("_time")int time, @Param("_groupId") long groupId, @Param("_menu") long menuId);
+    void addSelfDish(@Param("_name")String name, @Param("_date")Date date, @Param("_groupId") long groupId);
+
     void addIngredient(@Param("_name")String name);
-    void addUsedIngredient(@Param("_menuid")long menuId, @Param("_ingredientId")long ingredientId);
+    void addUsedIngredient(@Param("_menuId")long menuId, @Param("_ingredientId")long ingredientId);
+    void addUsedIngredientSelfdish(@Param("_sidedishId") long sidedishId, @Param("_ingredientId") long ingredientId);
 
-    void updateMenuType(@Param("_name")String name, @Param("_menutype") int type);
-    void updateMenuScore(@Param("_id")long id);
+    void updateMenuType(@Param("_name")String name, @Param("_menutype") int type, @Param("_groupId") long group_id);
+    void updateMenuScore(@Param("_id")long id, @Param("_groupId") long group_id);
     
-    void updateDailyMenu(@Param("dateValue")Date date, @Param("_time")int time, @Param("groupId") long groupId, @Param("_menu") long menuId);
+    void updateDailyMenu(@Param("dateValue")Date date, @Param("_time")int time, @Param("_groupId") long groupId, @Param("_menu") long menuId);
 
 }
