@@ -11,6 +11,9 @@ public class SelfDish {
 	private long id;
 
 	@ApiModelProperty(hidden = true)
+	private long group_id;
+
+	@ApiModelProperty(hidden = true)
 	private String name;
 	
 	@ApiModelProperty(hidden = true)

@@ -8,10 +8,11 @@ public class Rating {
 
 	public Rating() {}
 	
-	public Rating(long userId, long targetId, int targetType, int rating, int badReason) {
+	public Rating(long userId, long targetId, int targetType, long groupId, int rating, int badReason) {
 		this.User_id = userId;
 		this.Target_id = targetId;
 		this.Target_type = targetType;
+		this.group_id = groupId;
 		this.rating_data = rating;
 		this.bad_reason = badReason;
 	}
@@ -19,6 +20,9 @@ public class Rating {
 	@ApiModelProperty(hidden = true)
     private long id;
 
+	@ApiModelProperty(notes = "급양대 부대번호", example = "5322")
+    private long group_id;
+	
 	@ApiModelProperty(notes = "유저 아이디", example = "1")
 	private long User_id;
 
@@ -50,6 +54,14 @@ public class Rating {
 
 	public void setId(long id) {
 		this.id = id;
+	}
+
+	public long getGroup_id() {
+		return this.group_id;
+	}
+
+	public void setGroup_id(long group_id) {
+		this.group_id = group_id;
 	}
 
 	public int getBad_reason() {

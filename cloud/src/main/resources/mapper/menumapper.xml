@@ -7,63 +7,78 @@
 
     <!-- Find Menu -->
     <select id="findAllMenu" resultType="java.util.HashMap">
-        SELECT * FROM Menu
+        SELECT * FROM Menu WHERE group_id = #{_groupId}
     </select>
     <select id="findMenuById" resultType="com.api.domain.Menu">
         SELECT * FROM Menu WHERE id = #{_id}
     </select>
 
     <select id="findMenuByName" resultType="com.api.domain.Menu">
-        SELECT * FROM Menu WHERE name = #{_name}
+        SELECT * FROM Menu WHERE name = #{_name} AND group_id = #{_groupId}
     </select>
 
     <select id="searchMenu" resultType="java.util.HashMap">
-        SELECT * FROM Menu WHERE name LIKE CONCAT('%',#{_name},'%')
+        SELECT * FROM Menu WHERE name LIKE CONCAT('%',#{_name},'%') AND group_id = #{_groupId}
     </select>
 
     <select id="findMenuByMenuType" resultType="java.util.HashMap">
-        SELECT * FROM Menu WHERE menu_type = #{menuType}
+        SELECT * FROM Menu WHERE menu_type = #{menuType} AND group_id = #{_groupId}
     </select>
 
     <select id="findDailyMenuByDate" resultType="java.util.HashMap">
-        SELECT * FROM Daily_meal WHERE date_value = #{_date}
+        SELECT * FROM Daily_meal WHERE date_value = #{_date} AND group_id = #{_groupId}
     </select>
     
     <select id="findRecentDateByMenuId" resultType="java.util.HashMap">
-        SELECT DATE_FORMAT(date_value,'%Y-%m-%d') AS recentDate FROM Daily_meal WHERE menu = #{_id} ORDER BY date_value DESC LIMIT 10;
+        SELECT DATE_FORMAT(date_value,'%Y-%m-%d') AS recentDate FROM Daily_meal WHERE menu = #{_id} AND group_id = #{_groupId} ORDER BY date_value DESC LIMIT 10;
     </select>
 
-    <select id="findIngredientByname">
+    <select id="findMonthMenu" resultType="java.util.HashMap">
+        SELECT b.name AS name, a.* FROM Daily_meal AS a JOIN Menu AS b ON (a.menu = b.id) WHERE a.date_value BETWEEN #{_date} AND #{_date}+30 AND a.time = #{_time} AND a.group_id = #{_groupId} ORDER BY a.date_value ASC;
+    </select>
+
+    <select id="findIngredientByname" resultType="java.util.HashMap">
         SELECT * FROM Ingredient WHERE name = #{_name}
     </select>
 
-    <select id="findIngredientByMenuId">
-        SELECT * FROM Ingredient WHERE id = {_menuId}
+    <select id="findIngredientsByMenuId" resultType="java.util.HashMap">
+        SELECT a.* FROM Ingredient AS a INNER JOIN Used_ingredient AS b ON (b.Menu_id = #{_menuId} AND b.Ingredient_id = a.id)
     </select>
 
-    <select id="findMenuByIngredientId">
+    <select id="findMenuByIngredientId" resultType="java.util.HashMap">
         SELECT * FROM Menu AS a JOIN Used_ingredient AS b ON a.id = b.Menu_id WHERE b.Ingredient_id = #{_ingredientId}
     </select>
 
-    <select id="findAllIngredient">
+    <select id="findAllIngredient" resultType="java.util.HashMap">
         SELECT * FROM Ingredient    
     </select>
-    
+
+    <select id="findSelfDish" resultType="java.util.HashMap">
+        SELECT * FROM SelfDish WHERE name = #{_name}, date_value = #{_date} AND group_id = #{_groupId}
+    </select>
 
     <!-- Add Menu -->
     <insert id="addDailyMenu">
         INSERT INTO Daily_meal (date_value, time, group_id, menu)
-        VALUES (#{dateValue}, #{_time}, #{groupId}, #{_menu})
+        VALUES (#{dateValue}, #{_time}, #{_groupId}, #{_menu})
     </insert>
     
     <insert id="addMenu">
-        INSERT INTO Menu (name, menu_type)
-        VALUES (#{_name}, #{_menutype})
+        INSERT INTO Menu (name, menu_type, group_id)
+        VALUES (#{_name}, #{_menutype}, #{_groupId})
     </insert>
+    
     <insert id="addIngredient">
         INSERT INTO Ingredient(name) VALUES(#{_name})
     </insert>
-    <insert id="addUsedIngredient"></insert>
+
+    <insert id="addUsedIngredient">
+        INSERT INTO Used_ingredient(Menu_id, Ingredient_id) VALUES(#{_menuId}, #{_ingredientId})
+    </insert>
+
+    <insert id="addUsedIngredientSelfdish">
+        INSERT INTO Used_ingredient(Self_id, Ingredient_id) VALUES(#{_sidedishId}, #{_ingredientId})
+    </insert>
 
     <!-- Update Menu -->
     <update id="updateMenuType">
@@ -76,15 +91,14 @@
     -->
     <select id="updateMenuScore">
         UPDATE Menu AS t1, ( SELECT Menu_id, sum(rating_data)/count(Menu_id) AS c1
-        FROM Rating
-        WHERE Menu_id = #{_id}
+        FROM Rating WHERE Menu_id = #{_id} AND group_id = #{_groupId}
         GROUP BY Menu_id ) AS t2
         SET t1.score=t2.c1
         WHERE t1.id = #{_id}
     </select>
 
     <update id="updateDailymenu">
-        UPDATE Daily_meal SET date_value=#{dateValue}, time=#{_time}, group_id=#{groupId}, menu=#{_menu} WHERE date_value=#{beforeDate}, time=#{beforeTime}
+        UPDATE Daily_meal SET date_value=#{dateValue}, time=#{_time}, group_id=#{_groupId}, menu=#{_menu} WHERE date_value=#{beforeDate} AND time=#{beforeTime}
     </update>
 
 </mapper>

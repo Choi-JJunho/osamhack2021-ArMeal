@@ -86,7 +86,7 @@ public class ParsingData {
 
     // 메뉴를 DB에 저장한다.
     // 한달에 한번 갱신한다.
-    public List<HashMap<String, Object>> saveData(String startIdx, String endIdx,String groupNum) {
+    public List<HashMap<String, Object>> saveData(String startIdx, String endIdx, String groupNum) {
 
         try{
             List<HashMap<String, Object>> datas = getMenu(startIdx, endIdx, groupNum);
@@ -106,22 +106,23 @@ public class ParsingData {
             Menu brst = new Menu();
             Menu lunc = new Menu();
             Menu dinr = new Menu();
-            
+            long groupId = Long.valueOf(groupNum);
             for(HashMap<String, Object> map : datas) {
                 // 해당 메뉴가 존재하지 않을 경우 DB에 삽입
-                // TODO : MenuType 구분 --> 받아오는 API의 데이터의 개선 혹은 사용자의 static한 작성
-                brst = menuMapper.findMenuByName(map.get("brst").toString());
-                lunc = menuMapper.findMenuByName(map.get("lunc").toString());
-                dinr = menuMapper.findMenuByName(map.get("dinr").toString());
+                brst = menuMapper.findMenuByName(map.get("brst").toString(), groupId);
 
                 if(brst == null && !map.get("brst").toString().trim().isEmpty()) {
-                    menuMapper.addMenu(map.get("brst").toString(), 1);
+                    menuMapper.addMenu(map.get("brst").toString(), 1, groupId);
                 } 
+                lunc = menuMapper.findMenuByName(map.get("lunc").toString(), groupId);
+
                 if(lunc == null && !map.get("lunc").toString().trim().isEmpty()) {
-                    menuMapper.addMenu(map.get("lunc").toString(), 1);
+                    menuMapper.addMenu(map.get("lunc").toString(), 1, groupId);
                 }
+                dinr = menuMapper.findMenuByName(map.get("dinr").toString(), groupId);
+
                 if(dinr == null && !map.get("dinr").toString().trim().isEmpty()) {
-                    menuMapper.addMenu(map.get("dinr").toString(), 1);
+                    menuMapper.addMenu(map.get("dinr").toString(), 1, groupId);
                 }
             }
             return datas;
@@ -130,7 +131,7 @@ public class ParsingData {
         }
         List<HashMap<String, Object>> result = new ArrayList<HashMap<String, Object>>();
         HashMap<String, Object> message = new HashMap<String, Object>();
-        message.put("message", "nodata");
+        message.put("error", "nodata");
         result.add(message);
         return result;
     }
@@ -160,11 +161,11 @@ public class ParsingData {
                 date = Date.valueOf(date_str);
             }
             // 해당 date에 해당하는 메뉴들이 이미 존재하는가?    
-            List<HashMap<String, Object>> dailylist = menuMapper.findDailyMenuByDate(date);
+            List<HashMap<String, Object>> dailylist = menuMapper.findDailyMenuByDate(date, groupId);
 
-            long brst_id = (map.get("brst").toString().trim().isEmpty()) ? -1 : menuMapper.findMenuByName(map.get("brst").toString()).getId();
-            long lunc_id = (map.get("lunc").toString().trim().isEmpty()) ? -1 : menuMapper.findMenuByName(map.get("lunc").toString()).getId();
-            long dinr_id = (map.get("dinr").toString().trim().isEmpty()) ? -1 : menuMapper.findMenuByName(map.get("dinr").toString()).getId();
+            long brst_id = (map.get("brst").toString().trim().isEmpty()) ? -1 : menuMapper.findMenuByName(map.get("brst").toString(), groupId).getId();
+            long lunc_id = (map.get("lunc").toString().trim().isEmpty()) ? -1 : menuMapper.findMenuByName(map.get("lunc").toString(), groupId).getId();
+            long dinr_id = (map.get("dinr").toString().trim().isEmpty()) ? -1 : menuMapper.findMenuByName(map.get("dinr").toString(), groupId).getId();
 
             String brstId_str = Long.toString(brst_id);
             String luncId_str = Long.toString(lunc_id);
@@ -183,8 +184,6 @@ public class ParsingData {
                     dinr_id = -1;
                 }
             }
-
-
             // id == -1이면 중복값으로 해석
             if(brst_id != -1) {
                 menuMapper.addDailyMenu(date, 1, groupId, brst_id);
