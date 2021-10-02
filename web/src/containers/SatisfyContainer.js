@@ -34,8 +34,6 @@ export default function SatisfyContainer(){
     }
   ]
 
-  
-
   const todayTaste = [
     {taste: "짜다"},
     {taste: "쓰다"},
@@ -96,7 +94,11 @@ const [satisfaction, setSatisfaction] = useState(0) // const [변수, set변수]
       setVisible(idx)
     }
 
-
+const [modal, setModal] = useState(8)
+const openModal = (idx) => {
+  setModal(idx)
+  console.log(idx)
+}
   return (
     <>
     <SatisfyComponent 
@@ -115,6 +117,10 @@ const [satisfaction, setSatisfaction] = useState(0) // const [변수, set변수]
       visible={visible}
       selectVisible={selectVisible}
       // selectVisible={selectVisible}
+
+      modal={modal}
+      openModal={openModal}
+
     />
     <SatisfyMobileComponent
     todayData={todayData} 
