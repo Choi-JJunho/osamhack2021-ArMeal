@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components'
+import PropTypes from 'prop-types'
 
 //////////////////설문조사 페이지 CSS 시작//////////////////////////////////
 import MainPic from '../static/image/restaurant.png';
@@ -13,10 +14,6 @@ import SurveyImage5 from '../static/image/score_5.png';
 const MainPicture = styled.img.attrs({
   src: MainPic
 })`
-@media only screen and (max-width: 768px) {
-  height: 16vh;
-}
-
   width: 70vw;
   height: 27vh;
   margin: 0px auto;
@@ -24,17 +21,13 @@ const MainPicture = styled.img.attrs({
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
   border-radius:15px;
   opacity: 0.25;
+  @media(min-width: 768px) and (max-width: 1100px){
+    display:none;
+  }
 `
+
 const MainPictureTextTitle=styled.div`
-@media only screen and (max-width: 768px) {
-font-size: 18px;
-line-height: 15px;
-left: 15px;
-top: -13px;
-}
-
-
-
+  
   font-style: normal;
   font-weight: bold;
   font-size: 35px;
@@ -50,21 +43,15 @@ top: -13px;
   color: #135019;
 
   position: absolute;
-    top: 40px;
-    left: 40px;
+  top: 40px;
+  left: 40px;
+  @media(min-width: 768px) and (max-width: 1100px){
+    display:none;
+  }
 `
 // top: 96px;
 // left: 30px;
 const MainPictureText = styled(MainPictureTextTitle)`
-@media only screen and (max-width: 768px) {
-  font-size: 6px;
-    line-height: 16px;
-    width: 85%;
-    height: 0px;
-    top: 75px;
-    left: 12px;
-  }
-
   font-size: 22px;
   line-height: 30px;
   width: 100%;
@@ -76,8 +63,9 @@ const MainPictureText = styled(MainPictureTextTitle)`
   position: absolute;
   top: 116px;
   left: 30px;
-
-
+  @media(min-width: 768px) and (max-width: 1100px){
+    display:none;
+  }
 `
 
 // const SurveyImages = styled.img`
@@ -94,57 +82,48 @@ const SurveyImages1 = styled.img.attrs({
   src: SurveyImage1
 })`
   width: 10vw;
-  @media only screen and (max-width: 768px) {
-  position: absolute;
-  top: 13px;
-  right: 48px;
-}
-  
+  @media(min-width: 768px) and (max-width: 1100px){
+    padding-top: 4vh;
+    width: 15vw;
+  }
 `
 const SurveyImages2 = styled.img.attrs({
   src: SurveyImage2
 })`
-@media only screen and (max-width: 768px) {
-  position: absolute;
-  top: 13px;
-  right: 48px;
-}
   width: 10vw;
+  @media(min-width: 768px) and (max-width: 1100px){
+    padding-top: 4vh;
+    width: 15vw;
+  }
 `
 const SurveyImages3 = styled.img.attrs({
   src: SurveyImage3
 })`
-@media only screen and (max-width: 768px) {
-  position: absolute;
-  top: 13px;
-  right: 48px;
-}
   width: 10vw;
+  @media(min-width: 768px) and (max-width: 1100px){
+    padding-top: 4vh;
+    width: 15vw;
+  }
 `
 const SurveyImages4 = styled.img.attrs({
   src: SurveyImage4
 })`
-@media only screen and (max-width: 768px) {
-  position: absolute;
-  top: 13px;
-  right: 48px;
-}
   width: 10vw;
+  @media(min-width: 768px) and (max-width: 1100px){
+    padding-top: 4vh;
+    width: 15vw;
+  }
 `
 const SurveyImages5 = styled.img.attrs({
   src: SurveyImage5
 })`
-@media only screen and (max-width: 768px) {
-  position: absolute;
-  top: 13px;
-  right: 48px;
-}
   width: 10vw;
+  @media(min-width: 768px) and (max-width: 1100px){
+    padding-top: 4vh;
+    width: 15vw;
+  }
 `
 const Message = styled.div`
-@media only screen and (max-width: 768px) {
-  height: 19vh;
-}
   width: 70vw;
   height: 25vh;
   margin: 0px auto;
@@ -154,35 +133,24 @@ const Message = styled.div`
   // box-sizing: border-box;
   // box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   // border-radius: 15px;
-  
+  @media(min-width: 768px) and (max-width: 1100px){
+    height: 2vh;
+  }
 ` 
 
 const Wrapper = styled.div`
-@media only screen and (max-width: 768px) {
-  display: block;
-  margin: 0px;
-  }
   margin: 8vh 0vw 3vh 0vw;
   display: flex;
   justify-content: space-around;
   padding: 0px 0px;
-
-  
 `
 const Text2 = styled.div`
-@media only screen and (max-width: 768px) {
-  display: inline-flex;
-  font-size: 28px;
-  line-height: 10px;
-  padding-left: 21px;
-  width: 154px;
-  }
-
+  
   font-style: normal;
   font-weight: bold;
   font-size: 30px;
   line-height: 25px;
-
+  
   display: flex;
   // align-items: center;
   // text-align: center;
@@ -191,16 +159,13 @@ const Text2 = styled.div`
 
   justify-content: center;
   padding: 4vh 0vw;
+
+  @media(min-width: 768px) and (max-width: 1100px){
+    font-size: 20px;
+  }
 `
 const Survey = styled(Message)`
-@media only screen and (max-width: 768px) {
-  width: 70vw;
-  height: 10vh;
-  margin-bottom: 10px;
-  text-align: unset;
-  }
-  
-
+    
     width: 14vw;
     height: 33vh;
     margin: auto;
@@ -218,6 +183,11 @@ const Survey = styled(Message)`
     }
 
     text-align: center;
+
+  @media(min-width: 768px) and (max-width: 1100px){
+    width: 18vw;
+    height: 55vh;
+  }
 `
 
 const QuitWrapper = styled.div`
@@ -228,15 +198,12 @@ const QuitWrapper = styled.div`
     margin-bottom: 0px;
     margin-right: 60px;
     text-align: -webkit-right;
+  
+  @media(min-width: 768px) and (max-width: 1100px){
+    display:none;
+  }
 `
 const Quit = styled.div`
-@media only screen and (max-width: 768px) {
-  right: 110px;
-  width: 31%;
-  position: absolute;
-  }
-
-
   padding: 5px;
   color:white;
   background:#75CB32;
@@ -256,40 +223,18 @@ const Quit = styled.div`
     }
 `
 const TasteSelectionWrapper = styled.div`
-@media only screen and (max-width: 768px) {
-  display: -webkit-box;
-  width: 100%;
-  height: 11vh;
-  left: 2px;
-  flex-wrap: wrap;
-  }
-
-
-position: absolute;
+  position: absolute;
   height: 40vh;
   top: 30.1vh;
   
   ${props => props.visible === 'worst' && `
-  @media only screen and (max-width: 768px) {
-    top: 136px;
-  }
-  left: 32px;
+      left: 2.7vw;
     `}
   ${props => props.visible === 'bad' && `
-  @media only screen and (max-width: 768px) {
-    top: 219px;
-  }
-    left: 203px;
+      left: 17.5vw;
   `}
 `
 const TasteSelectionBox = styled.div`
-@media only screen and (max-width: 768px) {
-  margin: 2px;
-  width: 72px;
-  height: 37px;
-}
-// top: 136px;
-
   width: 9.3vw;
   height: 4.3vh;
   margin-top: 0.5vh;
@@ -319,31 +264,25 @@ const SurveyWrapper = styled.div`
 /////////////////메뉴 Display 페이지 CSS 시작///////////////////////////////////////////
 const Container = styled.div`
     margin-top: 3vh;
-    display: flex;
     justify-content:space-evenly;
-    @media(min-width: 768px) and (max-width: 1100px){
-      display: none;
+    display: none;
+    @media(max-width: 1100px) and (min-width: 768px){
+      display: flex;
     }
 `
 const GreenBorderBoxWrapper = styled.div`
   top: 39.5vh;
   position:absolute;
 `
-
 const GreenBorderBox = styled.div`
-${props => 
-  props.type !== 0 
-  ? "display:none" : 
-  "@media only screen and (max-width: 768px) {width: 70vw; border: 6px solid #86DE8A;}; display:grid; width: 50vw; height: 239px; left: 35.9vw; top: 35.9vh; background: #FFFFFF; border: 10px solid #86DE8A; box-sizing: border-box; border-radius: 20px;"
+${props => props.type !== 0 
+  ? "display:none" 
+  : "display:grid; width: 50vw; height: 239px; left: 35.9vw; top: 35.9vh; background: #FFFFFF; border: 10px solid #86DE8A; box-sizing: border-box; border-radius: 20px;"
 }
 `
 
 const GreenBorderBoxTitle = styled.div`
-@media only screen and (max-width: 768px) {
-  font-size: 15px; 
-  line-height: 6vh;
-};
-
+  
   font-style: normal;
   font-weight: bold;
   font-size: 25px;
@@ -360,17 +299,6 @@ const BoxWrapper = styled.div`
   height: auto;
 `
 const Box = styled.div`
-@media only screen and (max-width: 768px) {
-  font-size: 15px; 
-  line-height: 6vh;
-  width: 70px;
-  border: 3px solid;
-    box-sizing: border-box;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 10px;
-    border-color: ${props => props.score > 65 ? "#FF0000" : props.score > 32 ? "#FF6534" : props.score > 0 ? "#F1C114" : "#85859A"};
-};
-
     display:grid;
     position: auto;
     width: auto;
@@ -394,10 +322,6 @@ const Box = styled.div`
 `
 
 const Title = styled.div`
-@media only screen and (max-width: 768px) {
-  width: auto;
-  font-size: 19px;
-};
     width: 10vw;
     height: auto;
 
@@ -415,13 +339,7 @@ const Title = styled.div`
 `
 
 const Percentage = styled.div`
-@media only screen and (max-width: 768px) {
-  width: auto;
-  font-size: 19px;
-};
-
-
-    width: 10vw;
+  width: 10vw;
     height: auto;
 
     
@@ -447,19 +365,68 @@ const PercentageContainer = styled.div`
 `
 
 /////////////////메뉴 Display 페이지 CSS 끝///////////////////////////////////////////
-
-
-const Modal = styled.div`
-${props => 
-  props.taste !== 8 
-  ? "@media only screen and (max-width: 768px) {width: 70vw; border: 6px solid #86DE8A;}; display:grid; width: 50vw; height: 239px; left: 5vw; top: 15.3vh; background: #FFFFFF; border: 10px solid #86DE8A; box-sizing: border-box; border-radius: 20px; position: absolute;" 
-  : "display:none;"
+function Modal({ className, visible, children }) {
+  return (
+    <>
+      <ModalOverlay visible={visible} />
+      <ModalWrapper className={className} tabIndex="-1" visible={visible}>
+        <ModalInner tabIndex="0" className="modal-inner">
+          {children}
+        </ModalInner>
+      </ModalWrapper>
+    </>
+  )
 }
-`
-const ModalTextTitle = styled.div`
+
+Modal.propTypes = {
+  visible: PropTypes.bool,
+}
+
+const ModalWrapper = styled.div`
+  box-sizing: border-box;
+  display: ${(props) => (props.visible ? 'block' : 'none')};
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+  overflow: auto;
+  outline: 0;
 `
 
-export default function SatisfyComponent({todayData, type, selectType, selectTypeIdx, todayTaste, selectSatisfaction, survey, visible, modal, openModal}){
+const ModalOverlay = styled.div`
+  box-sizing: border-box;
+  display: ${(props) => (props.visible ? 'block' : 'none')};
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 999;
+`
+
+const ModalInner = styled.div`
+  box-sizing: border-box;
+  position: relative;
+  box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.5);
+  background-color: #fff;
+  border-radius: 10px;
+  width: 360px;
+  max-width: 480px;
+  top: 50%;
+  transform: translateY(-50%);
+  margin: 0 auto;
+  padding: 40px 20px;
+`
+function ModalPage() {
+  return (
+    <Modal visible={true}>Hello</Modal>
+  )
+}
+
+export default function SatisfyComponent({todayData, type, selectType, selectTypeIdx, todayTaste, selectSatisfaction, survey, visible}){
   return (
     <Container>
       <GreenBorderBoxWrapper>
@@ -512,45 +479,35 @@ export default function SatisfyComponent({todayData, type, selectType, selectTyp
                     <Text2>
                       {data.name}
                     </Text2>
-                    
                     {index===0 && <SurveyImages1/>}
                     {index===1 && <SurveyImages2/>}
                     {index===2 && <SurveyImages3/>}
                     {index===3 && <SurveyImages4/>}
                     {index===4 && <SurveyImages5/>}
-                    
+
                   </Survey>
               ))}
             </Wrapper>
-            { visible === "worst" &&
+            { visible==="worst" &&
               <TasteSelectionWrapper visible={visible}>
-                {todayTaste.map((data,index) => (
-                  <TasteSelectionBox onClick={openModal(index)}>
+                {todayTaste.map((data) => (
+                  <TasteSelectionBox>
                     {data.taste}
                   </TasteSelectionBox>
                 ))}
               </TasteSelectionWrapper>
             }
 
-            { visible === "bad" &&
+            { visible==="bad" &&
               <TasteSelectionWrapper visible={visible}>
-                {todayTaste.map((data, index) => (
-                  <TasteSelectionBox onClick={openModal(index)}>
+                {todayTaste.map((data) => (
+                  <TasteSelectionBox>
                     {data.taste}
                   </TasteSelectionBox>
                 ))}
               </TasteSelectionWrapper>
             }
-            {modal !== 8 ?
-              <Modal>
-                <ModalTextTitle>
-                  자율메뉴 추가/수정
-                </ModalTextTitle>
-              
-              </Modal>
-              :
-              <div></div>
-            }
+            
             <QuitWrapper>
               <Quit>
                 종료

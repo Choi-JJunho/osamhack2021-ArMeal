@@ -20,6 +20,10 @@ const Container = styled.div`
   border: 5px solid #E9E9EF;
   box-sizing: border-box;
   border-radius: 10px;
+
+  @media(max-width: 1100px){
+    display:none;
+  }
 `
 
 const UnLoggedInWrapper = styled.div`

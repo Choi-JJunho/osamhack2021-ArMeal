@@ -47,3 +47,9 @@
   height: 100vh;
   background-color: #F4F4F8;
 }
+
+@media(max-width: 1100px){
+  .Wrapper {
+    width: 100%;
+  }
+}
