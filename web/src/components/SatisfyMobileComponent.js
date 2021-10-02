@@ -21,7 +21,7 @@ const MainPicture = styled.img.attrs({
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
   border-radius:15px;
   opacity: 0.25;
-  @media(max-width: 700px) and (min-width: 1200px){
+  @media(min-width: 768px) and (max-width: 1100px){
     display:none;
   }
 `
@@ -45,7 +45,7 @@ const MainPictureTextTitle=styled.div`
   position: absolute;
   top: 40px;
   left: 40px;
-  @media(max-width: 700px) and (min-width: 1200px){
+  @media(min-width: 768px) and (max-width: 1100px){
     display:none;
   }
 `
@@ -63,7 +63,7 @@ const MainPictureText = styled(MainPictureTextTitle)`
   position: absolute;
   top: 116px;
   left: 30px;
-  @media(max-width: 700px) and (min-width: 1200px){
+  @media(min-width: 768px) and (max-width: 1100px){
     display:none;
   }
 `
@@ -82,7 +82,7 @@ const SurveyImages1 = styled.img.attrs({
   src: SurveyImage1
 })`
   width: 10vw;
-  @media(max-width: 700px) and (min-width: 1200px){
+  @media(min-width: 768px) and (max-width: 1100px){
     padding-top: 4vh;
     width: 15vw;
   }
@@ -91,7 +91,7 @@ const SurveyImages2 = styled.img.attrs({
   src: SurveyImage2
 })`
   width: 10vw;
-  @media(max-width: 700px) and (min-width: 1200px){
+  @media(min-width: 768px) and (max-width: 1100px){
     padding-top: 4vh;
     width: 15vw;
   }
@@ -100,7 +100,7 @@ const SurveyImages3 = styled.img.attrs({
   src: SurveyImage3
 })`
   width: 10vw;
-  @media(max-width: 700px) and (min-width: 1200px){
+  @media(min-width: 768px) and (max-width: 1100px){
     padding-top: 4vh;
     width: 15vw;
   }
@@ -109,7 +109,7 @@ const SurveyImages4 = styled.img.attrs({
   src: SurveyImage4
 })`
   width: 10vw;
-  @media(max-width: 700px) and (min-width: 1200px){
+  @media(min-width: 768px) and (max-width: 1100px){
     padding-top: 4vh;
     width: 15vw;
   }
@@ -118,7 +118,7 @@ const SurveyImages5 = styled.img.attrs({
   src: SurveyImage5
 })`
   width: 10vw;
-  @media(max-width: 700px) and (min-width: 1200px){
+  @media(min-width: 768px) and (max-width: 1100px){
     padding-top: 4vh;
     width: 15vw;
   }
@@ -133,7 +133,7 @@ const Message = styled.div`
   // box-sizing: border-box;
   // box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   // border-radius: 15px;
-  @media(max-width: 700px) and (min-width: 1200px){
+  @media(min-width: 768px) and (max-width: 1100px){
     height: 2vh;
   }
 ` 
@@ -160,7 +160,7 @@ const Text2 = styled.div`
   justify-content: center;
   padding: 4vh 0vw;
 
-  @media(max-width: 700px) and (min-width: 1200px){
+  @media(min-width: 768px) and (max-width: 1100px){
     font-size: 20px;
   }
 `
@@ -184,7 +184,7 @@ const Survey = styled(Message)`
 
     text-align: center;
 
-  @media(max-width: 700px) and (min-width: 1200px){
+  @media(min-width: 768px) and (max-width: 1100px){
     width: 18vw;
     height: 55vh;
   }
@@ -199,7 +199,7 @@ const QuitWrapper = styled.div`
     margin-right: 60px;
     text-align: -webkit-right;
   
-  @media(max-width: 700px) and (min-width: 1200px){
+  @media(min-width: 768px) and (max-width: 1100px){
     display:none;
   }
 `
@@ -266,7 +266,7 @@ const Container = styled.div`
     margin-top: 3vh;
     justify-content:space-evenly;
     display: none;
-    @media(max-width: 1200px) and (min-width: 700px){
+    @media(max-width: 1100px) and (min-width: 768px){
       display: flex;
     }
 `

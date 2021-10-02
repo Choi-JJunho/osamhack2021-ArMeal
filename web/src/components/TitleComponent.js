@@ -10,7 +10,7 @@ const Container = styled.div`
 
 const MobileTempText = styled.div`
   display: none;
-  @media(max-width: 800px){
+  @media(min-width: 768px) and (max-width: 1100px){
     display: block;
     position: absolute;
     left: 40vw;
