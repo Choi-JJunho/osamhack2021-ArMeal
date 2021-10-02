@@ -1,4 +1,4 @@
-# 프로젝트명1
+# 프로젝트명
 로고 이미지
 
 ## 프로잭트 소개
@@ -9,7 +9,7 @@
 <table>
   <tbody>
 		<tr>
-			<td colspan=1>
+			<td colspan=2>
 				<br>
 				<b>대시보드</b><br>
 				<br>
@@ -66,7 +66,7 @@
 <table>
   <tbody>
 		<tr>
-			<td colspan=1>
+			<td colspan=2>
 				<br>
 				<b>날짜별 통계</b><br>
 				<br>

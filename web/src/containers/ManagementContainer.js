@@ -1,13 +1,12 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import ManagementComponent from 'components/ManagementComponent';
 import { useDispatch, useSelector } from 'react-redux';
 import { getManagementData } from 'modules/management';
 
 export default function ManagementContainer(){
   const dispatch = useDispatch();
-  const authData = useSelector(state => state.authReducer)
-  const managementData = useSelector(state => state.managementReducer.management)
-  const calendarRef = useRef();
+  const authData = useSelector(state => state.authReducer);
+  const managementData = useSelector(state => state.managementReducer.management);
   const [start, setStart] = useState();
   const [end, setEnd] = useState();
 
@@ -52,6 +51,6 @@ export default function ManagementContainer(){
 
 
   return (
-    <ManagementComponent events={events} calendarRef={calendarRef} onMonthChange={onMonthChange}/>
+    <ManagementComponent events={events} onMonthChange={onMonthChange}/>
   )
 }
