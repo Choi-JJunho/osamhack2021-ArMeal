@@ -14,6 +14,10 @@ import SurveyImage5 from '../static/image/score_5.png';
 const MainPicture = styled.img.attrs({
   src: MainPic
 })`
+@media only screen and (max-width: 768px) {
+  height: 16vh;
+}
+
   width: 70vw;
   height: 27vh;
   margin: 0px auto;
@@ -23,7 +27,15 @@ const MainPicture = styled.img.attrs({
   opacity: 0.25;
 `
 const MainPictureTextTitle=styled.div`
-  
+@media only screen and (max-width: 768px) {
+font-size: 18px;
+line-height: 15px;
+left: 15px;
+top: -13px;
+}
+
+
+
   font-style: normal;
   font-weight: bold;
   font-size: 35px;
@@ -45,6 +57,15 @@ const MainPictureTextTitle=styled.div`
 // top: 96px;
 // left: 30px;
 const MainPictureText = styled(MainPictureTextTitle)`
+@media only screen and (max-width: 768px) {
+  font-size: 6px;
+    line-height: 16px;
+    width: 85%;
+    height: 0px;
+    top: 75px;
+    left: 12px;
+  }
+
   font-size: 22px;
   line-height: 30px;
   width: 100%;
@@ -56,6 +77,7 @@ const MainPictureText = styled(MainPictureTextTitle)`
   position: absolute;
   top: 116px;
   left: 30px;
+
 
 `
 
@@ -73,28 +95,57 @@ const SurveyImages1 = styled.img.attrs({
   src: SurveyImage1
 })`
   width: 10vw;
+  @media only screen and (max-width: 768px) {
+  position: absolute;
+  top: 13px;
+  right: 48px;
+}
+  
 `
 const SurveyImages2 = styled.img.attrs({
   src: SurveyImage2
 })`
+@media only screen and (max-width: 768px) {
+  position: absolute;
+  top: 13px;
+  right: 48px;
+}
   width: 10vw;
 `
 const SurveyImages3 = styled.img.attrs({
   src: SurveyImage3
 })`
+@media only screen and (max-width: 768px) {
+  position: absolute;
+  top: 13px;
+  right: 48px;
+}
   width: 10vw;
 `
 const SurveyImages4 = styled.img.attrs({
   src: SurveyImage4
 })`
+@media only screen and (max-width: 768px) {
+  position: absolute;
+  top: 13px;
+  right: 48px;
+}
   width: 10vw;
 `
 const SurveyImages5 = styled.img.attrs({
   src: SurveyImage5
 })`
+@media only screen and (max-width: 768px) {
+  position: absolute;
+  top: 13px;
+  right: 48px;
+}
   width: 10vw;
 `
 const Message = styled.div`
+@media only screen and (max-width: 768px) {
+  height: 19vh;
+}
   width: 70vw;
   height: 25vh;
   margin: 0px auto;
@@ -108,13 +159,26 @@ const Message = styled.div`
 ` 
 
 const Wrapper = styled.div`
+@media only screen and (max-width: 768px) {
+  display: block;
+  margin: 0px;
+  }
   margin: 8vh 0vw 3vh 0vw;
   display: flex;
   justify-content: space-around;
   padding: 0px 0px;
+
+  
 `
 const Text2 = styled.div`
-  
+@media only screen and (max-width: 768px) {
+  display: inline-flex;
+  font-size: 28px;
+  line-height: 10px;
+  padding-left: 21px;
+  width: 154px;
+  }
+
   font-style: normal;
   font-weight: bold;
   font-size: 30px;
@@ -130,7 +194,14 @@ const Text2 = styled.div`
   padding: 4vh 0vw;
 `
 const Survey = styled(Message)`
-    
+@media only screen and (max-width: 768px) {
+  width: 70vw;
+  height: 10vh;
+  margin-bottom: 10px;
+  text-align: unset;
+  }
+  
+
     width: 14vw;
     height: 33vh;
     margin: auto;
@@ -160,6 +231,13 @@ const QuitWrapper = styled.div`
     text-align: -webkit-right;
 `
 const Quit = styled.div`
+@media only screen and (max-width: 768px) {
+  right: 110px;
+  width: 31%;
+  position: absolute;
+  }
+
+
   padding: 5px;
   color:white;
   background:#75CB32;
@@ -179,18 +257,40 @@ const Quit = styled.div`
     }
 `
 const TasteSelectionWrapper = styled.div`
-  position: absolute;
+@media only screen and (max-width: 768px) {
+  display: -webkit-box;
+  width: 100%;
+  height: 11vh;
+  left: 2px;
+  flex-wrap: wrap;
+  }
+
+
+position: absolute;
   height: 40vh;
   top: 30.1vh;
   
   ${props => props.visible === 'worst' && `
-      left: 2.7vw;
+  @media only screen and (max-width: 768px) {
+    top: 136px;
+  }
+  left: 32px;
     `}
   ${props => props.visible === 'bad' && `
-      left: 17.5vw;
+  @media only screen and (max-width: 768px) {
+    top: 219px;
+  }
+    left: 203px;
   `}
 `
 const TasteSelectionBox = styled.div`
+@media only screen and (max-width: 768px) {
+  margin: 2px;
+  width: 72px;
+  height: 37px;
+}
+// top: 136px;
+
   width: 9.3vw;
   height: 4.3vh;
   margin-top: 0.5vh;
@@ -227,15 +327,22 @@ const GreenBorderBoxWrapper = styled.div`
   top: 39.5vh;
   position:absolute;
 `
+
 const GreenBorderBox = styled.div`
-${props => props.type !== 0 
-  ? "display:none" 
-  : "display:grid; width: 50vw; height: 239px; left: 35.9vw; top: 35.9vh; background: #FFFFFF; border: 10px solid #86DE8A; box-sizing: border-box; border-radius: 20px;"
+${props => 
+  props.type !== 0 
+  ? "display:none" : 
+  "@media only screen and (max-width: 768px) {width: 70vw; border: 6px solid #86DE8A;}; display:grid; width: 50vw; height: 239px; left: 35.9vw; top: 35.9vh; background: #FFFFFF; border: 10px solid #86DE8A; box-sizing: border-box; border-radius: 20px;"
+
 }
 `
 
 const GreenBorderBoxTitle = styled.div`
-  
+@media only screen and (max-width: 768px) {
+  font-size: 15px; 
+  line-height: 6vh;
+};
+
   font-style: normal;
   font-weight: bold;
   font-size: 25px;
@@ -252,6 +359,17 @@ const BoxWrapper = styled.div`
   height: auto;
 `
 const Box = styled.div`
+@media only screen and (max-width: 768px) {
+  font-size: 15px; 
+  line-height: 6vh;
+  width: 70px;
+  border: 3px solid;
+    box-sizing: border-box;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    border-color: ${props => props.score > 65 ? "#FF0000" : props.score > 32 ? "#FF6534" : props.score > 0 ? "#F1C114" : "#85859A"};
+};
+
     display:grid;
     position: auto;
     width: auto;
@@ -275,6 +393,10 @@ const Box = styled.div`
 `
 
 const Title = styled.div`
+@media only screen and (max-width: 768px) {
+  width: auto;
+  font-size: 19px;
+};
     width: 10vw;
     height: auto;
 
@@ -292,7 +414,13 @@ const Title = styled.div`
 `
 
 const Percentage = styled.div`
-  width: 10vw;
+@media only screen and (max-width: 768px) {
+  width: auto;
+  font-size: 19px;
+};
+
+
+    width: 10vw;
     height: auto;
 
     
@@ -361,6 +489,7 @@ const ModalOverlay = styled.div`
 `
 
 const ModalInner = styled.div`
+
   box-sizing: border-box;
   position: relative;
   box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.5);
@@ -373,6 +502,9 @@ const ModalInner = styled.div`
   margin: 0 auto;
   padding: 40px 20px;
 `
+
+
+
 function ModalPage() {
   return (
     <Modal visible={true}>Hello</Modal>
@@ -432,11 +564,13 @@ export default function SatisfyComponent({todayData, type, selectType, selectTyp
                     <Text2>
                       {data.name}
                     </Text2>
+                    
                     {index===0 && <SurveyImages1/>}
                     {index===1 && <SurveyImages2/>}
                     {index===2 && <SurveyImages3/>}
                     {index===3 && <SurveyImages4/>}
                     {index===4 && <SurveyImages5/>}
+                    
                   </Survey>
               ))}
             </Wrapper>
