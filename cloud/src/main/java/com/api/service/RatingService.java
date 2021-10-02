@@ -65,9 +65,14 @@ public class RatingService extends Exception {
         // 각 메뉴별로 점수가 들어간다.
         for(HashMap<String, Object> data : datas) {
             menuId = Long.valueOf(data.get("menu").toString());
-            addRating(new Rating(userId, menuId, 1, group_id, rating_value, badReason));
+            addRating(new Rating(userId, menuId, 2, group_id, rating_value, badReason));
         }
         return ratingMapper.findRatioByDates(date, date, group_id);
+    }
+
+    // 전체 만족도에 대한 통계를 가져온다.
+    public List<HashMap<String, Object>> getRatioAll(long group_id) {
+        return ratingMapper.findRatioOfAll(group_id);
     }
 
     // 메뉴별 통계값을 모두 가져온다.
@@ -76,6 +81,10 @@ public class RatingService extends Exception {
     }
     
     public List<HashMap<String, Object>> getRatioByDates(String start, String end, long group_id) {
+        return ratingMapper.findRatioByDates(Date.valueOf(start), Date.valueOf(end), group_id);
+    }
+
+    public List<HashMap<String, Object>> getRatioByDatesTime(String start, String end, int time, long group_id) {
         return ratingMapper.findRatioByDates(Date.valueOf(start), Date.valueOf(end), group_id);
     }
 }

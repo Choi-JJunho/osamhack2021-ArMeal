@@ -20,7 +20,9 @@ public interface RatingMapper {
     void updateRating(@Param("_id")long id, @Param("_ratingData")int ratingData);
     void updateBadReason(@Param("_badreason") int badReason, @Param("_groupId") long group_id);
     List<HashMap<String, Object>> findAllRating(@Param("_groupId") long group_id);
+    List<HashMap<String, Object>> findRatioOfAll(@Param("_groupId") long group_id);
     List<HashMap<String, Object>> findRatioByDates(@Param("_start") Date start, @Param("_end") Date end, @Param("_groupId") long group_id);
-    List<HashMap<String, Object>> findBadReasonByMenuId(@Param("_id")long id, @Param("_groupId") long group_id);
+    List<HashMap<String, Object>> findRatioByDatesTime(@Param("_start") Date start, @Param("_end") Date end, @Param("_time") int time, @Param("_groupId") long group_id);
+    List<HashMap<String, Object>> findBadReasonByMenuId(@Param("_id")long id, @Param("_groupId") long group_id);    
     List<HashMap<String, Object>> findRatioOfAllMenu(@Param("_groupId") long group_id);
 }

@@ -21,9 +21,17 @@
     <select id="findRatingById" resultType="java.util.HashMap">
         SELECT * FROM Rating WHERE id = #{_id}
     </select>
-    
+
+    <select id="findRatioOfAll" resultType="java.util.HashMap">
+        SELECT (SUM(rating_data)*20) / COUNT(rating_data) AS ratio 
+        FROM Rating
+    </select>
+
     <select id="findRatioOfAllMenu" resultType="java.util.HashMap">
-        SELECT a.Target_id AS id, b.name AS name, (SUM(a.rating_data)*20) / COUNT(a.rating_data) AS ratio FROM Rating AS a JOIN Menu AS b ON a.Target_id = b.id GROUP BY Target_id
+        SELECT a.Target_id AS id, b.name AS name, (SUM(a.rating_data)*20) / COUNT(a.rating_data) AS ratio 
+        FROM Rating AS a 
+        JOIN Menu AS b ON a.Target_id = b.id 
+        GROUP BY Target_id
     </select>
 
     <insert id="addRating">

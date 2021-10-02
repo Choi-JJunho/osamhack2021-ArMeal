@@ -83,6 +83,6 @@ public class RatingController {
     // OK
     @RequestMapping(value = "/get/ratio/all", method = RequestMethod.GET)
     public ResponseEntity getAllRatio(long group_id) {
-        return new ResponseEntity<List<HashMap<String,Object>>>(ratingService.getRatioAllMenu(group_id), HttpStatus.OK);
+        return new ResponseEntity<List<HashMap<String,Object>>>(ratingService.getRatioAll(group_id), HttpStatus.OK);
     }
 }
