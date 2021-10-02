@@ -49,7 +49,8 @@ public class RatingController {
     */
     
     // 해당하는 날짜의 만족도조사 결과를 얻기 위한 서비스
-    @RequestMapping(value = "/get/rating/{start}/{end}", method = RequestMethod.POST)
+    // OK
+    @RequestMapping(value = "/get/ratio/{start}/{end}", method = RequestMethod.POST)
     public ResponseEntity getratingbydate(@PathVariable("start") String start, @PathVariable("end") String end, long group_id) {
         return new ResponseEntity<List<HashMap<String, Object>>>(ratingService.getRatioByDates(start, end, group_id), HttpStatus.OK);
     }
@@ -79,6 +80,7 @@ public class RatingController {
     */
     
     // 메뉴별 통계를 위한 서비스
+    // OK
     @RequestMapping(value = "/get/ratio/all", method = RequestMethod.GET)
     public ResponseEntity getAllRatio(long group_id) {
         return new ResponseEntity<List<HashMap<String,Object>>>(ratingService.getRatioAllMenu(group_id), HttpStatus.OK);

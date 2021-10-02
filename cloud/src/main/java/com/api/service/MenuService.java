@@ -118,12 +118,18 @@ public class MenuService extends Exception {
         return menuMapper.findRecentDateByMenuId(menuId, group_id);
     }
 
-    // TODO : 날짜 중복 문제
+    // TODO : 날짜 중복 문제, 이름 중복문제
     public HashMap<String, Object> addSelfDish(String name, Date date, long ingredientId, long group_id) {
         HashMap<String, Object> result = new HashMap<>();
-        menuMapper.addSelfDish(name, date, group_id);
-        menuMapper.addUsedIngredientSelfdish(Long.valueOf(menuMapper.findSelfDish(name, date, group_id).get("id").toString()), ingredientId);
-        return menuMapper.findSelfDish(name, date, group_id);
+        if(menuMapper.findSelfDish(name, date, group_id) == null) {
+            menuMapper.addSelfDish(name, date, group_id);
+            menuMapper.addUsedIngredientSelfdish(Long.valueOf(menuMapper.findSelfDish(name, date, group_id).get("id").toString()), ingredientId);
+            result = menuMapper.findSelfDish(name, date, group_id);
+        } else {
+            result.put("error", "해당 메뉴가 이미 존재합니다.");
+        }
+        
+        return result;
     }
     
 

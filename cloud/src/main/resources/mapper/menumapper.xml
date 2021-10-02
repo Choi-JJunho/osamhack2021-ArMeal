@@ -26,15 +26,15 @@
     </select>
 
     <select id="findDailyMenuByDate" resultType="java.util.HashMap">
-        SELECT * FROM Daily_meal WHERE date_value = #{_date} AND group_id = #{_groupId}
+        SELECT * FROM Daily_menu WHERE date_value = #{_date} AND group_id = #{_groupId}
     </select>
     
     <select id="findRecentDateByMenuId" resultType="java.util.HashMap">
-        SELECT DATE_FORMAT(date_value,'%Y-%m-%d') AS recentDate FROM Daily_meal WHERE menu = #{_id} AND group_id = #{_groupId} ORDER BY date_value DESC LIMIT 10;
+        SELECT DATE_FORMAT(date_value,'%Y-%m-%d') AS recentDate FROM Daily_menu WHERE menu = #{_id} AND group_id = #{_groupId} ORDER BY date_value DESC LIMIT 10
     </select>
 
     <select id="findMonthMenu" resultType="java.util.HashMap">
-        SELECT b.name AS name, a.* FROM Daily_meal AS a JOIN Menu AS b ON (a.menu = b.id) WHERE a.date_value BETWEEN #{_date} AND #{_date}+30 AND a.time = #{_time} AND a.group_id = #{_groupId} ORDER BY a.date_value ASC;
+        SELECT b.name AS name, a.* FROM Daily_menu AS a JOIN Menu AS b ON (a.menu = b.id) WHERE a.time = #{_time} AND a.group_id = #{_groupId} AND a.date_value BETWEEN #{_date} AND DATE_ADD(#{_date}, INTERVAL 1 MONTH) ORDER BY a.date_value ASC
     </select>
 
     <select id="findIngredientByname" resultType="java.util.HashMap">
@@ -54,12 +54,12 @@
     </select>
 
     <select id="findSelfDish" resultType="java.util.HashMap">
-        SELECT * FROM SelfDish WHERE name = #{_name}, date_value = #{_date} AND group_id = #{_groupId}
+        SELECT * FROM SelfDish WHERE name = #{_name} AND date_value = #{_date} AND group_id = #{_groupId}
     </select>
 
     <!-- Add Menu -->
     <insert id="addDailyMenu">
-        INSERT INTO Daily_meal (date_value, time, group_id, menu)
+        INSERT INTO Daily_menu (date_value, time, group_id, menu)
         VALUES (#{dateValue}, #{_time}, #{_groupId}, #{_menu})
     </insert>
     
@@ -68,6 +68,10 @@
         VALUES (#{_name}, #{_menutype}, #{_groupId})
     </insert>
     
+    <insert id="addSelfDish">
+        INSERT INTO SelfDish (name, group_id, date_value) VALUES(#{_name}, #{_groupId}, #{_date})
+    </insert>
+
     <insert id="addIngredient">
         INSERT INTO Ingredient(name) VALUES(#{_name})
     </insert>
@@ -90,15 +94,15 @@
         SELECT id, name, score from Menu;
     -->
     <select id="updateMenuScore">
-        UPDATE Menu AS t1, ( SELECT Menu_id, sum(rating_data)/count(Menu_id) AS c1
-        FROM Rating WHERE Menu_id = #{_id} AND group_id = #{_groupId}
-        GROUP BY Menu_id ) AS t2
+        UPDATE Menu AS t1, ( SELECT Target_id, sum(rating_data)/count(Target_id) AS c1
+        FROM Rating WHERE Target_id = #{_id} AND group_id = #{_groupId}
+        GROUP BY Target_id ) AS t2
         SET t1.score=t2.c1
         WHERE t1.id = #{_id}
     </select>
 
     <update id="updateDailymenu">
-        UPDATE Daily_meal SET date_value=#{dateValue}, time=#{_time}, group_id=#{_groupId}, menu=#{_menu} WHERE date_value=#{beforeDate} AND time=#{beforeTime}
+        UPDATE Daily_menu SET date_value=#{dateValue}, time=#{_time}, group_id=#{_groupId}, menu=#{_menu} WHERE date_value=#{beforeDate} AND time=#{beforeTime}
     </update>
 
 </mapper>

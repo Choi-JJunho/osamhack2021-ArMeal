@@ -30,7 +30,7 @@ public class Rating {
 	private long Target_id;
 
 	@ApiModelProperty(notes = "평가 유형\n1 : 메뉴\n2 : 일일 메뉴", example = "1")
-	private long Target_type;
+	private int Target_type;
 
 	@ApiModelProperty(notes = "평가 값\n5 : 좋음\n4 : 좋음\n3 : 보통\n2 : 나쁨\n1 : 아주 나쁨", example = "1")
     private int rating_data;
@@ -46,6 +46,7 @@ public class Rating {
 
 	@ApiModelProperty(hidden = true)
     private boolean is_deleted;
+
 
 
 	public long getId() {
@@ -64,14 +65,6 @@ public class Rating {
 		this.group_id = group_id;
 	}
 
-	public int getBad_reason() {
-		return this.bad_reason;
-	}
-
-	public void setBad_reason(int bad_reason) {
-		this.bad_reason = bad_reason;
-	}
-
 	public long getUser_id() {
 		return this.User_id;
 	}
@@ -84,12 +77,12 @@ public class Rating {
 		return this.Target_id;
 	}
 
-	public int getTarget_type() {
-		return this.Target_type;
-	}
-
 	public void setTarget_id(long Target_id) {
 		this.Target_id = Target_id;
+	}
+
+	public int getTarget_type() {
+		return this.Target_type;
 	}
 
 	public void setTarget_type(int Target_type) {
@@ -102,6 +95,14 @@ public class Rating {
 
 	public void setRating_data(int rating_data) {
 		this.rating_data = rating_data;
+	}
+
+	public int getBad_reason() {
+		return this.bad_reason;
+	}
+
+	public void setBad_reason(int bad_reason) {
+		this.bad_reason = bad_reason;
 	}
 
 	public Timestamp getCreated_at() {
@@ -136,8 +137,10 @@ public class Rating {
 	public String toString() {
 		return "{" +
 			" id='" + getId() + "'" +
+			", group_id='" + getGroup_id() + "'" +
 			", User_id='" + getUser_id() + "'" +
-			", Menu_id='" + getMenu_id() + "'" +
+			", Target_id='" + getTarget_id() + "'" +
+			", Target_type='" + getTarget_type() + "'" +
 			", rating_data='" + getRating_data() + "'" +
 			", bad_reason='" + getBad_reason() + "'" +
 			", created_at='" + getCreated_at() + "'" +
@@ -145,6 +148,6 @@ public class Rating {
 			", is_deleted='" + isIs_deleted() + "'" +
 			"}";
 	}
-	
+
 	
 }

@@ -6,8 +6,12 @@
 <mapper namespace="com.api.mapper.RatingMapper">
 
     <!-- Find Menu -->
-    <select id="getRatioByDates" resultType="java.util.HashMap">
-        SELECT a.Target_id AS id, b.name AS name, (SUM(a.rating_data)*20) / COUNT(a.rating_data) AS ratio FROM Rating AS a JOIN Menu AS b ON (a.Target_id = b.id) WHERE a.created_at BETWEEN DATE(#{_start}) AND DATE(#{_end})+1 GROUP BY Menu_id    
+    <select id="findRatioByDates" resultType="java.util.HashMap">
+        SELECT a.Target_id AS id, b.name AS name, (SUM(a.rating_data)*20) / COUNT(a.rating_data) AS ratio
+        FROM Rating AS a 
+        JOIN Menu AS b ON (a.Target_id = b.id) 
+        JOIN Daily_menu AS c ON (a.Target_id = c.menu )
+        WHERE c.date_value BETWEEN DATE(#{_start}) AND DATE(#{_end})+1 GROUP BY Target_id;
     </select>
     
     <select id="findAllRating" resultType="java.util.HashMap">
@@ -19,12 +23,12 @@
     </select>
     
     <select id="findRatioOfAllMenu" resultType="java.util.HashMap">
-        SELECT a.Target_id AS id, b.name AS name, (SUM(a.rating_data)*20) / COUNT(a.rating_data) AS ratio FROM Rating AS a JOIN Menu AS b ON a.Target_id = b.id GROUP BY Menu_id
+        SELECT a.Target_id AS id, b.name AS name, (SUM(a.rating_data)*20) / COUNT(a.rating_data) AS ratio FROM Rating AS a JOIN Menu AS b ON a.Target_id = b.id GROUP BY Target_id
     </select>
 
     <insert id="addRating">
-        INSERT INTO Rating (User_id, Target_id, rating_data)
-        VALUES (#{_userId}, #{_menuId}, #{ratingData})
+        INSERT INTO Rating (User_id, Target_id, Target_type, rating_data, group_id)
+        VALUES (#{_userId}, #{_targetId}, #{_targetType}, #{ratingData}, #{_groupId})
     </insert>
 
     <update id="updateRating">

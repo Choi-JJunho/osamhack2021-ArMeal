@@ -27,7 +27,7 @@ CREATE TABLE `Menu`(
     `is_deleted` TINYINT(1) NULL
 );
 
-CREATE TABLE `Daily_meal`(
+CREATE TABLE `Daily_menu`(
     `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
     `date_value` DATE NOT NULL,
     `time` INT NOT NULL,
