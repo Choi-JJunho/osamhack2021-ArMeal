@@ -21,6 +21,9 @@ const Container = styled.div`
   border: 5px solid #E9E9EF;
   box-sizing: border-box;
   
+  @media(max-width: 800px){
+    display:none;
+  }
 `
 
 const Logo = styled.img.attrs({

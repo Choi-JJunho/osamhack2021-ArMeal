@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 
 import SatisfyComponent from 'components/SatisfyComponent';
-
+import SatisfyMobileComponent from 'components/SatisfyMobileComponent';
 
 export default function SatisfyContainer(){
   const [type, setType] = useState(0) // const [변수, set변수] = useState(기본값)
@@ -98,6 +98,7 @@ const [satisfaction, setSatisfaction] = useState(0) // const [변수, set변수]
 
 
   return (
+    <>
     <SatisfyComponent 
       todayData={todayData} 
       type={type} 
@@ -115,5 +116,23 @@ const [satisfaction, setSatisfaction] = useState(0) // const [변수, set변수]
       selectVisible={selectVisible}
       // selectVisible={selectVisible}
     />
+    <SatisfyMobileComponent
+    todayData={todayData} 
+    type={type} 
+    selectType={selectType}
+    selectTypeIdx={[1,2,3]} 
+
+    todayTaste={todayTaste}
+
+    // satisfaction={satisfaction}
+    selectSatisfaction = {selectSatisfaction}
+    
+    survey={picLink}
+
+    visible={visible}
+    selectVisible={selectVisible}>
+
+    </SatisfyMobileComponent>
+    </>
   )
 }
