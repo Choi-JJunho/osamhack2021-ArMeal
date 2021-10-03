@@ -78,12 +78,15 @@ const [satisfaction, setSatisfaction] = useState(0) // const [변수, set변수]
     }
     else if (idx===2){
       setVisible("average")
+      openModal()
     }
     else if (idx===3){
       setVisible("good")
+      openModal()
     }
     else if (idx===4){
       setVisible("best")
+      openModal()
     }
     // else setVisible("none")
   
@@ -94,10 +97,12 @@ const [satisfaction, setSatisfaction] = useState(0) // const [변수, set변수]
       setVisible(idx)
     }
 
-const [modal, setModal] = useState(8)
-const openModal = (idx) => {
-  setModal(idx)
-  console.log(idx)
+const [modal, setModal] = useState(false)
+const openModal = () => {
+  setModal(true)
+  setTimeout(() => {
+    setModal(false);
+  }, 2000);
 }
   return (
     <>
@@ -119,6 +124,7 @@ const openModal = (idx) => {
       // selectVisible={selectVisible}
 
       modal={modal}
+      setModal = {setModal}
       openModal={openModal}
 
     />

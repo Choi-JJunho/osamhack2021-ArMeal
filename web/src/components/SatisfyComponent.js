@@ -167,6 +167,11 @@ const Wrapper = styled.div`
   justify-content: space-around;
   padding: 0px 0px;
 
+  ${props => props.modal === true && 
+    "pointer-events:none;opacity: 0.5; background: #CCC;" 
+  }
+   
+
   
 `
 const Text2 = styled.div`
@@ -273,13 +278,13 @@ position: absolute;
   @media only screen and (max-width: 768px) {
     top: 136px;
   }
-  left: 32px;
+  left: 2.7vw;
     `}
   ${props => props.visible === 'bad' && `
   @media only screen and (max-width: 768px) {
     top: 219px;
   }
-    left: 203px;
+  left: 17.5vw;
   `}
 `
 const TasteSelectionBox = styled.div`
@@ -306,11 +311,18 @@ const TasteSelectionBox = styled.div`
     border: 3px solid #86DE8A;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     }
+
+  ${props => props.modal === true && 
+    "pointer-events:none; opacity: 0.9;" 
+  }
 `
 
 const SurveyWrapper = styled.div`
   width: 95%;
   position:relative; 
+  ${props => props.modal === true && 
+    "pointer-events:none; opacity: 0.68;" 
+  }
 `
 ////////////////설문조사 페이지 CSS 끝///////////////////////////////////////////////
 
@@ -450,18 +462,30 @@ const PercentageContainer = styled.div`
 
 
 const Modal = styled.div`
+opacity: 1;
 ${props => 
   props.taste !== 8 
-  ? "@media only screen and (max-width: 768px) {width: 70vw; border: 6px solid #86DE8A;}; display:grid; width: 50vw; height: 239px; left: 5vw; top: 15.3vh; background: #FFFFFF; border: 10px solid #86DE8A; box-sizing: border-box; border-radius: 20px; position: absolute;" 
+  ? "@media only screen and (max-width: 768px) {width: 70vw; border: 6px solid #86DE8A;}; display:flow-root; width: 50vw; height: 239px; left: 29vw; top: 33.2vh; background: #FFFFFF; border: 10px solid #86DE8A; box-sizing: border-box; border-radius: 20px; position: absolute; " 
   : "display:none;"
 }
 `
 const ModalTextTitle = styled.div`
+line-height: 23.4vh;
+
+font-style: normal;
+font-weight: bold;
+font-size: 30px;
+
+display: inherit;
+align-items: center;
+text-align: center;
+
+color: #000000;
 `
 
-export default function SatisfyComponent({todayData, type, selectType, selectTypeIdx, todayTaste, selectSatisfaction, survey, visible, modal, openModal}){
+export default function SatisfyComponent({todayData, type, selectType, selectTypeIdx, todayTaste, selectSatisfaction, survey, visible, modal, setModal, openModal}){
   return (
-    <Container>
+    <Container modal={modal}>
       <GreenBorderBoxWrapper>
         <GreenBorderBox type={type}>
           <GreenBorderBoxTitle>
@@ -493,7 +517,7 @@ export default function SatisfyComponent({todayData, type, selectType, selectTyp
         </GreenBorderBox>
       </GreenBorderBoxWrapper>
         {type !== 0 &&
-          <SurveyWrapper>
+          <SurveyWrapper modal={modal} >
             <Message>
               <MainPicture/>
                 <MainPictureTextTitle>
@@ -524,8 +548,8 @@ export default function SatisfyComponent({todayData, type, selectType, selectTyp
             </Wrapper>
             { visible === "worst" &&
               <TasteSelectionWrapper visible={visible}>
-                {todayTaste.map((data,index) => (
-                  <TasteSelectionBox onClick={openModal(index)}>
+                {todayTaste.map((data) => (
+                  <TasteSelectionBox modal={modal} onClick={()=> openModal(true)}>
                     {data.taste}
                   </TasteSelectionBox>
                 ))}
@@ -534,30 +558,29 @@ export default function SatisfyComponent({todayData, type, selectType, selectTyp
 
             { visible === "bad" &&
               <TasteSelectionWrapper visible={visible}>
-                {todayTaste.map((data, index) => (
-                  <TasteSelectionBox onClick={openModal(index)}>
+                {todayTaste.map((data) => (
+                  <TasteSelectionBox modal={modal} onClick={()=> openModal(true)}>
                     {data.taste}
                   </TasteSelectionBox>
                 ))}
               </TasteSelectionWrapper>
             }
-            {modal !== 8 ?
-              <Modal>
-                <ModalTextTitle>
-                  자율메뉴 추가/수정
-                </ModalTextTitle>
-              
-              </Modal>
-              :
-              <div></div>
-            }
+            
             <QuitWrapper>
-              <Quit>
+              <Quit onClick={()=>selectType(0)}>
                 종료
               </Quit>
             </QuitWrapper>
           </SurveyWrapper>
         }
+        {modal === true &&
+              <Modal>
+                <ModalTextTitle>
+                  소중한 의견 감사합니다!
+                </ModalTextTitle>
+              
+              </Modal>
+          }
     </Container>
   )
 }
