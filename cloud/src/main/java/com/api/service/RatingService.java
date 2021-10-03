@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.print.attribute.IntegerSyntax;
+
 import com.api.domain.DailyMeal;
 import com.api.domain.Rating;
 import com.api.mapper.MenuMapper;
@@ -18,6 +20,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 @Service
 @Transactional
@@ -87,4 +91,93 @@ public class RatingService extends Exception {
     public List<HashMap<String, Object>> getRatioByDatesTime(String start, String end, int time, long group_id) {
         return ratingMapper.findRatioByDates(Date.valueOf(start), Date.valueOf(end), group_id);
     }
+
+
+    // 실 사용 서비스
+    public List<HashMap<String, Object>> getCountOfratingData(long group_id) {
+        return ratingMapper.findCountOfratingData(group_id);
+    }
+
+    public List<HashMap<String, Object>> getRatingTop5(long group_id) {
+        return ratingMapper.findRatingTop5(group_id);
+    }
+
+    public List<HashMap<String, Object>> getDailyRatioByDate(long group_id, Date date) {
+        return ratingMapper.findDailyRatioByDate(group_id, date);
+    }
+
+    public List<HashMap<String, Object>> getRatingMonth(List<HashMap<String, Object>> datas) {
+        List<HashMap<String, Object>> result = new ArrayList<HashMap<String, Object>>();
+        List<HashMap<String, Object>> temp = new ArrayList<HashMap<String, Object>>();
+
+        List<Object> brst = new ArrayList<Object>();
+        List<Object> lunc = new ArrayList<Object>();
+        List<Object> dinr = new ArrayList<Object>();
+
+        String start;
+        Date date;
+        HashMap<String, Object> msgsend = new HashMap<String, Object>();
+        
+        if(datas == null) {
+            msgsend.clear();
+            msgsend.put("error", "nodata");
+            result.add(msgsend);
+        }
+
+        for(HashMap<String, Object> data : datas) {
+            if(data.get("year") == null || data.get("month") == null || data.get("group_id") == null) {
+                msgsend.clear();
+                msgsend.put("error", "wrongType");
+                result.add(msgsend);
+                continue;
+            } else {
+                start = data.get("year").toString()+"-"+ data.get("month").toString()+"-"+"01";
+                date = Date.valueOf(start);
+                temp = ratingMapper.findRatingMonth(Long.valueOf(data.get("group_id").toString()), date);
+                
+                if (temp.size() == 0) {
+                    brst.add(0);
+                    lunc.add(0);
+                    dinr.add(0);
+                } else {
+                    for(HashMap<String, Object> value : temp) {
+                        switch(Integer.valueOf(value.get("time").toString())) {
+                            case 1:
+                                brst.add(value.get("ratio"));
+                                break;
+                            case 2:
+                                lunc.add(value.get("ratio"));
+                                break;
+                            case 3:
+                                dinr.add(value.get("ratio"));
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                }    
+            }
+        }
+
+
+        HashMap<String, Object> input = new HashMap<String, Object>();
+        for(int j = 1; j <= 3; j++) {
+            input.put("time", j);
+            if(j == 1) {
+                input.put("rating", brst);
+            } else if (j == 2) {
+                input.put("rating", lunc);
+            } else {
+                input.put("rating", dinr);
+            }
+            Gson gson = new Gson();
+            HashMap<String, Object> jsonObject = gson.fromJson(input.toString(), new TypeToken<HashMap<String, Object>>(){}.getType());
+            result.add(jsonObject);
+            input.clear();
+        }
+        return result;
+    }
+    
+    
+
 }

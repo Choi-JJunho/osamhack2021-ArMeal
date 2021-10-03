@@ -25,4 +25,10 @@ public interface RatingMapper {
     List<HashMap<String, Object>> findRatioByDatesTime(@Param("_start") Date start, @Param("_end") Date end, @Param("_time") int time, @Param("_groupId") long group_id);
     List<HashMap<String, Object>> findBadReasonByMenuId(@Param("_id")long id, @Param("_groupId") long group_id);    
     List<HashMap<String, Object>> findRatioOfAllMenu(@Param("_groupId") long group_id);
+     
+    List<HashMap<String, Object>> findCountOfratingData(@Param("_groupId") long group_id);
+    List<HashMap<String, Object>> findRatingTop5(@Param("_groupId") long group_id);
+    List<HashMap<String, Object>> findDailyRatioByDate(@Param("_groupId") long group_id, @Param("_date") Date date);
+    List<HashMap<String, Object>> findRatingMonth(@Param("_groupId") long group_id, @Param("_date") Date date);
+    
 }

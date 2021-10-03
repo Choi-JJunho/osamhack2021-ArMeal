@@ -14,6 +14,13 @@
         WHERE c.date_value BETWEEN DATE(#{_start}) AND DATE(#{_end})+1 GROUP BY Target_id;
     </select>
     
+    <select id="findDailyRatioByDate" resultType="java.util.HashMap">
+        SELECT b.time AS time, (SUM(a.rating_data)*20) / COUNT(a.rating_data) AS ratio
+        FROM Rating AS a
+        JOIN Daily_menu AS b ON (a.Target_id = b.menu)
+        WHERE b.date_value = #{_date} AND a.group_id = #{_groupId} GROUP BY time;
+    </select>
+
     <select id="findAllRating" resultType="java.util.HashMap">
         SELECT * FROM Rating WHERE group_id = #{_groupId}
     </select>
@@ -34,6 +41,28 @@
         GROUP BY Target_id
     </select>
 
+    <select id="findCountOfratingData" resultType="java.util.HashMap">
+        SELECT rating_data, COUNT(*) AS count
+        FROM Rating WHERE group_id = #{_groupId}
+        GROUP BY rating_data ORDER BY rating_data ASC;
+    </select>
+
+    <select id="findRatingTop5" resultType="java.util.HashMap">
+        SELECT a.Target_id AS id, b.name AS name, (SUM(a.rating_data)*20) / COUNT(a.rating_data) AS ratio 
+        FROM Rating AS a 
+        JOIN Menu AS b ON a.Target_id = b.id 
+        WHERE a.group_id = #{_groupId}
+        GROUP BY Target_id ORDER BY ratio DESC LIMIT 5;
+    </select>
+
+    <select id="findRatingMonth" resultType="java.util.HashMap">
+        SELECT b.time AS time, (SUM(a.rating_data)*20) / COUNT(a.rating_data) AS ratio
+        FROM Rating AS a
+        JOIN Daily_menu AS b ON (a.Target_id = b.menu AND a.group_id = #{_groupId})
+        WHERE b.date_value BETWEEN #{_date} AND DATE_ADD(#{_date}, INTERVAL 1 MONTH) GROUP BY time;
+    </select>
+
+    <!-- insert -->
     <insert id="addRating">
         INSERT INTO Rating (User_id, Target_id, Target_type, rating_data, group_id)
         VALUES (#{_userId}, #{_targetId}, #{_targetType}, #{ratingData}, #{_groupId})

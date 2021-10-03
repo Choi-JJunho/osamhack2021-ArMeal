@@ -28,7 +28,28 @@ public class MenuController {
     @Autowired
     MenuService menuService;
 
-/*
+
+    // 해당 메뉴가 나온 날짜를 구한다.
+    // OK
+    @RequestMapping(value = "/get/date/menu/{id}", method = RequestMethod.GET)
+    public ResponseEntity getRecentDate (@PathVariable("id") long id, long group_id) {
+        return new ResponseEntity<List<HashMap<String, Object>>>(menuService.getRecentDates(id, group_id), HttpStatus.OK);
+    }
+    
+    /* Legacy
+    - 자율메뉴 추가를 위한 addmenu => 자율메뉴 추가와 중복
+    @RequestMapping(value = "/add/menu", method = RequestMethod.POST)
+    public ResponseEntity addMenu(String name, int type, long group_id) {
+        return new ResponseEntity<HashMap<Object,Object>>(menuService.addMenu(name, type, group_id),HttpStatus.OK);
+    }
+
+    - searchMenu와 중복
+    @RequestMapping(value = "/get/menu/{name}", method = RequestMethod.GET)
+    public ResponseEntity getMenu(String name, long groupId) {
+        return new ResponseEntity<Menu>(menuService.getMenu(name, groupId), HttpStatus.OK);
+    }
+
+    === nonUsed ===
     @RequestMapping(value = "/updmenutype", method = RequestMethod.POST)
     public ResponseEntity updateMenuType(@RequestBody Menu menu) {
         return new ResponseEntity<HashMap<Object,Object>>(menuService.updateMenuType(menu.getName(), menu.getMenutype()),HttpStatus.OK);
@@ -38,7 +59,7 @@ public class MenuController {
     public ResponseEntity updateMenuScore(@RequestBody Menu menu) {
         return new ResponseEntity<HashMap<Object,Object>>(menuService.updateMenuScore(menu.getName(), menu.getScore()),HttpStatus.OK);
     }
-*/
+
 
     // 해당 메뉴의 Type (메인, 자율, 후식)을 변경한다.
     // OK
@@ -62,28 +83,6 @@ public class MenuController {
         return new ResponseEntity<List<HashMap<String,Object>>>(menuService.searchMenu(name, group_id), HttpStatus.OK);
     }
 
-   
-    // 해당 메뉴가 나온 날짜를 구한다.
-    // OK
-    @RequestMapping(value = "/get/date/menu/{id}", method = RequestMethod.GET)
-    public ResponseEntity getRecentDate (@PathVariable("id") long id, long group_id) {
-        return new ResponseEntity<List<HashMap<String, Object>>>(menuService.getRecentDates(id, group_id), HttpStatus.OK);
-    }
-    
-    /* Legacy
-    - 자율메뉴 추가를 위한 addmenu => 자율메뉴 추가와 중복
-    @RequestMapping(value = "/add/menu", method = RequestMethod.POST)
-    public ResponseEntity addMenu(String name, int type, long group_id) {
-        return new ResponseEntity<HashMap<Object,Object>>(menuService.addMenu(name, type, group_id),HttpStatus.OK);
-    }
 
-    - searchMenu와 중복
-    @RequestMapping(value = "/get/menu/{name}", method = RequestMethod.GET)
-    public ResponseEntity getMenu(String name, long groupId) {
-        return new ResponseEntity<Menu>(menuService.getMenu(name, groupId), HttpStatus.OK);
-    }
-
-
-
-    */
+*/
 }

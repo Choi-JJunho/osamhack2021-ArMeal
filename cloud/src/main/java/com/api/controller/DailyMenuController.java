@@ -26,6 +26,16 @@ public class DailyMenuController {
     MenuService menuService;
 
 
+    
+    
+    /* Legacy
+    - 자율메뉴 추가를 위한 addmenu => 자율메뉴 추가와 중복
+    @RequestMapping(value = "/add/dailymenu", method = RequestMethod.POST)
+        public ResponseEntity adddailyMenu(@RequestBody DailyMeal menu) {
+        return new ResponseEntity<HashMap<String, Object>>(menuService.addDailyMenu(menu),HttpStatus.OK);
+    }
+
+    === nonUsed ===
     // OK
     @RequestMapping(value = "/get/dailymenu/month", method = RequestMethod.GET)
     public ResponseEntity getDailyMenu (long group_id, int time, String year, String month) {
@@ -36,13 +46,6 @@ public class DailyMenuController {
     @RequestMapping(value = "/add/selfdish", method = RequestMethod.POST)
     public ResponseEntity addSelfDish (String name, Date date, long ingredientId, long group_id) {
         return new ResponseEntity<HashMap<String, Object>>(menuService.addSelfDish(name, date, ingredientId, group_id), HttpStatus.OK);
-    }
-    
-    /* Legacy
-    - 자율메뉴 추가를 위한 addmenu => 자율메뉴 추가와 중복
-    @RequestMapping(value = "/add/dailymenu", method = RequestMethod.POST)
-        public ResponseEntity adddailyMenu(@RequestBody DailyMeal menu) {
-        return new ResponseEntity<HashMap<String, Object>>(menuService.addDailyMenu(menu),HttpStatus.OK);
     }
     */
 }

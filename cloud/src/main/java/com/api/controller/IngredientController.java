@@ -27,6 +27,7 @@ public class IngredientController {
     @Autowired
     MenuService menuService;
 
+    /* nonUsed
     // OK
     @RequestMapping(value = "/add/ingredient/{menuId}/{name}", method = RequestMethod.GET)
     public ResponseEntity addIngredient (@PathVariable("menuId") long id, @PathVariable("name") String name) {
@@ -38,5 +39,5 @@ public class IngredientController {
     public ResponseEntity getIngerdient (@PathVariable("id") long id) {
         return new ResponseEntity<List<HashMap<String, Object>>>(menuService.getIngredientsByMenuId(id), HttpStatus.OK);
     }
-
+    */
 }
