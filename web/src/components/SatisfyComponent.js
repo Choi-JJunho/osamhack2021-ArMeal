@@ -261,19 +261,21 @@ const Quit = styled.div`
     }
 `
 const TasteSelectionWrapper = styled.div`
-@media only screen and (max-width: 768px) {
-  display: -webkit-box;
-  width: 100%;
-  height: 11vh;
-  left: 2px;
-  flex-wrap: wrap;
+  @media only screen and (max-width: 768px) {
+    display: -webkit-box;
+    width: 100%;
+    height: 11vh;
+    left: 2px;
+    flex-wrap: wrap;
   }
 
 
 position: absolute;
   height: 40vh;
   top: 30.1vh;
-  
+  background-color: rgba(217, 217, 217, 0.5);
+  border-radius: 15px;
+  padding: 6px;
   ${props => props.visible === 'worst' && `
   @media only screen and (max-width: 768px) {
     top: 136px;

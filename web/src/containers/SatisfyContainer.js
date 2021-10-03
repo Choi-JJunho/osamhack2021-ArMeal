@@ -100,6 +100,7 @@ const [satisfaction, setSatisfaction] = useState(0) // const [변수, set변수]
 const [modal, setModal] = useState(false)
 const openModal = () => {
   setModal(true)
+  setVisible(0)
   setTimeout(() => {
     setModal(false);
   }, 2000);
