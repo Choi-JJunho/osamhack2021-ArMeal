@@ -13,14 +13,15 @@ const Icon1lsc = styled.img.attrs({
 const Container = styled.div`
   position: fixed;
   top: 30px;
-  left: 67vw;
-  width: 30vw;
+  float:right;
+  right: 5vw;
+  width: auto;
   height: 10vh;
   background-color: #FFFFFF;
   border: 5px solid #E9E9EF;
   box-sizing: border-box;
   border-radius: 10px;
-
+  padding-left: 22px;
   @media(max-width: 1100px){
     display:none;
   }
