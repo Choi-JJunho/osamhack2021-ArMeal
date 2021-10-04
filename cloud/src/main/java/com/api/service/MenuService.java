@@ -226,16 +226,17 @@ public class MenuService extends Exception {
         input.put("id", ingredient.get("id"));
         input.put("ingredient_name", ingredient.get("name"));
 
-        int cnt = 1;
+        int cnt = 0;
         long menuId;
+        double average = 0;
         for(HashMap<String, Object> data : top5Data) {
             menuId = Long.valueOf(data.get("id").toString());
-            menuData.put("id", cnt++);
+            menuData.put("id", ++cnt);
             // 최근 나온 날짜
             menuData.put("lastest", menuMapper.findRecentDateByMenuId(menuId, group_id).get("recentDate").toString());
             menuData.put("name", data.get("name").toString());
             menuData.put("satisfy", ratingMapper.findRatioByMenuId(menuId));
-            
+            average += Double.valueOf(ratingMapper.findRatioByMenuId(menuId).get("ratio").toString());
             Gson gson = new Gson();
             HashMap<String, Object> jsonObject = gson.fromJson(menuData.toString(), new TypeToken<HashMap<String, Object>>(){}.getType());
             menuList.add(jsonObject);
@@ -251,7 +252,7 @@ public class MenuService extends Exception {
         
         input.put("menu_list", menuList);
         input.put("satisfy", ratingCount.toString());
-        double average = (ratingCount.indexOf(0) + ratingCount.indexOf(1) * 2 + ratingCount.indexOf(2) * 3 + ratingCount.indexOf(3) * 4 + ratingCount.indexOf(4) * 5) * 100 / 5;
+        average /= (cnt);
         input.put("average", average);
 
         System.out.println(input.toString());

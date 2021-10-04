@@ -25,7 +25,7 @@ public interface RatingMapper {
     List<HashMap<String, Object>> findRatioByDatesTime(@Param("_start") Date start, @Param("_end") Date end, @Param("_time") int time, @Param("_groupId") long group_id);
     List<HashMap<String, Object>> findBadReasonByMenuId(@Param("_id")long id, @Param("_groupId") long group_id);    
     List<HashMap<String, Object>> findRatioOfAllMenu(@Param("_groupId") long group_id);
-    List<HashMap<String, Object>> findRatioByMenuId(@Param("_targetId") long menu_id);
+    HashMap<String, Object> findRatioByMenuId(@Param("_targetId") long menu_id);
 
     Double findRatingOfIngredient(@Param("_groupId") long group_id, @Param("_ingredientId") long ingredient_id);
 
