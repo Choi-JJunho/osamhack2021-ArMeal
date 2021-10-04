@@ -44,7 +44,7 @@
           <a href="" width="60%" height="60%"></a>
         </div>
       </td>
-      <td width="33%">실시간으로 장병들의 만족도를 수집합니다.</td>
+      <td width="40%">실시간으로 장병들의 만족도를 수집합니다.</td>
     </tr>
     <tr>
       <td>식사에 불만족한 경우, 불만족한 사유를 수집해서 통계에 활용합니다.</td>
@@ -58,7 +58,7 @@
       <td>야외 훈련 등 네트워크 연결이 어려운 상황을 대비해 오프라인 상태로도 정보를 수집합니다.</td>
     </tr>
     <tr>
-      <td>설문을 종료했더라도 당일의 만족도에 대해서 지속적인 추가가 가능하여 작전인원, 근무자 등 예외적인 상황에서도 적용이 가능!</td>
+      <td>모바일, 태블릿용 화면도 구현되어있어 부대 여건에 맞게 활용 가능!</td>
     </tr>
   </tbody>
 </table>
@@ -87,8 +87,122 @@
 </table>
 <br><br>
 
+<table>
+  <tbody>
+		<tr>
+			<td colspan=2>
+				<br>
+				<b>부식별ㆍ메뉴별 통계</b><br>
+				<br>
+			</td>
+		</tr>
+		<tr>
+      <td rowspan="2">
+        <div align="center">
+          <a href="" width="60%" height="60%"></a>
+        </div>
+      </td>
+      <td width="33%">부식별, 메뉴별 통계를 한눈에 볼 수 있습니다.</td>
+    </tr>
+    <tr>
+      <td>만족도, 이름별로 정렬해 원하는 대상을 쉽게 찾을 수 있습니다.</td>
+    </tr>
+    <tr>
+      <td rowspan="2">
+        <div align="center">
+          <a href="" width="60%" height="60%"></a>
+        </div>
+      </td>
+      <td>각 부식과 메뉴의 세부 정보를 확인할 수 있습니다.</td>
+    </tr>
+    <tr>
+      <td>메뉴에 어떤 부식이 들어가는지, 메뉴에 대한 평가가 어떤지 등 필요한 정보들을 모았습니다.</td>
+    </tr>
+  </tbody>
+</table>
+<br><br>
+</table>
+
+<br><br>
+<table>
+  <tbody>
+		<tr>
+			<td colspan=2>
+				<br>
+				<b>자율메뉴</b><br>
+				<br>
+			</td>
+		</tr>
+		<tr>
+      <td rowspan="2">
+        <div align="center">
+          <a href="" width="60%" height="60%"></a>
+        </div>
+      </td>
+      <td width="33%">부대에서 직접 시행하는 자율메뉴를 추가할 수 있습니다.</td>
+    </tr>
+    <tr>
+      <td>부대에서 자체적으로 시행하는 만큼 만족도 확인은 중요하죠!</td>
+    </tr>
+  </tbody>
+</table>
+<br><br>
+
+</table>
+<br><br>
+<table>
+  <tbody>
+		<tr>
+			<td colspan=2>
+				<br>
+				<b>식단관리</b><br>
+				<br>
+			</td>
+		</tr>
+		<tr>
+      <td rowspan="2">
+        <div align="center">
+          <a href="" width="60%" height="60%"></a>
+        </div>
+      </td>
+      <td width="33%">모든 식단을 모아서 확인하고, 메모를 추가할 수 있습니다.</td>
+    </tr>
+    <tr>
+      <td>공공데이터 포탈에 게시되어있는 부대의 식단정보를 알아서 입력해줍니다!</td>
+    </tr>
+  </tbody>
+</table>
+<br><br>
+
+</table>
+<br><br>
+<table>
+  <tbody>
+		<tr>
+			<td colspan=2>
+				<br>
+				<b>회원가입ㆍ로그인</b><br>
+				<br>
+			</td>
+		</tr>
+		<tr>
+      <td rowspan="2">
+        <div align="center">
+          <a href="" width="60%" height="60%"></a>
+        </div>
+      </td>
+      <td width="33%">같은 소속의 부대는 기본적인 식단정보를 공유합니다!</td>
+    </tr>
+    <tr>
+      <td>간편한 로그인으로 설문조사ㆍ확인도 간편하게 진행할 수 있습니다.</td>
+    </tr>
+  </tbody>
+</table>
+<br><br>
+
 ## 컴퓨터 구성 / 필수 조건 안내 (Prerequisites)
 * 권장: ES6를 지원하는 Chromium 기반의 웹 브라우저(Chrome, Naver Whale, Microsoft Edge 등)
+* https가 아닌, http 프로토콜을 적용한 상태 (http인 서버와 통신하기 위해)
 
 ## 기술 스택 (Technique Used) 
 ### Server(back-end)
@@ -122,7 +236,11 @@ $ yarn start or npm run start
 
 ## 프로젝트 사용법 (Getting Started)
 
-
+1. 부대명, 소속부대를 입력하고 회원가입합니다.
+2. 해당 계정으로 로그인합니다.
+3. 식단관리 탭에서 소속부대의 식단이 잘 받아와졌는지 확인합니다.
+4. 만족도조사 탭에서 만족도조사를 실시합니다.
+5. 쌓인 설문 결과를 다양한 통계 탭에서 확인합니다.
  
 ## 팀 정보 (Team Information)
 - 최원빈 (chldnjsqls1264@gmail.com), Github: ChoiWonBeen
