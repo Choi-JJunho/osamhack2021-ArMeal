@@ -41,16 +41,38 @@
         GROUP BY Target_id
     </select>
 
+    <select id="findRatioByMenuId" resultType="java.util.HashMap">
+        SELECT (SUM(rating_data)*20) / COUNT(rating_data) AS ratio 
+        FROM Rating 
+        WHERE Target_id = {_targetId}
+    </select>
+
     <select id="findCountOfratingData" resultType="java.util.HashMap">
         SELECT rating_data, COUNT(*) AS count
         FROM Rating WHERE group_id = #{_groupId}
         GROUP BY rating_data ORDER BY rating_data ASC;
     </select>
 
+    <select id="findCountOfratingDataById" resultType="java.util.HashMap">
+        SELECT rating_data, COUNT(*) AS count
+        FROM Rating WHERE (group_id = #{_groupId} AND Target_id = #{_targetId})
+        GROUP BY rating_data ORDER BY rating_data ASC;
+    </select>
+    
     <select id="findRatingTop5" resultType="java.util.HashMap">
         SELECT a.Target_id AS id, b.name AS name, (SUM(a.rating_data)*20) / COUNT(a.rating_data) AS ratio 
         FROM Rating AS a 
-        JOIN Menu AS b ON a.Target_id = b.id 
+        JOIN Menu AS b ON (a.Target_id = b.id)
+        JOIN Used_ingredient AS c ON (a.Target_id = c.Menu_id)
+        WHERE a.group_id = #{_groupId}
+        GROUP BY Target_id ORDER BY ratio DESC LIMIT 5;
+    </select>
+
+    <select id="findRatingTop5ByIngredient" resultType="java.util.HashMap">
+        SELECT a.Target_id AS id, b.name AS name, (SUM(a.rating_data)*20) / COUNT(a.rating_data) AS ratio 
+        FROM Rating AS a 
+        JOIN Menu AS b ON (a.Target_id = b.id)
+        JOIN Used_ingredient AS c ON (a.Target_id = c.Menu_id AND c.Ingredient_id = #{_ingredientId})
         WHERE a.group_id = #{_groupId}
         GROUP BY Target_id ORDER BY ratio DESC LIMIT 5;
     </select>
@@ -60,6 +82,12 @@
         FROM Rating AS a
         JOIN Daily_menu AS b ON (a.Target_id = b.menu AND a.group_id = #{_groupId})
         WHERE b.date_value BETWEEN #{_date} AND DATE_ADD(#{_date}, INTERVAL 1 MONTH) GROUP BY time;
+    </select>
+
+    <select id="findRatingOfIngredient" resultType="double">
+        SELECT (SUM(a.rating_data)*20) / COUNT(a.rating_data) AS satisfy
+        FROM Rating AS a
+        JOIN Used_ingredient AS b ON (a.Target_id = b.Menu_id AND a.group_id = #{_groupId} AND b.Ingredient_id = #{_ingredientId})
     </select>
 
     <!-- insert -->

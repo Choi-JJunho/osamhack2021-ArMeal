@@ -28,12 +28,14 @@ public class MenuController {
     @Autowired
     MenuService menuService;
 
+    @RequestMapping(value = "/get/ingredient/info/all", method = RequestMethod.GET)
+    public ResponseEntity getIngredientInfoAll (long group_id) {
+        return new ResponseEntity<List<HashMap<String, Object>>>(menuService.getIngredientInfoAll(group_id), HttpStatus.OK);
+    }
 
-    // 해당 메뉴가 나온 날짜를 구한다.
-    // OK
-    @RequestMapping(value = "/get/date/menu/{id}", method = RequestMethod.GET)
-    public ResponseEntity getRecentDate (@PathVariable("id") long id, long group_id) {
-        return new ResponseEntity<List<HashMap<String, Object>>>(menuService.getRecentDates(id, group_id), HttpStatus.OK);
+    @RequestMapping(value = "/get/ingredient/info", method = RequestMethod.GET)
+    public ResponseEntity getIngredientInfoId (long group_id, long ingredient_id) {
+        return new ResponseEntity<HashMap<String, Object>>(menuService.getIngredientInfoId(ingredient_id, group_id), HttpStatus.OK);
     }
     
     /* Legacy
@@ -83,7 +85,12 @@ public class MenuController {
         return new ResponseEntity<List<HashMap<String,Object>>>(menuService.searchMenu(name, group_id), HttpStatus.OK);
     }
 
-
+    // 해당 메뉴가 나온 날짜를 구한다.
+    // OK
+    @RequestMapping(value = "/get/date/menu/{id}", method = RequestMethod.GET)
+    public ResponseEntity getRecentDate (@PathVariable("id") long id, long group_id) {
+        return new ResponseEntity<HashMap<String, Object>>(menuService.getRecentDate(id, group_id), HttpStatus.OK);
+    }
 */
 
     @RequestMapping(value = "/get/menu/info/all", method = RequestMethod.GET)
