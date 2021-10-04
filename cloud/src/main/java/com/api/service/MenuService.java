@@ -6,21 +6,29 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.xml.crypto.Data;
+
 import com.api.domain.DailyMeal;
 import com.api.domain.Ingredient;
 import com.api.domain.Menu;
 import com.api.domain.SelfDish;
 import com.api.mapper.MenuMapper;
+import com.api.mapper.RatingMapper;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 @Service
 @Transactional
 public class MenuService extends Exception {
     @Autowired
     MenuMapper menuMapper;
+
+    @Autowired
+    RatingMapper ratingMapper;
 
     public HashMap<Object,Object> addMenu(String name, int type, long groupId) {
         HashMap<Object,Object> result = new HashMap<>();
@@ -114,7 +122,7 @@ public class MenuService extends Exception {
         return menuMapper.findMonthMenu(groupNum, date, time);
     }
 
-    public List<HashMap<String, Object>> getRecentDates(long menuId, long group_id) {
+    public HashMap<String, Object> getRecentDate(long menuId, long group_id) {
         return menuMapper.findRecentDateByMenuId(menuId, group_id);
     }
 
@@ -155,6 +163,103 @@ public class MenuService extends Exception {
     // 해당 재료를 사용하는 메뉴 구하기
     public List<HashMap<String, Object>> getMenuByIngredientId(long ingredientId) {
         return menuMapper.findMenuByIngredientId(ingredientId);
+    }
+
+    // 모든 재료 정보 구하기
+    public List<HashMap<String, Object>> getIngredientInfoAll(long group_id) {
+        List<HashMap<String, Object>> ingredients = menuMapper.findAllIngredient();
+        List<HashMap<String, Object>> usedIngredients = new ArrayList<HashMap<String, Object>>();
+        List<HashMap<String, Object>> result = new ArrayList<HashMap<String, Object>>();
+        List<String> menus = new ArrayList<String>();
+        
+        HashMap<String, Object> input = new HashMap<String, Object>();
+
+        long ingredient_id;
+        for (HashMap<String, Object> data : ingredients) {
+            ingredient_id = Long.valueOf(data.get("id").toString());
+            input.put("id", ingredient_id);
+            input.put("ingredient_name", data.get("name"));
+            usedIngredients = menuMapper.findIngredientInfoById(ingredient_id);
+            
+            for(HashMap<String, Object> value : usedIngredients) {
+                menus.add(value.get("name").toString());
+            }
+            usedIngredients.clear();
+
+            usedIngredients = menuMapper.findIngredientInfoById_Self(ingredient_id);
+            for(HashMap<String, Object> value : usedIngredients) {
+                menus.add(value.get("name").toString());
+            }
+            usedIngredients.clear();
+
+            input.put("menu", menus);
+            input.put("satisfy", ratingMapper.findRatingOfIngredient(group_id, ingredient_id));
+
+            Gson gson = new Gson();
+            HashMap<String, Object> jsonObject = gson.fromJson(input.toString(), new TypeToken<HashMap<String, Object>>(){}.getType());
+            result.add(jsonObject);
+            menus.clear();
+            input.clear();
+        }
+        return result;
+    }
+
+    public HashMap<String, Object> getIngredientInfoId(long ingredient_id, long group_id) {
+        HashMap<String, Object> ingredient = menuMapper.findIngredientById(ingredient_id);
+        // top5 메뉴 정보를 가지는 list
+        List<HashMap<String, Object>> menuList = new ArrayList<HashMap<String, Object>>();
+        List<HashMap<String, Object>> top5Data = ratingMapper.findRatingTop5ByIngredient(group_id, ingredient_id);
+
+        List<Integer> ratingCount = new ArrayList<Integer>(){
+            {
+                add(0);
+                add(0);
+                add(0);
+                add(0);
+                add(0);
+            }
+        };
+        
+        HashMap<String, Object> input = new HashMap<String, Object>();
+        HashMap<String, Object> menuData = new HashMap<String, Object>();
+        
+        input.put("id", ingredient.get("id"));
+        input.put("ingredient_name", ingredient.get("name"));
+
+        int cnt = 1;
+        long menuId;
+        for(HashMap<String, Object> data : top5Data) {
+            menuId = Long.valueOf(data.get("id").toString());
+            menuData.put("id", cnt++);
+            // 최근 나온 날짜
+            menuData.put("lastest", menuMapper.findRecentDateByMenuId(menuId, group_id).get("recentDate").toString());
+            menuData.put("name", data.get("name").toString());
+            menuData.put("satisfy", ratingMapper.findRatioByMenuId(menuId));
+            
+            Gson gson = new Gson();
+            HashMap<String, Object> jsonObject = gson.fromJson(menuData.toString(), new TypeToken<HashMap<String, Object>>(){}.getType());
+            menuList.add(jsonObject);
+            menuData.clear();
+
+            List<HashMap<String, Object>> datas = ratingMapper.findCountOfratingDataById(group_id, menuId);
+            for(HashMap<String, Object> value : datas) {
+                int idx = Integer.valueOf(value.get("rating_data").toString());
+                int count = Integer.valueOf(value.get("count").toString());
+                ratingCount.set(idx-1, ratingCount.indexOf(idx-1) + count);
+            }
+        }
+        
+        input.put("menu_list", menuList);
+        input.put("satisfy", ratingCount.toString());
+        double average = (ratingCount.indexOf(0) + ratingCount.indexOf(1) * 2 + ratingCount.indexOf(2) * 3 + ratingCount.indexOf(3) * 4 + ratingCount.indexOf(4) * 5) * 100 / 5;
+        input.put("average", average);
+
+        System.out.println(input.toString());
+
+        Gson gson = new Gson();
+        HashMap<String, Object> jsonObject = gson.fromJson(input.toString(), new TypeToken<HashMap<String, Object>>(){}.getType());
+        
+        return jsonObject;
     }
 
 }
