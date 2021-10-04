@@ -271,7 +271,8 @@ export default function SignupComponent({info, updateInfo, submit}){
 						</UnitInputField>
 						<AffiliatedUnitInputField>
 							<AffiliatedUnitInput 
-								placeholder="소속부대를 입력하세요.(숫자)"
+							  type="number"
+								placeholder="소속부대를 입력하세요."
 								name="group_id"
 								onChange={updateInfo}
 								value={info.group_id} />
