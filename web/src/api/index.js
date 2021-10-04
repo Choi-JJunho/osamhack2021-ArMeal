@@ -18,6 +18,16 @@ export const signup = ({email, group_id, login_id, name, password}) => {
   );
 }
 
+export const getManagementData = ({group_id, start, end}) => {
+  return axios.post(`${PATH}/getMonthData`, 
+    {
+      "group_id": Number(group_id),
+      "start": start,
+      "end": end,
+    }
+  );
+}
+
 export const getDashboardData = () => {
   return axios.post(`${PATH}/getDashboardData`);
 }

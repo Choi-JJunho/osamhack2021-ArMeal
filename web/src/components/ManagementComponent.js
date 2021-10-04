@@ -17,7 +17,7 @@ const CalendarWrapper = styled.div`
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 `
 
-export default function ManagementComponent({events}){
+export default function ManagementComponent({events, onMonthChange}){
   return (
     <Container>
       <CalendarWrapper>
@@ -33,6 +33,7 @@ export default function ManagementComponent({events}){
           locale="af"
           initialEvents={events}
           eventDidMount={el => addHoverEvent(el)}
+          datesSet={e => onMonthChange(e)}
         />
       </CalendarWrapper>
     </Container>

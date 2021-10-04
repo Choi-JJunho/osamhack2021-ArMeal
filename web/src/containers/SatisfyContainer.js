@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 
 import SatisfyComponent from 'components/SatisfyComponent';
-
+import SatisfyMobileComponent from 'components/SatisfyMobileComponent';
 
 export default function SatisfyContainer(){
   const [type, setType] = useState(0) // const [변수, set변수] = useState(기본값)
@@ -33,8 +33,6 @@ export default function SatisfyContainer(){
       dessert:["주스"]
     }
   ]
-
-  
 
   const todayTaste = [
     {taste: "짜다"},
@@ -80,12 +78,15 @@ const [satisfaction, setSatisfaction] = useState(0) // const [변수, set변수]
     }
     else if (idx===2){
       setVisible("average")
+      openModal()
     }
     else if (idx===3){
       setVisible("good")
+      openModal()
     }
     else if (idx===4){
       setVisible("best")
+      openModal()
     }
     // else setVisible("none")
   
@@ -96,8 +97,16 @@ const [satisfaction, setSatisfaction] = useState(0) // const [변수, set변수]
       setVisible(idx)
     }
 
-
+const [modal, setModal] = useState(false)
+const openModal = () => {
+  setModal(true)
+  setVisible(0)
+  setTimeout(() => {
+    setModal(false);
+  }, 2000);
+}
   return (
+    <>
     <SatisfyComponent 
       todayData={todayData} 
       type={type} 
@@ -114,6 +123,29 @@ const [satisfaction, setSatisfaction] = useState(0) // const [변수, set변수]
       visible={visible}
       selectVisible={selectVisible}
       // selectVisible={selectVisible}
+
+      modal={modal}
+      setModal = {setModal}
+      openModal={openModal}
+
     />
+    <SatisfyMobileComponent
+    todayData={todayData} 
+    type={type} 
+    selectType={selectType}
+    selectTypeIdx={[1,2,3]} 
+
+    todayTaste={todayTaste}
+
+    // satisfaction={satisfaction}
+    selectSatisfaction = {selectSatisfaction}
+    
+    survey={picLink}
+
+    visible={visible}
+    selectVisible={selectVisible}>
+
+    </SatisfyMobileComponent>
+    </>
   )
 }
