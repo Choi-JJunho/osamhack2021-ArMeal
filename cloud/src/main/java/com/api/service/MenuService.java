@@ -79,8 +79,8 @@ public class MenuService extends Exception {
         return menuMapper.findAllMenu(group_id);
     }
 
-    public Menu getMenu(String name, long groupId) {
-        return menuMapper.findMenuByName(name, groupId);
+    public Menu getMenu(long id, long groupId) {
+        return menuMapper.findMenuById(id, groupId);
     }
 
     public List<HashMap<String, Object>> searchMenu(String name, long group_id) {
@@ -91,7 +91,7 @@ public class MenuService extends Exception {
     // time 1 : 조식 / 2 : 중식 / 3 : 석식
     public HashMap<String, Object> addDailyMenu(DailyMeal menu){
         HashMap<String, Object> result = new HashMap<>();
-        Menu flag = menuMapper.findMenuById(menu.getMenu());
+        Menu flag = menuMapper.findMenuById(menu.getMenu(), menu.getGroup_id());
 
         if(flag != null) {
             result.put("error", "동일한 메뉴가 존재합니다.");

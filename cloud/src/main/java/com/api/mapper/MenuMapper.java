@@ -12,7 +12,7 @@ import java.util.HashMap;
 @Mapper
 public interface MenuMapper {
     List<HashMap<String, Object>> findAllMenu(@Param("_groupId") long group_id);
-    Menu findMenuById(@Param("_id")long id); // 사용 안 함
+    Menu findMenuById(@Param("_id")long id, @Param("_groupId") long group_id);
     Menu findMenuByName(@Param("_name")String name, @Param("_groupId") long group_id);
     List<HashMap<String, Object>> searchMenu(@Param("_name")String name, @Param("_groupId")long group_id);
     List<HashMap<String, Object>> findMenuByMenuType(@Param("menuType")int menuType); // 사용 안 함

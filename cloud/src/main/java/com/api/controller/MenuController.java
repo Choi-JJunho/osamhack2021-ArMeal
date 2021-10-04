@@ -85,4 +85,14 @@ public class MenuController {
 
 
 */
+
+    @RequestMapping(value = "/get/menu/info/all", method = RequestMethod.GET)
+    public ResponseEntity getAllMenu (@PathVariable("group_id")long group_id) {
+        return new ResponseEntity<List<HashMap<String, Object>>>(menuService.getAllMenu(group_id), HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/get/menu/info/{id}", method = RequestMethod.GET)
+    public ResponseEntity getMenu (@PathVariable("menu_id")long menu_id, @PathVariable("group_id")long group_id) {
+        return new ResponseEntity<Menu>(menuService.getMenu(menu_id, group_id), HttpStatus.OK);
+    }
 }
