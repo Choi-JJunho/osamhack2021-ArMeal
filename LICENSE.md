@@ -1,7 +1,7 @@
 ## 2021 ArMeal
 
  - Front
-     - License: MIT ([license/Front_license.md])
+     - License: MIT ([license/Front_license.md](license/Front_license.md))
      - Software
         - @mui/x-data-grid
         - @testing-library/user-event
@@ -23,7 +23,7 @@
         - styled-components
 
  - Back
-      - License: Apache 2.0([license/Back_license.md])
+      - License: Apache 2.0([license/Back_license.md](license/Back_license.md))
       - Software
         - MyBatis integration with Spring Boot
         - Spring Boot
@@ -32,13 +32,13 @@
 
 
  - DB
-     - License: The Universal FOSS Exception 1.0([license/DB_license.md])
+     - License: The Universal FOSS Exception 1.0([license/DB_license.md](license/DB_license.md]))
      - Software
           - MySQL Connector/J
 
 
  - Font
-      - License: SIL OPEN FONT LICENSE Version 1.1([license/Font_license.md])
+      - License: SIL OPEN FONT LICENSE Version 1.1([license/Font_license.md](license/Font_license.md))
       - Fonts
         - NanumSquare
         - GmarketSans
