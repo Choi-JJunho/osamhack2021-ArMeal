@@ -27,12 +27,31 @@ public class IngredientController {
     @Autowired
     MenuService menuService;
 
-    /* nonUsed
+    @RequestMapping(value = "/get/ingredient/info/all", method = RequestMethod.GET)
+    public ResponseEntity getIngredientInfoAll (long group_id) {
+        return new ResponseEntity<List<HashMap<String, Object>>>(menuService.getIngredientInfoAll(group_id), HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/get/ingredient/info", method = RequestMethod.GET)
+    public ResponseEntity getIngredientInfoId (long group_id, long ingredient_id) {
+        return new ResponseEntity<HashMap<String, Object>>(menuService.getIngredientInfoId(ingredient_id, group_id), HttpStatus.OK);
+    }
+
     // OK
     @RequestMapping(value = "/add/ingredient/{menuId}/{name}", method = RequestMethod.GET)
     public ResponseEntity addIngredient (@PathVariable("menuId") long id, @PathVariable("name") String name) {
         return new ResponseEntity<List<HashMap<String, Object>>>(menuService.addUsedIngredient(id, name), HttpStatus.OK);
     }
+    
+    @RequestMapping(value = "/get/ingredient/menu/{id}", method = RequestMethod.GET)
+    public ResponseEntity getIngerdient (@PathVariable("id") long id) {
+        return new ResponseEntity<List<HashMap<String, Object>>>(menuService.getIngredientsByMenuId(id), HttpStatus.OK);
+    }
+
+   
+
+    /* nonUsed
+    
 
     // OK
     @RequestMapping(value = "/get/ingredient/menu/{id}", method = RequestMethod.GET)

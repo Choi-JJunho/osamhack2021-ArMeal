@@ -28,16 +28,6 @@ public class MenuController {
     @Autowired
     MenuService menuService;
 
-    @RequestMapping(value = "/get/ingredient/info/all", method = RequestMethod.GET)
-    public ResponseEntity getIngredientInfoAll (long group_id) {
-        return new ResponseEntity<List<HashMap<String, Object>>>(menuService.getIngredientInfoAll(group_id), HttpStatus.OK);
-    }
-
-    @RequestMapping(value = "/get/ingredient/info", method = RequestMethod.GET)
-    public ResponseEntity getIngredientInfoId (long group_id, long ingredient_id) {
-        return new ResponseEntity<HashMap<String, Object>>(menuService.getIngredientInfoId(ingredient_id, group_id), HttpStatus.OK);
-    }
-
     @RequestMapping(value = "/get/menu/info/all", method = RequestMethod.GET)
     public ResponseEntity getAllMenu (long group_id) {
         return new ResponseEntity<List<HashMap<String, Object>>>(menuService.getAllMenu(group_id), HttpStatus.OK);
@@ -48,10 +38,7 @@ public class MenuController {
         return new ResponseEntity<Menu>(menuService.getMenu(menu_id, group_id), HttpStatus.OK);
     }
     
-    @RequestMapping(value = "/get/dailymenu/info", method = RequestMethod.GET)
-    public ResponseEntity getDailyMenuInfoByDates (long group_id, Date start, Date end) {
-        return new ResponseEntity<List<HashMap<String, Object>>>(menuService.getDailyMenuInfoByDates(group_id, start, end), HttpStatus.OK);
-    }
+
 
     
     /* Legacy

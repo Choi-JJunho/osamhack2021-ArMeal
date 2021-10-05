@@ -25,7 +25,16 @@ public class DailyMenuController {
     @Autowired
     MenuService menuService;
 
-
+    @RequestMapping(value = "/get/dailymenu/info", method = RequestMethod.GET)
+    public ResponseEntity getDailyMenuInfoByDates (long group_id, Date start, Date end) {
+        return new ResponseEntity<List<HashMap<String, Object>>>(menuService.getDailyMenuInfoByDates(group_id, start, end), HttpStatus.OK);
+    }
+    
+    // OK
+    @RequestMapping(value = "/add/selfdish", method = RequestMethod.POST)
+    public ResponseEntity addSelfDish (String name, Date date, long ingredientId, long group_id) {
+        return new ResponseEntity<HashMap<String, Object>>(menuService.addSelfDish(name, date, ingredientId, group_id), HttpStatus.OK);
+    }
     
     
     /* Legacy
@@ -42,10 +51,6 @@ public class DailyMenuController {
         return new ResponseEntity<List<HashMap<String, Object>>>(menuService.getDailyMenu(group_id, year, month, time), HttpStatus.OK);
     }
 
-    // OK
-    @RequestMapping(value = "/add/selfdish", method = RequestMethod.POST)
-    public ResponseEntity addSelfDish (String name, Date date, long ingredientId, long group_id) {
-        return new ResponseEntity<HashMap<String, Object>>(menuService.addSelfDish(name, date, ingredientId, group_id), HttpStatus.OK);
-    }
+    
     */
 }
