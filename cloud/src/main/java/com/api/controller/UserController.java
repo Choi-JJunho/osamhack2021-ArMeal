@@ -21,18 +21,20 @@ public class UserController {
     @Autowired
     UserService userService;
 
+    // 로그인 서비스
     @RequestMapping(value = "/login", method= RequestMethod.POST)
     public ResponseEntity login(@ApiParam(value = "(required: login_id, password)", required = true) @RequestBody User user) {
-        return new ResponseEntity<HashMap<Object,Object>>(userService.login(user.getLogin_id(), user.getPassword()),HttpStatus.OK);
+        return new ResponseEntity<HashMap<String,Object>>(userService.login(user.getLogin_id(), user.getPassword()),HttpStatus.OK);
     }
  
-    @RequestMapping(value = "/signup2", method= RequestMethod.POST)
-    public ResponseEntity signup2(@ApiParam(value = "(required: login_id, password, email, name, group_id)", required = true) @RequestBody User user) {
+    // 회원가입 서비스
+    @RequestMapping(value = "/signup", method= RequestMethod.POST)
+    public ResponseEntity signup(@ApiParam(value = "(required: login_id, password, email, name, group_id)", required = true) @RequestBody User user) {
         System.out.println(user);
-        return new ResponseEntity<HashMap<Object, Object>>(userService.signup(user.getName(), user.getPassword(), user.getEmail(), user.getGroup_id(), user.getLogin_id()), HttpStatus.OK);
+        return new ResponseEntity<HashMap<String, Object>>(userService.signup(user.getName(), user.getPassword(), user.getEmail(), user.getGroup_id(), user.getLogin_id()), HttpStatus.OK);
     }
 
-    /* Not JSON
+    /* Not JSON Legacy
     @RequestMapping(value = "/login", method= RequestMethod.POST)
     public ResponseEntity login(@RequestBody @ApiParam(value = "아이디", required = true, example = "abcde") String id, @ApiParam(value = "비밀번호", required = true, example = "12345") String password) {
         return new ResponseEntity<HashMap<Object,Object>>(userService.login(id, password),HttpStatus.OK);

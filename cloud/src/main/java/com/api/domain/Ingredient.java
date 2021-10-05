@@ -1,6 +1,6 @@
 package com.api.domain;
 
-public class IngredientData {
+public class Ingredient {
     private long id;
 	private String name;
 
