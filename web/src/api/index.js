@@ -18,6 +18,10 @@ export const signup = ({email, group_id, login_id, name, password}) => {
   );
 }
 
+export const getAllSidedishData = (group_id) => {
+  return axios.get(`${PATH}/get/ingredient/info/all?group_id=${group_id}`)
+}
+
 export const getManagementData = ({group_id, start, end}) => {
   return axios.post(`${PATH}/getMonthData`, 
     {
