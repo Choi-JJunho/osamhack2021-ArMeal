@@ -13,7 +13,14 @@
         JOIN Daily_menu AS c ON (a.Target_id = c.menu )
         WHERE c.date_value BETWEEN DATE(#{_start}) AND DATE(#{_end})+1 GROUP BY Target_id;
     </select>
-    
+
+    <select id="findRatioByDateTime" resultType="java.util.HashMap">
+        SELECT (SUM(a.rating_data)*20) / COUNT(a.rating_data) AS ratio
+        FROM Rating AS a 
+        JOIN Daily_menu AS c ON (a.Target_id = c.menu AND a.group_id = #{_groupId})
+        WHERE c.date_value = #{_date} AND c.time = #{_time};
+    </select>
+
     <select id="findDailyRatioByDate" resultType="java.util.HashMap">
         SELECT b.time AS time, (SUM(a.rating_data)*20) / COUNT(a.rating_data) AS ratio
         FROM Rating AS a

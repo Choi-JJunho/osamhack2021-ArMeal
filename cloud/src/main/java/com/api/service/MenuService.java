@@ -263,4 +263,58 @@ public class MenuService extends Exception {
         return jsonObject;
     }
 
+    public List<HashMap<String, Object>> getDailyMenuInfoByDates(long group_id, Date start, Date end) {
+        List<HashMap<String, Object>> result = new ArrayList<HashMap<String, Object>>();
+        List<HashMap<String, Object>> datas = menuMapper.findAllDailyMenuByDates(start, end, group_id);
+
+        HashMap<String, Object> input = new HashMap<String, Object>();
+
+        Date currDate = Date.valueOf("1999-01-01");
+        int beforeTime = -1;
+        int timeValue = 1;
+        List<String> menus = new ArrayList<String>();
+
+        for(HashMap<String, Object> data : datas) {
+            timeValue = Integer.valueOf(data.get("time").toString());
+            if(beforeTime != -1 && timeValue != beforeTime) {
+                switch(beforeTime) {
+                    case 1:
+                        input.put("title", "조식");
+                        break;
+                    case 2:
+                        input.put("title", "중식");
+                        break;
+                    case 3:
+                        input.put("title", "석식");
+                        break;
+                    default:
+                        break;
+                }
+                HashMap<String, Object> ratioValue = ratingMapper.findRatioByDateTime(currDate, timeValue, group_id);
+                input.put("ratio", (ratioValue == null) ? 0 : ratioValue.get("ratio").toString());
+                input.put("description", menus);
+                input.put("time", beforeTime);
+                input.put("date", currDate);
+                System.out.println(input.toString());
+                Gson gson = new Gson();
+                HashMap<String, Object> jsonObject = gson.fromJson(input.toString(), new TypeToken<HashMap<String, Object>>(){}.getType());
+                result.add(jsonObject);
+                input.clear();
+                menus.clear();
+            }
+            // 데이터중 특수문자 ㎖ 및 공백으로 인해 com.google.gson.stream.MalformedJsonException 발생
+            String str = data.get("name").toString();
+            String tempStr = str.replace("㎖", "ml");
+            
+            // 한글, 영어, 일부 특수문자를 제외한 문자 제거
+            String match = "[^\uAC00-\uD7A3xfe0-9a-zA-Z~!@#$%^&*()_+|<>?:{}]";
+            str = tempStr.replaceAll(match, "");
+            menus.add(str);
+            beforeTime = timeValue;
+            currDate = Date.valueOf(data.get("date_value").toString());
+            
+        }
+        return result;
+    }
+
 }

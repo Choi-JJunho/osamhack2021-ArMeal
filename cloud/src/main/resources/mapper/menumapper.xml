@@ -25,7 +25,13 @@
         SELECT * FROM Menu WHERE menu_type = #{menuType} AND group_id = #{_groupId}
     </select>
 
-    <select id="findDailyMenuByDate" resultType="java.util.HashMap">
+    <select id="findAllDailyMenuByDates" resultType="java.util.HashMap">
+        SELECT b.name AS name, a.* FROM Daily_menu AS a 
+        JOIN Menu AS b ON (a.menu = b.id)
+        WHERE a.group_id = #{_groupId} AND a.date_value BETWEEN #{_start} AND #{_end} ORDER BY a.date_value, time ASC
+    </select>
+
+    <select id="findDailyMenuByDates" resultType="java.util.HashMap">
         SELECT * FROM Daily_menu WHERE date_value = #{_date} AND group_id = #{_groupId}
     </select>
     
@@ -34,7 +40,7 @@
     </select>
 
     <select id="findMonthMenu" resultType="java.util.HashMap">
-        SELECT b.name AS name, a.* FROM Daily_menu AS a JOIN Menu AS b ON (a.menu = b.id) WHERE b.menu_type = 1 AND a.time = #{_time} AND a.group_id = #{_groupId} AND a.date_value BETWEEN #{_date} AND DATE_ADD(#{_date}, INTERVAL 1 MONTH) ORDER BY a.date_value ASC
+        SELECT b.name AS name, a.* FROM Daily_menu AS a JOIN Menu AS b ON (a.menu = b.id) WHERE a.time = #{_time} AND a.group_id = #{_groupId} AND a.date_value BETWEEN #{_date} AND DATE_ADD(#{_date}, INTERVAL 1 MONTH) ORDER BY a.date_value ASC
     </select>
 
     <select id="findIngredientById" resultType="java.util.HashMap">

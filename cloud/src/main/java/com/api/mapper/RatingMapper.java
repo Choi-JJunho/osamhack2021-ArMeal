@@ -22,7 +22,7 @@ public interface RatingMapper {
     List<HashMap<String, Object>> findAllRating(@Param("_groupId") long group_id);
     List<HashMap<String, Object>> findRatioOfAll(@Param("_groupId") long group_id);
     List<HashMap<String, Object>> findRatioByDates(@Param("_start") Date start, @Param("_end") Date end, @Param("_groupId") long group_id);
-    List<HashMap<String, Object>> findRatioByDatesTime(@Param("_start") Date start, @Param("_end") Date end, @Param("_time") int time, @Param("_groupId") long group_id);
+    HashMap<String, Object> findRatioByDateTime(@Param("_date") Date date, @Param("_time") int time, @Param("_groupId") long group_id);
     List<HashMap<String, Object>> findBadReasonByMenuId(@Param("_id")long id, @Param("_groupId") long group_id);    
     List<HashMap<String, Object>> findRatioOfAllMenu(@Param("_groupId") long group_id);
     HashMap<String, Object> findRatioByMenuId(@Param("_targetId") long menu_id);
