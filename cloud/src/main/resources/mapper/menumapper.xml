@@ -54,6 +54,11 @@
     <select id="findIngredientsByMenuId" resultType="java.util.HashMap">
         SELECT a.* FROM Ingredient AS a INNER JOIN Used_ingredient AS b ON (b.Menu_id = #{_menuId} AND b.Ingredient_id = a.id)
     </select>
+    
+    <select id="findUsedIngredientsByMenuIdIngredientId" resultType="java.util.HashMap">
+        SELECT * FROM Used_ingredient WHERE Menu_id = #{_menuId} AND Ingredient_id = #{_ingredientId};
+    </select>
+    
 
     <select id="findMenuByIngredientId" resultType="java.util.HashMap">
         SELECT * FROM Menu AS a JOIN Used_ingredient AS b ON a.id = b.Menu_id WHERE b.Ingredient_id = #{_ingredientId}

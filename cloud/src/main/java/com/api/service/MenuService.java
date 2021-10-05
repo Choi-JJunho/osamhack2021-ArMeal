@@ -146,8 +146,10 @@ public class MenuService extends Exception {
         if(menuMapper.findIngredientByname(name) == null) {
             menuMapper.addIngredient(name);
         }
-        if(menuMapper.findIngredientsByMenuId(menuId) == null) {
-            menuMapper.addUsedIngredient(menuId, Long.valueOf(menuMapper.findIngredientByname(name).get("id").toString()));
+        long ingredientId = Long.valueOf(menuMapper.findIngredientByname(name).get("id").toString());
+        System.out.println(menuMapper.findUsedIngredientsByMenuIdIngredientId(ingredientId, menuId));
+        if(menuMapper.findUsedIngredientsByMenuIdIngredientId(ingredientId, menuId) == null) {
+            menuMapper.addUsedIngredient(menuId, ingredientId);
         }
         
         return getIngredientsByMenuId(menuId);

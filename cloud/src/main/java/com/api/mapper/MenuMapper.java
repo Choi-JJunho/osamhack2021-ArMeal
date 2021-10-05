@@ -30,7 +30,7 @@ public interface MenuMapper {
     List<HashMap<String, Object>> findAllIngredient();
     List<HashMap<String, Object>> findIngredientInfoById(@Param("_ingredientId") long ingredient_id);
     List<HashMap<String, Object>> findIngredientInfoById_Self(@Param("_ingredientId") long ingredient_id);
-    
+    HashMap<String, Object> findUsedIngredientsByMenuIdIngredientId(@Param("_ingredientId") long ingredient_id, @Param("_menuId") long menu_id);
     HashMap<String, Object> findSelfDish(@Param("_name") String name, @Param("_date") Date date, @Param("_groupId") long group_id);
 
     void addMenu(@Param("_name")String name, @Param("_menutype") int type, @Param("_groupId") long group_id);
