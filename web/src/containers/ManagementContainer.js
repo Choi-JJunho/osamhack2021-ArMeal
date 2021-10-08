@@ -5,18 +5,24 @@ import { getManagementData } from 'modules/management';
 
 export default function ManagementContainer(){
   const dispatch = useDispatch();
-  const authData = useSelector(state => state.authReducer);
-  const managementData = useSelector(state => state.managementReducer.management);
-  const [start, setStart] = useState();
-  const [end, setEnd] = useState();
+  const { data } = useSelector(state => state.authReducer);
+  const { allData } = useSelector(state => state.managementReducer.allData);
+  const [range, setRange] = useState({start:"", end:""});
 
   const [date, setDate] = useState(new Date());
 
   const onMonthChange = (e) => {
-    console.log("start:" + e.startStr.slice(0, 10) + "\nend:" + e.endStr.slice(0, 10));
-    setStart(e.startStr.slice(0, 10));
-    setEnd(e.endStr.slice(0, 10));
+    setRange({start: e.startStr.slice(0, 10), end: e.endStr.slice(0, 10)});
   }
+
+  useEffect(() => {
+    dispatch(getManagementData({
+      group_id: data.group_id,
+      start: range.start,
+      end: range.end
+    }))
+  }, [range, dispatch])
+
 
   // useEffect(()  => {
   //   dispatch(getManagementData({
