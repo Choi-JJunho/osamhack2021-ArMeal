@@ -43,8 +43,8 @@ public class IngredientController {
         return new ResponseEntity<List<HashMap<String, Object>>>(menuService.addUsedIngredient(id, name), HttpStatus.OK);
     }
     
-    @RequestMapping(value = "/get/ingredient/menu/{id}", method = RequestMethod.GET)
-    public ResponseEntity getIngerdient (@PathVariable("id") long id) {
+    @RequestMapping(value = "/get/ingredient/{menuId}", method = RequestMethod.GET)
+    public ResponseEntity getIngerdient (@PathVariable("menuId") long id) {
         return new ResponseEntity<List<HashMap<String, Object>>>(menuService.getIngredientsByMenuId(id), HttpStatus.OK);
     }
 

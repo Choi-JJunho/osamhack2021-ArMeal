@@ -41,8 +41,8 @@ public class RatingController {
 
     // 메뉴별 통계를 위한 서비스
     // OK
-    @RequestMapping(value = "/get/ratio/all", method = RequestMethod.GET)
-    public ResponseEntity getAllRatio(long group_id) {
+    @RequestMapping(value = "/get/ratio/{groupId}/all", method = RequestMethod.GET)
+    public ResponseEntity getAllRatio(@PathVariable("groupId") long group_id) {
         return new ResponseEntity<List<HashMap<String,Object>>>(ratingService.getRatioAll(group_id), HttpStatus.OK);
     }
 
