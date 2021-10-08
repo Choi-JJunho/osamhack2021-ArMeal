@@ -35,7 +35,7 @@ public class RatingService extends Exception {
     public HashMap<String, Object> addRating(Rating rating) {
         HashMap<String, Object> result = new HashMap<>();
 
-        ratingMapper.addRating(rating.getUser_id(), rating.getTarget_id(), rating.getTarget_type(), rating.getDate(), rating.getRating_data(), rating.getGroup_id());
+        ratingMapper.addRating(rating.getUser_id(), rating.getTarget_id(), rating.getTarget_type(), rating.getDate(), rating.getRating_data(), rating.getGroup_id(), rating.getTime());
         if(rating.getRating_data() == 1) {
             ratingMapper.updateBadReason(rating.getBad_reason(), rating.getGroup_id());
         }
@@ -60,7 +60,7 @@ public class RatingService extends Exception {
         return result;
     }
     
-    public List<HashMap<String, Object>> addDailyRatingList(List<HashMap<String, Object>> datas) {
+    public void addDailyRatingList(List<HashMap<String, Object>> datas) {
         Date date = Date.valueOf("1900-01-01");
         long group_id = 0;
         for(HashMap<String, Object> value : datas) {
@@ -73,7 +73,6 @@ public class RatingService extends Exception {
             
             addDailyRating(userId, group_id, date, time, rating_value, badReason);
         }
-        return ratingMapper.findRatioByDates(date, date, group_id);
     }
 
     // 사용자가 해당 끼니에 만족도 조사를 실시했을 때 실행되는 로직
@@ -84,7 +83,7 @@ public class RatingService extends Exception {
         // 각 메뉴별로 점수가 들어간다.
         for(HashMap<String, Object> data : datas) {
             menuId = Long.valueOf(data.get("menu").toString());
-            addRating(new Rating(userId, date, menuId, 2, group_id, rating_value, badReason));
+            addRating(new Rating(userId, date, menuId, 2, group_id, rating_value, badReason, time));
         }
     }
 

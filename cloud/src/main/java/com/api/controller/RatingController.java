@@ -101,8 +101,14 @@ public class RatingController {
     +"\t\"badReason\":0,\n"
     +"\t\"group_id\":5322\n"
     +"}]", required = true) @RequestBody List<HashMap<String, Object>> datas) {
-        
-        return new ResponseEntity<List<HashMap<String, Object>>>(ratingService.addDailyRatingList(datas), HttpStatus.OK);
+        HashMap<String, Object> message = new HashMap<String, Object>();
+        if(datas == null) {
+            message.put("error", "nodata");
+        } else {
+            message.put("message", "success");
+            ratingService.addDailyRatingList(datas);
+        }
+        return new ResponseEntity<HashMap<String, Object>>(message, HttpStatus.OK);
     }
 
     /* 예제 : 2021년 9월 20일의 조식에 대해 평가

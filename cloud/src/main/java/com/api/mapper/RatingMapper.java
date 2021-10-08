@@ -16,7 +16,7 @@ public interface RatingMapper {
     HashMap<String, Object> getRatingOfMenu(@Param("_targetId")long targetId);
     HashMap<String, Object> getRatingOfDailyMenu(@Param("_targetId")long targetId);
 
-    void addRating(@Param("_userId")long userId, @Param("_targetId")long targetId, @Param("_targetType")int targetType, @Param("_date") Date date, @Param("ratingData")int ratingData, @Param("_groupId") long group_id);
+    void addRating(@Param("_userId")long userId, @Param("_targetId")long targetId, @Param("_targetType")int targetType, @Param("_date") Date date, @Param("ratingData")int ratingData, @Param("_groupId") long group_id, @Param("_time") int time);
     void updateRating(@Param("_id")long id, @Param("_ratingData")int ratingData);
     void updateBadReason(@Param("_badreason") int badReason, @Param("_groupId") long group_id);
     List<HashMap<String, Object>> findAllRating(@Param("_groupId") long group_id);

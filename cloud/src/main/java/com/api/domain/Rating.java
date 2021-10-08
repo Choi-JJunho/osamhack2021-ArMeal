@@ -9,9 +9,10 @@ public class Rating {
 
 	public Rating() {}
 	
-	public Rating(long userId, Date date, long targetId, int targetType, long groupId, int rating, int badReason) {
+	public Rating(long userId, Date date, long targetId, int targetType, long groupId, int rating, int badReason, int time) {
 		this.User_id = userId;
 		this.date = date;
+		this.time = time;
 		this.Target_id = targetId;
 		this.Target_type = targetType;
 		this.group_id = groupId;
@@ -27,6 +28,9 @@ public class Rating {
 	
 	@ApiModelProperty(notes = "평가 날짜", example = "5322")
     private Date date;
+
+	@ApiModelProperty(notes = "평가하는 시간(조,중,석)", example = "5322")
+    private int time;
 	
 	@ApiModelProperty(notes = "유저 아이디", example = "1")
 	private long User_id;
@@ -84,6 +88,14 @@ public class Rating {
 
 	public void setDate(Date date) {
 		this.date = date;
+	}
+
+	public int getTime() {
+		return this.time;
+	}
+
+	public void setTime(int time) {
+		this.time = time;
 	}
 
 	public long getTarget_id() {
