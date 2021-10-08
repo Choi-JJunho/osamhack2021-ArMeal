@@ -18,14 +18,14 @@
         SELECT (SUM(a.rating_data)*20) / COUNT(a.rating_data) AS ratio
         FROM Rating AS a 
         JOIN Daily_menu AS c ON (a.Target_id = c.menu AND a.group_id = #{_groupId})
-        WHERE c.date_value = #{_date} AND c.time = #{_time};
+        WHERE a.date_value = #{_date} AND c.time = #{_time};
     </select>
 
     <select id="findDailyRatioByDate" resultType="java.util.HashMap">
         SELECT b.time AS time, (SUM(a.rating_data)*20) / COUNT(a.rating_data) AS ratio
         FROM Rating AS a
         JOIN Daily_menu AS b ON (a.Target_id = b.menu)
-        WHERE b.date_value = #{_date} AND a.group_id = #{_groupId} GROUP BY time;
+        WHERE a.date_value = #{_date} AND a.group_id = #{_groupId} GROUP BY time;
     </select>
 
     <select id="findAllRating" resultType="java.util.HashMap">
@@ -51,7 +51,7 @@
     <select id="findRatioByMenuId" resultType="java.util.HashMap">
         SELECT (SUM(rating_data)*20) / COUNT(rating_data) AS ratio 
         FROM Rating 
-        WHERE Target_id = {_targetId}
+        WHERE Target_id = #{_targetId}
     </select>
 
     <select id="findCountOfratingData" resultType="java.util.HashMap">
@@ -99,8 +99,8 @@
 
     <!-- insert -->
     <insert id="addRating">
-        INSERT INTO Rating (User_id, Target_id, Target_type, rating_data, group_id)
-        VALUES (#{_userId}, #{_targetId}, #{_targetType}, #{ratingData}, #{_groupId})
+        INSERT INTO Rating (User_id, Target_id, Target_type, rating_data, group_id, date_value)
+        VALUES (#{_userId}, #{_targetId}, #{_targetType}, #{ratingData}, #{_groupId}, #{_date})
     </insert>
 
     <update id="updateRating">

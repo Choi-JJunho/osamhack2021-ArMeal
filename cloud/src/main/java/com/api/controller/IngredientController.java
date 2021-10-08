@@ -27,13 +27,13 @@ public class IngredientController {
     @Autowired
     MenuService menuService;
 
-    @RequestMapping(value = "/get/ingredient/info/all", method = RequestMethod.GET)
-    public ResponseEntity getIngredientInfoAll (long group_id) {
+    @RequestMapping(value = "/get/ingredient/info/{groupId}/all", method = RequestMethod.GET)
+    public ResponseEntity getIngredientInfoAll (@PathVariable("groupId") long group_id) {
         return new ResponseEntity<List<HashMap<String, Object>>>(menuService.getIngredientInfoAll(group_id), HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/get/ingredient/info", method = RequestMethod.GET)
-    public ResponseEntity getIngredientInfoId (long group_id, long ingredient_id) {
+    @RequestMapping(value = "/get/ingredient/info/{groupId}/{ingredientId}", method = RequestMethod.GET)
+    public ResponseEntity getIngredientInfoId (@PathVariable("groupId") long group_id, @PathVariable("ingredientId") long ingredient_id) {
         return new ResponseEntity<HashMap<String, Object>>(menuService.getIngredientInfoId(ingredient_id, group_id), HttpStatus.OK);
     }
 

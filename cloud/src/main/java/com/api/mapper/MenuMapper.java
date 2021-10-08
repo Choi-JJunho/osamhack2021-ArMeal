@@ -21,6 +21,7 @@ public interface MenuMapper {
     List<HashMap<String, Object>> findAllDailyMenuByDates(@Param("_start")Date start, @Param("_end")Date end, @Param("_groupId")long group_id);
     
     HashMap<String, Object> findRecentDateByMenuId(@Param("_id")long menuId, @Param("_groupId")long group_id);
+    List<HashMap<String, Object>> findRecent3DateByMenuId(@Param("_id")long menuId, @Param("_groupId")long group_id);
     List<HashMap<String, Object>> findMonthMenu(@Param("_groupId") long groupId, @Param("_date") Date date, @Param("_time") int time);
 
     HashMap<String,Object> findIngredientById(@Param("_id") long ingredient_id);
@@ -30,6 +31,8 @@ public interface MenuMapper {
     List<HashMap<String, Object>> findAllIngredient();
     List<HashMap<String, Object>> findIngredientInfoById(@Param("_ingredientId") long ingredient_id);
     List<HashMap<String, Object>> findIngredientInfoById_Self(@Param("_ingredientId") long ingredient_id);
+    List<HashMap<String, Object>> findMenuInfoById_Self(@Param("_menuId") long menu_id);
+    List<HashMap<String, Object>> findUsedIngredientsByMenuId(@Param("_menuId") long menu_id);
     HashMap<String, Object> findUsedIngredientsByMenuIdIngredientId(@Param("_ingredientId") long ingredient_id, @Param("_menuId") long menu_id);
     HashMap<String, Object> findSelfDish(@Param("_name") String name, @Param("_date") Date date, @Param("_groupId") long group_id);
 

@@ -43,6 +43,7 @@ CREATE TABLE `Used_ingredient`(
 CREATE TABLE `Rating`(
     `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
     `group_id` BIGINT NOT NULL,
+    `date_value` DATE NOT NULL,
     `User_id` BIGINT NOT NULL,
     `Target_id` BIGINT NOT NULL,
     `Target_type` INT NOT NULL,
