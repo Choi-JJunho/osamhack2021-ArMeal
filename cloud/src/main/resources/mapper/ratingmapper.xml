@@ -25,7 +25,7 @@
         SELECT b.time AS time, (SUM(a.rating_data)*20) / COUNT(a.rating_data) AS ratio
         FROM Rating AS a
         JOIN Daily_menu AS b ON (a.Target_id = b.menu)
-        WHERE b.date_value = #{_date} AND a.group_id = #{_groupId} GROUP BY time;
+        WHERE a.date_value = #{_date} AND a.group_id = #{_groupId} GROUP BY time;
     </select>
 
     <select id="findAllRating" resultType="java.util.HashMap">
