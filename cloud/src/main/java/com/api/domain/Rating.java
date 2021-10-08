@@ -1,5 +1,6 @@
 package com.api.domain;
 
+import java.sql.Date;
 import java.sql.Timestamp;
 
 import io.swagger.annotations.ApiModelProperty;
@@ -8,8 +9,9 @@ public class Rating {
 
 	public Rating() {}
 	
-	public Rating(long userId, long targetId, int targetType, long groupId, int rating, int badReason) {
+	public Rating(long userId, Date date, long targetId, int targetType, long groupId, int rating, int badReason) {
 		this.User_id = userId;
+		this.date = date;
 		this.Target_id = targetId;
 		this.Target_type = targetType;
 		this.group_id = groupId;
@@ -22,6 +24,9 @@ public class Rating {
 
 	@ApiModelProperty(notes = "급양대 부대번호", example = "5322")
     private long group_id;
+	
+	@ApiModelProperty(notes = "평가 날짜", example = "5322")
+    private Date date;
 	
 	@ApiModelProperty(notes = "유저 아이디", example = "1")
 	private long User_id;
@@ -71,6 +76,14 @@ public class Rating {
 
 	public void setUser_id(long User_id) {
 		this.User_id = User_id;
+	}
+
+	public Date getDate() {
+		return this.date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
 	}
 
 	public long getTarget_id() {

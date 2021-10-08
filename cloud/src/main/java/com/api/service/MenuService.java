@@ -147,7 +147,6 @@ public class MenuService extends Exception {
             menuMapper.addIngredient(name);
         }
         long ingredientId = Long.valueOf(menuMapper.findIngredientByname(name).get("id").toString());
-        System.out.println(menuMapper.findUsedIngredientsByMenuIdIngredientId(ingredientId, menuId));
         if(menuMapper.findUsedIngredientsByMenuIdIngredientId(ingredientId, menuId) == null) {
             menuMapper.addUsedIngredient(menuId, ingredientId);
         }
@@ -179,32 +178,39 @@ public class MenuService extends Exception {
         
         HashMap<String, Object> input = new HashMap<String, Object>();
 
-        long ingredient_id;
-        for (HashMap<String, Object> data : ingredients) {
-            ingredient_id = Long.valueOf(data.get("id").toString());
-            input.put("id", ingredient_id);
-            input.put("ingredient_name", data.get("name"));
-            usedIngredients = menuMapper.findIngredientInfoById(ingredient_id);
-            
-            for(HashMap<String, Object> value : usedIngredients) {
-                menus.add(value.get("name").toString());
-            }
-            usedIngredients.clear();
-
-            usedIngredients = menuMapper.findIngredientInfoById_Self(ingredient_id);
-            for(HashMap<String, Object> value : usedIngredients) {
-                menus.add(value.get("name").toString());
-            }
-            usedIngredients.clear();
-
-            input.put("menu", menus);
-            input.put("satisfy", ratingMapper.findRatingOfIngredient(group_id, ingredient_id));
-
+        if(ingredients == null) {
+            input.put("error", "nodata");
             Gson gson = new Gson();
             HashMap<String, Object> jsonObject = gson.fromJson(input.toString(), new TypeToken<HashMap<String, Object>>(){}.getType());
-            result.add(jsonObject);
-            menus.clear();
-            input.clear();
+            result.add(input);
+        } else {
+            long ingredient_id;
+            for (HashMap<String, Object> data : ingredients) {
+                ingredient_id = Long.valueOf(data.get("id").toString());
+                input.put("id", ingredient_id);
+                input.put("ingredient_name", replaceStr(data.get("name").toString()));
+                usedIngredients = menuMapper.findIngredientInfoById(ingredient_id);
+                
+                for(HashMap<String, Object> value : usedIngredients) {
+                    menus.add(replaceStr(value.get("name").toString()));
+                }
+                usedIngredients.clear();
+
+                usedIngredients = menuMapper.findIngredientInfoById_Self(ingredient_id);
+                for(HashMap<String, Object> value : usedIngredients) {
+                    menus.add(replaceStr(value.get("name").toString()));
+                }
+                usedIngredients.clear();
+
+                input.put("menu", menus);
+                input.put("satisfy", ratingMapper.findRatingOfIngredient(group_id, ingredient_id));
+
+                Gson gson = new Gson();
+                HashMap<String, Object> jsonObject = gson.fromJson(input.toString(), new TypeToken<HashMap<String, Object>>(){}.getType());
+                result.add(jsonObject);
+                menus.clear();
+                input.clear();
+            }
         }
         return result;
     }
@@ -216,7 +222,7 @@ public class MenuService extends Exception {
         List<HashMap<String, Object>> top5Data = ratingMapper.findRatingTop5ByIngredient(group_id, ingredient_id);
 
         List<Integer> ratingCount = new ArrayList<Integer>(){
-            {
+            {   
                 add(0);
                 add(0);
                 add(0);
@@ -227,47 +233,50 @@ public class MenuService extends Exception {
         
         HashMap<String, Object> input = new HashMap<String, Object>();
         HashMap<String, Object> menuData = new HashMap<String, Object>();
-        
-        input.put("id", ingredient.get("id"));
-        input.put("ingredient_name", ingredient.get("name"));
-
-        int cnt = 0;
-        long menuId;
-        double average = 0;
-        for(HashMap<String, Object> data : top5Data) {
-            menuId = Long.valueOf(data.get("id").toString());
-            menuData.put("id", ++cnt);
-            // 최근 나온 날짜
-            menuData.put("lastest", menuMapper.findRecentDateByMenuId(menuId, group_id).get("recentDate").toString());
-            menuData.put("name", data.get("name").toString());
-            menuData.put("satisfy", ratingMapper.findRatioByMenuId(menuId));
-            average += Double.valueOf(ratingMapper.findRatioByMenuId(menuId).get("ratio").toString());
+        if(ingredient == null) {
+            input.put("error", "nodata");
             Gson gson = new Gson();
-            HashMap<String, Object> jsonObject = gson.fromJson(menuData.toString(), new TypeToken<HashMap<String, Object>>(){}.getType());
-            menuList.add(jsonObject);
-            menuData.clear();
+            HashMap<String, Object> jsonObject = gson.fromJson(input.toString(), new TypeToken<HashMap<String, Object>>(){}.getType());
+        } else {
+            input.put("id", ingredient_id);
+            input.put("ingredient_name", ingredient.get("name"));
 
-            List<HashMap<String, Object>> datas = ratingMapper.findCountOfratingDataById(group_id, menuId);
-            for(HashMap<String, Object> value : datas) {
-                int idx = Integer.valueOf(value.get("rating_data").toString());
-                int count = Integer.valueOf(value.get("count").toString());
-                ratingCount.set(idx-1, ratingCount.indexOf(idx-1) + count);
+            int cnt = 0;
+            long menuId;
+            double average = 0;
+            for(HashMap<String, Object> data : top5Data) {
+                menuId = Long.valueOf(data.get("id").toString());
+                menuData.put("id", ++cnt);
+                // 최근 나온 날짜
+                menuData.put("lastest", menuMapper.findRecentDateByMenuId(menuId, group_id).get("recentDate").toString());
+                menuData.put("name", replaceStr(data.get("name").toString()));
+                menuData.put("satisfy", ratingMapper.findRatioByMenuId(menuId));
+                average += Double.valueOf(ratingMapper.findRatioByMenuId(menuId).get("ratio").toString());
+                Gson gson = new Gson();
+                HashMap<String, Object> jsonObject = gson.fromJson(menuData.toString(), new TypeToken<HashMap<String, Object>>(){}.getType());
+                menuList.add(jsonObject);
+                menuData.clear();
+
+                List<HashMap<String, Object>> datas = ratingMapper.findCountOfratingDataById(group_id, menuId);
+                for(HashMap<String, Object> value : datas) {
+                    int idx = Integer.valueOf(value.get("rating_data").toString());
+                    int count = Integer.valueOf(value.get("count").toString());
+                    ratingCount.set(idx-1, ratingCount.get(idx-1) + count);
+                   }
             }
-        }
         
-        input.put("menu_list", menuList);
-        input.put("satisfy", ratingCount.toString());
-        average /= (cnt);
-        input.put("average", average);
-
-        System.out.println(input.toString());
-
+            input.put("menu_list", menuList);
+            input.put("satisfy", ratingCount.toString());
+            average /= (cnt);
+            input.put("average", average);
+        }
         Gson gson = new Gson();
         HashMap<String, Object> jsonObject = gson.fromJson(input.toString(), new TypeToken<HashMap<String, Object>>(){}.getType());
         
         return jsonObject;
     }
 
+    // TODO : Menu Ratio가 기준이 아닌 Rating 테이블의 date_value 칼럼이 기준이 되어야함
     public List<HashMap<String, Object>> getDailyMenuInfoByDates(long group_id, Date start, Date end) {
         List<HashMap<String, Object>> result = new ArrayList<HashMap<String, Object>>();
         List<HashMap<String, Object>> datas = menuMapper.findAllDailyMenuByDates(start, end, group_id);
@@ -278,48 +287,167 @@ public class MenuService extends Exception {
         int beforeTime = -1;
         int timeValue = 1;
         List<String> menus = new ArrayList<String>();
-
-        for(HashMap<String, Object> data : datas) {
-            timeValue = Integer.valueOf(data.get("time").toString());
-            if(beforeTime != -1 && timeValue != beforeTime) {
-                switch(beforeTime) {
-                    case 1:
-                        input.put("title", "조식");
-                        break;
-                    case 2:
-                        input.put("title", "중식");
-                        break;
-                    case 3:
-                        input.put("title", "석식");
-                        break;
-                    default:
-                        break;
+        if(datas == null) {
+            input.put("error", "nodata");
+            Gson gson = new Gson();
+            HashMap<String, Object> jsonObject = gson.fromJson(input.toString(), new TypeToken<HashMap<String, Object>>(){}.getType());
+        } else {
+            for(HashMap<String, Object> data : datas) {
+                timeValue = Integer.valueOf(data.get("time").toString());
+                if(beforeTime != -1 && timeValue != beforeTime) {
+                    switch(beforeTime) {
+                        case 1:
+                            input.put("title", "조식");
+                            break;
+                        case 2:
+                            input.put("title", "중식");
+                            break;
+                        case 3:
+                            input.put("title", "석식");
+                            break;
+                        default:
+                            break;
+                    }
+                    HashMap<String, Object> ratioValue = ratingMapper.findRatioByDateTime(currDate, timeValue, group_id);
+                    input.put("ratio", (ratioValue == null) ? 0 : ratioValue.get("ratio").toString());
+                    input.put("description", menus);
+                    input.put("time", beforeTime);
+                    input.put("date", currDate);
+                    Gson gson = new Gson();
+                    HashMap<String, Object> jsonObject = gson.fromJson(input.toString(), new TypeToken<HashMap<String, Object>>(){}.getType());
+                    result.add(jsonObject);
+                    input.clear();
+                    menus.clear();
                 }
-                HashMap<String, Object> ratioValue = ratingMapper.findRatioByDateTime(currDate, timeValue, group_id);
-                input.put("ratio", (ratioValue == null) ? 0 : ratioValue.get("ratio").toString());
-                input.put("description", menus);
-                input.put("time", beforeTime);
-                input.put("date", currDate);
-                System.out.println(input.toString());
-                Gson gson = new Gson();
-                HashMap<String, Object> jsonObject = gson.fromJson(input.toString(), new TypeToken<HashMap<String, Object>>(){}.getType());
-                result.add(jsonObject);
-                input.clear();
-                menus.clear();
+                menus.add(replaceStr(data.get("name").toString()));
+                beforeTime = timeValue;
+                currDate = Date.valueOf(data.get("date_value").toString());
             }
-            // 데이터중 특수문자 ㎖ 및 공백으로 인해 com.google.gson.stream.MalformedJsonException 발생
-            String str = data.get("name").toString();
-            String tempStr = str.replace("㎖", "ml");
-            
-            // 한글, 영어, 일부 특수문자를 제외한 문자 제거
-            String match = "[^\uAC00-\uD7A3xfe0-9a-zA-Z~!@#$%^&*()_+|<>?:{}]";
-            str = tempStr.replaceAll(match, "");
-            menus.add(str);
-            beforeTime = timeValue;
-            currDate = Date.valueOf(data.get("date_value").toString());
-            
         }
         return result;
     }
 
+
+    public List<HashMap<String, Object>> getMenuInfoAll(long group_id) {
+        List<HashMap<String, Object>> menus = menuMapper.findAllMenu(group_id);
+        List<HashMap<String, Object>> usedIngredients = new ArrayList<HashMap<String, Object>>();
+        List<HashMap<String, Object>> result = new ArrayList<HashMap<String, Object>>();
+        List<String> ingredients = new ArrayList<String>();
+        
+        HashMap<String, Object> input = new HashMap<String, Object>();
+
+        if(menus == null) {
+            input.put("error", "nodata");
+            result.add(input);
+            Gson gson = new Gson();
+            HashMap<String, Object> jsonObject = gson.fromJson(input.toString(), new TypeToken<HashMap<String, Object>>(){}.getType());
+        } else {
+            long menu_id;
+            for (HashMap<String, Object> data : menus) {
+                menu_id = Long.valueOf(data.get("id").toString());
+                input.put("id", menu_id);
+                input.put("menu_name", replaceStr(data.get("name").toString()));
+                usedIngredients = menuMapper.findUsedIngredientsByMenuId(menu_id);
+                
+                for(HashMap<String, Object> value : usedIngredients) {
+                    ingredients.add(replaceStr(value.get("name").toString()));
+                }
+                
+
+                input.put("ingredient_list", ingredients);
+                input.put("satisfy", ratingMapper.findRatioByMenuId(menu_id));
+
+                
+                Gson gson = new Gson();
+                HashMap<String, Object> jsonObject = gson.fromJson(input.toString(), new TypeToken<HashMap<String, Object>>(){}.getType());
+                result.add(jsonObject);
+                input.clear();
+                ingredients.clear();
+                usedIngredients.clear();
+            }
+        }
+        
+        return result;
+    }
+
+    public List<HashMap<String, Object>> getMenuInfoId(long group_id, long menu_id) {
+        Menu menu = menuMapper.findMenuById(menu_id, group_id);
+        List<HashMap<String, Object>> usedIngredients = new ArrayList<HashMap<String, Object>>();
+        List<HashMap<String, Object>> result = new ArrayList<HashMap<String, Object>>();
+        List<HashMap<String, Object>> ingredients = new ArrayList<HashMap<String, Object>>();
+        List<HashMap<String, Object>> recentInfo = new ArrayList<HashMap<String, Object>>();
+
+        List<Integer> ratingCount = new ArrayList<Integer>(){
+            {
+                add(0);
+                add(0);
+                add(0);
+                add(0);
+                add(0);
+            }
+        };
+        HashMap<String, Object> input = new HashMap<String, Object>();
+        HashMap<String, Object> ingredient_info = new HashMap<String, Object>();
+
+        if(menu == null) {
+            input.put("error", "nodata"); 
+            Gson gson = new Gson();
+            HashMap<String, Object> jsonObject = gson.fromJson(input.toString(), new TypeToken<HashMap<String, Object>>(){}.getType());
+            result.add(jsonObject);
+        } else {
+            input.put("id", menu_id);
+
+            input.put("menu_name", replaceStr(menu.getName()));
+
+            usedIngredients = menuMapper.findUsedIngredientsByMenuId(menu_id);
+            for(HashMap<String, Object> value : usedIngredients) {
+                value.put("satisfy", ratingMapper.findRatingOfIngredient(group_id, Long.valueOf(value.get("id").toString())));
+            }
+
+            input.put("ingredient_list", usedIngredients);
+
+            List<HashMap<String, Object>> datas = ratingMapper.findCountOfratingDataById(group_id, menu_id);
+            for(HashMap<String, Object> value : datas) {
+                int idx = Integer.valueOf(value.get("rating_data").toString());
+                int count = Integer.valueOf(value.get("count").toString());
+                ratingCount.set(idx-1, ratingCount.get(idx-1) + count);
+            }
+
+            input.put("satisfy", ratingCount.toString());
+
+            datas.clear();
+            datas = menuMapper.findRecent3DateByMenuId(menu_id, group_id);
+            for(HashMap<String, Object> value : datas) {
+                final Date dateValue = Date.valueOf(value.get("recentDate").toString());
+                final int timeValue = Integer.valueOf(value.get("time").toString());
+                recentInfo.add(new HashMap<String, Object>() {{
+                    put("time", dateValue);
+                    put("type", timeValue);
+                    put("satisfy", ratingMapper.findRatioByDateTime(dateValue, timeValue, group_id).get("ratio").toString());
+                }});
+            }
+            input.put("lastest", recentInfo);
+
+            Gson gson = new Gson();
+            HashMap<String, Object> jsonObject = gson.fromJson(input.toString(), new TypeToken<HashMap<String, Object>>(){}.getType());
+            result.add(jsonObject);
+            datas.clear();
+            input.clear();
+        }
+        
+
+        return result;
+    }
+
+    public String replaceStr(String str) {
+        // 데이터중 특수문자 ㎖ 및 공백으로 인해 com.google.gson.stream.MalformedJsonException 발생
+        String tempStr = str.replace("㎖", "ml");
+
+        // 한글, 영어, 일부 특수문자를 제외한 문자 제거
+        String match = "[^\uAC00-\uD7A3xfe0-9a-zA-Z~!@#$%^&*()_+|<>?:{}]";
+        tempStr = tempStr.replaceAll(match, "");
+        return tempStr;
+    }
+    
+    
 }

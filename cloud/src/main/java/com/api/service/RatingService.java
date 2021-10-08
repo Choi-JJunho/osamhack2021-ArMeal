@@ -35,11 +35,10 @@ public class RatingService extends Exception {
     public HashMap<String, Object> addRating(Rating rating) {
         HashMap<String, Object> result = new HashMap<>();
 
-        ratingMapper.addRating(rating.getUser_id(), rating.getTarget_id(), rating.getTarget_type(), rating.getRating_data(), rating.getGroup_id());
+        ratingMapper.addRating(rating.getUser_id(), rating.getTarget_id(), rating.getTarget_type(), rating.getDate(), rating.getRating_data(), rating.getGroup_id());
         if(rating.getRating_data() == 1) {
             ratingMapper.updateBadReason(rating.getBad_reason(), rating.getGroup_id());
         }
-        // TODO : Target 반영해서 수정하기(구현)
         menuMapper.updateMenuScore(rating.getTarget_id(), rating.getGroup_id());
 
         result.put("message", "메뉴 ID \"" + rating.getTarget_id() + "\"의 점수가 갱신되었습니다.");
@@ -61,17 +60,32 @@ public class RatingService extends Exception {
         return result;
     }
     
+    public List<HashMap<String, Object>> addDailyRatingList(List<HashMap<String, Object>> datas) {
+        Date date = Date.valueOf("1900-01-01");
+        long group_id = 0;
+        for(HashMap<String, Object> value : datas) {
+            date = Date.valueOf(value.get("date").toString());
+            group_id = Long.valueOf(value.get("group_id").toString());
+            long userId = Long.valueOf(value.get("userId").toString());
+            int time = Integer.valueOf(value.get("time").toString());
+            int rating_value = Integer.valueOf(value.get("rating_value").toString());
+            int badReason = Integer.valueOf(value.get("badReason").toString());
+            
+            addDailyRating(userId, group_id, date, time, rating_value, badReason);
+        }
+        return ratingMapper.findRatioByDates(date, date, group_id);
+    }
+
     // 사용자가 해당 끼니에 만족도 조사를 실시했을 때 실행되는 로직
     // date : 날짜 / time : 아침,점심,저녁 / rating_value : 점수 / target_type 1 : Menu, 2 : Daily_menu
-    public List<HashMap<String, Object>> addDailyRating(long userId, long group_id, Date date, int time, int rating_value, int badReason) {
+    public void addDailyRating(long userId, long group_id, Date date, int time, int rating_value, int badReason) {
         List<HashMap<String, Object>> datas = menuMapper.findDailyMenuByDate(date, group_id);
         long menuId;
         // 각 메뉴별로 점수가 들어간다.
         for(HashMap<String, Object> data : datas) {
             menuId = Long.valueOf(data.get("menu").toString());
-            addRating(new Rating(userId, menuId, 2, group_id, rating_value, badReason));
+            addRating(new Rating(userId, date, menuId, 2, group_id, rating_value, badReason));
         }
-        return ratingMapper.findRatioByDates(date, date, group_id);
     }
 
     // 전체 만족도에 대한 통계를 가져온다.

@@ -28,17 +28,20 @@ public class MenuController {
     @Autowired
     MenuService menuService;
 
-    @RequestMapping(value = "/get/menu/info/all", method = RequestMethod.GET)
-    public ResponseEntity getAllMenu (long group_id) {
-        return new ResponseEntity<List<HashMap<String, Object>>>(menuService.getAllMenu(group_id), HttpStatus.OK);
+    @RequestMapping(value = "/get/menu/info/{groupId}/all", method = RequestMethod.GET)
+    public ResponseEntity getAllMenu (@PathVariable("groupId") long group_id) {
+        return new ResponseEntity<List<HashMap<String, Object>>>(menuService.getMenuInfoAll(group_id), HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/get/menu/info/{id}", method = RequestMethod.GET)
-    public ResponseEntity getMenu (long menu_id, long group_id) {
-        return new ResponseEntity<Menu>(menuService.getMenu(menu_id, group_id), HttpStatus.OK);
+    @RequestMapping(value = "/get/menu/info/{groupId}/{menuId}", method = RequestMethod.GET)
+    public ResponseEntity getMenu (@PathVariable("groupId") long group_id, @PathVariable("menuId") long menu_id) {
+        return new ResponseEntity<List<HashMap<String, Object>>>(menuService.getMenuInfoId(group_id, menu_id), HttpStatus.OK);
     }
     
-
+    @RequestMapping(value = "/get/dailymenu/info/{groupId}/{startDate}/{endDate}", method = RequestMethod.GET)
+    public ResponseEntity getDailyMenuInfoByDates (@PathVariable("groupId") long group_id, @PathVariable("startDate") Date start, @PathVariable("endDate") Date end) {
+        return new ResponseEntity<List<HashMap<String, Object>>>(menuService.getDailyMenuInfoByDates(group_id, start, end), HttpStatus.OK);
+    }
 
     
     /* Legacy
@@ -94,6 +97,30 @@ public class MenuController {
     public ResponseEntity getRecentDate (@PathVariable("id") long id, long group_id) {
         return new ResponseEntity<HashMap<String, Object>>(menuService.getRecentDate(id, group_id), HttpStatus.OK);
     }
+   
+    
+    // ingredientId를 여러개 받을 수 있도록 해야한다.
+    /*
+    @RequestMapping(value = "/add/selfdish/{name}/{date}/{groupId}/{ingredientId}", method = RequestMethod.POST)
+    public ResponseEntity addSelfDish (@PathVariable("name") String name, @PathVariable("date") Date date, @PathVariable("groupId") long ingredientId, @PathVariable("ingredientId") long group_id) {
+        return new ResponseEntity<HashMap<String, Object>>(menuService.addSelfDish(name, date, ingredientId, group_id), HttpStatus.OK);
+    }
+    
+    
+    - 자율메뉴 추가를 위한 addmenu => 자율메뉴 추가와 중복
+    @RequestMapping(value = "/add/dailymenu", method = RequestMethod.POST)
+        public ResponseEntity adddailyMenu(@RequestBody DailyMeal menu) {
+        return new ResponseEntity<HashMap<String, Object>>(menuService.addDailyMenu(menu),HttpStatus.OK);
+    }
+
+    === nonUsed ===
+    // OK
+    @RequestMapping(value = "/get/dailymenu/month", method = RequestMethod.GET)
+    public ResponseEntity getDailyMenu (long group_id, int time, String year, String month) {
+        return new ResponseEntity<List<HashMap<String, Object>>>(menuService.getDailyMenu(group_id, year, month, time), HttpStatus.OK);
+    }
+    
+    
 */
 
 }
