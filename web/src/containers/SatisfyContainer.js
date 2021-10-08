@@ -1,38 +1,60 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 
 import SatisfyComponent from 'components/SatisfyComponent';
 import SatisfyMobileComponent from 'components/SatisfyMobileComponent';
+import { getRatioToday, addRatingDaily } from 'modules/satisfy';
+import { useDispatch, useSelector } from 'react-redux';
 
 export default function SatisfyContainer(){
+  const dispatch = useDispatch();
+  const { data } = useSelector(state => state.authReducer )
+  const { todayRatio } = useSelector(state => state.satisfyReducer )
+  const offset = new Date().getTimezoneOffset() * 60000;
+  const todayStr = new Date(Date.now() - offset).toISOString().slice(0, 10);
   const [type, setType] = useState(0) // const [변수, set변수] = useState(기본값)
+
+  useEffect(() => {
+    dispatch(getRatioToday({date: todayStr, group_id: data.group_id}))
+  },[dispatch, data, type])
+
+  useEffect(() => {
+    let today = [
+      {
+        type: "조식",
+        satisfy: 87,
+      },
+      {
+        type: "중식",
+        satisfy: 62,
+      },
+      {
+        type: "석식",
+        satisfy: 0,
+      }
+    ]
+    todayRatio.data.map((d, idx) => {
+      return today[idx].satisfy = d.ratio;
+    })
+    setTodayData(today);
+  },[todayRatio])
   const selectType = (idx) => {
     setType(idx)
   }
 
-  const todayData = [
+  const [todayData, setTodayData] = useState([
     {
       type: "조식",
       satisfy: 87,
-      menuList: ["흰쌀밥","에그스크램블", "쇠고기찌개", "오징어채","김치"],
-      self:["-"],
-      dessert:["요플레"]
-    
     },
     {
       type: "중식",
       satisfy: 62,
-      menuList: ["잡곡밥","감자탕", "계란찜", "감자튀김","김치"],
-      self:["-"],
-      dessert:["우유"]
     },
     {
       type: "석식",
       satisfy: 0,
-      menuList: ["흰쌀밥2","에그스크램블2", "쇠고기찌개2", "오징어채2","김치2"],
-      self:["-"],
-      dessert:["주스"]
     }
-  ]
+  ])
 
   const todayTaste = [
     {taste: "짜다"},
@@ -78,15 +100,15 @@ const [satisfaction, setSatisfaction] = useState(0) // const [변수, set변수]
     }
     else if (idx===2){
       setVisible("average")
-      openModal()
+      openModal([idx])
     }
     else if (idx===3){
       setVisible("good")
-      openModal()
+      openModal([idx])
     }
     else if (idx===4){
       setVisible("best")
-      openModal()
+      openModal([idx])
     }
     // else setVisible("none")
   
@@ -98,9 +120,18 @@ const [satisfaction, setSatisfaction] = useState(0) // const [변수, set변수]
     }
 
 const [modal, setModal] = useState(false)
-const openModal = () => {
+const openModal = (e) => {
+  dispatch(addRatingDaily({
+    userId: data.id,
+    date: todayStr,
+    time: type + 1,
+    rating_value: e[0] + 1,
+    badReason: (e.length === 2 ? e[1] + 1: 0),
+    group_id: data.group_id
+  }))
   setModal(true)
   setVisible(0)
+
   setTimeout(() => {
     setModal(false);
   }, 2000);

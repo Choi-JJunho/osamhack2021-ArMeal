@@ -54,7 +54,7 @@ export default function SidedishContainer(){
   const [sidedishList, setSidedishList] = useState(rows);
   useEffect(() => {
     dispatch(getAllSidedishData(data.group_id));
-  }, [data])
+  }, [dispatch, data])
 
   useEffect(() => {
     if(sidedish.data) {
@@ -62,7 +62,7 @@ export default function SidedishContainer(){
       sidedish.data.map((d) => {
         let namestr = "";
         d.menu.map((m) => {
-          namestr = namestr + m + ", "
+          return namestr = namestr + m + ", "
         })
         let t = {
           "id": d.id,
@@ -70,7 +70,7 @@ export default function SidedishContainer(){
           "sidedish_menu": namestr,
           "satisfy": d.satisfy
         }
-        list.push(t);
+        return list.push(t);
       })
       setSidedishList(list)
     }

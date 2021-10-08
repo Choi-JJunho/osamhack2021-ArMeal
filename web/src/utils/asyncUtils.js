@@ -60,8 +60,7 @@ export const handleAsyncActions = (type, key) => {
     switch (action.type) {
       case type:
         return {
-          ...state,
-          [key]: reducerUtils.loading()
+          ...state
         };
       case SUCCESS:
         return {
