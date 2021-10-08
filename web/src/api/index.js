@@ -27,14 +27,14 @@ export const getRatioToday = ({date, group_id}) => {
 }
 
 export const addRatingDaily = ({userId, date, time, rating_value, badReason, group_id}) => {
-  return axios.post(`${PATH}/add/rating/daily`, {
+  return axios.post(`${PATH}/add/rating/daily`, [{
     userId: userId,
     date: date,
     time: time,
     rating_value: rating_value,
     badReason: badReason,
     group_id: group_id
-  });
+  }]);
 }
 
 export const getManagementData = ({group_id, start, end}) => {

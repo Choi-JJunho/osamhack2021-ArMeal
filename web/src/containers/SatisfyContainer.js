@@ -2,19 +2,20 @@ import React, {useState, useEffect} from 'react';
 
 import SatisfyComponent from 'components/SatisfyComponent';
 import SatisfyMobileComponent from 'components/SatisfyMobileComponent';
-import { getRatioToday } from 'modules/satisfy';
+import { getRatioToday, addRatingDaily } from 'modules/satisfy';
 import { useDispatch, useSelector } from 'react-redux';
 
 export default function SatisfyContainer(){
   const dispatch = useDispatch();
   const { data } = useSelector(state => state.authReducer )
   const { todayRatio } = useSelector(state => state.satisfyReducer )
+  const offset = new Date().getTimezoneOffset() * 60000;
+  const todayStr = new Date(Date.now() - offset).toISOString().slice(0, 10);
+  const [type, setType] = useState(0) // const [변수, set변수] = useState(기본값)
 
   useEffect(() => {
-    const offset = new Date().getTimezoneOffset() * 60000;
-    const date = new Date(Date.now() - offset).toISOString().slice(0, 10);
-    dispatch(getRatioToday({date: date, group_id: data.group_id}))
-  },[dispatch, data])
+    dispatch(getRatioToday({date: todayStr, group_id: data.group_id}))
+  },[dispatch, data, type])
 
   useEffect(() => {
     let today = [
@@ -36,8 +37,6 @@ export default function SatisfyContainer(){
     })
     setTodayData(today);
   },[todayRatio])
-
-  const [type, setType] = useState(0) // const [변수, set변수] = useState(기본값)
   const selectType = (idx) => {
     setType(idx)
   }
@@ -122,7 +121,14 @@ const [satisfaction, setSatisfaction] = useState(0) // const [변수, set변수]
 
 const [modal, setModal] = useState(false)
 const openModal = (e) => {
-  console.log(e)
+  dispatch(addRatingDaily({
+    userId: data.id,
+    date: todayStr,
+    time: type + 1,
+    rating_value: e[0] + 1,
+    badReason: (e.length === 2 ? e[1] + 1: 0),
+    group_id: data.group_id
+  }))
   setModal(true)
   setVisible(0)
 
