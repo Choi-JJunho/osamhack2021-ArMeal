@@ -262,7 +262,7 @@ public class MenuService extends Exception {
                     int idx = Integer.valueOf(value.get("rating_data").toString());
                     int count = Integer.valueOf(value.get("count").toString());
                     ratingCount.set(idx-1, ratingCount.get(idx-1) + count);
-                   }
+                }
             }
         
             input.put("menu_list", menuList);
@@ -423,7 +423,7 @@ public class MenuService extends Exception {
                 recentInfo.add(new HashMap<String, Object>() {{
                     put("time", dateValue);
                     put("type", timeValue);
-                    put("satisfy", ratingMapper.findRatioByDateTime(dateValue, timeValue, group_id).get("ratio").toString());
+                    put("satisfy", (ratingMapper.findRatioByDateTime(dateValue, timeValue, group_id) == null) ? 0 : ratingMapper.findRatioByDateTime(dateValue, timeValue, group_id).get("ratio").toString());
                 }});
             }
             input.put("lastest", recentInfo);
