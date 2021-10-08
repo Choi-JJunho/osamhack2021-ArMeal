@@ -499,7 +499,7 @@ export default function SatisfyComponent({todayData, type, selectType, selectTyp
               todayData.map((data,index) => {
                 return (
                   
-                    <Box onClick={()=>selectType(selectTypeIdx[index])} score={data.satisfy}>
+                    <Box key={index} onClick={()=>selectType(selectTypeIdx[index])} score={data.satisfy}>
                       <Title>
                           {data.type}
                       </Title>
@@ -534,7 +534,7 @@ export default function SatisfyComponent({todayData, type, selectType, selectTyp
 
             <Wrapper>
               {survey.map((data, index) => (
-                  <Survey onClick={()=>selectSatisfaction(index)}>
+                  <Survey key={index} onClick={()=>selectSatisfaction(index)}>
                     <Text2>
                       {data.name}
                     </Text2>
@@ -550,8 +550,8 @@ export default function SatisfyComponent({todayData, type, selectType, selectTyp
             </Wrapper>
             { visible === "worst" &&
               <TasteSelectionWrapper visible={visible}>
-                {todayTaste.map((data) => (
-                  <TasteSelectionBox modal={modal} onClick={()=> openModal(true)}>
+                {todayTaste.map((data, index) => (
+                  <TasteSelectionBox key={index} modal={modal} onClick={()=> openModal([0, index + 1])}>
                     {data.taste}
                   </TasteSelectionBox>
                 ))}
@@ -560,8 +560,8 @@ export default function SatisfyComponent({todayData, type, selectType, selectTyp
 
             { visible === "bad" &&
               <TasteSelectionWrapper visible={visible}>
-                {todayTaste.map((data) => (
-                  <TasteSelectionBox modal={modal} onClick={()=> openModal(true)}>
+                {todayTaste.map((data, index) => (
+                  <TasteSelectionBox key={index} modal={modal} onClick={()=> openModal([1, index + 1])}>
                     {data.taste}
                   </TasteSelectionBox>
                 ))}
