@@ -206,10 +206,12 @@
 
 ## 기술 스택 (Technique Used) 
 ### Server(back-end)
- - AWS Cloud Service
- - Spring
- - MySQL
- - Swagger
+ - Spring Boot 2.0.1
+ - MySQL 5.7.35
+ - Swagger 2.9.2
+ - Maven 3.6.3
+ - Java (OpenJDK 1.8.0_292)
+ - Nginx
 
 ### Front-end
  - react.js
