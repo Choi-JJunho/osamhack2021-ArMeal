@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import DashboardComponent from 'components/DashboardComponent';
 import { useSelector, useDispatch } from 'react-redux';
-import { getTopData, getAverage } from 'modules/dashboard'
+import { getTopData, getAverage, getCount } from 'modules/dashboard'
 import { getRatioToday } from 'modules/satisfy';
 import { useHistory } from 'react-router'; 
 
@@ -10,6 +10,7 @@ export default function DashboardContainer(){
   const history = useHistory();
   const { top } = useSelector(state => state.dashboardReducer)
   const { average } = useSelector(state => state.dashboardReducer)
+  const { count } = useSelector(state => state.dashboardReducer)
   const { data } = useSelector(state => state.authReducer)
 
   const offset = new Date().getTimezoneOffset() * 60000;
@@ -63,7 +64,21 @@ export default function DashboardContainer(){
   useEffect(() => {
     dispatch(getTopData(data.group_id));
     dispatch(getAverage(data.group_id));
+    dispatch(getCount(data.group_id));
   }, [dispatch])
+
+  const [chartData, setChartData] = useState([1803, 1035, 912, 911, 1079])
+
+  useState(() => {
+    if(count.data) {
+      let countList = [];
+      count.data.map((d) => {
+        return countList.push(d.count)
+      })
+      console.log(countList)
+      setChartData(countList)
+    }
+  },[count])
 
   useEffect(() => {
     if(average.data)setAvg(Math.round(average.data[0].ratio))
@@ -71,9 +86,9 @@ export default function DashboardContainer(){
 
   return (
     <DashboardComponent 
-      chartData={[100, 120, 30, 20, 10]} 
+      chartData={chartData} 
       average={avg}
-      dataName={["최고예요", "맛있어요", "보통이에요", "별로예요", "싫어요"]}
+      dataName={["싫어요", "별로예요", "보통이에요", "맛있어요", "최고예요"]}
       menuRanking={menuRanking}
       todayData={todayData}
       data={data}

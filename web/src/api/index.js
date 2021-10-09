@@ -60,3 +60,7 @@ export const getTopData = (group_id) => {
 export const getAverage = (group_id) => {
   return axios.get(`${PATH}/get/ratio/${group_id}/all`);
 }
+
+export const getCount = (group_id) => {
+  return axios.get(`${PATH}/get/satisfy/count/${group_id}`);
+}

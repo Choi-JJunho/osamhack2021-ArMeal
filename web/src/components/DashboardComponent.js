@@ -181,7 +181,7 @@ export default function DashboardComponent({chartData, average, dataName, menuRa
                   <SatisfyData key={index}>
                     {dataName[index]}
                     <Badge>
-                      {data}%
+                      {data}
                     </Badge>
                   </SatisfyData>
                 )
