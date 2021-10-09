@@ -63,7 +63,7 @@ export default function UserBadgeComponent({data, goLogin}){
         <InLoggedInWrapper>
           {data.name}
           <br></br>
-          <strong>{data.group_id}</strong>
+          <strong>{data.group_id}급양대</strong>
         </InLoggedInWrapper>
       </>
       }
