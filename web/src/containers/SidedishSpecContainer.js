@@ -3,7 +3,6 @@ import SidedishSpecComponent from 'components/SidedishSpecComponent';
 import { useLocation, useHistory } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { getSidedishData } from 'modules/sidedish';
-import managementReducer from 'modules/management';
 
 export default function SidedishSpecContainer(){
   const history = useHistory();
@@ -48,7 +47,7 @@ export default function SidedishSpecContainer(){
         sidedish_name: specData.data.ingredient_name, 
         menu_list: tempList,
         satisfy: specData.data.satisfy,
-        average: Math.round(specData.data.average)
+        average: Math.round(specData.data.average) + "%"
       }
       setData(t)
     }

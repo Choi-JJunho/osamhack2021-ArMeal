@@ -26,6 +26,14 @@ export const getSidedishData = ({group_id, id}) => {
   return axios.get(`${PATH}/get/ingredient/info/${group_id}/${id}`)
 }
 
+export const getAllMenuData = (group_id) => {
+  return axios.get(`${PATH}/get/menu/info/${group_id}/all`)
+}
+
+export const getMenuData = ({group_id, id}) => {
+  return axios.get(`${PATH}/get/menu/info/${group_id}/${id}`)
+}
+
 export const getRatioToday = ({date, group_id}) => {
   return axios.get(`${PATH}/get/ratio/today/${group_id}/${date}`);
 }
