@@ -28,7 +28,7 @@ export default function SidedishSpecContainer(){
   const [order, setOrder] = useState(0);
   useEffect(() => {
     dispatch(getSidedishData({group_id: user.group_id, id: id}))
-  },[dispatch, id])
+  },[dispatch, id, user])
 
   useEffect(() => {
     if(specData.data) {

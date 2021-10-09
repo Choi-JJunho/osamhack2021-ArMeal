@@ -69,7 +69,7 @@ export default function ManagementContainer(){
       start: range.start,
       end: range.end
     }))
-  }, [dispatch, range])
+  }, [dispatch, range, data])
 
   return (
     <ManagementComponent events={events} onMonthChange={onMonthChange}/>

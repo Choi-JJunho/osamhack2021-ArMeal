@@ -81,8 +81,8 @@ export default function DateComponent({data, options, order, setOrder, range, on
             <Label htmlFor="month">1달</Label>
             <input type="radio" name="orderby" id="month" checked={order === 1} onChange={() => setOrder(1)}></input>
 
-            <Label htmlFor="year">1년</Label>
-            <input type="radio" name="orderby" id="year" checked={order === 2} onChange={() => setOrder(2)}></input>
+            {/* <Label htmlFor="year">1년</Label>
+            <input type="radio" name="orderby" id="year" checked={order === 2} onChange={() => setOrder(2)}></input> */}
           </Switch>
         </DateSelecter>
       </DateField>
