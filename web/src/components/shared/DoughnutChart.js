@@ -4,27 +4,25 @@ import { Doughnut } from "react-chartjs-2"
 function DoughnutChart({chartData, width}) {
   const data = {
     labels: [
-      '최고예요',
-      '맛있어요',
-      '보통이에요',
+      '싫어요',
       '별로예요',
-      '싫어요'
+      '보통이에요',
+      '맛있어요',
+      '최고예요',
     ],
     datasets: [{
       data: chartData,
+      // '#EDD500',
+      // '#FF9F40',
+      // '#EC5500',
+      // '#FF2E00',
+      // 'RED',
       backgroundColor: [
         '#36A2EB',
         '#4BC0C0',
         '#FFCD56',
         '#FF9F40',
-        '#FF6384'
-      ],
-      hoverBackgroundColor: [
-        '#36A2EB',
-        '#4BC0C0',
-        '#FFCD56',
-        '#FF9F40',
-        '#FF6384'
+        '#FF6384',
       ]
     }],
   };

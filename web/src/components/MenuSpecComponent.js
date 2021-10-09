@@ -121,7 +121,7 @@ export default function MenuSpecComponent({data, history}){
           <Score>
             평균
             <Point satisfy={data.average}>
-              {data.average ? data.average : 0}%
+              {Math.round(data.average)}%
             </Point>
           </Score>
         </ChartWrapper>
