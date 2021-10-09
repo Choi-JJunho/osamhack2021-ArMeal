@@ -11,6 +11,7 @@ export default function SatisfyContainer(){
   const { todayRatio } = useSelector(state => state.satisfyReducer )
   const offset = new Date().getTimezoneOffset() * 60000;
   const todayStr = new Date(Date.now() - offset).toISOString().slice(0, 10);
+  // const todayStr = "2021-10-18"
   const [type, setType] = useState(0) // const [변수, set변수] = useState(기본값)
 
   useEffect(() => {
@@ -32,8 +33,8 @@ export default function SatisfyContainer(){
         satisfy: 0,
       }
     ]
-    todayRatio.data.map((d, idx) => {
-      return today[idx].satisfy = d.ratio;
+    todayRatio.data.map((d) => {
+      return today[d.time - 1].satisfy = d.ratio;
     })
     setTodayData(today);
   },[todayRatio])
