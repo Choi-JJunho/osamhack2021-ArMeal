@@ -42,7 +42,7 @@ const Score = styled.div`
 
 const Point = styled.div`
   font-size: 40px;
-  color: #FF0000;
+  color: ${props => props.satisfy > 65 ? "#FF0000" : props.satisfy > 32 ? "#FF6534" : "#E7B70A"};
 `
 
 const Desc = styled.div`
@@ -120,8 +120,8 @@ export default function MenuSpecComponent({data, history}){
           </div>
           <Score>
             평균
-            <Point>
-              {data.average}
+            <Point satisfy={data.average}>
+              {Math.round(data.average)}%
             </Point>
           </Score>
         </ChartWrapper>
@@ -137,7 +137,7 @@ export default function MenuSpecComponent({data, history}){
             사용되는 부식
           </Head>
           <SidedishWrapper>
-            {data.sidedish_list.map((sidedish) => {
+            {data.ingredient_list.map((sidedish) => {
               return (
                 <SidedishName onClick={() => history.push(`/sidedish/${sidedish.id}`)}>
                   {sidedish.name}
@@ -159,7 +159,7 @@ export default function MenuSpecComponent({data, history}){
                     <DateDetail satisfy={date.satisfy}>
                       {date.time}
                       <Type>
-                        {date.type}
+                      {date.type === 1? "조식" : date.type === 2? "중식" : "석식"}
                       </Type>
                       <DateSatisfy satisfy={date.satisfy}>
                         {date.satisfy}%

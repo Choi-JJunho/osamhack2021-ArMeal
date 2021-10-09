@@ -31,7 +31,7 @@ const Logo = styled.img.attrs({
 })`
   margin-top: 3vh;
   margin-bottom: 3vh;
-  width: 16vw;
+  width: 15vw;
 `
 
 const NavigationContainer = styled.div`

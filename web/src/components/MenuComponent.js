@@ -7,7 +7,7 @@ const Container = styled.div`
 `
 
 const TableWrapper = styled.div`
-  height: 69vh;
+  height: 71vh;
   background-color: white;
   font-size: 18px;
 `

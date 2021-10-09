@@ -22,6 +22,18 @@ export const getAllSidedishData = (group_id) => {
   return axios.get(`${PATH}/get/ingredient/info/${group_id}/all`)
 }
 
+export const getSidedishData = ({group_id, id}) => {
+  return axios.get(`${PATH}/get/ingredient/info/${group_id}/${id}`)
+}
+
+export const getAllMenuData = (group_id) => {
+  return axios.get(`${PATH}/get/menu/info/${group_id}/all`)
+}
+
+export const getMenuData = ({group_id, id}) => {
+  return axios.get(`${PATH}/get/menu/info/${group_id}/${id}`)
+}
+
 export const getRatioToday = ({date, group_id}) => {
   return axios.get(`${PATH}/get/ratio/today/${group_id}/${date}`);
 }
@@ -41,6 +53,14 @@ export const getManagementData = ({group_id, start, end}) => {
   return axios.get(`${PATH}/get/dailymenu/info/${group_id}/${start}/${end}`);
 }
 
-export const getDashboardData = () => {
-  return axios.post(`${PATH}/getDashboardData`);
+export const getTopData = (group_id) => {
+  return axios.get(`${PATH}/get/rating/top5/${group_id}`);
+}
+
+export const getAverage = (group_id) => {
+  return axios.get(`${PATH}/get/ratio/${group_id}/all`);
+}
+
+export const getCount = (group_id) => {
+  return axios.get(`${PATH}/get/satisfy/count/${group_id}`);
 }

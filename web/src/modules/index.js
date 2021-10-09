@@ -4,13 +4,15 @@ import dashboardReducer from './dashboard';
 import managementReducer from './management';
 import sidedishReducer from './sidedish';
 import satisfyReducer from './satisfy';
+import menuReducer from './menu';
 
 const rootReducer = combineReducers({
   authReducer,
   dashboardReducer,
   managementReducer,
   sidedishReducer,
-  satisfyReducer
+  satisfyReducer,
+  menuReducer
 });
 
 export default rootReducer;

@@ -42,7 +42,7 @@ const Score = styled.div`
 
 const Point = styled.div`
   font-size: 40px;
-  color: #FF0000;
+  color: ${props => props.satisfy > 65 ? "#FF0000" : props.satisfy > 32 ? "#FF6534" : "#E7B70A"};
 `
 
 const Desc = styled.div`
@@ -111,8 +111,8 @@ export default function SidedishSpecComponent({data, order, setOrder, history}){
           </div>
           <Score>
             평균
-            <Point>
-              {data.average}
+            <Point satisfy={data.average}>
+              {data.average}%
             </Point>
           </Score>
         </ChartWrapper>
@@ -138,7 +138,7 @@ export default function SidedishSpecComponent({data, order, setOrder, history}){
         <MenuList>
           {data.menu_list.map((menu) => {
             return (
-              <Menu onClick={() => history.push(`/menu/${menu.id}`)}>
+              <Menu key={menu.name} onClick={() => history.push(`/menu/${menu.id}`)}>
                 <Time>{menu.lastest}</Time>
                 <MenuDetail satisfy={menu.satisfy}>
                   {menu.name}
