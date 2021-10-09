@@ -246,7 +246,8 @@ public class MenuService extends Exception {
             double average = 0;
             for(HashMap<String, Object> data : top5Data) {
                 menuId = Long.valueOf(data.get("id").toString());
-                menuData.put("id", ++cnt);
+                ++cnt;
+                menuData.put("id", ingredient_id);
                 // 최근 나온 날짜
                 menuData.put("lastest", menuMapper.findRecentDateByMenuId(menuId, group_id).get("recentDate").toString());
                 menuData.put("name", replaceStr(data.get("name").toString()));
@@ -323,6 +324,20 @@ public class MenuService extends Exception {
                 beforeTime = timeValue;
                 currDate = Date.valueOf(data.get("date_value").toString());
             }
+            
+            //마지막 석식을 넣기 위해 한번 더 실행
+            input.put("title", "석식");
+            HashMap<String, Object> ratioValue = ratingMapper.findRatioByDateTime(currDate, timeValue, group_id);
+            input.put("ratio", (ratioValue == null) ? 0 : ratioValue.get("ratio").toString());
+            input.put("description", menus);
+            input.put("time", timeValue);
+            input.put("date", currDate);
+            Gson gson = new Gson();
+            HashMap<String, Object> jsonObject = gson.fromJson(input.toString(), new TypeToken<HashMap<String, Object>>(){}.getType());
+            result.add(jsonObject);
+            input.clear();
+            menus.clear();
+            
         }
         return result;
     }
