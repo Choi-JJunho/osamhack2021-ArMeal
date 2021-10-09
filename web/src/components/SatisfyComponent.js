@@ -228,16 +228,19 @@ const Survey = styled(Message)`
 const QuitWrapper = styled.div`
     // display: inline-block;
     // vertical-align: middle;
-    
+  @media only screen and (max-width: 768px) {
+    position: absolute;
+    left: 37vw;
+    margin:0px;
+  }
     margin-top: 40px;
     margin-bottom: 0px;
     margin-right: 60px;
     text-align: -webkit-right;
+    left: 63vw;
 `
 const Quit = styled.div`
 @media only screen and (max-width: 768px) {
-  right: 110px;
-  width: 31%;
   position: absolute;
   }
 
@@ -245,7 +248,7 @@ const Quit = styled.div`
   padding: 5px;
   color:white;
   background:#75CB32;
-  width: 70px;
+  width: 89px;
   height: 35px;
   box-sizing: border-box;
 
@@ -273,20 +276,24 @@ const TasteSelectionWrapper = styled.div`
 position: absolute;
   height: 40vh;
   top: 30.1vh;
-  background-color: rgba(217, 217, 217, 0.5);
+  background-color: rgba(244,244,248,0.5);
   border-radius: 15px;
   padding: 6px;
   ${props => props.visible === 'worst' && `
   @media only screen and (max-width: 768px) {
-    top: 136px;
+    top: 130px;
+    width: 78%;
+    left: 9vw;
   }
-  left: 2.7vw;
+  left: 2.36vw;
     `}
   ${props => props.visible === 'bad' && `
   @media only screen and (max-width: 768px) {
-    top: 219px;
+    top: 213px;
+    width: 78%;
+    left: 9vw;
   }
-  left: 17.5vw;
+  left: 17.2vw;
   `}
 `
 const TasteSelectionBox = styled.div`
@@ -348,7 +355,7 @@ const GreenBorderBox = styled.div`
 ${props => 
   props.type !== 0 
   ? "display:none" : 
-  "@media only screen and (max-width: 768px) {width: 70vw; border: 6px solid #86DE8A;}; display:grid; width: 50vw; height: 239px; left: 35.9vw; top: 35.9vh; background: #FFFFFF; border: 10px solid #86DE8A; box-sizing: border-box; border-radius: 20px;"
+  "@media only screen and (max-width: 768px) {width:82vw; border: 6px solid #86DE8A;}; display:grid; width: 50vw; height: 239px; left: 35.9vw; top: 35.9vh; background: #FFFFFF; border: 10px solid #86DE8A; box-sizing: border-box; border-radius: 20px;"
 }
 `
 
@@ -377,7 +384,7 @@ const Box = styled.div`
 @media only screen and (max-width: 768px) {
   font-size: 15px; 
   line-height: 6vh;
-  width: 70px;
+  width: 23%;
   border: 3px solid;
     box-sizing: border-box;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -467,11 +474,15 @@ const Modal = styled.div`
 opacity: 1;
 ${props => 
   props.taste !== 8 
-  ? "@media only screen and (max-width: 768px) {width: 70vw; border: 6px solid #86DE8A;}; display:flow-root; width: 50vw; height: 239px; left: 29vw; top: 33.2vh; background: #FFFFFF; border: 10px solid #86DE8A; box-sizing: border-box; border-radius: 20px; position: absolute; " 
+  ? "@media only screen and (max-width: 768px) {left: 10vw; top: 40vh; height: 28vh; width: 80vw; border: 6px solid #86DE8A;}; display:flow-root; width: 50vw; height: 239px; left: 29vw; top: 33.2vh; background: #FFFFFF; border: 10px solid #86DE8A; box-sizing: border-box; border-radius: 20px; position: absolute; " 
   : "display:none;"
 }
 `
 const ModalTextTitle = styled.div`
+@media only screen and (max-width: 768px) {
+  line-height: 26vh;
+  font-size: 22px;
+}
 line-height: 23.4vh;
 
 font-style: normal;

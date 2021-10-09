@@ -83,8 +83,8 @@ const SurveyImages1 = styled.img.attrs({
 })`
   width: 10vw;
   @media(min-width: 768px) and (max-width: 1100px){
-    padding-top: 4vh;
-    width: 15vw;
+    width: 12vw;
+    height:11vh;
   }
 `
 const SurveyImages2 = styled.img.attrs({
@@ -92,8 +92,8 @@ const SurveyImages2 = styled.img.attrs({
 })`
   width: 10vw;
   @media(min-width: 768px) and (max-width: 1100px){
-    padding-top: 4vh;
-    width: 15vw;
+    width: 12vw;
+    height:11vh;
   }
 `
 const SurveyImages3 = styled.img.attrs({
@@ -101,8 +101,8 @@ const SurveyImages3 = styled.img.attrs({
 })`
   width: 10vw;
   @media(min-width: 768px) and (max-width: 1100px){
-    padding-top: 4vh;
-    width: 15vw;
+    width: 12vw;
+    height:11vh;
   }
 `
 const SurveyImages4 = styled.img.attrs({
@@ -110,8 +110,8 @@ const SurveyImages4 = styled.img.attrs({
 })`
   width: 10vw;
   @media(min-width: 768px) and (max-width: 1100px){
-    padding-top: 4vh;
-    width: 15vw;
+    width: 12vw;
+    height:11vh;
   }
 `
 const SurveyImages5 = styled.img.attrs({
@@ -119,8 +119,8 @@ const SurveyImages5 = styled.img.attrs({
 })`
   width: 10vw;
   @media(min-width: 768px) and (max-width: 1100px){
-    padding-top: 4vh;
-    width: 15vw;
+    width: 12vw;
+    height:11vh;
   }
 `
 const Message = styled.div`
@@ -161,7 +161,7 @@ const Text2 = styled.div`
   padding: 4vh 0vw;
 
   @media(min-width: 768px) and (max-width: 1100px){
-    font-size: 20px;
+    font-size:26px;
   }
 `
 const Survey = styled(Message)`
@@ -186,7 +186,7 @@ const Survey = styled(Message)`
 
   @media(min-width: 768px) and (max-width: 1100px){
     width: 18vw;
-    height: 55vh;
+    height: 27.5vh;
   }
 `
 
@@ -226,16 +226,29 @@ const TasteSelectionWrapper = styled.div`
   position: absolute;
   height: 40vh;
   top: 30.1vh;
-  
+  background-color: rgba(244,244,248,0.5);
+  border-radius: 15px;
+  padding: 6px;
   ${props => props.visible === 'worst' && `
-      left: 2.7vw;
+      height: 40vh;
+      top: 3.4vh;
+      left: 2.6vw;
     `}
   ${props => props.visible === 'bad' && `
-      left: 17.5vw;
+      height: 40vh;
+      top: 3.4vh;
+      left: 21.6vw;
   `}
 `
 const TasteSelectionBox = styled.div`
-  width: 9.3vw;
+
+  width: 12.3vw;
+  line-height: 3.8vh;
+  padding-top: 0px;
+  font-size: 18px;
+
+
+  // width: 9.3vw;
   height: 4.3vh;
   margin-top: 0.5vh;
   
@@ -245,17 +258,23 @@ const TasteSelectionBox = styled.div`
   border-radius: 15px;
   
   text-align: center;
-  padding-top: 7px;
+  // padding-top: 7px;
 
   &:hover {
     border: 3px solid #86DE8A;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    }
+    ${props => props.modal === true && 
+      "pointer-events:none; opacity: 0.9;" 
     }
 `
 
 const SurveyWrapper = styled.div`
   width: 95%;
   position:relative; 
+  ${props => props.modal === true && 
+    "pointer-events:none; opacity: 0.68;" 
+  }
 `
 ////////////////설문조사 페이지 CSS 끝///////////////////////////////////////////////
 
@@ -277,7 +296,7 @@ const GreenBorderBoxWrapper = styled.div`
 const GreenBorderBox = styled.div`
 ${props => props.type !== 0 
   ? "display:none" 
-  : "display:grid; width: 50vw; height: 239px; left: 35.9vw; top: 35.9vh; background: #FFFFFF; border: 10px solid #86DE8A; box-sizing: border-box; border-radius: 20px;"
+  : "display:grid; width: 83vw;height: 27vh; left: 35.9vw; top: 35.9vh; background: #FFFFFF; border: 10px solid #86DE8A; box-sizing: border-box; border-radius: 20px;"
 }
 `
 
@@ -301,7 +320,7 @@ const BoxWrapper = styled.div`
 const Box = styled.div`
     display:grid;
     position: auto;
-    width: auto;
+    width: 20%;
     height: 8.5vh;
 
     background: #FFFFFF;
@@ -322,7 +341,7 @@ const Box = styled.div`
 `
 
 const Title = styled.div`
-    width: 10vw;
+width: auto;
     height: auto;
 
     
@@ -339,7 +358,7 @@ const Title = styled.div`
 `
 
 const Percentage = styled.div`
-  width: 10vw;
+width: auto;
     height: auto;
 
     
@@ -365,68 +384,30 @@ const PercentageContainer = styled.div`
 `
 
 /////////////////메뉴 Display 페이지 CSS 끝///////////////////////////////////////////
-function Modal({ className, visible, children }) {
-  return (
-    <>
-      <ModalOverlay visible={visible} />
-      <ModalWrapper className={className} tabIndex="-1" visible={visible}>
-        <ModalInner tabIndex="0" className="modal-inner">
-          {children}
-        </ModalInner>
-      </ModalWrapper>
-    </>
-  )
+const Modal = styled.div`
+opacity: 1;
+${props => 
+  props.taste !== 8 
+  ? "width: 66vw;height: 25.4vh;left: 17vw;display:flow-root;  top: 33.2vh; background: #FFFFFF; border: 10px solid #86DE8A; box-sizing: border-box; border-radius: 20px; position: absolute; " 
+  : "display:none;"
 }
+`
+const ModalTextTitle = styled.div`
 
-Modal.propTypes = {
-  visible: PropTypes.bool,
-}
+line-height: 23.4vh;
 
-const ModalWrapper = styled.div`
-  box-sizing: border-box;
-  display: ${(props) => (props.visible ? 'block' : 'none')};
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 1000;
-  overflow: auto;
-  outline: 0;
+font-style: normal;
+font-weight: bold;
+font-size: 35px;
+
+display: inherit;
+align-items: center;
+text-align: center;
+
+color: #000000;
 `
 
-const ModalOverlay = styled.div`
-  box-sizing: border-box;
-  display: ${(props) => (props.visible ? 'block' : 'none')};
-  position: fixed;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  background-color: rgba(0, 0, 0, 0.6);
-  z-index: 999;
-`
-
-const ModalInner = styled.div`
-  box-sizing: border-box;
-  position: relative;
-  box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.5);
-  background-color: #fff;
-  border-radius: 10px;
-  width: 360px;
-  max-width: 480px;
-  top: 50%;
-  transform: translateY(-50%);
-  margin: 0 auto;
-  padding: 40px 20px;
-`
-function ModalPage() {
-  return (
-    <Modal visible={true}>Hello</Modal>
-  )
-}
-
-export default function SatisfyComponent({todayData, type, selectType, selectTypeIdx, todayTaste, selectSatisfaction, survey, visible}){
+export default function SatisfyComponent({todayData, type, selectType, selectTypeIdx, todayTaste, selectSatisfaction, survey, visible, modal, setModal, openModal}){
   return (
     <Container>
       <GreenBorderBoxWrapper>
@@ -460,7 +441,7 @@ export default function SatisfyComponent({todayData, type, selectType, selectTyp
         </GreenBorderBox>
       </GreenBorderBoxWrapper>
         {type !== 0 &&
-          <SurveyWrapper>
+          <SurveyWrapper modal={modal}>
             <Message>
               <MainPicture/>
                 <MainPictureTextTitle>
@@ -475,7 +456,7 @@ export default function SatisfyComponent({todayData, type, selectType, selectTyp
 
             <Wrapper>
               {survey.map((data, index) => (
-                  <Survey onClick={()=>selectSatisfaction(index)}>
+                  <Survey key={index} onClick={()=>selectSatisfaction(index)}>
                     <Text2>
                       {data.name}
                     </Text2>
@@ -490,8 +471,8 @@ export default function SatisfyComponent({todayData, type, selectType, selectTyp
             </Wrapper>
             { visible==="worst" &&
               <TasteSelectionWrapper visible={visible}>
-                {todayTaste.map((data) => (
-                  <TasteSelectionBox>
+                {todayTaste.map((data, index) => (
+                  <TasteSelectionBox key={index} modal={modal} onClick={()=> openModal([0, index + 1])}>
                     {data.taste}
                   </TasteSelectionBox>
                 ))}
@@ -500,8 +481,8 @@ export default function SatisfyComponent({todayData, type, selectType, selectTyp
 
             { visible==="bad" &&
               <TasteSelectionWrapper visible={visible}>
-                {todayTaste.map((data) => (
-                  <TasteSelectionBox>
+                {todayTaste.map((data, index) => (
+                  <TasteSelectionBox key={index} modal={modal} onClick={()=> openModal([1, index + 1])}>
                     {data.taste}
                   </TasteSelectionBox>
                 ))}
@@ -509,12 +490,20 @@ export default function SatisfyComponent({todayData, type, selectType, selectTyp
             }
             
             <QuitWrapper>
-              <Quit>
+              <Quit onClick={()=>selectType(0)}>
                 종료
               </Quit>
             </QuitWrapper>
           </SurveyWrapper>
         }
+        {modal === true &&
+              <Modal>
+                <ModalTextTitle>
+                  소중한 의견 감사합니다!
+                </ModalTextTitle>
+              
+              </Modal>
+          }
     </Container>
   )
 }
