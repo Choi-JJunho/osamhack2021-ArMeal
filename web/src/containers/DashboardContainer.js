@@ -63,7 +63,7 @@ export default function DashboardContainer(){
     dispatch(getAverage(data.group_id));
     dispatch(getCount(data.group_id));
     dispatch(getRatioToday({date: todayStr, group_id: data.group_id}))
-  }, [dispatch])
+  }, [dispatch, data, todayStr])
 
   const [chartData, setChartData] = useState([1803, 1035, 912, 911, 1079])
 

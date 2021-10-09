@@ -110,7 +110,7 @@ export default function MenuSpecComponent({data, history}){
     <Container>
       <Box width="40vw" height="69vh">
         <Head>
-          만족도 상세 - {data.menu_name}
+          만족도 상세 - {data.menu_name.indexOf("(") === -1 ? data.menu_name : data.menu_name.slice(0, data.menu_name.indexOf("("))}
         </Head>
         <ChartWrapper>
           <div>

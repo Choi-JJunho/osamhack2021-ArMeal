@@ -16,7 +16,7 @@ export default function SatisfyContainer(){
 
   useEffect(() => {
     dispatch(getRatioToday({date: todayStr, group_id: data.group_id}))
-  },[dispatch, data, type])
+  },[dispatch, data, type, todayStr])
 
   useEffect(() => {
     let today = [

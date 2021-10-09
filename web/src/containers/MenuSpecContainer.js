@@ -15,7 +15,7 @@ export default function MenuSpecContainer(){
 
   useEffect(() => {
     dispatch(getMenuData({group_id: user.group_id, id: id}))
-  },[dispatch, id])
+  },[dispatch, id, user])
   
   const [data, setData] = useState({ 
     id: 1, 

@@ -28,16 +28,18 @@ export default function SidedishSpecContainer(){
   const [order, setOrder] = useState(0);
   useEffect(() => {
     dispatch(getSidedishData({group_id: user.group_id, id: id}))
-  },[dispatch, id])
+  },[dispatch, id, user])
 
   useEffect(() => {
     if(specData.data) {
       let tempList = [];
       specData.data.menu_list.map((menu) => {
+        let n = menu.name;
+        if(n.indexOf("(") !== -1) n = n.slice(0, n.indexOf("("))
         let d = {
           id: 1,
           lastest: menu.lastest,
-          name: menu.name,
+          name: n,
           satisfy: Math.round(menu.satisfy.ratio)
         };
         return tempList.push(d)
