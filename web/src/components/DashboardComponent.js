@@ -48,7 +48,7 @@ const Score = styled.div`
 
 const Point = styled.div`
   font-size: 40px;
-  color: #FF0000;
+  color: ${props => props.satisfy > 65 ? "#FF0000" : props.satisfy > 32 ? "#FF6534" : "#F1C114"};
 `
 
 const DataSpec = styled.div`
@@ -170,8 +170,8 @@ export default function DashboardComponent({chartData, average, dataName, menuRa
               <DoughnutChart chartData={chartData} width="350px"/>
               <Score>
                 평균
-                <Point>
-                  {average}
+                <Point satisfy={average}>
+                  {average}%
                 </Point>
               </Score>
             </div>
