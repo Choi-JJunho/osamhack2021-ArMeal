@@ -1,14 +1,31 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import DashboardComponent from 'components/DashboardComponent';
 import { useSelector, useDispatch } from 'react-redux';
-import { getDashboardData } from 'modules/dashboard'
+import { getTopData } from 'modules/dashboard'
 import { useHistory } from 'react-router'; 
 
 export default function DashboardContainer(){
   const dispatch = useDispatch();
   const history = useHistory();
-  const {data, loading, error} = useSelector(state => state.dashboardReducer.dashboard)
-  const menuRanking = [
+  const { top } = useSelector(state => state.dashboardReducer)
+  const { data } = useSelector(state => state.authReducer)
+  useEffect(() => {
+    if(top.data){
+      let newList = []
+      top.data.map((d, idx) => {
+        let n = d.name;
+        if(n.indexOf("(") !== -1) n = n.slice(0, n.indexOf("("))
+        return newList.push({
+          rank: idx + 1,
+          name: n,
+          id: d.id,
+          satisfy: d.ratio,
+        })
+      })
+      setMenuRanking(newList)
+    }
+  }, [top])
+  const [menuRanking, setMenuRanking] = useState([
     {
       rank: 1,
       name: "돼지고기김치찜",
@@ -39,7 +56,7 @@ export default function DashboardContainer(){
       id: 5,
       satisfy: 20,
     },
-  ]
+  ])
 
   const todayData = [
     {
@@ -57,7 +74,7 @@ export default function DashboardContainer(){
   ]
   
   useEffect(() => {
-    dispatch(getDashboardData());
+    dispatch(getTopData(data.group_id));
   }, [dispatch])
 
   return (
@@ -68,8 +85,6 @@ export default function DashboardContainer(){
       menuRanking={menuRanking}
       todayData={todayData}
       data={data}
-      loading={loading}
-      error={error}
       history={history}
       />
   )

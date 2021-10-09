@@ -53,6 +53,6 @@ export const getManagementData = ({group_id, start, end}) => {
   return axios.get(`${PATH}/get/dailymenu/info/${group_id}/${start}/${end}`);
 }
 
-export const getDashboardData = () => {
-  return axios.post(`${PATH}/getDashboardData`);
+export const getTopData = (group_id) => {
+  return axios.get(`${PATH}/get/rating/top5/${group_id}`);
 }
