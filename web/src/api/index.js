@@ -64,3 +64,7 @@ export const getAverage = (group_id) => {
 export const getCount = (group_id) => {
   return axios.get(`${PATH}/get/satisfy/count/${group_id}`);
 }
+
+export const getMonthData = (param) => {
+  return axios.post(`${PATH}/get/rating/month`, param);
+}

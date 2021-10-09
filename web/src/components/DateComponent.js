@@ -55,20 +55,20 @@ const Switch = styled.div`
   padding-right: 15px; 
 `
 
-export default function DateComponent({data, options, order, setOrder}){
+export default function DateComponent({data, options, order, setOrder, range, onChange}){
   return (
     <Container>
       <DateField>
         <DateSelecter>
           <StartDate>시작일</StartDate>
           <SelectWrapper>
-            <DateInput type="date" value="2021-01-01" />
+            <DateInput name="start" type="date" value={range.start} onChange={onChange}/>
           </SelectWrapper>
         </DateSelecter>
         <DateSelecter>
           <StartDate>종료일</StartDate>
           <SelectWrapper>
-            <DateInput type="date" value="2021-01-01" />
+            <DateInput name="end" type="date" value={range.end} onChange={onChange} />
           </SelectWrapper>
         </DateSelecter>
 
@@ -81,8 +81,8 @@ export default function DateComponent({data, options, order, setOrder}){
             <Label htmlFor="month">1달</Label>
             <input type="radio" name="orderby" id="month" checked={order === 1} onChange={() => setOrder(1)}></input>
 
-            <Label htmlFor="year">1년</Label>
-            <input type="radio" name="orderby" id="year" checked={order === 2} onChange={() => setOrder(2)}></input>
+            {/* <Label htmlFor="year">1년</Label>
+            <input type="radio" name="orderby" id="year" checked={order === 2} onChange={() => setOrder(2)}></input> */}
           </Switch>
         </DateSelecter>
       </DateField>
