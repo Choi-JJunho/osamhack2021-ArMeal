@@ -7,7 +7,7 @@ import { getAllSidedishData } from 'modules/sidedish';
 export default function SidedishContainer(){
   const history = useHistory();
   const dispatch = useDispatch();
-  const sidedish = useSelector(state => state.sidedishReducer.sidedish )
+  const sidedish = useSelector(state => state.sidedishReducer.all )
   const { data } = useSelector(state => state.authReducer )
   const goSpecPage = (e) => {
     history.push(`/sidedish/${e.row.id}`)
