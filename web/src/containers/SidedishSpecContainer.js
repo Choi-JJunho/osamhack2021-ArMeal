@@ -37,7 +37,7 @@ export default function SidedishSpecContainer(){
         let n = menu.name;
         if(n.indexOf("(") !== -1) n = n.slice(0, n.indexOf("("))
         let d = {
-          id: 1,
+          id: menu.id,
           lastest: menu.lastest,
           name: n,
           satisfy: Math.round(menu.satisfy.ratio)
