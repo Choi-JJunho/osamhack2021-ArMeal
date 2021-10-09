@@ -389,6 +389,7 @@ public class MenuService extends Exception {
         HashMap<String, Object> input = new HashMap<String, Object>();
         HashMap<String, Object> ingredient_info = new HashMap<String, Object>();
 
+        double average = 0;
         if(menu == null) {
             input.put("error", "nodata"); 
             Gson gson = new Gson();
@@ -427,7 +428,7 @@ public class MenuService extends Exception {
                 }});
             }
             input.put("lastest", recentInfo);
-
+            input.put("average", (ratingMapper.findRatioByMenuId(menu_id)).get("ratio"));
             Gson gson = new Gson();
             HashMap<String, Object> jsonObject = gson.fromJson(input.toString(), new TypeToken<HashMap<String, Object>>(){}.getType());
             result.add(jsonObject);
