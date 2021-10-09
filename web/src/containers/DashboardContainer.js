@@ -12,13 +12,10 @@ export default function DashboardContainer(){
   const { average } = useSelector(state => state.dashboardReducer)
   const { count } = useSelector(state => state.dashboardReducer)
   const { data } = useSelector(state => state.authReducer)
+  const { todayRatio } = useSelector(state => state.satisfyReducer )
 
   const offset = new Date().getTimezoneOffset() * 60000;
   const todayStr = new Date(Date.now() - offset).toISOString().slice(0, 10);
-
-  useEffect(() => {
-    dispatch(getRatioToday({date: todayStr, group_id: data.group_id}))
-  },[dispatch, data])
 
   const [avg, setAvg] = useState()
   useEffect(() => {
@@ -46,25 +43,26 @@ export default function DashboardContainer(){
     }
   ])
 
-  const todayData = [
+  const [todayData, setTodayData] = useState([
     {
       type: "조식",
-      satisfy: 80
+      satisfy: 0,
     },
     {
       type: "중식",
-      satisfy: 65
+      satisfy: 0,
     },
     {
       type: "석식",
-      satisfy: 31
+      satisfy: 0,
     }
-  ]
+  ])
   
   useEffect(() => {
     dispatch(getTopData(data.group_id));
     dispatch(getAverage(data.group_id));
     dispatch(getCount(data.group_id));
+    dispatch(getRatioToday({date: todayStr, group_id: data.group_id}))
   }, [dispatch])
 
   const [chartData, setChartData] = useState([1803, 1035, 912, 911, 1079])
@@ -83,6 +81,28 @@ export default function DashboardContainer(){
   useEffect(() => {
     if(average.data)setAvg(Math.round(average.data[0].ratio))
   }, [average.data])
+
+  
+  useEffect(() => {
+    let today = [
+      {
+        type: "조식",
+        satisfy: 0,
+      },
+      {
+        type: "중식",
+        satisfy: 0,
+      },
+      {
+        type: "석식",
+        satisfy: 0,
+      }
+    ]
+    todayRatio.data.map((d) => {
+      return today[d.time - 1].satisfy = Math.round(d.ratio);
+    })
+    setTodayData(today);
+  },[todayRatio])
 
   return (
     <DashboardComponent 
