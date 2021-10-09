@@ -138,7 +138,7 @@ export default function SidedishSpecComponent({data, order, setOrder, history}){
         <MenuList>
           {data.menu_list.map((menu) => {
             return (
-              <Menu onClick={() => history.push(`/menu/${menu.id}`)}>
+              <Menu key={menu.name} onClick={() => history.push(`/menu/${menu.id}`)}>
                 <Time>{menu.lastest}</Time>
                 <MenuDetail satisfy={menu.satisfy}>
                   {menu.name}

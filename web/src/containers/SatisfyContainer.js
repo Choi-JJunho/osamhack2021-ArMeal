@@ -34,7 +34,7 @@ export default function SatisfyContainer(){
       }
     ]
     todayRatio.data.map((d) => {
-      return today[d.time - 1].satisfy = d.ratio;
+      return today[d.time - 1].satisfy = Math.round(d.ratio);
     })
     setTodayData(today);
   },[todayRatio])
