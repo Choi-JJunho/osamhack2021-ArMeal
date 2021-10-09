@@ -8,7 +8,7 @@ const GET_MANAGEMENT_DATA_ERROR = "GET_MANAGEMENT_DATA_ERROR";
 export const getManagementData = createPromiseThunk(GET_MANAGEMENT_DATA, managementAPI);
 
 const initialState = {
-  allData: reducerUtils.initial()
+  allData: reducerUtils.initial([])
 }
 
 export default function managementReducer(state = initialState, action){

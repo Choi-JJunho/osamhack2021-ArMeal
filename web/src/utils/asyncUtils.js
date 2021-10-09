@@ -47,7 +47,7 @@ export const reducerUtils = {
   // 실패 상태
   error: error => ({
     loading: false,
-    data: null,
+    data: [],
     error: error
   })
 };
