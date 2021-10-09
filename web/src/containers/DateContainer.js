@@ -1,9 +1,35 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { getManagementData } from 'modules/management';
 import DateComponent from 'components/DateComponent';
 
 export default function DateContainer(){
   const [order, setOrder] = useState(0);
-  const data = {
+  const { data } = useSelector(state => state.authReducer);
+  const { allData } = useSelector(state => state.managementReducer);
+  const dispatch = useDispatch()
+  const offset = new Date().getTimezoneOffset() * 60000;
+  const todayStr = new Date(Date.now() - offset).toISOString().slice(0, 10);
+  const [range, setRange] = useState({
+    start: todayStr,
+    end: todayStr
+  })
+
+  const onChange = (e) => {
+    setRange({
+      ...range,
+      [e.target.name]: e.target.value
+    })
+  }
+  useEffect(() => {
+    dispatch(getManagementData({
+      group_id: data.group_id,
+      start: range.start,
+      end: range.end
+    }))
+  },[dispatch, range])
+
+  const dateData = {
     labels: ['2021-07-13', '2021-07-14', '3월', '4월', '5월', '6월'],
     datasets: [
       {
@@ -43,10 +69,12 @@ export default function DateContainer(){
   };
   return (
     <DateComponent 
-      data={data}
+      data={dateData}
       options={options}
       order={order}
       setOrder={setOrder}
+      range={range}
+      onChange={onChange}
     />
   )
 }

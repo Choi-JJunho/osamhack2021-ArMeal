@@ -35,12 +35,14 @@ export default function MenuContainer(){
       
       menu.data.map((m) => {
         let sideStr = "";
+        let n = m.menu_name;
+        if(n.indexOf("(") !== -1) n = n.slice(0, n.indexOf("("))
         m.ingredient_list.map((side)=> {
           return sideStr = sideStr + side + ",";
         })
         let temp = {
           id: m.id,
-          menu_name: m.menu_name,
+          menu_name: n,
           sidedish_list: sideStr,
           satisfy: (m.satisfy? Math.round(m.satisfy.ratio) : 0) + "%"
         };

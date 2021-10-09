@@ -62,7 +62,7 @@ export default function SidedishContainer(){
       sidedish.data.map((d) => {
         let namestr = "";
         d.menu.map((m) => {
-          return namestr = namestr + m + ", "
+          return namestr = namestr + (m.indexOf("(") === -1 ? m :m.slice(0, m.indexOf("("))) + ", "
         })
         let t = {
           "id": d.id,

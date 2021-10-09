@@ -55,20 +55,20 @@ const Switch = styled.div`
   padding-right: 15px; 
 `
 
-export default function DateComponent({data, options, order, setOrder}){
+export default function DateComponent({data, options, order, setOrder, range, onChange}){
   return (
     <Container>
       <DateField>
         <DateSelecter>
           <StartDate>시작일</StartDate>
           <SelectWrapper>
-            <DateInput type="date" value="2021-01-01" />
+            <DateInput name="start" type="date" value={range.start} onChange={onChange}/>
           </SelectWrapper>
         </DateSelecter>
         <DateSelecter>
           <StartDate>종료일</StartDate>
           <SelectWrapper>
-            <DateInput type="date" value="2021-01-01" />
+            <DateInput name="end" type="date" value={range.end} onChange={onChange} />
           </SelectWrapper>
         </DateSelecter>
 
