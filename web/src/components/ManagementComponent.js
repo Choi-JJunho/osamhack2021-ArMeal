@@ -32,6 +32,7 @@ export default function ManagementComponent({events, onMonthChange}){
           height="76vh"
           locale="af"
           initialEvents={events}
+          events={events}
           eventDidMount={el => addHoverEvent(el)}
           datesSet={e => onMonthChange(e)}
         />

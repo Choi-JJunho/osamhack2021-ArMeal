@@ -21,11 +21,11 @@ export default function SatisfyContainer(){
     let today = [
       {
         type: "조식",
-        satisfy: 87,
+        satisfy: 0,
       },
       {
         type: "중식",
-        satisfy: 62,
+        satisfy: 0,
       },
       {
         type: "석식",
@@ -44,11 +44,11 @@ export default function SatisfyContainer(){
   const [todayData, setTodayData] = useState([
     {
       type: "조식",
-      satisfy: 87,
+      satisfy: 0,
     },
     {
       type: "중식",
-      satisfy: 62,
+      satisfy: 0,
     },
     {
       type: "석식",
@@ -121,10 +121,11 @@ const [satisfaction, setSatisfaction] = useState(0) // const [변수, set변수]
 
 const [modal, setModal] = useState(false)
 const openModal = (e) => {
+  console.log(type)
   dispatch(addRatingDaily({
     userId: data.id,
     date: todayStr,
-    time: type + 1,
+    time: type,
     rating_value: e[0] + 1,
     badReason: (e.length === 2 ? e[1] + 1: 0),
     group_id: data.group_id

@@ -38,13 +38,7 @@ export const addRatingDaily = ({userId, date, time, rating_value, badReason, gro
 }
 
 export const getManagementData = ({group_id, start, end}) => {
-  return axios.post(`${PATH}/getMonthData`, 
-    {
-      "group_id": Number(group_id),
-      "start": start,
-      "end": end,
-    }
-  );
+  return axios.get(`${PATH}/get/dailymenu/info/${group_id}/${start}/${end}`);
 }
 
 export const getDashboardData = () => {
