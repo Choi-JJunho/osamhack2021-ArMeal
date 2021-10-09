@@ -42,7 +42,7 @@ const Score = styled.div`
 
 const Point = styled.div`
   font-size: 40px;
-  color: #FF0000;
+  color: ${props => props.satisfy > 65 ? "#FF0000" : props.satisfy > 32 ? "#FF6534" : "#E7B70A"};
 `
 
 const Desc = styled.div`
@@ -111,8 +111,8 @@ export default function SidedishSpecComponent({data, order, setOrder, history}){
           </div>
           <Score>
             평균
-            <Point>
-              {data.average}
+            <Point satisfy={data.average}>
+              {data.average}%
             </Point>
           </Score>
         </ChartWrapper>

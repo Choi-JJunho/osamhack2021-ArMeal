@@ -3,7 +3,6 @@ import SidedishSpecComponent from 'components/SidedishSpecComponent';
 import { useLocation, useHistory } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { getSidedishData } from 'modules/sidedish';
-import managementReducer from 'modules/management';
 
 export default function SidedishSpecContainer(){
   const history = useHistory();
