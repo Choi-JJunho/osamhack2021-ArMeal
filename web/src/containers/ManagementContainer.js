@@ -41,7 +41,7 @@ export default function ManagementContainer(){
       if(d.time === 3) timeStr = timeStr.concat("T17:00:00")
       let des = ""
       d.description.map((str) => {
-        return des = des.concat(str);
+        return des = des.concat(str.indexOf("(") === -1 ? str : str.slice(0, str.indexOf("("))) + ","
       })
       let t = {
         title: (d.time === 1? "조식" : (d.time === 2 ? "중식" : "석식")),
