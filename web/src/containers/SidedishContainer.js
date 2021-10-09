@@ -68,7 +68,7 @@ export default function SidedishContainer(){
           "id": d.id,
           "sidedish_name": d.ingredient_name,
           "sidedish_menu": namestr,
-          "satisfy": d.satisfy
+          "satisfy": Math.round(d.satisfy)
         }
         return list.push(t);
       })

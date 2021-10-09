@@ -39,7 +39,7 @@ export default function SidedishSpecContainer(){
           id: 1,
           lastest: menu.lastest,
           name: menu.name,
-          satisfy: menu.satisfy.ratio
+          satisfy: Math.round(menu.satisfy.ratio)
         };
         return tempList.push(d)
       })
@@ -48,7 +48,7 @@ export default function SidedishSpecContainer(){
         sidedish_name: specData.data.ingredient_name, 
         menu_list: tempList,
         satisfy: specData.data.satisfy,
-        average: specData.data.average
+        average: Math.round(specData.data.average)
       }
       setData(t)
     }
