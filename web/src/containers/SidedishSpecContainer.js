@@ -47,7 +47,7 @@ export default function SidedishSpecContainer(){
         sidedish_name: specData.data.ingredient_name, 
         menu_list: tempList,
         satisfy: specData.data.satisfy,
-        average: Math.round(specData.data.average) + "%"
+        average: Math.round(specData.data.average)
       }
       setData(t)
     }
