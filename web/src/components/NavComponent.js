@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled, { css } from 'styled-components';
-import LogoImg from '../static/image/logo.png';
+import LogoImg from '../static/image/ArMeal.png';
 import { ReactComponent as SmileIcon } from "../static/svg/smile-solid.svg";
 import { ReactComponent as DashBoardIcon } from "../static/svg/th-large-solid.svg";
 import { ReactComponent as DateIcon } from "../static/svg/calendar-alt-solid.svg";
@@ -29,8 +29,8 @@ const Container = styled.div`
 const Logo = styled.img.attrs({
   src: LogoImg
 })`
-  margin-top: 7vh;
-  margin-bottom: 9vh;
+  margin-top: 3vh;
+  margin-bottom: 3vh;
   width: 16vw;
 `
 
