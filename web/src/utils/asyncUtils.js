@@ -47,7 +47,7 @@ export const reducerUtils = {
   // 실패 상태
   error: error => ({
     loading: false,
-    data: null,
+    data: [],
     error: error
   })
 };
@@ -60,8 +60,7 @@ export const handleAsyncActions = (type, key) => {
     switch (action.type) {
       case type:
         return {
-          ...state,
-          [key]: reducerUtils.loading()
+          ...state
         };
       case SUCCESS:
         return {
