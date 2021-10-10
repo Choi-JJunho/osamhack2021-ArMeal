@@ -1,13 +1,12 @@
 import React from 'react';
 import styled from 'styled-components'
-import icon1lsc from '../static/image/1lsc.png';
+import icon1lsc from '../static/image/1gd.jfif';
 import { ReactComponent as PlzLoginIcon } from "../static/svg/question-circle-regular.svg";
 
 const Icon1lsc = styled.img.attrs({
   src: icon1lsc
 })`
-  width:50px;
-  height:50px;
+  width:40px;
 `
 
 const Container = styled.div`
