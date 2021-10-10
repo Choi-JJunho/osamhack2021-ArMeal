@@ -139,7 +139,7 @@ export default function MenuSpecComponent({data, history}){
           <SidedishWrapper>
             {data.ingredient_list.map((sidedish) => {
               return (
-                <SidedishName onClick={() => history.push(`/sidedish/${sidedish.id}`)}>
+                <SidedishName key={sidedish.id} onClick={() => history.push(`/sidedish/${sidedish.id}`)}>
                   {sidedish.name}
                 </SidedishName>
               )

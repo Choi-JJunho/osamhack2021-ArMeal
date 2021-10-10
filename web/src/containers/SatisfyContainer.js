@@ -40,6 +40,7 @@ export default function SatisfyContainer(){
   },[todayRatio])
   const selectType = (idx) => {
     setType(idx)
+    // setVisible(idx)
   }
 
   const [todayData, setTodayData] = useState([
@@ -176,8 +177,11 @@ const openModal = (e) => {
     survey={picLink}
 
     visible={visible}
-    selectVisible={selectVisible}>
-
+    selectVisible={selectVisible}
+    
+    modal={modal}
+      setModal = {setModal}
+      openModal={openModal}>
     </SatisfyMobileComponent>
     </>
   )
