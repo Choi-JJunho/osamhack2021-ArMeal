@@ -65,7 +65,7 @@ export default function DashboardContainer(){
     dispatch(getRatioToday({date: todayStr, group_id: data.group_id}))
   }, [dispatch, data, todayStr])
 
-  const [chartData, setChartData] = useState([1803, 1035, 912, 911, 1079])
+  const [chartData, setChartData] = useState([18287, 17698, 17014, 17470, 23433])
 
   useState(() => {
     if(count.data) {
