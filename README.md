@@ -75,7 +75,7 @@
 		<tr>
       <td rowspan="2">
         <div align="center">
-          <img src="./image/satisfy_pc.png" width="100%" height="90%">
+          <img src="./image/date.png" width="100%" height="90%">
         </div>
       </td>
       <td width="28%">원하는 구간의 날짜별 통계를 확인할 수 있습니다.</td>
@@ -139,7 +139,7 @@
           <img src="./image/self.png" width="100%" height="90%">
         </div>
       </td>
-      <td width=28%">부대에서 직접 시행하는 자율메뉴를 추가할 수 있습니다.</td>
+      <td width="28%">부대에서 직접 시행하는 자율메뉴를 추가할 수 있습니다.</td>
     </tr>
     <tr>
       <td>부대에서 자체적으로 시행하는 만큼 만족도 확인은 중요하죠!</td>
