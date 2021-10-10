@@ -121,24 +121,43 @@ const [satisfaction, setSatisfaction] = useState(0) // const [변수, set변수]
       setVisible(idx)
     }
 
-const [modal, setModal] = useState(false)
-const openModal = (e) => {
-  console.log(type)
-  dispatch(addRatingDaily({
-    userId: data.id,
-    date: todayStr,
-    time: type,
-    rating_value: e[0] + 1,
-    badReason: (e.length === 2 ? e[1] + 1: 0),
-    group_id: data.group_id
-  }))
-  setModal(true)
-  setVisible(0)
+  const [modal, setModal] = useState(false)
+  const openModal = (e) => {
+    console.log(type)
+    dispatch(addRatingDaily({
+      userId: data.id,
+      date: todayStr,
+      time: type,
+      rating_value: e[0] + 1,
+      badReason: (e.length === 2 ? e[1] + 1: 0),
+      group_id: data.group_id
+    }))
+    setModal(true)
+    setVisible(0)
 
-  setTimeout(() => {
-    setModal(false);
-  }, 2000);
-}
+    setTimeout(() => {
+      setModal(false);
+    }, 2000);
+  }
+
+  // useEffect(() => {
+  //   setInterval(() => {
+  //     let diff = Math.ceil(Math.random() * 21)
+  //     let dateStr = new Date(Date.now() + 1000*3600*24*diff - offset).toISOString().slice(0, 10);
+  //     let randTime = Math.ceil(Math.random() * 3)
+  //     let randValue = Math.ceil(Math.random() * 5)
+  //     let Data = {
+  //       userId: data.id,
+  //       date: "2021-10-05",
+  //       time: "1",
+  //       rating_value: 5,
+  //       badReason: 0,
+  //       group_id: data.group_id
+  //     }
+  //     dispatch(addRatingDaily(Data))
+  //   }, 700)
+  // }, [dispatch])
+
   return (
     <>
     <SatisfyComponent 

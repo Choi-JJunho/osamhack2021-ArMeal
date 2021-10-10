@@ -142,7 +142,7 @@ export default function SidedishSpecComponent({data, order, setOrder, history}){
                 <Time>{menu.lastest}</Time>
                 <MenuDetail satisfy={menu.satisfy}>
                   {menu.name}
-                  <MenuSatisfy satisfy={menu.satisfy}>{menu.satisfy}%</MenuSatisfy>
+                  <MenuSatisfy satisfy={menu.satisfy}>{Math.round(menu.satisfy)}%</MenuSatisfy>
                 </MenuDetail>
               </Menu>
             )
