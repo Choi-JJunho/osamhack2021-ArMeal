@@ -1,5 +1,7 @@
 # 프로젝트명
-![ArMealImage](https://github.com/osamhack2021/WEB_CLOUD_ArMeal_CSK/blob/main/image/ArMeal.jpg?raw=true)
+<a href="https://github.com/osamhack2021/WEB_CLOUD_ArMeal_CSK">
+  <img src="./image/ArMeal.jpg" width="300px">
+</a>
 
 ## 프로잭트 소개
 ### 실시간 선호도 조사로 쌓은 통계로 병영식당을 개선하고자 하는 프로젝트
