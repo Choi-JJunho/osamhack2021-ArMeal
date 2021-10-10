@@ -8,7 +8,7 @@ export default function ManagementContainer(){
   const { data } = useSelector(state => state.authReducer);
   const { allData } = useSelector(state => state.managementReducer);
   const [range, setRange] = useState({start: "", end: ""});
-
+  const [event, setEvent] = useState(0);
   const [events, setEvents] = useState([
     {
       title: '조식 92%',
@@ -72,6 +72,6 @@ export default function ManagementContainer(){
   }, [dispatch, range, data])
 
   return (
-    <ManagementComponent events={events} onMonthChange={onMonthChange}/>
+    <ManagementComponent events={events} event={event} setEvent={setEvent} onMonthChange={onMonthChange}/>
   )
 }

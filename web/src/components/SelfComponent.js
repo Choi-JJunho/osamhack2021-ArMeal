@@ -100,7 +100,7 @@ border-radius: 5px;
 // value:${props => props.description};
 `
 const ModalDateAndTimeField = styled(ModalTextForm)`
-width: 165px;
+width: ${props => props.half ? "90px" :"165px" };
 height: 40px;
 background: #E5E5E5;
 border-radius: 5px;
@@ -299,9 +299,9 @@ export default function SelfComponent({events, event, selectEvent, date, dateCli
                   {event.event.startStr.split("T")[0]}
                   </ModalDateAndTimeField>
                 <ModalTextForm>
-                  타임:
+                  식사시간:
                 </ModalTextForm>
-                <ModalDateAndTimeField>
+                <ModalDateAndTimeField half={true}>
                   {event.event._def.extendedProps.time}
                 </ModalDateAndTimeField>
               </ModalFieldWrapper>
