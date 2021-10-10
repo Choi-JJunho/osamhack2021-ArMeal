@@ -18,13 +18,13 @@
 		<tr>
       <td rowspan="2">
         <div align="center">
-          <a href="" width="60%" height="60%"></a>
+          <img src="./image/dashboard.png" width="90%" height="90%">
         </div>
       </td>
       <td width="33%">전체적인 통계를 확인할 수 있습니다.</td>
     </tr>
     <tr>
-      <td>티어제도와 랭킹을 통한 경쟁심 상승은 덤!</td>
+      <td>우리 부대에서 인기가 많은 메뉴는 무엇인지 확인해보세요!</td>
     </tr>
   </tbody>
 </table>
@@ -41,7 +41,7 @@
 		<tr>
       <td rowspan="2">
         <div align="center">
-          <a href="" width="60%" height="60%"></a>
+          <img src="./image/satisfy_pc.png" width="90%" height="90%">
         </div>
       </td>
       <td width="40%">실시간으로 장병들의 만족도를 수집합니다.</td>
@@ -52,7 +52,7 @@
     <tr>
       <td rowspan="2">
         <div align="center">
-          <a href="" width="60%" height="60%"></a>
+          <img src="./image/satisfy_mobile.png" width="40%" height="40%">
         </div>
       </td>
       <td>야외 훈련 등 네트워크 연결이 어려운 상황을 대비해 오프라인 상태로도 정보를 수집합니다.</td>
@@ -75,7 +75,7 @@
 		<tr>
       <td rowspan="2">
         <div align="center">
-          <a href="" width="60%" height="60%"></a>
+          <img src="./image/satisfy_pc.png" width="90%" height="90%">
         </div>
       </td>
       <td width="33%">원하는 구간의 날짜별 통계를 확인할 수 있습니다.</td>
@@ -99,7 +99,7 @@
 		<tr>
       <td rowspan="2">
         <div align="center">
-          <a href="" width="60%" height="60%"></a>
+          <img src="./image/menu.png" width="90%" height="90%">
         </div>
       </td>
       <td width="33%">부식별, 메뉴별 통계를 한눈에 볼 수 있습니다.</td>
@@ -110,7 +110,7 @@
     <tr>
       <td rowspan="2">
         <div align="center">
-          <a href="" width="60%" height="60%"></a>
+          <img src="./image/menu_spec.png" width="90%" height="90%">
         </div>
       </td>
       <td>각 부식과 메뉴의 세부 정보를 확인할 수 있습니다.</td>
@@ -136,7 +136,7 @@
 		<tr>
       <td rowspan="2">
         <div align="center">
-          <a href="" width="60%" height="60%"></a>
+          <img src="./image/self.png" width="90%" height="90%">
         </div>
       </td>
       <td width="33%">부대에서 직접 시행하는 자율메뉴를 추가할 수 있습니다.</td>
@@ -162,7 +162,7 @@
 		<tr>
       <td rowspan="2">
         <div align="center">
-          <a href="" width="60%" height="60%"></a>
+          <img src="./image/management.png" width="90%" height="90%">
         </div>
       </td>
       <td width="33%">모든 식단을 모아서 확인하고, 메모를 추가할 수 있습니다.</td>
@@ -188,7 +188,7 @@
 		<tr>
       <td rowspan="2">
         <div align="center">
-          <a href="" width="60%" height="60%"></a>
+          <img src="./image/signup.png" width="90%" height="90%">
         </div>
       </td>
       <td width="33%">같은 소속의 부대는 기본적인 식단정보를 공유합니다!</td>
@@ -202,7 +202,6 @@
 
 ## 컴퓨터 구성 / 필수 조건 안내 (Prerequisites)
 * 권장: ES6를 지원하는 Chromium 기반의 웹 브라우저(Chrome, Naver Whale, Microsoft Edge 등)
-* https가 아닌, http 프로토콜을 적용한 상태 (http인 서버와 통신하기 위해)
 
 ## 기술 스택 (Technique Used) 
 ### Server(back-end)
