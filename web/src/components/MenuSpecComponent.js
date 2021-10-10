@@ -162,7 +162,7 @@ export default function MenuSpecComponent({data, history}){
                       {date.type === 1? "조식" : date.type === 2? "중식" : "석식"}
                       </Type>
                       <DateSatisfy satisfy={date.satisfy}>
-                        {date.satisfy}%
+                        {Math.round(date.satisfy)}%
                       </DateSatisfy>
                     </DateDetail>
                   </Date>
