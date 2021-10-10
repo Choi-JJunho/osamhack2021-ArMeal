@@ -247,7 +247,7 @@ public class MenuService extends Exception {
             for(HashMap<String, Object> data : top5Data) {
                 menuId = Long.valueOf(data.get("id").toString());
                 ++cnt;
-                menuData.put("id", ingredient_id);
+                menuData.put("id", menuId);
                 // 최근 나온 날짜
                 menuData.put("lastest", menuMapper.findRecentDateByMenuId(menuId, group_id).get("recentDate").toString());
                 menuData.put("name", replaceStr(data.get("name").toString()));
