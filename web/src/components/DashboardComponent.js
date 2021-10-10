@@ -63,7 +63,7 @@ const SatisfyData = styled.div`
 `
 
 const Badge = styled.div`
-  width: 45px;
+  width: 65px;
   height: 24px;
   border: 3px solid #36A2EB;
   box-sizing: border-box;
