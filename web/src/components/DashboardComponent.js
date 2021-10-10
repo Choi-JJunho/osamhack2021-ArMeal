@@ -204,7 +204,7 @@ export default function DashboardComponent({chartData, average, dataName, menuRa
                   </Rank>
                     ) {menuData.name}
                   <Satisfy color={menuData.satisfy}>
-                    {menuData.satisfy}%  
+                    {Math.round(menuData.satisfy)}%  
                   </Satisfy>
                   <PercentWrapper>
                     <Percent satisfy={menuData.satisfy}></Percent>
