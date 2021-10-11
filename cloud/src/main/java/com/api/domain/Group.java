@@ -1,32 +1,27 @@
 package com.api.domain;
 
-import io.swagger.annotations.ApiModelProperty;
 import java.sql.Timestamp;
-public class Menu {
 
-	@ApiModelProperty(hidden = true)
-    private long id;
+import io.swagger.annotations.ApiModelProperty;
 
-	@ApiModelProperty(hidden = true)
-    private long group_id;
 
-	@ApiModelProperty(notes = "메뉴명", example = "1")
-	private String name;
-
-	@ApiModelProperty(notes = "메뉴타입\n1: 메인메뉴(mainmenu)\n2: 자율메뉴(selfmenu)\n3: 후식(dessert)", example = "1")
-	private int menu_type;
-
-	@ApiModelProperty(notes = "메뉴 점수", example = "0")
-	private int score;
-
-	@ApiModelProperty(hidden = true)
-    private Timestamp created_at;
-
-	@ApiModelProperty(hidden = true)
-    private Timestamp deleted_at;
+public class Group {
 	
 	@ApiModelProperty(hidden = true)
+    private long id;
+	
+	@ApiModelProperty(notes = "부대명", example = "1급양대")
+	private String name;
+	
+	@ApiModelProperty(hidden = true)
+	private Timestamp created_at;
+
+	@ApiModelProperty(hidden = true)
+	private Timestamp deleted_at;
+
+	@ApiModelProperty(hidden = true)
     private boolean is_deleted;
+	
 
 	public long getId() {
 		return this.id;
@@ -36,44 +31,12 @@ public class Menu {
 		this.id = id;
 	}
 
-	public long getGroup_id() {
-		return this.group_id;
-	}
-
-	public void setGroup_id(long group_id) {
-		this.group_id = group_id;
-	}
-
-	public int getMenu_type() {
-		return this.menu_type;
-	}
-
-	public void setMenu_type(int menu_type) {
-		this.menu_type = menu_type;
-	}
-
 	public String getName() {
 		return this.name;
 	}
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public int getMenutype() {
-		return this.menu_type;
-	}
-
-	public void setMenutype(int menutype) {
-		this.menu_type = menutype;
-	}
-
-	public long getScore() {
-		return this.score;
-	}
-
-	public void setScore(int score) {
-		this.score = score;
 	}
 
 	public Timestamp getCreated_at() {
@@ -108,10 +71,7 @@ public class Menu {
 	public String toString() {
 		return "{" +
 			" id='" + getId() + "'" +
-			", group_id='" + getGroup_id() + "'" +
 			", name='" + getName() + "'" +
-			", menu_type='" + getMenu_type() + "'" +
-			", score='" + getScore() + "'" +
 			", created_at='" + getCreated_at() + "'" +
 			", deleted_at='" + getDeleted_at() + "'" +
 			", is_deleted='" + isIs_deleted() + "'" +
