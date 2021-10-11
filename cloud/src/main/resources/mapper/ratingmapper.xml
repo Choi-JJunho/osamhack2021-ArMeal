@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.api.mapper.RatingMapper">
+
+    <!-- Find Menu -->
+    <select id="findRatioByDates" resultType="java.util.HashMap">
+        SELECT a.Target_id AS id, b.name AS name, (SUM(a.rating_data)*20) / COUNT(a.rating_data) AS ratio
+        FROM Rating AS a 
+        JOIN Menu AS b ON (a.Target_id = b.id)
+        WHERE a.date_value BETWEEN DATE(#{_start}) AND DATE(#{_end})+1 GROUP BY Target_id;
+    </select>
+
+    <select id="findRatioByDateTime" resultType="java.util.HashMap">
+        SELECT (SUM(rating_data)*20) / COUNT(rating_data) AS ratio
+        FROM Rating
+        WHERE date_value = #{_date} AND time = #{_time} AND group_id = #{_groupId};
+    </select>
+
+    <select id="findDailyRatioByDate" resultType="java.util.HashMap">
+        SELECT time, (SUM(rating_data)*20) / COUNT(rating_data) AS ratio
+        FROM Rating AS a
+        WHERE date_value = #{_date} AND group_id = #{_groupId} GROUP BY time;
+    </select>
+
+    <select id="findAllRating" resultType="java.util.HashMap">
+        SELECT * FROM Rating WHERE group_id = #{_groupId}
+    </select>
+
+    <select id="findRatingById" resultType="java.util.HashMap">
+        SELECT * FROM Rating WHERE id = #{_id}
+    </select>
+
+    <select id="findRatioOfAll" resultType="java.util.HashMap">
+        SELECT (SUM(rating_data)*20) / COUNT(rating_data) AS ratio 
+        FROM Rating
+    </select>
+
+    <select id="findRatioOfAllMenu" resultType="java.util.HashMap">
+        SELECT a.Target_id AS id, b.name AS name, (SUM(a.rating_data)*20) / COUNT(a.rating_data) AS ratio 
+        FROM Rating AS a 
+        JOIN Menu AS b ON a.Target_id = b.id 
+        GROUP BY Target_id
+    </select>
+
+    <select id="findRatioByMenuId" resultType="java.util.HashMap">
+        SELECT (SUM(rating_data)*20) / COUNT(rating_data) AS ratio 
+        FROM Rating 
+        WHERE Target_id = #{_targetId}
+    </select>
+
+    <select id="findCountOfratingData" resultType="java.util.HashMap">
+        SELECT rating_data, COUNT(*) AS count
+        FROM Rating WHERE group_id = #{_groupId}
+        GROUP BY rating_data ORDER BY rating_data ASC;
+    </select>
+
+    <select id="findCountOfratingDataById" resultType="java.util.HashMap">
+        SELECT rating_data, COUNT(*) AS count
+        FROM Rating WHERE (group_id = #{_groupId} AND Target_id = #{_targetId})
+        GROUP BY rating_data ORDER BY rating_data ASC;
+    </select>
+    
+    <select id="findRatingTop5" resultType="java.util.HashMap">
+        SELECT a.Target_id AS id, b.name AS name, (SUM(a.rating_data)*20) / COUNT(a.rating_data) AS ratio 
+        FROM Rating AS a 
+        JOIN Menu AS b ON (a.Target_id = b.id)
+        JOIN Used_ingredient AS c ON (a.Target_id = c.Menu_id)
+        WHERE a.group_id = #{_groupId}
+        GROUP BY Target_id ORDER BY ratio DESC LIMIT 5;
+    </select>
+
+    <select id="findRatingTop5ByIngredient" resultType="java.util.HashMap">
+        SELECT a.Target_id AS id, b.name AS name, (SUM(a.rating_data)*20) / COUNT(a.rating_data) AS ratio 
+        FROM Rating AS a 
+        JOIN Menu AS b ON (a.Target_id = b.id)
+        JOIN Used_ingredient AS c ON (a.Target_id = c.Menu_id AND c.Ingredient_id = #{_ingredientId})
+        WHERE a.group_id = #{_groupId}
+        GROUP BY Target_id ORDER BY ratio DESC LIMIT 5;
+    </select>
+
+    <select id="findRatingMonth" resultType="java.util.HashMap">
+        SELECT time, (SUM(rating_data)*20) / COUNT(rating_data) AS ratio
+        FROM Rating
+        WHERE date_value BETWEEN #{_date} AND DATE_ADD(#{_date}, INTERVAL 1 MONTH) GROUP BY time;
+    </select>
+
+    <select id="findRatingOfIngredient" resultType="double">
+        SELECT (SUM(a.rating_data)*20) / COUNT(a.rating_data) AS satisfy
+        FROM Rating AS a
+        JOIN Used_ingredient AS b ON (a.Target_id = b.Menu_id AND a.group_id = #{_groupId} AND b.Ingredient_id = #{_ingredientId})
+    </select>
+
+    <!-- insert -->
+    <insert id="addRating">
+        INSERT INTO Rating (User_id, Target_id, Target_type, rating_data, group_id, date_value, time)
+        VALUES (#{_userId}, #{_targetId}, #{_targetType}, #{ratingData}, #{_groupId}, #{_date}, #{_time})
+    </insert>
+
+    <update id="updateRating">
+        UPDATE Rating SET rating_data = #{_ratingData} WHERE id = #{_id};
+    </update>
+
+    <update id="updateBadReason">
+        UPDATE Rating SET bad_reason = #{_badreason} WHERE id = (SELECT id FROM (SELECT MAX(id) AS id FROM Rating) AS temp) AND group_id = #{_groupId};
+    </update>
+
+</mapper>

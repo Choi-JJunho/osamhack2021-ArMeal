@@ -5,13 +5,29 @@
 
 <mapper namespace="com.api.mapper.UserMapper">
 
+    <insert id="signup">
+        INSERT INTO User (login_id, password, email, name, group_id)
+        VALUES (#{loginId}, #{_pw}, #{_email}, #{_name}, #{groupId})
+    </insert>
 
-    <select id="selectAllUser" resultType="user">
-        SELECT * FROM user
+    <select id="findUserByName" resultType="com.api.domain.User">
+        SELECT name, email, group_id, login_id FROM User WHERE name = #{_name}
+    </select>
+
+    <select id="findUserById" resultType="com.api.domain.User">
+        SELECT * FROM User WHERE id = #{_id}
     </select>
     
-    <insert id="insertUser">
-        INSERT INTO user (NAME, COUNTRY, POPULATION)
-        VALUES (#{user_id}, #{password}, #{name})
-    </insert>
+    <select id="findUserByLoginId" resultType="com.api.domain.User">
+        SELECT * FROM User WHERE login_id = #{login_id}
+    </select>
+
+    <select id="findUserByEmail" resultType="com.api.domain.User">
+        SELECT * FROM User WHERE email = #{_eamil}
+    </select>
+    
+    <select id="findUserByGroupId" resultType="com.api.domain.User">
+        SELECT * FROM User WHERE group_id = #{_groupId}
+    </select>
+
 </mapper>

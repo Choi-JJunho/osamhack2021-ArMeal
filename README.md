@@ -1,5 +1,7 @@
 # 프로젝트명
-로고 이미지
+<a href="https://github.com/osamhack2021/WEB_CLOUD_ArMeal_CSK">
+  <img src="./image/ArMeal.jpg" width="300px">
+</a>
 
 ## 프로잭트 소개
 ### 실시간 선호도 조사로 쌓은 통계로 병영식당을 개선하고자 하는 프로젝트
@@ -18,13 +20,13 @@
 		<tr>
       <td rowspan="2">
         <div align="center">
-          <a href="" width="60%" height="60%"></a>
+          <img src="./image/dashboard.png" width="100%" height="90%">
         </div>
       </td>
-      <td width="33%">전체적인 통계를 확인할 수 있습니다.</td>
+      <td width="28%">전체적인 통계를 확인할 수 있습니다.</td>
     </tr>
     <tr>
-      <td>티어제도와 랭킹을 통한 경쟁심 상승은 덤!</td>
+      <td>우리 부대에서 인기가 많은 메뉴는 무엇인지 확인해보세요!</td>
     </tr>
   </tbody>
 </table>
@@ -41,10 +43,10 @@
 		<tr>
       <td rowspan="2">
         <div align="center">
-          <a href="" width="60%" height="60%"></a>
+          <img src="./image/satisfy_pc.png" width="100%" height="90%">
         </div>
       </td>
-      <td width="40%">실시간으로 장병들의 만족도를 수집합니다.</td>
+      <td width="30%">실시간으로 장병들의 만족도를 수집합니다.</td>
     </tr>
     <tr>
       <td>식사에 불만족한 경우, 불만족한 사유를 수집해서 통계에 활용합니다.</td>
@@ -52,7 +54,7 @@
     <tr>
       <td rowspan="2">
         <div align="center">
-          <a href="" width="60%" height="60%"></a>
+          <img src="./image/satisfy_mobile.png" width="45%" height="40%">
         </div>
       </td>
       <td>야외 훈련 등 네트워크 연결이 어려운 상황을 대비해 오프라인 상태로도 정보를 수집합니다.</td>
@@ -75,10 +77,10 @@
 		<tr>
       <td rowspan="2">
         <div align="center">
-          <a href="" width="60%" height="60%"></a>
+          <img src="./image/date.png" width="100%" height="90%">
         </div>
       </td>
-      <td width="33%">원하는 구간의 날짜별 통계를 확인할 수 있습니다.</td>
+      <td width="28%">원하는 구간의 날짜별 통계를 확인할 수 있습니다.</td>
     </tr>
     <tr>
       <td>우리 병영식당이 어떤 시간대에 주로 신경써야하는지 확인합시다!</td>
@@ -99,10 +101,10 @@
 		<tr>
       <td rowspan="2">
         <div align="center">
-          <a href="" width="60%" height="60%"></a>
+          <img src="./image/menu.png" width="100%" height="90%">
         </div>
       </td>
-      <td width="33%">부식별, 메뉴별 통계를 한눈에 볼 수 있습니다.</td>
+      <td width="28%">부식별, 메뉴별 통계를 한눈에 볼 수 있습니다.</td>
     </tr>
     <tr>
       <td>만족도, 이름별로 정렬해 원하는 대상을 쉽게 찾을 수 있습니다.</td>
@@ -110,7 +112,7 @@
     <tr>
       <td rowspan="2">
         <div align="center">
-          <a href="" width="60%" height="60%"></a>
+          <img src="./image/menu_spec.png" width="100%" height="90%">
         </div>
       </td>
       <td>각 부식과 메뉴의 세부 정보를 확인할 수 있습니다.</td>
@@ -136,10 +138,10 @@
 		<tr>
       <td rowspan="2">
         <div align="center">
-          <a href="" width="60%" height="60%"></a>
+          <img src="./image/self.png" width="100%" height="90%">
         </div>
       </td>
-      <td width="33%">부대에서 직접 시행하는 자율메뉴를 추가할 수 있습니다.</td>
+      <td width="28%">부대에서 직접 시행하는 자율메뉴를 추가할 수 있습니다.</td>
     </tr>
     <tr>
       <td>부대에서 자체적으로 시행하는 만큼 만족도 확인은 중요하죠!</td>
@@ -162,10 +164,10 @@
 		<tr>
       <td rowspan="2">
         <div align="center">
-          <a href="" width="60%" height="60%"></a>
+          <img src="./image/management.png" width="100%" height="90%">
         </div>
       </td>
-      <td width="33%">모든 식단을 모아서 확인하고, 메모를 추가할 수 있습니다.</td>
+      <td width="28%">모든 식단을 모아서 확인하고, 메모를 추가할 수 있습니다.</td>
     </tr>
     <tr>
       <td>공공데이터 포탈에 게시되어있는 부대의 식단정보를 알아서 입력해줍니다!</td>
@@ -188,10 +190,10 @@
 		<tr>
       <td rowspan="2">
         <div align="center">
-          <a href="" width="60%" height="60%"></a>
+          <img src="./image/signup.png" width="100%" height="90%">
         </div>
       </td>
-      <td width="33%">같은 소속의 부대는 기본적인 식단정보를 공유합니다!</td>
+      <td width="28%">같은 소속의 부대는 기본적인 식단정보를 공유합니다!</td>
     </tr>
     <tr>
       <td>간편한 로그인으로 설문조사ㆍ확인도 간편하게 진행할 수 있습니다.</td>
@@ -202,14 +204,15 @@
 
 ## 컴퓨터 구성 / 필수 조건 안내 (Prerequisites)
 * 권장: ES6를 지원하는 Chromium 기반의 웹 브라우저(Chrome, Naver Whale, Microsoft Edge 등)
-* https가 아닌, http 프로토콜을 적용한 상태 (http인 서버와 통신하기 위해)
 
 ## 기술 스택 (Technique Used) 
 ### Server(back-end)
- - AWS Cloud Service
- - Spring
- - MySQL
- - Swagger
+ - Spring Boot 2.0.1
+ - MySQL 5.7.35
+ - Swagger 2.9.2
+ - Maven 3.6.3
+ - Java (OpenJDK 1.8.0_292)
+ - Nginx
 
 ### Front-end
  - react.js
