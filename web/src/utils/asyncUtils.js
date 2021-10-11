@@ -63,6 +63,7 @@ export const handleAsyncActions = (type, key) => {
           ...state
         };
       case SUCCESS:
+        localStorage.clear();
         return {
           ...state,
           [key]: reducerUtils.success(action.payload)
