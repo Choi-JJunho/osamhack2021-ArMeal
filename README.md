@@ -202,6 +202,10 @@
 </table>
 <br><br>
 
+## Service Architecture
+<img src="./image/service_architecture.png">
+
+
 ## 컴퓨터 구성 / 필수 조건 안내 (Prerequisites)
 * 권장: ES6를 지원하는 Chromium 기반의 웹 브라우저(Chrome, Naver Whale, Microsoft Edge 등)
 
