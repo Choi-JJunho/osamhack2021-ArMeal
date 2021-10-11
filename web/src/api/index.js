@@ -39,14 +39,20 @@ export const getRatioToday = ({date, group_id}) => {
 }
 
 export const addRatingDaily = ({userId, date, time, rating_value, badReason, group_id}) => {
-  return axios.post(`${PATH}/add/rating/daily`, [{
+  let data = [{
     userId: userId,
     date: date,
     time: time,
     rating_value: rating_value,
     badReason: badReason,
     group_id: group_id
-  }]);
+  }]
+  let keep = JSON.parse(localStorage.getItem("keep"));
+  localStorage.setItem("keep", JSON.stringify(data[0]))
+  if(keep) {
+    data.push(keep)
+  }
+  return axios.post(`${PATH}/add/rating/daily`, data);
 }
 
 export const getManagementData = ({group_id, start, end}) => {

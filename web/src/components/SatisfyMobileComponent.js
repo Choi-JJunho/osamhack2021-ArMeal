@@ -81,46 +81,62 @@ const MainPictureText = styled(MainPictureTextTitle)`
 const SurveyImages1 = styled.img.attrs({
   src: SurveyImage1
 })`
-  width: 10vw;
-  @media(min-width: 768px) and (max-width: 1100px){
-    width: 12vw;
-    height:11vh;
+  
+  @media(min-width: 768px) and (max-width: 1000px){
+    width: 110px;
+    height: 110px;
+  }
+  @media(min-width: 1000px) and (max-width: 1100px){
+    width: 135px;
+    height: 135px;
   }
 `
 const SurveyImages2 = styled.img.attrs({
   src: SurveyImage2
 })`
-  width: 10vw;
-  @media(min-width: 768px) and (max-width: 1100px){
-    width: 12vw;
-    height:11vh;
+@media(min-width: 768px) and (max-width: 1000px){
+  width: 110px;
+  height: 110px;
+}
+  @media(min-width: 1000px) and (max-width: 1100px){
+    width: 135px;
+    height: 135px;
   }
 `
 const SurveyImages3 = styled.img.attrs({
   src: SurveyImage3
 })`
-  width: 10vw;
-  @media(min-width: 768px) and (max-width: 1100px){
-    width: 12vw;
-    height:11vh;
+@media(min-width: 768px) and (max-width: 1000px){
+  width: 110px;
+  height: 110px;
+}
+  @media(min-width: 1000px) and (max-width: 1100px){
+    width: 135px;
+    height: 135px;
   }
 `
 const SurveyImages4 = styled.img.attrs({
   src: SurveyImage4
 })`
-  width: 10vw;
-  @media(min-width: 768px) and (max-width: 1100px){
-    width: 12vw;
-    height:11vh;
+@media(min-width: 768px) and (max-width: 1000px){
+  width: 110px;
+  height: 110px;
+}
+  @media(min-width: 1000px) and (max-width: 1100px){
+    width: 135px;
+    height: 135px;
   }
 `
 const SurveyImages5 = styled.img.attrs({
   src: SurveyImage5
 })`
-  width: 10vw;
-  @media(min-width: 768px) and (max-width: 1100px){
-    width: 12vw;
-    height:11vh;
+@media(min-width: 768px) and (max-width: 1000px){
+  width: 110px;
+  height: 110px;
+}
+  @media(min-width: 1000px) and (max-width: 1100px){
+    width: 135px;
+    height: 135px;
   }
 `
 const Message = styled.div`
@@ -166,8 +182,7 @@ const Text2 = styled.div`
 `
 const Survey = styled(Message)`
     
-    width: 14vw;
-    height: 33vh;
+    // width: 14vw;
     margin: auto;
 
     background: #FFFFFF;
@@ -186,7 +201,11 @@ const Survey = styled(Message)`
 
   @media(min-width: 768px) and (max-width: 1100px){
     width: 18vw;
-    height: 27.5vh;
+    height: 24.5vh;
+  }
+  @media(width: 1024px) and (height: 768px){
+    width: 18vw;
+    height: 34.5vh;
   }
 `
 
@@ -198,17 +217,16 @@ const QuitWrapper = styled.div`
     margin-bottom: 0px;
     margin-right: 60px;
     text-align: -webkit-right;
-  
-  @media(min-width: 768px) and (max-width: 1100px){
-    display:none;
-  }
+
 `
 const Quit = styled.div`
   padding: 5px;
   color:white;
   background:#75CB32;
-  width: 70px;
-  height: 35px;
+  width: 89px;
+    height: 37px;
+  // width: 70px;
+  // height: 35px;
   box-sizing: border-box;
 
   border: 3px solid #D9D9D9;
@@ -223,6 +241,9 @@ const Quit = styled.div`
     }
 `
 const TasteSelectionWrapper = styled.div`
+@media(width: 1024px) and (height: 768px){
+  top: 6.7vh;
+}
   position: absolute;
   height: 40vh;
   top: 30.1vh;
@@ -301,10 +322,19 @@ ${props => props.type !== 0
 `
 
 const GreenBorderBoxTitle = styled.div`
-  
+@media(max-width: 1000px) and (min-width: 768px){
+  font-size: 25px;
+}
+@media(max-width: 1100px) and (min-width: 1001px){
+  font-size: 35px;
+}
+@media(width: 1024px) and (height: 768px){
+  height: 36vh;
+}
+
   font-style: normal;
   font-weight: bold;
-  font-size: 25px;
+  // font-size: 25px;
   line-height: 9vh;
   /* or 88% */
 
@@ -318,10 +348,13 @@ const BoxWrapper = styled.div`
   height: auto;
 `
 const Box = styled.div`
+@media(width: 1024px) and (height: 768px){
+  height: 12.1vh;
+}
     display:grid;
     position: auto;
     width: 20%;
-    height: 8.5vh;
+    height: 8.1vh;
 
     background: #FFFFFF;
 
@@ -341,6 +374,12 @@ const Box = styled.div`
 `
 
 const Title = styled.div`
+@media(max-width: 1000px) and (min-width: 768px){
+  font-size: 22px;
+}
+@media(max-width: 1100px) and (min-width: 1001px){
+  font-size: 30px;
+}
 width: auto;
     height: auto;
 
@@ -358,13 +397,20 @@ width: auto;
 `
 
 const Percentage = styled.div`
+@media(max-width: 1000px) and (min-width: 768px){
+  font-size: 22px;
+}
+@media(max-width: 1100px) and (min-width: 1001px){
+  height: 0px;
+  font-size: 30px;
+}
 width: auto;
     height: auto;
 
     
     font-style: normal;
     font-weight: 700;
-    font-size: 22px;
+  
     line-height: 25px;
 
     display: grid;
@@ -381,6 +427,8 @@ width: auto;
 `
 const PercentageContainer = styled.div`
   // margin-top:6vh;
+  
+  
 `
 
 /////////////////메뉴 Display 페이지 CSS 끝///////////////////////////////////////////
