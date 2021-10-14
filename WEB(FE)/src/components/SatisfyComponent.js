@@ -244,7 +244,6 @@ const Quit = styled.div`
   position: absolute;
   }
 
-
   padding: 5px;
   color:white;
   background:#75CB32;
