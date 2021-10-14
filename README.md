@@ -4,8 +4,18 @@
 </a>
 
 ## 프로잭트 소개
-### 실시간 선호도 조사로 쌓은 통계로 병영식당을 개선하고자 하는 프로젝트
+> '설문조사 주기가 왜 이렇게 길까?' <br/>
+> '귀찮게... 왜 개인정비 시간에 설문을 시켜..' <br/>
+> "야 대충 한명이 써서 내자, 고기로 골라 고기"<br/>
+> '이번엔 모바일로 설문받는다고? 폰쓸시간 아깝게.. 대충 쓰고 끝내야지'<br/>
 
+최근 이슈가 된 군 급식, 군에서는 이를 해결하기 위해 여러 노력을 하고있습니다. <br/>
+실제로 급식비 증가, 비 선호 메뉴 제거, 신메뉴 추가 등 여러 방향으로 진행하고 있습니다.<br/>
+<b>하지만 그 속도가 너무 더딥니다.</b><br/>
+<b>설문 방식의 문제와 설문자의 문제가 겹쳐</b> 발전 속도를 매우 늦추고 있습니다.<br/>
+
+
+### 실시간 선호도 조사로 쌓은 통계로 병영식당을 개선하고자 하는 프로젝트
 
 ## 기능 설명
 <table>
@@ -204,6 +214,7 @@
 
 ## 컴퓨터 구성 / 필수 조건 안내 (Prerequisites)
 * 권장: ES6를 지원하는 Chromium 기반의 웹 브라우저(Chrome, Naver Whale, Microsoft Edge 등)
+* Node.js 14.18.1 이상
 
 ## 기술 스택 (Technique Used) 
 ### Server(back-end)
@@ -232,7 +243,7 @@
 ## 설치 안내 (Installation Process)
 ```bash
 $ git clone https://github.com/osamhack2021/WEB_CLOUD_ArMeal_CSK.git
-$ cd web/
+$ cd WEB(FE)/
 $ yarn or npm install
 $ yarn start or npm run start
 ```
