@@ -237,7 +237,9 @@
 * 권장: ES6를 지원하는 Chromium 기반의 웹 브라우저(Chrome, Naver Whale, Microsoft Edge 등)
 * Node.js 14.18.1 이상
 
-## 기술 스택 (Technique Used) 
+## 기술 스택 (Technique Used)
+<h3 align="center"><img src="/image/skill.jpg"></h3>
+
 ### Server(back-end)
  - Spring Boot 2.0.1
  - MySQL 5.7.35
@@ -260,6 +262,82 @@
    - tooltip.js
    - material-ui/data-grid
    - fullcalendar
+ 
+### Back-end
+<table><tbody>
+ <tr>
+  <td width="60">
+   <div align="center"><a href="" target="_blank"> <img src="" alt="SpringBoot" width="40" height="40"/> </a><br>SpringBoot</div>
+  </td>
+  <td width="60">
+   <div align="center"><a href="" target="_blank"> <img src="" alt="SpringSecurity" width="40" height="40"/> </a><br>SpringSecurity</div>
+  </td>
+  <td width="60">
+   <div align="center"><a href="" target="_blank"> <img src="" alt="Swagger" width="40" height="40"/> </a><br>Swagger</div>
+  </td>
+  <td width="60">
+   <div align="center"><a href="" target="_blank"> <img src="" alt="Mybatis" width="40" height="40"/> </a><br>Mybatis</div>
+  </td>
+  <td width="60">
+   <div align="center"><a href="" target="_blank"> <img src="" alt="GSON" width="40" height="40"/> </a><br>GSON</div>
+  </td>
+  <td width="60">
+   <div align="center"><a href="" target="_blank"> <img src="" alt="Nginx" width="40" height="40"/> </a><br>Nginx</div>
+  </td>
+  <td width="60">
+   <div align="center"><a href="" target="_blank"> <img src="" alt="Tomcat" width="40" height="40"/> </a><br>Tomcat</div>
+  </td>
+  </td>
+  <td width="60">
+   <div align="center"><a href="" target="_blank"> <img src="" alt="Maven" width="40" height="40"/> </a><br>Maven</div>
+  </td>
+  <td>
+  <div align="center"><a href="" target="_blank"> <img src="" alt="Java" width="40" height="40"/> </a><br>Java</div>
+  </td>
+ </tr>
+ </tbody></table>
+  
+### Front-end
+<table><tbody>
+ <tr>
+  <td>
+   <div align="center"><a href="" target="_blank"> <img src="" alt="React.js" width="40" height="40"/> </a><br>React.js</div>
+  </td>
+  <td>
+   <div align="center"><a href="" target="_blank"> <img src="" alt="Axios" width="40" height="40"/> </a><br>Axios</div>
+  </td>
+  <td>
+   <div align="center"><a href="" target="_blank"> <img src="" alt="Styled Component" width="40" height="40"/> </a><br>Styled Component</div>
+  </td>
+  <td width="60">
+   <div align="center"><a href="" target="_blank"> <img src="" alt="Javascript" width="40" height="40"/> </a><br>Javascript</div>
+  </td>
+  <td>
+   <div align="center"><a href="" target="_blank"> <img src="" alt="Html5" width="40" height="40"/> </a><br>Html5</div>
+  </td>
+  <td>
+   <div align="center"><a href="" target="_blank"> <img src="" alt="CSS" width="40" height="40"/> </a><br>CSS</div>
+  </td>
+  <td>
+   <div align="center"><a href="" target="_blank"> <img src="" alt="Babel" width="40" height="40"/> </a><br>Babel</div>
+  </td>
+  <td>
+   <div align="center"><a href="" target="_blank"> <img src="" alt="Webpack" width="40" height="40"/> </a><br>Webpack</div>
+  </td>
+  <td>
+   <div align="center"><a href="" target="_blank"> <img src="" alt="React Router" width="40" height="40"/> </a><br>React Router</div>
+  </td>
+ </tr>
+ </tbody></table>
+ 
+ ### Database
+ <table><tbody>
+ <tr>
+  <td>
+   <div align="center"><a href="" target="_blank"> <img src="" alt="mysql" width="40" height="40"/> </a><br>MySQL</div>
+  </td></tr>
+ </tbody></table>
+
 
 ## 설치 안내 (Installation Process)
 ```bash
