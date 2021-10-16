@@ -1,0 +1,67 @@
+{
+    "DS_TB_MNDT_DATEBYMLSVC_9030": {
+        "list_total_count": 1667,
+        "row": [
+            {
+                "dinr_cal": "84.17kcal",
+                "lunc": "단무지무침",
+                "sum_cal": "3469.04kcal",
+                "adspcfd": "",
+                "adspcfd_cal": "",
+                "dates": "2021-09-16",
+                "lunc_cal": "11.27kcal",
+                "brst": "오이고추장무침(06)",
+                "dinr": "두부조림(05)(06)",
+                "brst_cal": "32.81kcal"
+            },
+            {
+                "dinr_cal": "15.12kcal",
+                "lunc": "배추김치(7~9월)",
+                "sum_cal": "3469.04kcal",
+                "adspcfd": "",
+                "adspcfd_cal": "",
+                "dates": "2021-09-16",
+                "lunc_cal": "9.25kcal",
+                "brst": "배추김치(7~9월)",
+                "dinr": "백김치",
+                "brst_cal": "9.25kcal"
+            },
+            {
+                "dinr_cal": "122kcal",
+                "lunc": "사과(홍로)",
+                "sum_cal": "3469.04kcal",
+                "adspcfd": "",
+                "adspcfd_cal": "",
+                "dates": "2021-09-16",
+                "lunc_cal": "69.8380224kcal",
+                "brst": "우유(백색우유(200ML,연간))(02)",
+                "dinr": "우유(백색우유(200ML,연간))(02)",
+                "brst_cal": "122kcal"
+            },
+            {
+                "dinr_cal": "46kcal",
+                "lunc": "",
+                "sum_cal": "3469.04kcal",
+                "adspcfd": "",
+                "adspcfd_cal": "",
+                "dates": "2021-09-16",
+                "lunc_cal": "",
+                "brst": "",
+                "dinr": "사과 주스(200㎖/팩)",
+                "brst_cal": ""
+            },
+            {
+                "dinr_cal": "363kcal",
+                "lunc": "잡곡밥",
+                "sum_cal": "3711.55kcal",
+                "adspcfd": "",
+                "adspcfd_cal": "",
+                "dates": "2021-09-17",
+                "lunc_cal": "355.36kcal",
+                "brst": "밥",
+                "dinr": "밥",
+                "brst_cal": "363kcal"
+            }
+        ]
+    }
+}
