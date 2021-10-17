@@ -3,7 +3,7 @@
   <img src="./image/ArMeal.jpg" width="300px">
 </a>
 
-## 프로잭트 소개
+## 프로젝트 소개
 > '설문조사 주기가 왜 이렇게 길까?' <br/>
 > '귀찮게... 왜 개인정비 시간에 설문을 시켜..' <br/>
 > "야 대충 한명이 써서 내자, 고기로 골라 고기"<br/>
@@ -237,29 +237,84 @@
 * 권장: ES6를 지원하는 Chromium 기반의 웹 브라우저(Chrome, Naver Whale, Microsoft Edge 등)
 * Node.js 14.18.1 이상
 
-## 기술 스택 (Technique Used) 
-### Server(back-end)
- - Spring Boot 2.0.1
- - MySQL 5.7.35
- - Swagger 2.9.2
- - Maven 3.6.3
- - Java (OpenJDK 1.8.0_292)
- - Nginx
-
+## 기술 스택 (Technique Used)
+<h3 align="center"><img src="/image/skills.png"></h3>
+ 
+### Back-end
+<table><tbody>
+ <tr>
+  <td width="60">
+   <div align="center"><a href="https://spring.io/" target="_blank"> <img src="./image/springboot.png" alt="SpringBoot" height="40"/> </a><br>SpringBoot</div>
+  </td>
+  <td width="60">
+   <div align="center"><a href="https://spring.io/projects/spring-security" target="_blank"> <img src="./image/springsecurity.png" alt="SpringSecurity" height="40"/> </a><br>SpringSecurity</div>
+  </td>
+  <td width="60">
+   <div align="center"><a href="https://swagger.io/" target="_blank"> <img src="./image/swagger.png" alt="Swagger" height="40"/> </a><br>Swagger</div>
+  </td>
+  <td width="60">
+   <div align="center"><a href="https://mybatis.org/mybatis-3/ko/index.html" target="_blank"> <img src="./image/mybatis.png" alt="Mybatis" height="40"/> </a><br>Mybatis</div>
+  </td>
+  <td width="60">
+   <div align="center"><a href="https://github.com/google/gson" target="_blank"> <img src="./image/gson.png" alt="GSON" height="40"/> </a><br>GSON</div>
+  </td>
+  <td width="60">
+   <div align="center"><a href="https://www.nginx.com/" target="_blank"> <img src="./image/nginx.png" alt="Nginx" height="40"/> </a><br>Nginx</div>
+  </td>
+  <td width="60">
+   <div align="center"><a href="http://tomcat.apache.org/" target="_blank"> <img src="./image/tomcat.png" alt="Tomcat" height="40"/> </a><br>Tomcat</div>
+  </td>
+  </td>
+  <td width="60">
+   <div align="center"><a href="https://maven.apache.org/" target="_blank"> <img src="./image/maven.png" alt="Maven" height="40"/> </a><br>Maven</div>
+  </td>
+  <td>
+  <div align="center"><a href="https://www.java.com/ko/" target="_blank"> <img src="./image/java.png" alt="Java" height="40"/> </a><br>Java</div>
+  </td>
+ </tr>
+ </tbody></table>
+  
 ### Front-end
- - react.js
- - redux
-   - react-redux
-   - redux-logger
-   - redux-thunk
- - react-router-dom
- - styled-component
- - axios
- - UI library
-   - chart.js
-   - tooltip.js
-   - material-ui/data-grid
-   - fullcalendar
+<table><tbody>
+ <tr>
+  <td>
+   <div align="center"><a href="https://ko.reactjs.org/" target="_blank"> <img src="./image/react.png" alt="React.js" height="40"/> </a><br>React.js</div>
+  </td>
+  <td>
+   <div align="center"><a href="https://github.com/axios/axios" target="_blank"> <img src="./image/axios.png" alt="Axios" height="40"/> </a><br>Axios</div>
+  </td>
+  <td>
+   <div align="center"><a href="https://styled-components.com/" target="_blank"> <img src="./image/styledcomponents.png" alt="Styled Components" height="40"/> </a><br>Styled Components</div>
+  </td>
+  <td width="60">
+   <div align="center"><a href="https://developer.mozilla.org/ko/docs/Web/JavaScript" target="_blank"> <img src="./image/javascript.png" alt="Javascript" height="40"/> </a><br>Javascript</div>
+  </td>
+  <td>
+   <div align="center"><a href="https://dev.w3.org/html5/html-author/" target="_blank"> <img src="./image/html5.png" alt="Html5" height="40"/> </a><br>Html5</div>
+  </td>
+  <td>
+   <div align="center"><a href="https://developer.mozilla.org/ko/docs/Web/CSS/Reference" target="_blank"> <img src="./image/css.png" alt="CSS" height="40"/> </a><br>CSS</div>
+  </td>
+  <td>
+   <div align="center"><a href="https://babeljs.io/" target="_blank"> <img src="./image/babel.png" alt="Babel" height="40"/> </a><br>Babel</div>
+  </td>
+  <td>
+   <div align="center"><a href="https://webpack.js.org/" target="_blank"> <img src="./image/webpack.png" alt="Webpack" height="40"/> </a><br>Webpack</div>
+  </td>
+  <td>
+   <div align="center"><a href="https://reactrouter.com/" target="_blank"> <img src="./image/reactrouter.png" alt="React Router" height="40"/> </a><br>React Router</div>
+  </td>
+ </tr>
+ </tbody></table>
+ 
+ ### Database
+ <table><tbody>
+ <tr>
+  <td>
+   <div align="center"><a href="https://www.mysql.com/" target="_blank"> <img src="./image/mysql.png" alt="mysql" height="40"/> </a><br>MySQL</div>
+  </td></tr>
+ </tbody></table>
+
 
 ## 설치 안내 (Installation Process)
 ```bash
