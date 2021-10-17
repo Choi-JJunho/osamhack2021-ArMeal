@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components'
 import DoughnutChart from './shared/DoughnutChart';
-
+///////////////////////////////////////////
 const Container = styled.div`
   
 `
