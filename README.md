@@ -239,29 +239,6 @@
 
 ## 기술 스택 (Technique Used)
 <h3 align="center"><img src="/image/skills.png"></h3>
-
-### Server(back-end)
- - Spring Boot 2.0.1
- - MySQL 5.7.35
- - Swagger 2.9.2
- - Maven 3.6.3
- - Java (OpenJDK 1.8.0_292)
- - Nginx
-
-### Front-end
- - react.js
- - redux
-   - react-redux
-   - redux-logger
-   - redux-thunk
- - react-router-dom
- - styled-component
- - axios
- - UI library
-   - chart.js
-   - tooltip.js
-   - material-ui/data-grid
-   - fullcalendar
  
 ### Back-end
 <table><tbody>
