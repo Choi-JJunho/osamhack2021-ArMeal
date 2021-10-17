@@ -331,13 +331,91 @@ $ yarn start or npm run start
 3. 식단관리 탭에서 소속부대의 식단이 잘 받아와졌는지 확인합니다.
 4. 만족도조사 탭에서 만족도조사를 실시합니다.
 5. 쌓인 설문 결과를 다양한 통계 탭에서 확인합니다.
- 
+
+
 ## 팀 정보 (Team Information)
-- 최원빈 (chldnjsqls1264@gmail.com), Github: ChoiWonBeen
-- 최준호 (junho5336@gmail.com), Github: Choi-JJunho
-- 김대민 (daemingim5@gmail.com), Github: KDM777
-- 신윤기 (ryunkishin@gmail.com), Github: ryunki
-- 권성현 (rushhour.k@gmail.com), Github: SeonghyeonGwon
+<table width="788">
+<thead>
+<tr>
+<th width="100" align="center">사진</th>
+<th width="100" align="center">성명</th>
+<th width="150" align="center">담당</th>
+<th width="150" align="center">깃허브</th>
+<th width="200" align="center">이메일</th>
+</tr> 
+</thead>
+<tbody>
+<tr>
+<td width="100" align="center"><img src="https://avatars.githubusercontent.com/u/50780281?v=4" width="60" height="60"></td>
+<td width="100" align="center">최원빈</td>
+<td width="150" align="center">FrontEnd 총괄<br>UI 프로토타이핑<br>발표자료 제작 등</td>
+<td width="100" align="center">
+	<a href="https://github.com/ChoiWonBeen">
+		<img src="https://img.shields.io/badge/-ChoiWonBeen-black?style=flat-square&logo=github"/>
+	</a>
+</td>
+<td width="175" align="center">
+	<a href="mailto:chldnjsqls1264@gmail.com"><img src="https://img.shields.io/badge/chldnjsqls1264@gmail.com-d14836?style=flat-square&logo=Gmail&logoColor=white"></a>
+	</td>
+</tr>
+<tr>
+<td width="100" align="center"><img src="https://avatars.githubusercontent.com/u/49794401?v=4" width="60" height="60"></td>
+<td width="100" align="center">최준호</td>
+<td width="300" align="center">백엔드 총괄<br>API 설계<br>서버 관리<br> 영상 제작 등</td>
+<td width="100" align="center">
+	<a href="https://github.com/Choi-JJunho">
+		<img src="https://img.shields.io/badge/-Choi--Junho-black?style=flat-square&logo=github"/>
+	</a>
+</td>
+<td width="175" align="center">
+	<a href="mailto:junho5336@gmail.com"><img src="https://img.shields.io/badge/junho5336@gmail.com-d14836?style=flat-square&logo=Gmail&logoColor=white"></a>
+	</td>
+</tr>
+<tr>
+<td width="100" align="center"><img src="https://avatars.githubusercontent.com/u/69681273?v=4" width="60" height="60"></td>
+<td width="100" align="center">김대민</td>
+<td width="150" align="center">FrontEnd 개발<br>회원가입, 로그인 개발<br>날짜별 통계 서비스 구현</td>
+<td width="100" align="center">
+	<a href="https://github.com/KDM777">
+		<img src="https://img.shields.io/badge/-KDM777-black?style=flat-square&logo=github"/>
+	</a>
+</td>
+<td width="175" align="center">
+	<a href="mailto:daemingim5@gmail.com"><img src="https://img.shields.io/badge/daemingim5@gmail.com-d14836?style=flat-square&logo=Gmail&logoColor=white"></a>
+	</td>
+</tr>
+<tr>
+<td width="100" align="center"><img src="https://avatars.githubusercontent.com/u/65451432?v=4" width="60" height="60"></td>
+<td width="100" align="center">신윤기</td>
+<td width="150" align="center">FrontEnd 개발<br>만족도조사 개발<br>자율메뉴 서비스 개발<br>모바일만족도조사 반응형 구현 등</td>
+<td width="100" align="center">
+	<a href="https://github.com/ryunki">
+		<img src="https://img.shields.io/badge/-ryunki-black?style=flat-square&logo=github"/>
+	</a>
+</td>
+<td width="175" align="center">
+	<a href="mailto:ryunkishin@gmail.com"><img src="https://img.shields.io/badge/ryunkishin@gmail.com-d14836?style=flat-square&logo=Gmail&logoColor=white"></a>
+	</td>
+</tr>
+<tr>
+<td width="100" align="center"><img src="https://avatars.githubusercontent.com/u/64205042?v=4" width="60" height="60"></td>
+<td width="100" align="center">권성현</td>
+<td width="150" align="center">BackEnd 개발<br>API 수정<br>DB 설계 등</td>
+<td width="100" align="center">
+	<a href="https://github.com/SeonghyeonGwon">
+		<img src="https://img.shields.io/badge/-SeonghyeonGwon-black?style=flat-square&logo=github"/>
+	</a>
+</td>
+<td width="175" align="center">
+	<a href="mailto:rushhour.k@gmail.com"><img src="https://img.shields.io/badge/rushhour.k@gmail.com-d14836?style=flat-square&logo=Gmail&logoColor=white"></a>
+	</td>
+</tr>
+</tr>
+</tbody>
+</table>
+
+<br>
+
 
 ## 저작권 및 사용권 정보 (Copyleft / End User License)
  * https://github.com/osamhack2021/WEB_CLOUD_ArMeal_CSK/blob/main/LICENSE.md
