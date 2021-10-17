@@ -317,6 +317,7 @@ export default function DashboardComponent({chartData, average, dataName, menuRa
             </DataSpec>
           </ChartWrapper>
         </Box1>
+        
 
 
         <Box2 width="20vw" height="47vh">
