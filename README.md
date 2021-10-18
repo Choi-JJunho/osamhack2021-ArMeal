@@ -419,7 +419,4 @@ $ yarn start or npm run start
 
 ## 저작권 및 사용권 정보 (Copyleft / End User License)
  * https://github.com/osamhack2021/WEB_CLOUD_ArMeal_CSK/blob/main/LICENSE.md
-   - MIT
-   - Apache 2.0
-   - The Universal FOSS Exception 1.0
-   - SIL OPEN FONT LICENSE Version 1.1
+   - GNU General Public License v3.0
